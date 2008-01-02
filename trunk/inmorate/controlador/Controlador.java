@@ -9,6 +9,7 @@ import inmorate.gui.VistaMatrimonio;
 import inmorate.gui.VistaPareja;
 import inmorate.gui.VistaSoltera;
 import inmorate.gui.VistaSoltero;
+import inmorate.gui.VistaVivienda;
 
 public class Controlador {
 	
@@ -21,6 +22,8 @@ public class Controlador {
 	private VistaSoltero vistaSoltero;
 	
 	private VistaSoltera vistaSoltera;
+	
+	private VistaVivienda vistaVivienda;
 	
 	private Conexion conexion;
 
@@ -46,6 +49,10 @@ public class Controlador {
 	
 	public void registrarVistaSoltera(VistaSoltera VSA) {
 		this.vistaSoltera = VSA;
+	}
+	
+	public void registrarVistaVivienda(VistaVivienda VV) {
+		this.vistaVivienda = VV;
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -74,6 +81,12 @@ public class Controlador {
 		vistaInicial.setVisible(false);
 		vistaSoltera.show();
 		vistaInicial.setVisible(true);
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void activarVVP() {
+		vistaPareja.setVisible(false);
+		vistaVivienda.show();
 	}
 	
 	public void cerrarPrograma() {
