@@ -25,6 +25,14 @@ public class VistaPareja extends JDialog {
 		setModal(true);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
+		buttonAceptar.addActionListener(
+				new ActionListener() {
+					public void actionPerformed(ActionEvent evento) {
+						controlador.activarVVP();
+					}
+				} // ActionListener			
+		); // buttonAceptar.addActionListener
+		
 		buttonCancelar.addActionListener(
 				new ActionListener() {
 					public void actionPerformed(ActionEvent evento) {

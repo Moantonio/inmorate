@@ -27,12 +27,13 @@ public class Start {
 			VistaMatrimonio vistaMatrimonio = new VistaMatrimonio(controlador);
 			VistaSoltero vistaSoltero = new VistaSoltero(controlador);
 			VistaSoltera vistaSoltera = new VistaSoltera(controlador);
-			//VistaVivienda vistaVivienda = new VistaVivienda();
+			VistaVivienda vistaVivienda = new VistaVivienda(controlador);
 			controlador.registrarVistaInicial(vistaInicial);
 			controlador.registrarVistaPareja(vistaPareja);
 			controlador.registrarVistaMatrimonio(vistaMatrimonio);
 			controlador.registrarVistaSoltero(vistaSoltero);
 			controlador.registrarVistaSoltera(vistaSoltera);
+			controlador.registrarVistaVivienda(vistaVivienda);
 		}
 		catch (Exception e) {
 			JOptionPane.showMessageDialog(null,
