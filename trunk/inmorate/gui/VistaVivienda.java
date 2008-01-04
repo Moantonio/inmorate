@@ -78,9 +78,9 @@ public class VistaVivienda extends JDialog {
 					public void mouseClicked(MouseEvent e) {
 						// TODO Apéndice de método generado automáticamente
 						int posicion = listInmueble.getSelectedIndex();
-						System.out.println(posicion);
 						// Coger Inmueble de valores y escribirlo
-						
+						inmueble = valores.get(posicion);
+						mostrar();
 					}
 
 					public void mouseEntered(MouseEvent e) {
@@ -113,6 +113,72 @@ public class VistaVivienda extends JDialog {
 			array[i] = inmueble.getIdentificador();
 		}
 		listInmueble.setListData(array);
+	}
+	
+	private void mostrar() {
+		label2.setText(inmueble.getIdentificador());
+		label26.setText(inmueble.getTipo());
+		label27.setText(inmueble.getComercial());
+		label30.setText(String.valueOf(inmueble.isVendido()));
+		label117.setText(inmueble.getDireccion());
+		label29.setText(inmueble.getFecha_entrada());
+		label122.setText(String.valueOf(inmueble.getPlanta()));
+		label28.setText(String.valueOf(inmueble.getPrecio_salida()));
+		label33.setText(String.valueOf(inmueble.getM_construidos()));
+		label36.setText(String.valueOf(inmueble.isAmueblado()));
+		label40.setText(String.valueOf(inmueble.getN_dormitorios()));
+		label44.setText(String.valueOf(inmueble.getM_dormitorio_segundo()));
+		label47.setText(String.valueOf(inmueble.getM_dormitorio_servicio()));
+		label37.setText(inmueble.getTerraza());
+		label75.setText(String.valueOf(inmueble.isTendedero()));
+		label88.setText(String.valueOf(inmueble.getM_bano2()));
+		label78.setText(String.valueOf(inmueble.isJardin_comunitario()));
+		label91.setText(inmueble.getTipo_calefaccion());
+		label81.setText(String.valueOf(inmueble.isAire_acondicionado()));
+		label94.setText(String.valueOf(inmueble.isConserje()));
+		label84.setText(String.valueOf(inmueble.isTrastero()));
+		label97.setText(inmueble.getSuelos());
+		label123.setText(String.valueOf(inmueble.getAntiguedad()));
+		label124.setText(inmueble.getOrientacion());
+		label127.setText(inmueble.getFecha_disponibilidad());
+		label31.setText(inmueble.getFecha_venta());
+		label34.setText(String.valueOf(inmueble.getM_habitables()));
+		label38.setText(String.valueOf(inmueble.getM_salon()));
+		label42.setText(String.valueOf(inmueble.getM_dormitorio_principal()));
+		label45.setText(String.valueOf(inmueble.getM_dormitorio_tercero()));
+		label49.setText(inmueble.getObs_dormitorios());
+		label74.setText(String.valueOf(inmueble.isCocina_amueblada()));
+		label87.setText(String.valueOf(inmueble.getN_banos()));
+		label77.setText(String.valueOf(inmueble.getM_bano3()));
+		label90.setText(String.valueOf(inmueble.isPiscina_comunitaria()));
+		label80.setText(inmueble.getAgua_caliente());
+		label93.setText(String.valueOf(inmueble.isParabolica()));
+		label83.setText(String.valueOf(inmueble.isAscensor()));
+		label96.setText(inmueble.getCarpinteria_exterior());
+		label113.setText(String.valueOf(inmueble.getGastos()));
+		label114.setText(String.valueOf(inmueble.getPlantas_edificio()));
+		label115.setText(inmueble.getConservacion());
+		label116.setText(String.valueOf(inmueble.isSauna()));
+		label32.setText(String.valueOf(inmueble.getPrecio_venta()));
+		label35.setText(String.valueOf(inmueble.getM_hall()));
+		label39.setText(String.valueOf(inmueble.isSalon_independiente()));
+		label43.setText(inmueble.getObs_dormitorio_principal());
+		label46.setText(String.valueOf(inmueble.getM_dormitorio_cuarto()));
+		label41.setText(String.valueOf(inmueble.getN_armarios()));
+		label86.setText(String.valueOf(inmueble.isEquipamiento_cocina()));
+		label76.setText(String.valueOf(inmueble.getM_bano1()));
+		label89.setText(String.valueOf(inmueble.isAseo()));
+		label79.setText(String.valueOf(inmueble.isPiscina_propia()));
+		label92.setText(String.valueOf(inmueble.isRadiadores()));
+		label82.setText(String.valueOf(inmueble.isPortero_automatico()));
+		label95.setText(String.valueOf(inmueble.getNum_plazas()));
+		label85.setText(inmueble.getCarpinteria_interior());
+		label118.setText(String.valueOf(inmueble.isPuerta_blindada()));
+		label119.setText(String.valueOf(inmueble.getPuertas_planta()));
+		label120.setText(inmueble.getEstado_finca());
+		label121.setText(String.valueOf(inmueble.isGimnasio()));
+		textPane1.setText(inmueble.getDescripcion());
+		textPane2.setText(inmueble.getOtros_comentarios());
 	}
 
 	private void rellenarArrayList() throws SQLException {
@@ -336,7 +402,7 @@ public class VistaVivienda extends JDialog {
 		scrollPane2 = new JScrollPane();
 		textPane2 = new JTextPane();
 
-		//======== this ========
+//		======== this ========
 		setTitle("Valores Inmuebles");
 		setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		Container contentPane = getContentPane();
@@ -444,13 +510,13 @@ public class VistaVivienda extends JDialog {
 		label2.setText("- - - - - -");
 		label2.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label2);
-		label2.setBounds(new Rectangle(new Point(280, 105), label2.getPreferredSize()));
+		label2.setBounds(280, 105, 170, label2.getPreferredSize().height);
 
 		//======== scrollPaneInmueble ========
 		{
 			
 			//---- listInmuelble ----
-			listInmueble.setVisibleRowCount(1000);
+			listInmueble.setVisibleRowCount(1000000);
 			listInmueble.setFont(new Font("Arial Unicode MS", Font.PLAIN, 14));
 			scrollPaneInmueble.setViewportView(listInmueble);
 		}
@@ -470,7 +536,7 @@ public class VistaVivienda extends JDialog {
 		label4.setBounds(new Rectangle(new Point(230, 125), label4.getPreferredSize()));
 
 		//---- label5 ----
-		label5.setText("Comercial Responsable:");
+		label5.setText("Com. Responsable:");
 		label5.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label5);
 		label5.setBounds(new Rectangle(new Point(230, 145), label5.getPreferredSize()));
@@ -610,25 +676,25 @@ public class VistaVivienda extends JDialog {
 		label26.setText("- - - - - -");
 		label26.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label26);
-		label26.setBounds(new Rectangle(new Point(340, 125), label26.getPreferredSize()));
+		label26.setBounds(340, 125, 110, label26.getPreferredSize().height);
 
 		//---- label27 ----
 		label27.setText("- - - - - -");
 		label27.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label27);
-		label27.setBounds(new Rectangle(new Point(375, 145), label27.getPreferredSize()));
+		label27.setBounds(350, 145, 100, label27.getPreferredSize().height);
 
 		//---- label28 ----
 		label28.setText("- - - - - -");
 		label28.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label28);
-		label28.setBounds(new Rectangle(new Point(335, 245), label28.getPreferredSize()));
+		label28.setBounds(335, 245, 115, label28.getPreferredSize().height);
 
 		//---- label29 ----
 		label29.setText("- - - - - -");
 		label29.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label29);
-		label29.setBounds(new Rectangle(new Point(345, 205), label29.getPreferredSize()));
+		label29.setBounds(345, 205, 105, label29.getPreferredSize().height);
 
 		//---- label30 ----
 		label30.setText("- - - - - -");
@@ -640,103 +706,103 @@ public class VistaVivienda extends JDialog {
 		label31.setText("- - - - - -");
 		label31.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label31);
-		label31.setBounds(new Rectangle(new Point(560, 245), label31.getPreferredSize()));
+		label31.setBounds(560, 245, 105, label31.getPreferredSize().height);
 
 		//---- label32 ----
 		label32.setText("- - - - - -");
 		label32.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label32);
-		label32.setBounds(new Rectangle(new Point(775, 245), label32.getPreferredSize()));
+		label32.setBounds(775, 245, 105, label32.getPreferredSize().height);
 
 		//---- label33 ----
 		label33.setText("- - - - - -");
 		label33.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label33);
-		label33.setBounds(new Rectangle(new Point(330, 265), label33.getPreferredSize()));
+		label33.setBounds(330, 265, 120, label33.getPreferredSize().height);
 
 		//---- label34 ----
 		label34.setText("- - - - - -");
 		label34.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label34);
-		label34.setBounds(new Rectangle(new Point(555, 265), label34.getPreferredSize()));
+		label34.setBounds(555, 265, 110, label34.getPreferredSize().height);
 
 		//---- label35 ----
 		label35.setText("- - - - - -");
 		label35.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label35);
-		label35.setBounds(new Rectangle(new Point(775, 265), label35.getPreferredSize()));
+		label35.setBounds(775, 265, 105, label35.getPreferredSize().height);
 
 		//---- label36 ----
 		label36.setText("- - - - - -");
 		label36.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label36);
-		label36.setBounds(new Rectangle(new Point(305, 285), label36.getPreferredSize()));
+		label36.setBounds(305, 285, 145, label36.getPreferredSize().height);
 
 		//---- label37 ----
 		label37.setText("- - - - - -");
 		label37.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label37);
-		label37.setBounds(new Rectangle(new Point(365, 365), label37.getPreferredSize()));
+		label37.setBounds(365, 365, 85, label37.getPreferredSize().height);
 
 		//---- label38 ----
 		label38.setText("- - - - - -");
 		label38.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label38);
-		label38.setBounds(new Rectangle(new Point(545, 285), label38.getPreferredSize()));
+		label38.setBounds(545, 285, 120, label38.getPreferredSize().height);
 
 		//---- label39 ----
 		label39.setText("- - - - - -");
 		label39.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label39);
-		label39.setBounds(new Rectangle(new Point(800, 285), label39.getPreferredSize()));
+		label39.setBounds(800, 285, 80, label39.getPreferredSize().height);
 
 		//---- label40 ----
 		label40.setText("- - - - - -");
 		label40.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label40);
-		label40.setBounds(new Rectangle(new Point(325, 305), label40.getPreferredSize()));
+		label40.setBounds(325, 305, 125, label40.getPreferredSize().height);
 
 		//---- label41 ----
 		label41.setText("- - - - - -");
 		label41.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label41);
-		label41.setBounds(new Rectangle(new Point(825, 345), label41.getPreferredSize()));
+		label41.setBounds(825, 345, 55, label41.getPreferredSize().height);
 
 		//---- label42 ----
 		label42.setText("- - - - - -");
 		label42.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label42);
-		label42.setBounds(new Rectangle(new Point(605, 305), label42.getPreferredSize()));
+		label42.setBounds(605, 305, 60, label42.getPreferredSize().height);
 
 		//---- label43 ----
 		label43.setText("- - - - - -");
 		label43.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label43);
-		label43.setBounds(new Rectangle(new Point(825, 305), label43.getPreferredSize()));
+		label43.setBounds(825, 305, 55, label43.getPreferredSize().height);
 
 		//---- label44 ----
 		label44.setText("- - - - - -");
 		label44.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label44);
-		label44.setBounds(new Rectangle(new Point(375, 325), label44.getPreferredSize()));
+		label44.setBounds(375, 325, 75, label44.getPreferredSize().height);
 
 		//---- label45 ----
 		label45.setText("- - - - - -");
 		label45.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label45);
-		label45.setBounds(new Rectangle(new Point(595, 325), label45.getPreferredSize()));
+		label45.setBounds(595, 325, 70, label45.getPreferredSize().height);
 
 		//---- label46 ----
 		label46.setText("- - - - - -");
 		label46.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label46);
-		label46.setBounds(new Rectangle(new Point(810, 325), label46.getPreferredSize()));
+		label46.setBounds(810, 325, 70, label46.getPreferredSize().height);
 
 		//---- label47 ----
 		label47.setText("- - - - - -");
 		label47.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label47);
-		label47.setBounds(new Rectangle(new Point(390, 345), label47.getPreferredSize()));
+		label47.setBounds(390, 345, 60, label47.getPreferredSize().height);
 
 		//---- label48 ----
 		label48.setText("Obs. Dormitorios:");
@@ -748,7 +814,7 @@ public class VistaVivienda extends JDialog {
 		label49.setText("- - - - - -");
 		label49.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label49);
-		label49.setBounds(new Rectangle(new Point(565, 345), label49.getPreferredSize()));
+		label49.setBounds(565, 345, 100, label49.getPreferredSize().height);
 
 		//---- label50 ----
 		label50.setText("Cocina Amueblada:");
@@ -898,145 +964,145 @@ public class VistaVivienda extends JDialog {
 		label74.setText("- - - - - -");
 		label74.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label74);
-		label74.setBounds(new Rectangle(new Point(580, 365), label74.getPreferredSize()));
+		label74.setBounds(580, 365, 85, label74.getPreferredSize().height);
 
 		//---- label75 ----
 		label75.setText("- - - - - -");
 		label75.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label75);
-		label75.setBounds(new Rectangle(new Point(305, 385), label75.getPreferredSize()));
+		label75.setBounds(305, 385, 145, label75.getPreferredSize().height);
 
 		//---- label76 ----
 		label76.setText("- - - - - -");
 		label76.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label76);
-		label76.setBounds(new Rectangle(new Point(795, 385), label76.getPreferredSize()));
+		label76.setBounds(795, 385, 85, label76.getPreferredSize().height);
 
 		//---- label77 ----
 		label77.setText("- - - - - -");
 		label77.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label77);
-		label77.setBounds(new Rectangle(new Point(540, 405), label77.getPreferredSize()));
+		label77.setBounds(540, 405, 125, label77.getPreferredSize().height);
 
 		//---- label78 ----
 		label78.setText("- - - - - -");
 		label78.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label78);
-		label78.setBounds(new Rectangle(new Point(350, 425), label78.getPreferredSize()));
+		label78.setBounds(350, 425, 100, label78.getPreferredSize().height);
 
 		//---- label79 ----
 		label79.setText("- - - - - -");
 		label79.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label79);
-		label79.setBounds(new Rectangle(new Point(770, 425), label79.getPreferredSize()));
+		label79.setBounds(770, 425, 110, label79.getPreferredSize().height);
 
 		//---- label80 ----
 		label80.setText("- - - - - -");
 		label80.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label80);
-		label80.setBounds(new Rectangle(new Point(555, 445), label80.getPreferredSize()));
+		label80.setBounds(555, 445, 110, label80.getPreferredSize().height);
 
 		//---- label81 ----
 		label81.setText("- - - - - -");
 		label81.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label81);
-		label81.setBounds(new Rectangle(new Point(350, 465), label81.getPreferredSize()));
+		label81.setBounds(350, 465, 100, label81.getPreferredSize().height);
 
 		//---- label82 ----
 		label82.setText("- - - - - -");
 		label82.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label82);
-		label82.setBounds(new Rectangle(new Point(795, 465), label82.getPreferredSize()));
+		label82.setBounds(795, 465, 85, label82.getPreferredSize().height);
 
 		//---- label83 ----
 		label83.setText("- - - - - -");
 		label83.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label83);
-		label83.setBounds(new Rectangle(new Point(525, 485), label83.getPreferredSize()));
+		label83.setBounds(525, 485, 140, label83.getPreferredSize().height);
 
 		//---- label84 ----
 		label84.setText("- - - - - -");
 		label84.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label84);
-		label84.setBounds(new Rectangle(new Point(290, 505), label84.getPreferredSize()));
+		label84.setBounds(290, 505, 160, label84.getPreferredSize().height);
 
 		//---- label85 ----
 		label85.setText("- - - - - -");
 		label85.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label85);
-		label85.setBounds(new Rectangle(new Point(790, 505), label85.getPreferredSize()));
+		label85.setBounds(790, 505, 90, label85.getPreferredSize().height);
 
 		//---- label86 ----
 		label86.setText("- - - - - -");
 		label86.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label86);
-		label86.setBounds(new Rectangle(new Point(810, 365), label86.getPreferredSize()));
+		label86.setBounds(810, 365, 70, label86.getPreferredSize().height);
 
 		//---- label87 ----
 		label87.setText("- - - - - -");
 		label87.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label87);
-		label87.setBounds(new Rectangle(new Point(525, 385), label87.getPreferredSize()));
+		label87.setBounds(525, 385, 140, label87.getPreferredSize().height);
 
 		//---- label88 ----
 		label88.setText("- - - - - -");
 		label88.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label88);
-		label88.setBounds(new Rectangle(new Point(310, 405), label88.getPreferredSize()));
+		label88.setBounds(310, 405, 140, label88.getPreferredSize().height);
 
 		//---- label89 ----
 		label89.setText("- - - - - -");
 		label89.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label89);
-		label89.setBounds(new Rectangle(new Point(715, 405), label89.getPreferredSize()));
+		label89.setBounds(715, 405, 165, label89.getPreferredSize().height);
 
 		//---- label90 ----
 		label90.setText("- - - - - -");
 		label90.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label90);
-		label90.setBounds(new Rectangle(new Point(585, 425), label90.getPreferredSize()));
+		label90.setBounds(585, 425, 80, label90.getPreferredSize().height);
 
 		//---- label91 ----
 		label91.setText("- - - - - -");
 		label91.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label91);
-		label91.setBounds(new Rectangle(new Point(335, 445), label91.getPreferredSize()));
+		label91.setBounds(335, 445, 115, label91.getPreferredSize().height);
 
 		//---- label92 ----
 		label92.setText("- - - - - -");
 		label92.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label92);
-		label92.setBounds(new Rectangle(new Point(750, 445), label92.getPreferredSize()));
+		label92.setBounds(750, 445, 130, label92.getPreferredSize().height);
 
 		//---- label93 ----
 		label93.setText("- - - - - -");
 		label93.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label93);
-		label93.setBounds(new Rectangle(new Point(535, 465), label93.getPreferredSize()));
+		label93.setBounds(535, 465, 130, label93.getPreferredSize().height);
 
 		//---- label94 ----
 		label94.setText("- - - - - -");
 		label94.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label94);
-		label94.setBounds(new Rectangle(new Point(295, 485), label94.getPreferredSize()));
+		label94.setBounds(295, 485, 155, label94.getPreferredSize().height);
 
 		//---- label95 ----
 		label95.setText("- - - - - -");
 		label95.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label95);
-		label95.setBounds(new Rectangle(new Point(780, 485), label95.getPreferredSize()));
+		label95.setBounds(780, 485, 100, label95.getPreferredSize().height);
 
 		//---- label96 ----
 		label96.setText("- - - - - -");
 		label96.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label96);
-		label96.setBounds(new Rectangle(new Point(575, 505), label96.getPreferredSize()));
+		label96.setBounds(575, 505, 90, label96.getPreferredSize().height);
 
 		//---- label97 ----
 		label97.setText("- - - - - -");
 		label97.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label97);
-		label97.setBounds(new Rectangle(new Point(285, 525), label97.getPreferredSize()));
+		label97.setBounds(285, 525, 165, label97.getPreferredSize().height);
 
 		//---- label98 ----
 		label98.setText("Gastos Comunidad:");
@@ -1126,55 +1192,55 @@ public class VistaVivienda extends JDialog {
 		label113.setText("- - - - - -");
 		label113.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label113);
-		label113.setBounds(new Rectangle(new Point(580, 525), label113.getPreferredSize()));
+		label113.setBounds(580, 525, 85, label113.getPreferredSize().height);
 
 		//---- label114 ----
 		label114.setText("- - - - - -");
 		label114.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label114);
-		label114.setBounds(new Rectangle(new Point(570, 545), label114.getPreferredSize()));
+		label114.setBounds(570, 545, 95, label114.getPreferredSize().height);
 
 		//---- label115 ----
 		label115.setText("- - - - - -");
 		label115.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label115);
-		label115.setBounds(new Rectangle(new Point(550, 565), label115.getPreferredSize()));
+		label115.setBounds(550, 565, 115, label115.getPreferredSize().height);
 
 		//---- label116 ----
 		label116.setText("- - - - - -");
 		label116.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label116);
-		label116.setBounds(new Rectangle(new Point(510, 585), label116.getPreferredSize()));
+		label116.setBounds(510, 585, 155, label116.getPreferredSize().height);
 
 		//---- label117 ----
 		label117.setText("- - - - - -");
 		label117.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label117);
-		label117.setBounds(new Rectangle(new Point(295, 185), label117.getPreferredSize()));
+		label117.setBounds(295, 185, 155, label117.getPreferredSize().height);
 
 		//---- label118 ----
 		label118.setText("- - - - - -");
 		label118.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label118);
-		label118.setBounds(new Rectangle(new Point(775, 525), label118.getPreferredSize()));
+		label118.setBounds(775, 525, 105, label118.getPreferredSize().height);
 
 		//---- label119 ----
 		label119.setText("- - - - - -");
 		label119.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label119);
-		label119.setBounds(new Rectangle(new Point(790, 545), label119.getPreferredSize()));
+		label119.setBounds(790, 545, 90, label119.getPreferredSize().height);
 
 		//---- label120 ----
 		label120.setText("- - - - - -");
 		label120.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label120);
-		label120.setBounds(new Rectangle(new Point(790, 565), label120.getPreferredSize()));
+		label120.setBounds(790, 565, 90, label120.getPreferredSize().height);
 
 		//---- label121 ----
 		label121.setText("- - - - - -");
 		label121.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label121);
-		label121.setBounds(new Rectangle(new Point(740, 585), label121.getPreferredSize()));
+		label121.setBounds(740, 585, 140, label121.getPreferredSize().height);
 
 		//---- label122 ----
 		label122.setText("- - - - - -");
@@ -1186,19 +1252,19 @@ public class VistaVivienda extends JDialog {
 		label123.setText("- - - - - -");
 		label123.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label123);
-		label123.setBounds(new Rectangle(new Point(310, 545), label123.getPreferredSize()));
+		label123.setBounds(310, 545, 140, label123.getPreferredSize().height);
 
 		//---- label124 ----
 		label124.setText("- - - - - -");
 		label124.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label124);
-		label124.setBounds(new Rectangle(new Point(305, 565), label124.getPreferredSize()));
+		label124.setBounds(305, 565, 145, label124.getPreferredSize().height);
 
 		//---- label127 ----
 		label127.setText("- - - - - -");
 		label127.setFont(new Font("Arial Unicode MS", Font.PLAIN, 12));
 		contentPane.add(label127);
-		label127.setBounds(new Rectangle(new Point(375, 585), label127.getPreferredSize()));
+		label127.setBounds(375, 585, 75, label127.getPreferredSize().height);
 
 		//======== scrollPane2 ========
 		{
