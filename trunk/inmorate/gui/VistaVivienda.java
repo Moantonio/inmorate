@@ -1,10 +1,16 @@
 package inmorate.gui;
 
 import inmorate.controlador.Controlador;
+import inmorate.model.Inmueble;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.*;
 import javax.swing.border.*;
@@ -25,8 +31,17 @@ public class VistaVivienda extends JDialog {
 	
 	private Controlador controlador;
 	
+	ArrayList<Inmueble> valores;
+	
+	Inmueble inmueble;
+	
+	ResultSet resultado;
+	
 	public VistaVivienda(Controlador control) {
 		this.controlador = control;
+		this.valores = new ArrayList<Inmueble>();
+		inmueble = new Inmueble();
+		resultado = null;
 		initComponents();
 		setSize(900,665);
 		setVisible(false);
@@ -40,6 +55,136 @@ public class VistaVivienda extends JDialog {
 					}
 				} // ActionListener			
 		); // buttonCancelar.addActionListener
+		
+		// MenuItems
+		menuItem4.addActionListener(
+				new ActionListener() {
+					public void actionPerformed(ActionEvent evento) {
+						try {
+							resultado = controlador.datosPropiedadFinca();
+							rellenarArrayList();
+							rellenarList();
+						} catch (SQLException e) {
+							// TODO Bloque catch generado automáticamente
+							e.printStackTrace();
+						}
+					}
+				} // ActionListener			
+		); // menuItem4.addActionListener
+		
+		// Evento para escribir los datos
+		listInmueble.addMouseListener(
+				new MouseListener() {
+					public void mouseClicked(MouseEvent e) {
+						// TODO Apéndice de método generado automáticamente
+						int posicion = listInmueble.getSelectedIndex();
+						System.out.println(posicion);
+						// Coger Inmueble de valores y escribirlo
+						
+					}
+
+					public void mouseEntered(MouseEvent e) {
+						// TODO Apéndice de método generado automáticamente
+						
+					}
+
+					public void mouseExited(MouseEvent e) {
+						// TODO Apéndice de método generado automáticamente
+						
+					}
+
+					public void mousePressed(MouseEvent e) {
+						// TODO Apéndice de método generado automáticamente
+						
+					}
+
+					public void mouseReleased(MouseEvent e) {
+						// TODO Apéndice de método generado automáticamente
+						
+					}
+				} // ActionListener			
+		); // menuItem4.addActionListener
+	}
+	
+	private void rellenarList() {
+		String array[] = new String[1000];
+		for (int i = 0; i < valores.size(); i++) {
+			inmueble = valores.get(i);
+			array[i] = inmueble.getIdentificador();
+		}
+		listInmueble.setListData(array);
+	}
+
+	private void rellenarArrayList() throws SQLException {
+		// TODO Apéndice de método generado automáticamente
+		while(resultado.next()) {
+			// Crear el inmueble y meterlo a valores
+			inmueble = new Inmueble();
+			inmueble.setIdentificador(resultado.getString(1));
+			inmueble.setDescripcion(resultado.getString(2));
+			inmueble.setTipo(resultado.getString(3));
+			inmueble.setComercial(resultado.getString(4));
+			inmueble.setPrecio_salida(resultado.getDouble(5));
+			inmueble.setFecha_entrada(resultado.getString(6));
+			inmueble.setVendido(resultado.getBoolean(7));
+			inmueble.setFecha_venta(resultado.getString(8));
+			inmueble.setPrecio_venta(resultado.getDouble(9));
+			inmueble.setM_construidos(resultado.getDouble(10));
+			inmueble.setM_habitables(resultado.getDouble(11));
+			inmueble.setM_hall(resultado.getDouble(12));
+			inmueble.setAmueblado(resultado.getBoolean(13));
+			inmueble.setTerraza(resultado.getString(14));
+			inmueble.setM_salon(resultado.getDouble(15));
+			inmueble.setSalon_independiente(resultado.getBoolean(16));
+			inmueble.setN_dormitorios(resultado.getInt(17));
+			inmueble.setN_armarios(resultado.getInt(18));
+			inmueble.setM_dormitorio_principal(resultado.getDouble(19));
+			inmueble.setObs_dormitorio_principal(resultado.getString(20));
+			inmueble.setM_dormitorio_segundo(resultado.getDouble(21));
+			inmueble.setM_dormitorio_tercero(resultado.getDouble(22));
+			inmueble.setM_dormitorio_cuarto(resultado.getDouble(23));
+			inmueble.setM_dormitorio_servicio(resultado.getDouble(24));
+			inmueble.setObs_dormitorios(resultado.getString(25));
+			inmueble.setCocina_amueblada(resultado.getBoolean(26));
+			inmueble.setEquipamiento_cocina(resultado.getBoolean(27));
+			inmueble.setTendedero(resultado.getBoolean(28));
+			inmueble.setN_banos(resultado.getInt(29));
+			inmueble.setM_bano1(resultado.getDouble(30));
+			inmueble.setM_bano2(resultado.getDouble(31));
+			inmueble.setM_bano3(resultado.getDouble(32));
+			inmueble.setAseo(resultado.getBoolean(33));
+			inmueble.setJardin_comunitario(resultado.getBoolean(34));
+			inmueble.setPiscina_comunitaria(resultado.getBoolean(35));
+			inmueble.setPiscina_propia(resultado.getBoolean(36));
+			inmueble.setTipo_calefaccion(resultado.getString(37));
+			inmueble.setAgua_caliente(resultado.getString(38));
+			inmueble.setRadiadores(resultado.getBoolean(39));
+			inmueble.setAire_acondicionado(resultado.getBoolean(40));
+			inmueble.setParabolica(resultado.getBoolean(41));
+			inmueble.setPortero_automatico(resultado.getBoolean(42));
+			inmueble.setConserje(resultado.getBoolean(43));
+			inmueble.setAscensor(resultado.getBoolean(44));
+			inmueble.setNum_plazas(resultado.getInt(45));
+			inmueble.setTrastero(resultado.getBoolean(46));
+			inmueble.setCarpinteria_exterior(resultado.getString(47));
+			inmueble.setCarpinteria_interior(resultado.getString(48));
+			inmueble.setSuelos(resultado.getString(49));
+			inmueble.setGastos(resultado.getDouble(50));
+			inmueble.setPuerta_blindada(resultado.getBoolean(51));
+			inmueble.setAntiguedad(resultado.getInt(52));
+			inmueble.setPlantas_edificio(resultado.getInt(53));
+			inmueble.setPuertas_planta(resultado.getInt(54));
+			inmueble.setOrientacion(resultado.getString(55));
+			inmueble.setConservacion(resultado.getString(56));
+			inmueble.setEstado_finca(resultado.getString(57));
+			inmueble.setFecha_disponibilidad(resultado.getString(58));
+			inmueble.setSauna(resultado.getBoolean(59));
+			inmueble.setGimnasio(resultado.getBoolean(60));
+			inmueble.setOtros_comentarios(resultado.getString(61));
+			inmueble.setDireccion(resultado.getString(62));
+			inmueble.setPlanta(resultado.getInt(63));
+			valores.add(inmueble);
+		}
 	}
 
 	private void initComponents() {
@@ -63,7 +208,7 @@ public class VistaVivienda extends JDialog {
 		label1 = new JLabel();
 		label2 = new JLabel();
 		scrollPaneInmueble = new JScrollPane();
-		listInmuelble = new JList();
+		listInmueble = new JList();
 		label3 = new JLabel();
 		label4 = new JLabel();
 		label5 = new JLabel();
@@ -305,9 +450,9 @@ public class VistaVivienda extends JDialog {
 		{
 			
 			//---- listInmuelble ----
-			listInmuelble.setVisibleRowCount(1000000);
-			listInmuelble.setFont(new Font("Arial Unicode MS", Font.PLAIN, 14));
-			scrollPaneInmueble.setViewportView(listInmuelble);
+			listInmueble.setVisibleRowCount(1000);
+			listInmueble.setFont(new Font("Arial Unicode MS", Font.PLAIN, 14));
+			scrollPaneInmueble.setViewportView(listInmueble);
 		}
 		contentPane.add(scrollPaneInmueble);
 		scrollPaneInmueble.setBounds(40, 75, 160, 385);
@@ -1086,7 +1231,7 @@ public class VistaVivienda extends JDialog {
 	private JLabel label1;
 	private JLabel label2;
 	private JScrollPane scrollPaneInmueble;
-	private JList listInmuelble;
+	private JList listInmueble;
 	private JLabel label3;
 	private JLabel label4;
 	private JLabel label5;

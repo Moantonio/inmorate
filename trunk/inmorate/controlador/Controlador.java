@@ -29,6 +29,12 @@ public class Controlador {
 
 	public Controlador() {
 		vistaInicial = null;
+		vistaPareja = null;
+		vistaMatrimonio = null;
+		vistaSoltero = null;
+		vistaSoltera = null;
+		vistaVivienda = null;
+		conexion = null;
 	}
 	
 	public void registrarVistaInicial(VistaInicial VI) {
@@ -100,16 +106,11 @@ public class Controlador {
 	public ResultSet datosPropiedadFinca() throws SQLException {
 		conexion.conectar();
 		ResultSet resultado = conexion.datosPropiedadFinca();
-		System.out.println("1");
-		resultado.next();
-		//resultado.first();
-		System.out.println("2");
-		for (int i=1; i<7; i++) {
-			System.out.println(resultado.getString(i));
-		}
-		//resultado.close();
-		conexion.cierraConexion(); // Quitar cierraConexion y ponerlo fuera, sino no funciona
 		return resultado;
+	}
+	
+	public void cierraConexion() throws SQLException {
+		conexion.cierraConexion();
 	}
 	
 }

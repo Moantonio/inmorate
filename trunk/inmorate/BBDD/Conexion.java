@@ -42,7 +42,7 @@ public class Conexion {
 	
 	public ResultSet datosPropiedadFinca() throws SQLException {	
 		ResultSet resultado = null;
-		String consulta = "SELECT * FROM PropiedadFinca";
+		String consulta = "SELECT * FROM PropiedadFinca ORDER BY DMXX";
 		Statement stat = conexion.createStatement();
 		// stat.execute("use BBDD");
 		resultado = stat.executeQuery(consulta);
