@@ -77,7 +77,7 @@ public class VistaPareja extends JDialog {
 		buttonCancelar.setBounds(205, 250, 165, 30);
 
 		//---- labelTitulo ----
-		labelTitulo.setText("Valore de mayor a menor importancia:");
+		labelTitulo.setText("Valores de mayor a menor importancia:");
 		labelTitulo.setFont(new Font("Arial Unicode MS", Font.BOLD, 20));
 		contentPane.add(labelTitulo);
 		labelTitulo.setBounds(new Rectangle(new Point(10, 15), labelTitulo.getPreferredSize()));
