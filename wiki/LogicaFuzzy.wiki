@@ -2,7 +2,7 @@
 
 == 3.2.1 Introducción ==
 
-La lógica borrosa (Fuzzy Logic) ha surgido como una herramienta lucrativa para el control de subsistemas y procesos industriales complejos, así como también para la electrónica de entretenimiento y hogar, sistemas de diagnóstico y otros sistemas expertos. Con esta lógica se pretende representar de forma rigurosa el significado de los enunciados imprecisos del lenguaje natural.
+La lógica borrosa (Fuzzy Logic) emerge como una herramienta interesante para el control de subsistemas y procesos industriales complejos, así como también para la electrónica de entretenimiento y hogar, sistemas de diagnóstico y otros sistemas expertos. Con esta lógica se pretende representar de forma rigurosa el significado de los enunciados imprecisos del lenguaje natural.
 
 La lógica borrosa o difusa se basa en lo relativo de lo observado. Este tipo de lógica toma dos valores aleatorios, pero contextualizados y referidos entre sí. Así, por ejemplo, una persona que mida 2 metros es claramente una persona alta, si previamente se ha tomado el valor de persona baja y se ha establecido en 1 metro. Ambos valores están contextualizados a personas y referidos a una medida métrica lineal.
 
