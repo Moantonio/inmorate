@@ -70,3 +70,38 @@ Así, dicho conjunto queda identificado mediante parejas de elementos
 donde el símbolo "/" no representa ningún cociente sino que tiene la función de un separador. La forma específica de la función μA depende de los objetivos del modelo fuzzy. Por ejemplo, puede ser continua lineal a trozos. Si μA es la función característica de A, entonces A es un conjunto clásico (no fuzzy).
 
 (continuar con documentación sobre conjuntos borrosos).
+
+== 3.2.2 Herramientas ===
+
+Comparativas.
+
+XFuzzy, FFLL, Spark Fuzzy Logic Editor, etc...
+
+== 3.2.3 XFuzzy ===
+
+(traducir)
+
+Xfuzzy is a development environment for fuzzy-inference-based systems. It
+is composed of several tools that cover the different stages of the fuzzy system
+design process, from their initial description to the final implementation. Its
+main features are the capability for developing complex systems and the
+flexibility of allowing the user to extend the set of available functions. The
+environment has been completely programmed in Java, so it can be executed
+on any platform with JRE (Java Runtime Environment) installed. The next figure
+shows the design flow of Xfuzzy 3.0.
+The description stage includes graphical tools for the fuzzy system definition. The
+verification stage is composed of tools for simulation, monitoring and representing
+graphically the system behavior. The tuning stage consists in applying learning
+algorithms. Finally, the synthesis stage is divided into tools generating high-level
+languages descriptions for software or hardware implementations.
+The nexus between all these tools is the use of a common specification language,
+XFL3, which extends the capabilities of XFL, the language defined in version 2.0.
+XFL3 is a flexible and powerful language, which allows to express very complex
+relations between the fuzzy variables, by means of hierarchical rule bases and userdefined
+fuzzy connectives, linguistic hedges, membership functions and
+defuzzification methods.
+Every tool can be executed as an independent program. The environment
+integrates all of them under a graphical user interface which eases the design
+process.
+
+(valoracion)
