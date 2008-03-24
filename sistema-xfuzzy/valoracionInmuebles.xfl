@@ -1,0 +1,148 @@
+type TipoInmueble [1.0,4.0;5] {
+  Piso xfl.singleton(1.0);
+  Adosado xfl.singleton(2.0);
+  Pareado xfl.singleton(3.0);
+  Independiente xfl.singleton(4.0);
+ }
+
+type NumeroHabitaciones [1.0,4.0;5] {
+  una xfl.singleton(1.0);
+  dos xfl.singleton(2.0);
+  tres xfl.singleton(3.0);
+  cuatro xfl.singleton(4.0);
+ }
+ 
+type Antiguedad [0.0,100.0;100] {
+  estrenar xfl.bell(0.0,1.0);
+  muy_nuevo xfl.bell(1.0,5.0);
+  poco_nuevo xfl.bell(20.0,30.0);
+  antiguo xfl.bell(75.0,12.5);
+  muy_antiguo xfl.bell(100.0,12.5);
+ }
+
+type metros [1.0,300.0;300] {
+  muy_pocos xfl.bell(1.0,30.0);
+  pocos xfl.bell(30.0,60.0);
+  normal xfl.bell(60.0,90.0);
+  bastantes xfl.bell(90.0,120.0);
+  mf4 xfl.bell(300.0,90.0);
+ }
+
+type precio [1.0,1000.0;1000] {
+  barato xfl.bell(1.0,149.85);
+  poco_barato xfl.bell(250.75,149.85);
+  normal xfl.bell(400.0,149.85);
+  caro xfl.bell(750.25,400.0);
+  muy_caro xfl.bell(1000.0,449.85);
+ }
+
+type valoracion [0.0,10.0;11] {
+  muy_mala xfl.bell(0.0,1.5);
+  mala xfl.bell(2.5,1.5);
+  regular xfl.bell(5.0,1.5);
+  buena xfl.bell(7.5,1.5);
+  muy_buena xfl.bell(10.0,1.5);
+ }
+
+type Perfil [1.0,4.0;5] {
+  Pareja_joven_sin_hijos xfl.singleton(1.0);
+  Matrimonio_2_3_hijos xfl.singleton(2.0);
+  Hombre_soltero xfl.singleton(3.0);
+  Mujer_soltera xfl.singleton(4.0);
+ }
+
+rulebase Inferencia_Orientacion (valoracion Orientacion, Perfil Perfil : valoracion Valoracion_Orientacion)  {
+	if(Perfil == Hombre_soltero) -> Valoracion_Orientacion = buena;
+ }
+rulebase Inferencia_Tipo_Inmueble (TipoInmueble Tipo_Inmueble, Perfil Perfil : valoracion Valoracion_Tipo_Inmueble)  {
+	if(Perfil == Hombre_soltero) -> Valoracion_Tipo_Inmueble = buena;
+ }
+rulebase Inferencia_Luminosidad (valoracion Luminosidad, Perfil Perfil : valoracion Valoracion_Luminosidad)  {
+	if(Perfil == Hombre_soltero) -> Valoracion_Luminosidad = buena;
+ }
+rulebase Inferencia_Representatividad (valoracion Representatividad, Perfil Perfil : valoracion Valoracion_Representatividad)  {
+	if(Perfil == Hombre_soltero) -> Valoracion_Representatividad = buena;
+ }
+rulebase Inferencia_Estado_del_portal (valoracion Estado_del_portal, Perfil Perfil : valoracion Valoracion_estado_del_portal)  {
+	if(Perfil == Hombre_soltero) -> Valoracion_estado_del_portal = buena;
+ }
+rulebase Inferencia_Fachada (valoracion Fachada, Perfil Perfil : valoracion Valoracion_Fachada)  {
+	if(Perfil == Hombre_soltero) -> Valoracion_Fachada = buena;
+ }
+rulebase Inferencia_Vistas (valoracion Vistas, Perfil Perfil : valoracion Valoracion_Vistas)  {
+	if(Perfil == Hombre_soltero) -> Valoracion_Vistas = buena;
+ }
+rulebase Inferencia_Numero_habitaciones (NumeroHabitaciones Numero_habitaciones, Perfil Perfil : valoracion Valoracion_numero_habitaciones)  {
+	if(Perfil == Hombre_soltero) -> Valoracion_numero_habitaciones = buena;
+ }
+rulebase Inferencia_numero_banos (valoracion Numero_banos, Perfil Perfil : valoracion Valoracion_numero_banos)  {
+	if(Perfil == Hombre_soltero) -> Valoracion_numero_banos = buena;
+ }
+rulebase Inferencia_Antiguedad (Antiguedad Antiguedad, Perfil Perfil : valoracion Valoracion_Antiguedad)  {
+	if(Perfil == Hombre_soltero) -> Valoracion_Antiguedad = buena;
+ }
+rulebase Inferencia_Altura (valoracion Altura, Perfil Perfil : valoracion Valoracion_Altura)  {
+	if(Perfil == Hombre_soltero) -> Valoracion_Altura = buena;
+ }
+rulebase Inferencia_Ascensor (valoracion Ascensor, Perfil Perfil : valoracion Valoracion_Ascensor)  {
+	if(Perfil == Hombre_soltero) -> Valoracion_Ascensor = buena;
+ }
+rulebase Inferencia_Estado_general (valoracion Estado_General, Perfil Perfil : valoracion Valoracion_estado_general)  {
+	if(Perfil == Hombre_soltero) -> Valoracion_estado_general = buena;
+ }
+rulebase Inferencia_Zonas_Comunes (valoracion Zonas_Comunes, Perfil Perfil : valoracion Valoracion_Zonas_Comunes)  {
+	if(Perfil == Hombre_soltero) -> Valoracion_Zonas_Comunes = buena;
+ }
+rulebase Inferencia_Zona_subzona (valoracion Zona_subzona, Perfil Perfil : valoracion Valoracion_Zona_subzona)  {
+	if(Perfil == Hombre_soltero) -> Valoracion_Zona_subzona = buena;
+ }
+rulebase Inferencia_metros_Construidos (metros Metros_construidos, Perfil Perfil : valoracion Valoracion_metros_construidos)  {
+	if(Perfil == Hombre_soltero) -> Valoracion_metros_construidos = buena;
+ }
+rulebase Inferencia_metros_habitables (metros metros_habitables, Perfil Perfil : valoracion valoracion_metros_habitables)  {
+	if(Perfil == Hombre_soltero) -> valoracion_metros_habitables = buena;
+ }
+rulebase Inferencia_precio_tasacion (precio Precio_tasacion, Perfil Perfil : valoracion Valoracion_precio_tasacion)  {
+	if(Perfil == Hombre_soltero) -> Valoracion_precio_tasacion = buena;
+ }
+rulebase Inferencia_precio_salida (precio Precio_salida, Perfil Perfil : valoracion Valoracion_precio_salida)  {
+	if(Perfil == Hombre_soltero) -> Valoracion_precio_salida = buena;
+ }
+rulebase Inferencia_precio_venta (precio precio_venta, Perfil Perfil : valoracion valoracion_precio_venta)  {
+	if(Perfil == Hombre_soltero) -> valoracion_precio_venta = buena;
+ }
+rulebase Inferencia_semanas_oferta (valoracion Semanas_oferta, Perfil Perfil : valoracion Valoracion_semanas_oferta)  {
+	if(Perfil == Hombre_soltero) -> Valoracion_semanas_oferta = buena;
+ }
+rulebase Inferencia_valoracion_experto (valoracion valoracion_experto, Perfil Perfil : valoracion valoracion_valoracion_experto)  {
+	if(Perfil == Hombre_soltero) -> valoracion_valoracion_experto = buena;
+ }
+rulebase Inferencia_observaciones (valoracion observaciones, Perfil Perfil : valoracion valoracion_observaciones)  {
+	if(Perfil == Hombre_soltero) -> valoracion_observaciones = buena;
+ }
+
+system (TipoInmueble Tipo_de_inmueble, valoracion Luminosidad, valoracion Orientacion, valoracion Representatividad, valoracion Estado_del_portal, valoracion Fachada, valoracion Vistas, NumeroHabitaciones Numero_habitaciones, valoracion Numero_banos, Antiguedad Antiguedad, valoracion Altura, valoracion Ascensor, valoracion Estado_general, valoracion Zonas_Comunes, valoracion Zona_subzona, metros Metros_construidos, metros Metros_Habitables, precio Precio_tasacion, precio Precio_salida, precio precio_venta, valoracion Semanas_oferta, valoracion Valoracion_Experto, valoracion Observaciones, Perfil Perfil : valoracion Valoracion_de_tipo_inmueble, valoracion Valoracion_luminosidad, valoracion Valoracion_orientacion, valoracion Valoracion_representatividad, valoracion Valoracion_Estado_del_portal, valoracion Valoracion_Fachada, valoracion Valoracion_Vistas, valoracion Valoracion_Numero_habitaciones, valoracion Valoracion_Numero_banos, valoracion Valoracion_Antiguedad, valoracion Valoracion_Altura, valoracion Valoracion_Ascensor, valoracion Valoracion_Estado_general, valoracion Valoracion_Zonas_Comunes, valoracion Valoracion_zona_subzona, valoracion Valoracion_metros_construidos, valoracion Valoracion_Metros_Habitables, valoracion Valoracion_precio_tasacion, valoracion Valoracion_Precio_salida, valoracion Valoracion_precio_venta, valoracion Valoracion_semanas_oferta, valoracion Valoracion_Valoracion_Experto, valoracion Valoracion_observaciones) {
+  Inferencia_Tipo_Inmueble(Tipo_de_inmueble, Perfil : Valoracion_de_tipo_inmueble);
+  Inferencia_Luminosidad(Luminosidad, Perfil : Valoracion_luminosidad);
+  Inferencia_Orientacion(Orientacion, Perfil : Valoracion_orientacion);
+  Inferencia_Representatividad(Representatividad, Perfil : Valoracion_representatividad);
+  Inferencia_Estado_del_portal(Estado_del_portal, Perfil : Valoracion_Estado_del_portal);
+  Inferencia_Fachada(Fachada, Perfil : Valoracion_Fachada);
+  Inferencia_Vistas(Vistas, Perfil : Valoracion_Vistas);
+  Inferencia_Numero_habitaciones(Numero_habitaciones, Perfil : Valoracion_Numero_habitaciones);
+  Inferencia_numero_banos (Numero_banos, Perfil : Valoracion_numero_banos);
+	Inferencia_Antiguedad (Antiguedad, Perfil : Valoracion_Antiguedad);
+	Inferencia_Altura (Altura, Perfil : Valoracion_Altura);
+	Inferencia_Ascensor (Ascensor, Perfil : Valoracion_Ascensor);
+	Inferencia_Estado_general (Estado_general, Perfil : Valoracion_Estado_general);
+	Inferencia_Zonas_Comunes (Zonas_Comunes, Perfil : Valoracion_Zonas_Comunes);
+	Inferencia_Zona_subzona (Zona_subzona, Perfil : Valoracion_Zona_subzona);
+	Inferencia_metros_Construidos (Metros_construidos, Perfil : Valoracion_metros_construidos);
+	Inferencia_metros_habitables (Metros_Habitables, Perfil : Valoracion_Metros_Habitables);
+	Inferencia_precio_tasacion (Precio_tasacion, Perfil : Valoracion_precio_tasacion);
+	Inferencia_precio_salida (Precio_salida, Perfil : Valoracion_Precio_salida);
+	Inferencia_precio_venta (precio_venta, Perfil : valoracion_precio_venta);
+	Inferencia_semanas_oferta (Semanas_oferta, Perfil : Valoracion_semanas_oferta);
+	Inferencia_valoracion_experto (Valoracion_Experto, Perfil : valoracion_Valoracion_Experto);
+	Inferencia_observaciones (Observaciones, Perfil : Valoracion_Observaciones);
+ }
