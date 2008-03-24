@@ -7,9 +7,9 @@
 	3.1 Sector Inmobiliario
 		3.1.1 Introducción contextual
 
-		3.1.2 Áreas de aplicación (del sistema de valoración)
+                3.1.2 Áreas de aplicación (del sistema de valoración)
 
-		3.1.3 Sistemas existentes
+                3.1.3 Sistemas existentes
 
 	3.2 La lógica fuzzy
 		3.2.1 Introducción
