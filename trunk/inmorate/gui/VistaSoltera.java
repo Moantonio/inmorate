@@ -84,25 +84,25 @@ public class VistaSoltera extends JFrame {
 		label1.setText("Tipo de Inmueble");
 		label1.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		contentPane.add(label1);
-		label1.setBounds(new Rectangle(new Point(50, 90), label1.getPreferredSize()));
+		label1.setBounds(50, 90, 200, label1.getPreferredSize().height);
 
 		//---- label2 ----
 		label2.setText("Orientaci\u00f3n");
 		label2.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		contentPane.add(label2);
-		label2.setBounds(new Rectangle(new Point(50, 150), label2.getPreferredSize()));
+		label2.setBounds(50, 150, 195, label2.getPreferredSize().height);
 
 		//---- label3 ----
 		label3.setText("Representatividad");
 		label3.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		contentPane.add(label3);
-		label3.setBounds(new Rectangle(new Point(50, 210), label3.getPreferredSize()));
+		label3.setBounds(50, 210, 195, label3.getPreferredSize().height);
 
 		//---- label4 ----
 		label4.setText("Vistas");
 		label4.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		contentPane.add(label4);
-		label4.setBounds(new Rectangle(new Point(50, 270), label4.getPreferredSize()));
+		label4.setBounds(50, 270, 180, label4.getPreferredSize().height);
 
 		//---- comboBox1 ----
 		comboBox1.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
@@ -169,6 +169,78 @@ public class VistaSoltera extends JFrame {
 			preferredSize.height += insets.bottom;
 			contentPane.setPreferredSize( preferredSize );
 		}
+	}
+
+	public void traducirIngles() {
+		setTitle("Single Woman");
+		labelTitulo.setText("Value from greater to smaller importance:");
+		labelTitulo.setBounds(55, 30, 440, labelTitulo.getPreferredSize().height);
+		label1.setText("Type of building");
+		label2.setText("Orientation");
+		label3.setText("Representativeness");
+		label4.setText("Views");
+		comboBox1.setModel(new DefaultComboBoxModel(new String[] {
+				"Very Important",
+				"Important",
+				"A little Important",
+				"No Important"
+			}));
+		comboBox2.setModel(new DefaultComboBoxModel(new String[] {
+				"Very Important",
+				"Important",
+				"A little Important",
+				"No Important"
+			}));
+		comboBox3.setModel(new DefaultComboBoxModel(new String[] {
+				"Very Important",
+				"Important",
+				"A little Important",
+				"No Important"
+			}));
+		comboBox4.setModel(new DefaultComboBoxModel(new String[] {
+				"Very Important",
+				"Important",
+				"A little Important",
+				"No Important"
+			}));
+		buttonAceptar.setText("Accept");
+		buttonCancelar.setText("Cancel");
+	}
+
+	public void traducirEspanol() {
+		setTitle("Mujer Soltera");
+		labelTitulo.setText("Valore de mayor a menor importancia:");
+		labelTitulo.setBounds(60, 30, 440, labelTitulo.getPreferredSize().height);
+		label1.setText("Tipo de Inmueble");
+		label2.setText("Orientación");
+		label3.setText("Representatividad");
+		label4.setText("Vistas");
+		comboBox1.setModel(new DefaultComboBoxModel(new String[] {
+				"Muy Importante",
+				"Importante",
+				"Poco Importante",
+				"Nada Importante"
+			}));
+		comboBox2.setModel(new DefaultComboBoxModel(new String[] {
+				"Muy Importante",
+				"Importante",
+				"Poco Importante",
+				"Nada Importante"
+			}));
+		comboBox3.setModel(new DefaultComboBoxModel(new String[] {
+				"Muy Importante",
+				"Importante",
+				"Poco Importante",
+				"Nada Importante"
+			}));
+		comboBox4.setModel(new DefaultComboBoxModel(new String[] {
+				"Muy Importante",
+				"Importante",
+				"Poco Importante",
+				"Nada Importante"
+			}));
+		buttonAceptar.setText("Aceptar");
+		buttonCancelar.setText("Cancelar");
 	}
 }
 

@@ -113,5 +113,23 @@ public class Controlador {
 	public ArrayList<String> getComboBox() {
 		return comboBox;
 	}
+
+	public void traducirEspanol() {
+		vistaInicial.traducirEspanol();
+		vistaPareja.traducirEspanol(); 
+		vistaMatrimonio.traducirEspanol();
+		vistaSoltero.traducirEspanol();
+		vistaSoltera.traducirEspanol();
+		vistaVivienda.traducirEspanol();
+	}
+
+	public void traducirIngles() {
+		vistaInicial.traducirIngles();	
+		vistaPareja.traducirIngles();
+		vistaMatrimonio.traducirIngles();
+		vistaSoltero.traducirIngles();
+		vistaSoltera.traducirIngles();
+		vistaVivienda.traducirIngles();
+	}
 	
 }

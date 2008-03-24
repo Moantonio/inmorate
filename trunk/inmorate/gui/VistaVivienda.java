@@ -19,9 +19,10 @@ public class VistaVivienda extends JFrame {
 	
 	private static final long serialVersionUID = 7915590254871824663L;	
 	private Controlador controlador;	
-	ArrayList<Inmueble> valores;	
-	Inmueble inmueble;	
-	ResultSet resultado;
+	private ArrayList<Inmueble> valores;	
+	private Inmueble inmueble;	
+	private ResultSet resultado;
+	private boolean ingles;
 
 	private JMenuBar menuBar1;
 	private JMenu menu2;
@@ -93,6 +94,7 @@ public class VistaVivienda extends JFrame {
 		this.valores = new ArrayList<Inmueble>();
 		inmueble = new Inmueble();
 		resultado = null;
+		ingles = false;
 		initComponents();
 		setSize(800,645);
 		setLocation(200,100);
@@ -218,12 +220,18 @@ public class VistaVivienda extends JFrame {
 		label38.setText(String.valueOf(inmueble.getAntiguedad()));
 		label10.setText(String.valueOf(inmueble.getPlanta()));
 		if (inmueble.isAscensor())
-			label24.setText("SI");
+			if (!ingles)
+				label24.setText("SI");
+			else 
+				label24.setText("YES");
 		else 
 			label24.setText("NO");
 		label6.setText(inmueble.getEstadoGeneral());
 		if (inmueble.isZonasComunes())
-			label50.setText("SI");
+			if (!ingles)
+				label50.setText("SI");
+			else 
+				label50.setText("YES");
 		else
 			label50.setText("NO");
 		label32.setText(inmueble.getZona());
@@ -234,24 +242,39 @@ public class VistaVivienda extends JFrame {
 		label46.setText(inmueble.getPrecioVenta().substring(0, inmueble.getPrecioVenta().length()-2)+" €");
 		label22.setText(String.valueOf(inmueble.getPlazasGaraje()));
 		if (inmueble.isAmueblado())
-			label54.setText("SI");
+			if (!ingles)
+				label54.setText("SI");
+			else 
+				label54.setText("YES");
 		else 
 			label54.setText("NO");
 		label2.setText(inmueble.getDMXX());
 		if (inmueble.isPiscina())
-			label52.setText("SI");
+			if (!ingles)
+				label52.setText("SI");
+			else 
+				label52.setText("YES");
 		else
 			label52.setText("NO");
 		if (inmueble.isAireAcondicionado())
-			label26.setText("SI");
+			if (!ingles)
+				label26.setText("SI");
+			else 
+				label26.setText("YES");
 		else
 			label26.setText("NO");
 		if (inmueble.isConserje())
-			label56.setText("SI");
+			if (!ingles)
+				label56.setText("SI");
+			else 
+				label56.setText("YES");
 		else
 			label56.setText("NO");
 		if (inmueble.isTrastero())
-			label28.setText("SI");
+			if (!ingles)
+				label28.setText("SI");
+			else 
+				label28.setText("YES");
 		else
 			label28.setText("NO");
 		label4.setText(inmueble.getDireccion());
@@ -325,7 +348,7 @@ public class VistaVivienda extends JFrame {
 
 		//======== this ========
 		setTitle("Valores Inmuebles");
-		setFont(new Font("Arial Unicode MS", Font.PLAIN, 14));
+		setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		Container contentPane = getContentPane();
 		contentPane.setLayout(null);
 
@@ -349,14 +372,14 @@ public class VistaVivienda extends JFrame {
 
 		//---- buttonConsulta ----
 		buttonConsulta.setText("Nueva Consulta");
-		buttonConsulta.setFont(new Font("Arial Unicode MS", Font.PLAIN, 14));
+		buttonConsulta.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		buttonConsulta.setBorder(new EtchedBorder(EtchedBorder.RAISED, Color.darkGray, null));
 		contentPane.add(buttonConsulta);
 		buttonConsulta.setBounds(40, 485, 190, 40);
 
 		//---- buttonSalir ----
 		buttonSalir.setText("Salir del Programa");
-		buttonSalir.setFont(new Font("Arial Unicode MS", Font.PLAIN, 14));
+		buttonSalir.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		buttonSalir.setBorder(new EtchedBorder(EtchedBorder.RAISED, Color.darkGray, null));
 		contentPane.add(buttonSalir);
 		buttonSalir.setBounds(40, 550, 190, 40);
@@ -372,7 +395,7 @@ public class VistaVivienda extends JFrame {
 			
 			//---- listInmueble ----
 			listInmueble.setVisibleRowCount(1000000);
-			listInmueble.setFont(new Font("Arial Unicode MS", Font.PLAIN, 14));
+			listInmueble.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 			scrollPaneInmueble.setViewportView(listInmueble);
 		}
 		contentPane.add(scrollPaneInmueble);
@@ -388,7 +411,7 @@ public class VistaVivienda extends JFrame {
 		label2.setText("- - - - - - - - - -");
 		label2.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		contentPane.add(label2);
-		label2.setBounds(new Rectangle(new Point(300, 100), label2.getPreferredSize()));
+		label2.setBounds(new Rectangle(new Point(350, 100), label2.getPreferredSize()));
 
 		//---- label3 ----
 		label3.setText("Orientacion:");
@@ -427,7 +450,7 @@ public class VistaVivienda extends JFrame {
 		label8.setBounds(new Rectangle(new Point(315, 240), label8.getPreferredSize()));
 
 		//---- label9 ----
-		label9.setText("N\u00ba Ba\u00f1os / Aseos:");
+		label9.setText("Nº Baños / Aseos:");
 		label9.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		contentPane.add(label9);
 		label9.setBounds(new Rectangle(new Point(500, 310), label9.getPreferredSize()));
@@ -511,7 +534,7 @@ public class VistaVivienda extends JFrame {
 		label22.setBounds(new Rectangle(new Point(370, 345), label22.getPreferredSize()));
 
 		//---- label23 ----
-		label23.setText("DMXX:");
+		label23.setText("Identificador:");
 		label23.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		contentPane.add(label23);
 		label23.setBounds(new Rectangle(new Point(250, 100), label23.getPreferredSize()));
@@ -583,7 +606,7 @@ public class VistaVivienda extends JFrame {
 		label34.setBounds(new Rectangle(new Point(585, 170), label34.getPreferredSize()));
 
 		//---- label35 ----
-		label35.setText("N\u00ba Habitaciones:");
+		label35.setText("Nº Habitaciones:");
 		label35.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		contentPane.add(label35);
 		label35.setBounds(new Rectangle(new Point(250, 310), label35.getPreferredSize()));
@@ -595,7 +618,7 @@ public class VistaVivienda extends JFrame {
 		label36.setBounds(new Rectangle(new Point(550, 240), label36.getPreferredSize()));
 
 		//---- label37 ----
-		label37.setText("Antig\u00fcedad:");
+		label37.setText("Antigüedad:");
 		label37.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		contentPane.add(label37);
 		label37.setBounds(new Rectangle(new Point(500, 205), label37.getPreferredSize()));
@@ -643,7 +666,7 @@ public class VistaVivienda extends JFrame {
 		label44.setBounds(new Rectangle(new Point(590, 275), label44.getPreferredSize()));
 
 		//---- label45 ----
-		label45.setText("Precio de Tasaci\u00f3n:");
+		label45.setText("Precio de Tasación:");
 		label45.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		contentPane.add(label45);
 		label45.setBounds(new Rectangle(new Point(250, 555), label45.getPreferredSize()));
@@ -703,7 +726,7 @@ public class VistaVivienda extends JFrame {
 		label54.setBounds(new Rectangle(new Point(580, 415), label54.getPreferredSize()));
 
 		//---- label55 ----
-		label55.setText("Direcci\u00f3n:");
+		label55.setText("Dirección:");
 		label55.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		contentPane.add(label55);
 		label55.setBounds(new Rectangle(new Point(250, 135), label55.getPreferredSize()));
@@ -715,5 +738,141 @@ public class VistaVivienda extends JFrame {
 		label56.setBounds(new Rectangle(new Point(570, 450), label56.getPreferredSize()));
 
 		contentPane.setPreferredSize(new Dimension(800, 645));
+	}
+
+	public void traducirEspanol() {		
+		ingles = false;
+		setTitle("Valores Inmuebles");
+		buttonConsulta.setText("Nueva Consulta");
+		buttonSalir.setText("Salir del Programa");
+		labelTitulo.setText("Ficha del Inmueble");		
+		label1.setText("Tipo de Inmueble:");
+		label30.setBounds(new Rectangle(new Point(620, 100), label30.getPreferredSize()));
+		label3.setText("Orientacion:");
+		label5.setText("Estado del Portal:");
+		label5.setBounds(new Rectangle(new Point(250, 520), label5.getPreferredSize()));		
+		label14.setText("- - - - - - - - - -");
+		label14.setBounds(new Rectangle(new Point(370, 520), label14.getPreferredSize()));
+		label7.setText("Vistas:");
+		label9.setText("Nº Baños / Aseos:");
+		label9.setBounds(new Rectangle(new Point(500, 310), label9.getPreferredSize()));
+		label48.setBounds(new Rectangle(new Point(620, 310), label48.getPreferredSize()));
+		label11.setText("Planta:");
+		label11.setBounds(new Rectangle(new Point(250, 205), label11.getPreferredSize()));
+		label10.setBounds(new Rectangle(new Point(300, 205), label10.getPreferredSize()));
+		label13.setText("Estado General:");
+		label6.setBounds(new Rectangle(new Point(360, 170), label6.getPreferredSize()));
+		label15.setText("Zona / Subzona:");
+		label15.setBounds(new Rectangle(new Point(500, 135), label15.getPreferredSize()));
+		label32.setBounds(new Rectangle(new Point(610, 135), label32.getPreferredSize()));
+		label17.setText("Metros Habitables:");
+		label17.setBounds(new Rectangle(new Point(500, 485), label17.getPreferredSize()));
+		label40.setBounds(new Rectangle(new Point(630, 485), label40.getPreferredSize()));
+		label19.setText("Precio de Salida: ");
+		label12.setBounds(615, 520, 140, label12.getPreferredSize().height);
+		label21.setText("Plazas de Garaje: ");
+		label22.setBounds(new Rectangle(new Point(370, 345), label22.getPreferredSize()));
+		label23.setText("Identificador:");
+		label2.setBounds(new Rectangle(new Point(350, 100), label2.getPreferredSize()));
+		label25.setText("Aire Acondicionado:");
+		label26.setBounds(new Rectangle(new Point(380, 415), label26.getPreferredSize()));
+		label27.setText("Trastero:");
+		label28.setBounds(new Rectangle(new Point(320, 450), label28.getPreferredSize()));
+		label29.setText("Luminosidad:");
+		label44.setBounds(new Rectangle(new Point(590, 275), label44.getPreferredSize()));
+		label31.setText("Representatividad:");
+		label31.setBounds(new Rectangle(new Point(250, 275), label31.getPreferredSize()));
+		label16.setBounds(new Rectangle(new Point(380, 275), label16.getPreferredSize()));
+		label33.setText("Fachada: ");
+		label8.setBounds(new Rectangle(new Point(315, 240), label8.getPreferredSize()));
+		label35.setText("Nº Habitaciones:");
+		label35.setBounds(new Rectangle(new Point(250, 310), label35.getPreferredSize()));
+		label20.setBounds(new Rectangle(new Point(365, 310), label20.getPreferredSize()));
+		label37.setText("Antigüedad:");
+		label38.setBounds(new Rectangle(new Point(580, 205), label38.getPreferredSize()));
+		label39.setText("Ascensor:");
+		label41.setText("Zonas Comunes:");
+		label43.setText("Metros Construidos:");
+		label43.setBounds(new Rectangle(new Point(250, 485), label43.getPreferredSize()));
+		label18.setBounds(new Rectangle(new Point(385, 485), label18.getPreferredSize()));
+		label45.setText("Precio de Tasación:");
+		label42.setBounds(380, 555, 110, label42.getPreferredSize().height);
+		label47.setText("Precio de Venta: ");
+		label46.setBounds(610, 555, 110, label46.getPreferredSize().height);
+		label49.setText("Amueblado:");
+		label54.setBounds(new Rectangle(new Point(580, 415), label54.getPreferredSize()));
+		label51.setText("Piscina:");
+		label51.setBounds(new Rectangle(new Point(500, 380), label51.getPreferredSize()));
+		label52.setBounds(new Rectangle(new Point(555, 380), label52.getPreferredSize()));
+		label53.setText("Conserje:");
+		label55.setText("Dirección:");
+	}
+
+	public void traducirIngles() {
+		ingles = true;
+		setTitle("Buildings Values");
+		buttonConsulta.setText("New Consultation");
+		buttonSalir.setText("Exit");
+		labelTitulo.setText("Buildings");		
+		label1.setText("Type of building:");
+		label30.setBounds(new Rectangle(new Point(615, 100), label30.getPreferredSize()));
+		label3.setText("Orientation:");
+		label5.setText("State of the entrace hall:");
+		label5.setBounds(250, 520, 190, label5.getPreferredSize().height);
+		label14.setText("- - - - - - -");
+		label14.setBounds(425, 520, 110, label14.getPreferredSize().height);
+		label7.setText("Views:");
+		label9.setText("Number of baths / Toilets:");
+		label9.setBounds(500, 310, 205, label9.getPreferredSize().height);
+		label48.setBounds(new Rectangle(new Point(680, 310), label48.getPreferredSize()));
+		label11.setText("Height (Floor):");
+		label11.setBounds(250, 205, 205, label11.getPreferredSize().height);
+		label10.setBounds(new Rectangle(new Point(355, 205), label10.getPreferredSize()));
+		label13.setText("General State:");
+		label6.setBounds(new Rectangle(new Point(355, 170), label6.getPreferredSize()));
+		label15.setText("Zone / Subzone:");
+		label15.setBounds(500, 135, 145, label15.getPreferredSize().height);
+		label32.setBounds(new Rectangle(new Point(615, 135), label32.getPreferredSize()));
+		label17.setText("Inhabitable meters:");
+		label17.setBounds(500, 485, 180, label17.getPreferredSize().height);
+		label40.setBounds(new Rectangle(new Point(640, 485), label40.getPreferredSize()));
+		label19.setText("Starting Price: ");
+		label12.setBounds(605, 520, 140, label12.getPreferredSize().height);
+		label21.setText("Car park: ");
+		label22.setBounds(new Rectangle(new Point(315, 345), label22.getPreferredSize()));
+		label23.setText("Identifier:");
+		label2.setBounds(new Rectangle(new Point(330, 100), label2.getPreferredSize()));
+		label25.setText("Air conditioning:");
+		label26.setBounds(new Rectangle(new Point(360, 415), label26.getPreferredSize()));
+		label27.setText("Boxroom:");
+		label28.setBounds(new Rectangle(new Point(315, 450), label28.getPreferredSize()));
+		label29.setText("Luminosity:");
+		label44.setBounds(new Rectangle(new Point(580, 275), label44.getPreferredSize()));
+		label31.setText("Representativeness:");
+		label31.setBounds(250, 275, 145, label31.getPreferredSize().height);
+		label16.setBounds(new Rectangle(new Point(390, 275), label16.getPreferredSize()));
+		label33.setText("Facade: ");
+		label8.setBounds(new Rectangle(new Point(305, 240), label8.getPreferredSize()));
+		label35.setText("Number of Rooms:");
+		label35.setBounds(250, 310, 145, label35.getPreferredSize().height);
+		label20.setBounds(new Rectangle(new Point(375, 310), label20.getPreferredSize()));
+		label37.setText("Age:");
+		label38.setBounds(new Rectangle(new Point(535, 205), label38.getPreferredSize()));
+		label39.setText("Elevator:");
+		label41.setText("Common zones:");
+		label43.setText("Meters Constructed:");
+		label43.setBounds(250, 485, 180, label43.getPreferredSize().height);
+		label18.setBounds(new Rectangle(new Point(395, 485), label18.getPreferredSize()));
+		label45.setText("Assessment Price:");
+		label42.setBounds(375, 555, 110, label42.getPreferredSize().height);
+		label47.setText("Sale Price: ");
+		label46.setBounds(575, 555, 110, label46.getPreferredSize().height);
+		label49.setText("Furnished:");
+		label54.setBounds(new Rectangle(new Point(575, 415), label54.getPreferredSize()));
+		label51.setText("Swimming Pool:");
+		label51.setBounds(500, 380, 120, label51.getPreferredSize().height);
+		label52.setBounds(new Rectangle(new Point(605, 380), label52.getPreferredSize()));
+		label53.setText("Doorman:");
+		label55.setText("Direction:");		
 	}
 }

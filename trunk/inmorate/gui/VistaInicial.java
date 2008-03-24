@@ -15,11 +15,13 @@ public class VistaInicial extends JFrame {
 	private static final long serialVersionUID = 1L;	
 	private Controlador controlador;
 	private JLabel label1;
-	private JLabel label2;
+	private JLabel imagen;
 	private JButton buttonPareja;
 	private JButton buttonMatrimonio;
 	private JButton buttonSoltero;
 	private JButton buttonSoltera;
+	private JButton espanol;
+	private JButton ingles;
 	
 	public VistaInicial(Controlador control) {
 		this.controlador = control;
@@ -52,6 +54,18 @@ public class VistaInicial extends JFrame {
 				controlador.activarVSA();
 			}
 		});
+		
+		espanol.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evento) {
+				controlador.traducirEspanol();
+			}
+		});
+		
+		ingles.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evento) {
+				controlador.traducirIngles();
+			}
+		});
 	}
 
 	private void initComponents() {
@@ -60,7 +74,9 @@ public class VistaInicial extends JFrame {
 		buttonMatrimonio = new JButton();
 		buttonSoltero = new JButton();
 		buttonSoltera = new JButton();
-		label2 = new JLabel();
+		imagen = new JLabel();
+		espanol = new JButton();
+		ingles = new JButton();
 
 		//======== this ========
 		setTitle("Perfiles");
@@ -69,13 +85,13 @@ public class VistaInicial extends JFrame {
 		contentPane.setLayout(null);
 
 		//---- label1 ----
-		label1.setText("Perfiles:");
+		label1.setText("Perfiles");
 		label1.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 28));
 		label1.setMaximumSize(new Dimension(150, 20));
 		label1.setMinimumSize(new Dimension(150, 20));
 		label1.setPreferredSize(new Dimension(150, 20));
 		contentPane.add(label1);
-		label1.setBounds(120, 45, 120, 35);
+		label1.setBounds(245, 45, 120, 35);
 
 		//---- buttonPareja ----
 		buttonPareja.setText("Pareja joven sin hijos");
@@ -105,10 +121,20 @@ public class VistaInicial extends JFrame {
 		contentPane.add(buttonSoltera);
 		buttonSoltera.setBounds(320, 335, 245, 175);
 
-		//---- label2 ----
-		label2.setIcon(new ImageIcon("./casa.gif"));
-		contentPane.add(label2);
-		label2.setBounds(380, 15, 105, 100);
+		//---- imagen ----
+		imagen.setIcon(new ImageIcon("./casa.gif"));
+		contentPane.add(imagen);
+		imagen.setBounds(40, 15, 105, 100);
+
+		//---- espanol ----
+		espanol.setIcon(new ImageIcon("./España.gif"));
+		contentPane.add(espanol);
+		espanol.setBounds(465, 50, 50, 30);
+
+		//---- ingles ----
+		ingles.setIcon(new ImageIcon("./ReinoUnido.gif"));
+		contentPane.add(ingles);
+		ingles.setBounds(515, 50, 50, 30);
 
 		{ // compute preferred size
 			Dimension preferredSize = new Dimension();
@@ -122,5 +148,23 @@ public class VistaInicial extends JFrame {
 			preferredSize.height += insets.bottom;
 			contentPane.setPreferredSize( preferredSize );
 		}
+	}
+
+	public void traducirIngles() {
+		setTitle("Profiles");
+		label1.setText("Profiles");
+		buttonPareja.setText("Young couple with no children");
+		buttonMatrimonio.setText("Marriage with 2-3 children");
+		buttonSoltero.setText("Single Man");
+		buttonSoltera.setText("Single Woman");
+	}
+
+	public void traducirEspanol() {
+		setTitle("Perfiles");
+		label1.setText("Perfiles");
+		buttonPareja.setText("Pareja joven sin hijos");
+		buttonMatrimonio.setText("Matrimonio con 2-3 hijos");
+		buttonSoltero.setText("Hombre Soltero");
+		buttonSoltera.setText("Mujer Soltera");
 	}
 }
