@@ -1,54 +1,33 @@
-1. Introducción al problema
+=1. Introducción al problema=
 
-2. Objetivo del proyecto
+=2. Objetivo del proyecto=
 
-3. Estado del Arte
+=3. Estado del Arte=
+	==3.1 Sector Inmobiliario==
+		===3.1.1 Introducción contextual===
+                ===3.1.2 Áreas de aplicación (del sistema de valoración)===
+                ===3.1.3 Sistemas existentes===
 
-	3.1 Sector Inmobiliario
-		3.1.1 Introducción contextual
+	==3.2 La lógica fuzzy==
+		===3.2.1 Introducción===
+		===3.2.2 Herramientas (Comparativa de los diferentes API's)===
+		===3.2.3 XFuzzy===
 
-                3.1.2 Áreas de aplicación (del sistema de valoración)
+=4. Sistema de Valoración Borrosa de Inmuebles=
+	==4.1 Descripción Funcional==
 
-                3.1.3 Sistemas existentes
+	==4.2 Desarrollo del Sistema==
+		===4.2.1 Definición del sistema (De qué está compuesto el sistema?)===
+		===4.2.2 Desarrollo de la BBDD (Detalles sobre la BBDD)===
+		===4.2.3 Desarrollo de la Aplicación (Especificación técnica parte en    java)===
+		===4.2.4 Desarrollo del Motor de Inferencia (Descripción parte en XFuzzy)===
 
-	3.2 La lógica fuzzy
-		3.2.1 Introducción
+	==4.3 Pruebas==
+		===4.3.1 Ejecución de las pruebas===
+		===4.3.2 Resultados===
 
-		3.2.2 Herramientas (Comparativa de los diferentes API's)
+=5. Conclusiones=
 
-		3.2.3 XFuzzy
+=6. Bibliografía=
 
-4. Sistema de Valoración Borrosa de Inmuebles
-
-	4.1 Descripción Funcional
-	
-	4.2 Desarrollo del Sistema
-		4.2.1 Definición del sistema (De qué está compuesto el sistema?)
-
-		4.2.2 Desarrollo de la BBDD (Detalles sobre la BBDD)
-
-		4.2.3 Desarrollo de la Aplicación (Especificación técnica parte en java)
-
-		4.2.4 Desarrollo del Motor de Inferencia (Descripción parte en XFuzzy)
-
-	4.3 Pruebas
-		4.3.1 Ejecución de las pruebas
-
-		4.3.2 Resultados
-
-5. Conclusiones
-
-6. Bibliografía
-
-7. Manual del Usuario
-
-
-= 1. Introducción al problema =
-
-El proyecto propuesto consiste en una aplicación práctica de la lógica difusa en el campo de las inmobiliarias, de tal manera que en función de una serie de parámetros de términos inmobiliarios, como podrían ser el tipo de inmueble, la luminosidad, la orientación, el estado del portal… debemos hallar los mejores inmuebles que se adaptan a esos parámetros propuestos con anterioridad. 
-
-Para ello dado un inmueble y un tipo de comprador, que podrá ser pareja joven sin hijos, matrimonio con 2 o 3 hijos, hombre soltero o mujer soltera, queremos obtener el valor que dicho inmueble tiene para ese comprador. El comprador a la hora de elegir un inmueble u otro, desea que lo que busca cumpla una serie de requisitos que tiene entre sus preferencias. Por ello es posible encontrar el inmueble que mejor se adapta a cada tipo de comprador, ya que sólo tendríamos que comprobar en que medida cumple ese inmueble con los requisitos dado por el comprador.
-
-Para realizar el cálculo del valor que tiene cada inmueble para cada uno de los distintos tipos de compradores descritos con anterioridad se puede usar distintas aproximaciones, pero nosotros hemos optado por utilizar lógica fuzzy. Para realizar las distintas tareas relacionadas con la lógica fuzzy usamos la herramienta XFuzzy. Esta herramienta además de ofrecer un entorno de diseño y desarrollo de sistemas fuzzy, también nos permite generar automáticamente una implementación en algún lenguaje de programación como es Java, C o C++.
-
-A la hora de la implementación del programa, hemos decidido desarrollarlo en la plataforma Java.
+=7. Manual del Usuario=
