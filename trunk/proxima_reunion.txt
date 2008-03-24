@@ -1,6 +1,14 @@
-version funcional
-el miercoles a las 15.30
-propuesta motor de inferencia
-traducción
-ordenar por valoracion los inmuebles
-memoria, guion
+Fecha: 25/03/2008
+Hora: 15.15
+
+Propuesta implementación funcional en la aplicación motor de inferencia.
+
+Propuesta motor de inferencia.
+
+Añadidas mejoras en la interfaz:
+
+a) Traducción.
+
+b) Ordenar por valoracion el listado de inmuebles.
+
+Beta preliminar de la memoria.
