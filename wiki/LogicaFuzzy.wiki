@@ -160,6 +160,8 @@ Así, se pueden ir complicando las expresiones. Por ejemplo, la expresión "x no
 µ_no_PEQUEÑA (x) = 1- µ_PEQUEÑO (x) 
 Tratando de esta forma los distintos modificadores lingüísticos (muy, poco, rápido, lento...) pueden ir calculándose todas las expresiones anteriores.
 
+(continuar con documentacion)
+
 
 == 3.2.2 Herramientas ===
 
