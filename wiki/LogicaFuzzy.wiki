@@ -7,7 +7,8 @@ La lógica borrosa (Fuzzy Logic) emerge como una herramienta interesante para el
 La lógica borrosa o difusa se basa en lo relativo de lo observado. Este tipo de lógica toma dos valores aleatorios, pero contextualizados y referidos entre sí. Así, por ejemplo, una persona que mida 2 metros es claramente una persona alta, si previamente se ha tomado el valor de persona baja y se ha establecido en 1 metro. Ambos valores están contextualizados a personas y referidos a una medida métrica lineal.
 
 En la lógica clásica una proposición sólo admite dos valores: verdadero o falso. Por ello se dice que la lógica usual es bivalente o binaria. Existen otras lógicas que admiten además un tercer valor posible (lógica trivaluada) e incluso múltiple valores de verdad (lógica multivaluada). 
- 	La lógica difusa (o borrosa) es otro tipo de lógica, que se caracteriza por querer cuantificar esta incertidumbre: Si P es una proposición, se le puede asociar un número v(P) en el intervalo [0,1] tal que: 
+
+La lógica difusa (o borrosa) es otro tipo de lógica, que se caracteriza por querer cuantificar esta incertidumbre: Si P es una proposición, se le puede asociar un número v(P) en el intervalo [0,1] tal que: 
 
 1.	Si v(P) = 0, P es falso. 
 2.	Si v(P) = 1, P es verdadero. 
