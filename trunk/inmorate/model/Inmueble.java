@@ -1,7 +1,6 @@
 package inmorate.model;
 
 public class Inmueble {
-	
 	private String DMXX;
 	private String tipoDeInmueble;
 	private int luminosidad;
