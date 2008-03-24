@@ -1,0 +1,71 @@
+= 3.2 Logica Fuzzy =
+
+== 3.2.1 Introducción ==
+
+La lógica borrosa (Fuzzy Logic) ha surgido como una herramienta lucrativa para el control de subsistemas y procesos industriales complejos, así como también para la electrónica de entretenimiento y hogar, sistemas de diagnóstico y otros sistemas expertos. Con esta lógica se pretende representar de forma rigurosa el significado de los enunciados imprecisos del lenguaje natural.
+
+La lógica borrosa o difusa se basa en lo relativo de lo observado. Este tipo de lógica toma dos valores aleatorios, pero contextualizados y referidos entre sí. Así, por ejemplo, una persona que mida 2 metros es claramente una persona alta, si previamente se ha tomado el valor de persona baja y se ha establecido en 1 metro. Ambos valores están contextualizados a personas y referidos a una medida métrica lineal.
+
+En la lógica clásica una proposición sólo admite dos valores: verdadero o falso. Por ello se dice que la lógica usual es bivalente o binaria. Existen otras lógicas que admiten además un tercer valor posible (lógica trivaluada) e incluso múltiple valores de verdad (lógica multivaluada). 
+ 	La lógica difusa (o borrosa) es otro tipo de lógica, que se caracteriza por querer cuantificar esta incertidumbre: Si P es una proposición, se le puede asociar un número v(P) en el intervalo [0,1] tal que: 
+
+1.	Si v(P) = 0, P es falso. 
+2.	Si v(P) = 1, P es verdadero. 
+3.	La veracidad de P aumenta con v(P). 
+
+Tomando el ejemplo de la definición, la persona más alta será M=2, y la más baja será M=1. La persona más alta será, por lo tanto, h(2)=Alto, y la más baja h(1)=Bajo. Es evidente que los valores manejados, se pueden catalogar según la lógica clásica a valores de Verdadero o Falso. Si h(M) = Alto (o Verdadero) entonces se producen una serie de consecuencias, si h(M) = Bajo (o Falso) entonces se producen una serie distinta de consecuencias. La dificultad viene cuando los grados pueden ser intermedios. Por ejemplo, de forma intermedia podemos decir que una persona que mida 1,82 m es alta con grado 0,75 indicando que es "bastante alta", teniendo en cuenta que la persona en cuestión sea masculina.
+
+Lo central en la lógica borrosa o “fuzzy logic” es que, de modo distinto a la lógica clásica de sistemas, se orienta hacia la modelización de modos de razonamiento imprecisos, los cuales juegan un rol esencial en la destacable habilidad humana de trazar decisiones racionales en un ambiente de incertidumbre e imprecisión. Esta habilidad depende, en cambio, de nuestra habilidad de inferir una respuesta aproximada a preguntas basadas en un conjunto de conocimiento que es inexacto, incompleto o no totalmente confiable.
+
+Esta simple idea nació en un artículo de Lotfi A. Zadeh publicado en 1965 y titulado "Fuzzy Sets" (Conjuntos Difusos). La lógica difusa permite representar de forma matemática conceptos o conjuntos imprecisos, tales como días fríos, meses calurosos, personas altas, salarios bajos, guisos con mucho condimento, profesores poco valorados, etc.
+Pero hay que tener en cuenta que la idea en sí de que las cosas no son blancas o negras, sino que existen infinitos matices de grises viene ya desde la época de los primeros grandes filósofos como Platón.
+Posteriormente a ellos, otros grandes pensadores como David Hume o Kant apoyaban esta idea manteniendo que el razonamiento venía dado por las observaciones de las que somos testigos a lo largo de nuestra vida y la detección de algunos principios contradictorios en la lógica clásica.
+Tras la publicación de Lotfi A. Zadeh, se comenzó rápidamente a usar la lógica difusa en distintas aplicaciones prácticas, llegando a su máximo auge a principios de los años 90, y continuando éste hasta la época actual.
+
+Funcionamiento
+
+La lógica difusa se adapta mejor al mundo real en el que vivimos, e incluso puede comprender y funcionar con nuestras expresiones, del tipo "hace mucho calor", "no es muy alto", "el ritmo del corazón está un poco acelerado", etc.
+La clave de esta adaptación al lenguaje, se basa en comprender los cuantificadores de nuestro lenguaje (en los ejemplos de arriba "mucho", "muy" y "un poco").
+En la teoría de conjuntos difusos se definen también las operaciones de unión, intersección, diferencia, negación o complemento, y otras operaciones sobre conjuntos (ver también subconjunto difuso), en los que se basa esta lógica.
+Para cada conjunto difuso, existe asociada una función de pertenencia para sus elementos, que indican en qué medida el elemento forma parte de ese conjunto difuso. Las formas de las funciones de pertenencia más típicas son trapezoidal, lineal y curva.
+Se basa en reglas heurísticas de la forma SI (antecedente) ENTONCES (consecuente), donde el antecedente y el consecuente son también conjuntos difusos, ya sea puros o resultado de operar con ellos. Sirvan como ejemplos de regla heurística para esta lógica (nótese la importancia de las palabras "muchísimo", "drásticamente", "un poco" y "levemente" para la lógica difusa):
+
+SI hace muchísimo calor ENTONCES disminuyo drásticamente la temperatura. 
+SI voy a llegar un poco tarde ENTONCES aumento levemente la velocidad. 
+
+Los métodos de inferencia para esta base de reglas deben ser simples, veloces y eficaces. Los resultados de dichos métodos son un área final, fruto de un conjunto de áreas solapadas entre sí (cada área es resultado de una regla de inferencia). Para escoger una salida concreta a partir de tanta premisa difusa, el método más usado es el del centroide, en el que la salida final será el centro de gravedad del área total resultante.
+Las reglas de las que dispone el motor de inferencia de un sistema difuso pueden ser formuladas por expertos, o bien aprendidas por el propio sistema, haciendo uso en este caso de Redes neuronales para fortalecer las futuras tomas de decisiones.
+Los datos de entrada suelen ser recogidos por sensores, que miden las variables de entrada de un sistema. El motor de inferencias se basa en chips difusos, que están aumentando exponencialmente su capacidad de procesamiento de reglas año a año.
+Un esquema de funcionamiento típico para un sistema difuso podría ser de la siguiente manera:
+ 
+Funcionamiento de un sistema de control difuso
+
+En la figura, el sistema de control hace los cálculos con base en sus reglas heurísticas, comentadas anteriormente. La salida final actuaría sobre el entorno físico, y los valores de las nuevas entradas sobre el entorno físico (modificado por la salida del sistema de control) serían tomadas por sensores del sistema.
+Por ejemplo, imaginando que nuestro sistema borroso fuese el climatizador de un coche que se autorregula según las necesidades: Los chips borrosos del climatizador recogen los datos de entrada, que en este caso bien podrían ser la temperatura y humedad simplemente. Estos datos se someten a las reglas del motor de inferencia (como se ha comentado antes, de la forma SI... ENTONCES... ), resultando un área de resultados. De esa área se escogerá el centro de gravedad, proporcionándola como salida. Dependiendo del resultado, el climatizador podría aumentar la temperatura o disminuirla dependiendo del grado de la salida.
+
+Aplicaciones 
+
+La lógica difusa se utiliza cuando la complejidad del proceso en cuestión es muy alta y no existen modelos matemáticos precisos, para procesos altamente no lineales y cuando se envuelven definiciones y conocimiento no estrictamente definido (impreciso o subjetivo).
+En cambio, no es una buena idea usarla cuando algún modelo matemático ya soluciona eficientemente el problema, cuando los problemas son lineales o cuando no tienen solución.
+Esta técnica se ha empleado con bastante éxito en la industria, principalmente en Japón, y cada vez se está usando en gran multitud de campos. La primera vez que se usó de forma importante fue en el metro japonés, con excelentes resultados. A continuación se citan algunos ejemplos de su aplicación:
+ 	
+Sistemas de control de acondicionadores de aire 
+Sistemas de foco automático en cámaras fotográficas 
+Electrodomésticos familiares (Frigoríficos, lavadoras...) 
+Optimización de sistemas de control industriales 
+Sistemas de reconocimiento de escritura 
+Mejora en la eficiencia del uso de combustible en motores 
+Sistemas expertos del conocimiento (simular el comportamiento de un experto humano) 
+Tecnología informática 
+Bases de datos difusas: Almacenar y consultar información imprecisa. Para este punto, por ejemplo, existe el lenguaje FSQL. 
+...y, en general, en la gran mayoría de los sistemas de control que no dependen de un Sí/No.
+
+Conjuntos borrosos
+
+Los elementos fundamentales de la teoría de sistemas borrosos son los conjuntos borrosos (fuzzy). Sobre ellos se pueden realizar operaciones, algunas de ellas semejantes a las que se realizan con los conjuntos clásicos. Finalmente, la lógica borrosa está basada en combinaciones de conjuntos difusos mediante las mencionadas operaciones.
+Los conjuntos borrosos, son conjuntos en los que se define una función llamada "función de pertenencia", que asigna a cada elemento del conjunto, un valor que representa el grado en que dicho valor pertenece al conjunto. A cada conjunto se le asocia un cuantificador lingüístico, como por ejemplo, mucho, poco, bastante etc., de forma que relacionamos el modelo matemático con el lenguaje humano.
+Sea X un universo de discurso. Un conjunto difuso (fuzzy) A se define mediante su función de pertenencia:
+Así, dicho conjunto queda identificado mediante parejas de elementos
+donde el símbolo "/" no representa ningún cociente sino que tiene la función de un separador. La forma específica de la función μA depende de los objetivos del modelo fuzzy. Por ejemplo, puede ser continua lineal a trozos. Si μA es la función característica de A, entonces A es un conjunto clásico (no fuzzy).
+
+(continuar con documentación sobre conjuntos borrosos).
