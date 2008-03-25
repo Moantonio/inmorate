@@ -811,7 +811,7 @@ public class VistaVivienda extends JFrame {
 	public void traducirIngles() {
 		ingles = true;
 		setTitle("Buildings Values");
-		buttonConsulta.setText("New Consultation");
+		buttonConsulta.setText("New Query");
 		buttonSalir.setText("Exit");
 		labelTitulo.setText("Buildings");		
 		label1.setText("Type of building:");
