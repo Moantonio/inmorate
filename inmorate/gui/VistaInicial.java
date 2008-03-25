@@ -154,7 +154,7 @@ public class VistaInicial extends JFrame {
 		setTitle("Profiles");
 		label1.setText("Profiles");
 		buttonPareja.setText("Young couple with no children");
-		buttonMatrimonio.setText("Marriage with 2-3 children");
+		buttonMatrimonio.setText("Marriage with two or three children");
 		buttonSoltero.setText("Single Man");
 		buttonSoltera.setText("Single Woman");
 	}
