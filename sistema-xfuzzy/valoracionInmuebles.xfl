@@ -11,7 +11,7 @@ type NumeroHabitaciones [1.0,4.0;5] {
   tres xfl.singleton(3.0);
   cuatro xfl.singleton(4.0);
  }
- 
+
 type Antiguedad [0.0,100.0;100] {
   estrenar xfl.bell(0.0,1.0);
   muy_nuevo xfl.bell(1.0,5.0);
@@ -20,7 +20,7 @@ type Antiguedad [0.0,100.0;100] {
   muy_antiguo xfl.bell(100.0,12.5);
  }
 
-type metros [1.0,300.0;300] {
+type Metros [1.0,300.0;300] {
   muy_pocos xfl.bell(1.0,30.0);
   pocos xfl.bell(30.0,60.0);
   normal xfl.bell(60.0,90.0);
@@ -28,7 +28,7 @@ type metros [1.0,300.0;300] {
   mf4 xfl.bell(300.0,90.0);
  }
 
-type precio [1.0,1000.0;1000] {
+type Precio [1.0,1000.0;1000] {
   barato xfl.bell(1.0,149.85);
   poco_barato xfl.bell(250.75,149.85);
   normal xfl.bell(400.0,149.85);
@@ -36,7 +36,7 @@ type precio [1.0,1000.0;1000] {
   muy_caro xfl.bell(1000.0,449.85);
  }
 
-type valoracion [0.0,10.0;11] {
+type Valoracion [0.0,10.0;11] {
   muy_mala xfl.bell(0.0,1.5);
   mala xfl.bell(2.5,1.5);
   regular xfl.bell(5.0,1.5);
@@ -51,98 +51,327 @@ type Perfil [1.0,4.0;5] {
   Mujer_soltera xfl.singleton(4.0);
  }
 
-rulebase Inferencia_Orientacion (valoracion Orientacion, Perfil Perfil : valoracion Valoracion_Orientacion)  {
-	if(Perfil == Hombre_soltero) -> Valoracion_Orientacion = buena;
+rulebase Inferencia_Orientacion (Valoracion Orientacion, Perfil Perfil : Valoracion Valoracion_Orientacion)  {
+  if(Perfil == Hombre_soltero) -> Valoracion_Orientacion = buena;
  }
-rulebase Inferencia_Tipo_Inmueble (TipoInmueble Tipo_Inmueble, Perfil Perfil : valoracion Valoracion_Tipo_Inmueble)  {
-	if(Perfil == Hombre_soltero) -> Valoracion_Tipo_Inmueble = buena;
+rulebase Inferencia_Tipo_inmueble (TipoInmueble Tipo_Inmueble, Perfil Perfil : Valoracion Valoracion_Tipo_Inmueble)  {
+  if(Tipo_Inmueble == Piso & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Tipo_Inmueble = muy_buena;
+  if(Tipo_Inmueble == Piso & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Tipo_Inmueble = regular;
+  if(Tipo_Inmueble == Piso & Perfil == Hombre_soltero) -> Valoracion_Tipo_Inmueble = muy_buena;
+  if(Tipo_Inmueble == Piso & Perfil == Mujer_soltera) -> Valoracion_Tipo_Inmueble = muy_buena;
+  if(Tipo_Inmueble == Adosado & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Tipo_Inmueble = muy_buena;
+  if(Tipo_Inmueble == Adosado & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Tipo_Inmueble = buena;
+  if(Tipo_Inmueble == Adosado & Perfil == Hombre_soltero) -> Valoracion_Tipo_Inmueble = buena;
+  if(Tipo_Inmueble == Adosado & Perfil == Mujer_soltera) -> Valoracion_Tipo_Inmueble = buena;
+  if(Tipo_Inmueble == Pareado & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Tipo_Inmueble = buena;
+  if(Tipo_Inmueble == Pareado & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Tipo_Inmueble = muy_buena;
+  if(Tipo_Inmueble == Pareado & Perfil == Hombre_soltero) -> Valoracion_Tipo_Inmueble = regular;
+  if(Tipo_Inmueble == Pareado & Perfil == Mujer_soltera) -> Valoracion_Tipo_Inmueble = regular;
+  if(Tipo_Inmueble == Independiente & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Tipo_Inmueble = regular;
+  if(Tipo_Inmueble == Independiente & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Tipo_Inmueble = muy_buena;
+  if(Tipo_Inmueble == Independiente & Perfil == Hombre_soltero) -> Valoracion_Tipo_Inmueble = mala;
+  if(Tipo_Inmueble == Independiente & Perfil == Mujer_soltera) -> Valoracion_Tipo_Inmueble = mala;
  }
-rulebase Inferencia_Luminosidad (valoracion Luminosidad, Perfil Perfil : valoracion Valoracion_Luminosidad)  {
-	if(Perfil == Hombre_soltero) -> Valoracion_Luminosidad = buena;
+rulebase Inferencia_Luminosidad (Valoracion Luminosidad, Perfil Perfil : Valoracion Valoracion_Luminosidad)  {
+  if(Luminosidad == muy_mala & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Luminosidad = muy_mala;
+  if(Luminosidad == muy_mala & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Luminosidad = regular;
+  if(Luminosidad == muy_mala & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Luminosidad = muy_mala;
+  if(Luminosidad == muy_mala & Perfil == Hombre_soltero) -> Valoracion_Luminosidad = mala;
+  if(Luminosidad == muy_mala & Perfil == Mujer_soltera) -> Valoracion_Luminosidad = muy_mala;
+  if(Luminosidad == mala & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Luminosidad = regular;
+  if(Luminosidad == mala & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Luminosidad = mala;
+  if(Luminosidad == mala & Perfil == Hombre_soltero) -> Valoracion_Luminosidad = regular;
+  if(Luminosidad == mala & Perfil == Mujer_soltera) -> Valoracion_Luminosidad = mala;
+  if(Luminosidad == regular & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Luminosidad = regular;
+  if(Luminosidad == regular & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Luminosidad = regular;
+  if(Luminosidad == regular & Perfil == Hombre_soltero) -> Valoracion_Luminosidad = regular;
+  if(Luminosidad == regular & Perfil == Mujer_soltera) -> Valoracion_Luminosidad = regular;
+  if(Luminosidad == buena & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Luminosidad = regular;
+  if(Luminosidad == buena & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Luminosidad = buena;
+  if(Luminosidad == buena & Perfil == Hombre_soltero) -> Valoracion_Luminosidad = buena;
+  if(Luminosidad == buena & Perfil == Mujer_soltera) -> Valoracion_Luminosidad = buena;
+  if(Luminosidad == muy_buena & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Luminosidad = regular;
+  if(Luminosidad == muy_buena & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Luminosidad = muy_buena;
+  if(Luminosidad == muy_buena & Perfil == Hombre_soltero) -> Valoracion_Luminosidad = buena;
+  if(Luminosidad == muy_buena & Perfil == Mujer_soltera) -> Valoracion_Luminosidad = muy_buena;
  }
-rulebase Inferencia_Representatividad (valoracion Representatividad, Perfil Perfil : valoracion Valoracion_Representatividad)  {
-	if(Perfil == Hombre_soltero) -> Valoracion_Representatividad = buena;
+rulebase Inferencia_Representatividad (Valoracion Representatividad, Perfil Perfil : Valoracion Valoracion_Representatividad)  {
+  if(Representatividad == muy_mala & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Representatividad = muy_mala;
+  if(Representatividad == muy_mala & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Representatividad = muy_mala;
+  if(Representatividad == muy_mala & Perfil == Hombre_soltero) -> Valoracion_Representatividad = muy_mala;
+  if(Representatividad == muy_mala & Perfil == Mujer_soltera) -> Valoracion_Representatividad = mala;
+  if(Representatividad == mala & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Representatividad = mala;
+  if(Representatividad == mala & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Representatividad = mala;
+  if(Representatividad == mala & Perfil == Hombre_soltero) -> Valoracion_Representatividad = mala;
+  if(Representatividad == mala & Perfil == Mujer_soltera) -> Valoracion_Representatividad = regular;
+  if(Representatividad == regular & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Representatividad = regular;
+  if(Representatividad == regular & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Representatividad = regular;
+  if(Representatividad == regular & Perfil == Hombre_soltero) -> Valoracion_Representatividad = regular;
+  if(Representatividad == regular & Perfil == Mujer_soltera) -> Valoracion_Representatividad = regular;
+  if(Representatividad == buena & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Representatividad = buena;
+  if(Representatividad == buena & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Representatividad = buena;
+  if(Representatividad == buena & Perfil == Hombre_soltero) -> Valoracion_Representatividad = buena;
+  if(Representatividad == buena & Perfil == Mujer_soltera) -> Valoracion_Representatividad = buena;
+  if(Representatividad == muy_buena & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Representatividad = muy_buena;
+  if(Representatividad == muy_buena & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Representatividad = muy_buena;
+  if(Representatividad == muy_buena & Perfil == Hombre_soltero) -> Valoracion_Representatividad = muy_buena;
+  if(Representatividad == muy_buena & Perfil == Mujer_soltera) -> Valoracion_Representatividad = buena;
  }
-rulebase Inferencia_Estado_del_portal (valoracion Estado_del_portal, Perfil Perfil : valoracion Valoracion_estado_del_portal)  {
-	if(Perfil == Hombre_soltero) -> Valoracion_estado_del_portal = buena;
+rulebase Inferencia_Estado_del_portal (Valoracion Estado_del_portal, Perfil Perfil : Valoracion Valoracion_estado_del_portal)  {
+  if(Estado_del_portal == muy_mala & Perfil == Pareja_joven_sin_hijos) -> Valoracion_estado_del_portal = mala;
+  if(Estado_del_portal == muy_mala & Perfil == Matrimonio_2_3_hijos) -> Valoracion_estado_del_portal = muy_mala;
+  if(Estado_del_portal == muy_mala & Perfil == Hombre_soltero) -> Valoracion_estado_del_portal = muy_mala;
+  if(Estado_del_portal == muy_mala & Perfil == Mujer_soltera) -> Valoracion_estado_del_portal = mala;
+  if(Estado_del_portal == mala & Perfil == Pareja_joven_sin_hijos) -> Valoracion_estado_del_portal = mala;
+  if(Estado_del_portal == mala & Perfil == Matrimonio_2_3_hijos) -> Valoracion_estado_del_portal = mala;
+  if(Estado_del_portal == mala & Perfil == Hombre_soltero) -> Valoracion_estado_del_portal = mala;
+  if(Estado_del_portal == mala & Perfil == Mujer_soltera) -> Valoracion_estado_del_portal = mala;
+  if(Estado_del_portal == regular & Perfil == Pareja_joven_sin_hijos) -> Valoracion_estado_del_portal = regular;
+  if(Estado_del_portal == regular & Perfil == Matrimonio_2_3_hijos) -> Valoracion_estado_del_portal = regular;
+  if(Estado_del_portal == regular & Perfil == Hombre_soltero) -> Valoracion_estado_del_portal = regular;
+  if(Estado_del_portal == regular & Perfil == Mujer_soltera) -> Valoracion_estado_del_portal = regular;
+  if(Estado_del_portal == buena & Perfil == Pareja_joven_sin_hijos) -> Valoracion_estado_del_portal = regular;
+  if(Estado_del_portal == buena & Perfil == Matrimonio_2_3_hijos) -> Valoracion_estado_del_portal = buena;
+  if(Estado_del_portal == buena & Perfil == Hombre_soltero) -> Valoracion_estado_del_portal = buena;
+  if(Estado_del_portal == buena & Perfil == Mujer_soltera) -> Valoracion_estado_del_portal = regular;
+  if(Estado_del_portal == muy_buena & Perfil == Pareja_joven_sin_hijos) -> Valoracion_estado_del_portal = buena;
+  if(Estado_del_portal == muy_buena & Perfil == Matrimonio_2_3_hijos) -> Valoracion_estado_del_portal = muy_buena;
+  if(Estado_del_portal == muy_buena & Perfil == Hombre_soltero) -> Valoracion_estado_del_portal = muy_buena;
+  if(Estado_del_portal == muy_buena & Perfil == Mujer_soltera) -> Valoracion_estado_del_portal = buena;
  }
-rulebase Inferencia_Fachada (valoracion Fachada, Perfil Perfil : valoracion Valoracion_Fachada)  {
-	if(Perfil == Hombre_soltero) -> Valoracion_Fachada = buena;
+rulebase Inferencia_Fachada (Valoracion Fachada, Perfil Perfil : Valoracion Valoracion_Fachada)  {
+  if(Fachada == muy_mala & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Fachada = muy_mala;
+  if(Fachada == muy_mala & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Fachada = mala;
+  if(Fachada == muy_mala & Perfil == Hombre_soltero) -> Valoracion_Fachada = muy_mala;
+  if(Fachada == muy_mala & Perfil == Mujer_soltera) -> Valoracion_Fachada = mala;
+  if(Fachada == mala & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Fachada = mala;
+  if(Fachada == mala & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Fachada = regular;
+  if(Fachada == mala & Perfil == Hombre_soltero) -> Valoracion_Fachada = mala;
+  if(Fachada == mala & Perfil == Mujer_soltera) -> Valoracion_Fachada = regular;
+  if(Fachada == regular & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Fachada = regular;
+  if(Fachada == regular & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Fachada = regular;
+  if(Fachada == regular & Perfil == Hombre_soltero) -> Valoracion_Fachada = regular;
+  if(Fachada == regular & Perfil == Mujer_soltera) -> Valoracion_Fachada = regular;
+  if(Fachada == buena & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Fachada = buena;
+  if(Fachada == buena & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Fachada = buena;
+  if(Fachada == buena & Perfil == Hombre_soltero) -> Valoracion_Fachada = buena;
+  if(Fachada == buena & Perfil == Mujer_soltera) -> Valoracion_Fachada = buena;
+  if(Fachada == muy_buena & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Fachada = muy_buena;
+  if(Fachada == muy_buena & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Fachada = buena;
+  if(Fachada == muy_buena & Perfil == Hombre_soltero) -> Valoracion_Fachada = muy_buena;
+  if(Fachada == muy_buena & Perfil == Mujer_soltera) -> Valoracion_Fachada = buena;
  }
-rulebase Inferencia_Vistas (valoracion Vistas, Perfil Perfil : valoracion Valoracion_Vistas)  {
-	if(Perfil == Hombre_soltero) -> Valoracion_Vistas = buena;
+rulebase Inferencia_Vistas (Valoracion Vistas, Perfil Perfil : Valoracion Valoracion_Vistas)  {
+  if(Vistas == muy_mala & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Vistas = muy_mala;
+  if(Vistas == muy_mala & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Vistas = mala;
+  if(Vistas == muy_mala & Perfil == Hombre_soltero) -> Valoracion_Vistas = muy_mala;
+  if(Vistas == muy_mala & Perfil == Mujer_soltera) -> Valoracion_Vistas = mala;
+  if(Vistas == mala & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Vistas = mala;
+  if(Vistas == mala & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Vistas = regular;
+  if(Vistas == mala & Perfil == Hombre_soltero) -> Valoracion_Vistas = mala;
+  if(Vistas == mala & Perfil == Mujer_soltera) -> Valoracion_Vistas = regular;
+  if(Vistas == regular & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Vistas = regular;
+  if(Vistas == regular & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Vistas = regular;
+  if(Vistas == regular & Perfil == Hombre_soltero) -> Valoracion_Vistas = regular;
+  if(Vistas == regular & Perfil == Mujer_soltera) -> Valoracion_Vistas = regular;
+  if(Vistas == buena & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Vistas = buena;
+  if(Vistas == buena & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Vistas = buena;
+  if(Vistas == buena & Perfil == Hombre_soltero) -> Valoracion_Vistas = buena;
+  if(Vistas == buena & Perfil == Mujer_soltera) -> Valoracion_Vistas = buena;
+  if(Vistas == muy_buena & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Vistas = muy_buena;
+  if(Vistas == muy_buena & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Vistas = buena;
+  if(Vistas == muy_buena & Perfil == Hombre_soltero) -> Valoracion_Vistas = muy_buena;
+  if(Vistas == muy_buena & Perfil == Mujer_soltera) -> Valoracion_Vistas = buena;
  }
-rulebase Inferencia_Numero_habitaciones (NumeroHabitaciones Numero_habitaciones, Perfil Perfil : valoracion Valoracion_numero_habitaciones)  {
-	if(Perfil == Hombre_soltero) -> Valoracion_numero_habitaciones = buena;
+rulebase Inferencia_Numero_habitaciones (NumeroHabitaciones Numero_habitaciones, Perfil Perfil : Valoracion Valoracion_numero_habitaciones)  {
+  if(Perfil == Hombre_soltero) -> Valoracion_numero_habitaciones = buena;
  }
-rulebase Inferencia_numero_banos (valoracion Numero_banos, Perfil Perfil : valoracion Valoracion_numero_banos)  {
-	if(Perfil == Hombre_soltero) -> Valoracion_numero_banos = buena;
+rulebase Inferencia_Numero_banos (Valoracion Numero_banos, Perfil Perfil : Valoracion Valoracion_Numero_banos)  {
+  if(Perfil == Hombre_soltero) -> Valoracion_Numero_banos = buena;
  }
-rulebase Inferencia_Antiguedad (Antiguedad Antiguedad, Perfil Perfil : valoracion Valoracion_Antiguedad)  {
-	if(Perfil == Hombre_soltero) -> Valoracion_Antiguedad = buena;
+rulebase Inferencia_Antiguedad (Antiguedad Antiguedad, Perfil Perfil : Valoracion Valoracion_Antiguedad)  {
+  if(Perfil == Hombre_soltero) -> Valoracion_Antiguedad = buena;
  }
-rulebase Inferencia_Altura (valoracion Altura, Perfil Perfil : valoracion Valoracion_Altura)  {
-	if(Perfil == Hombre_soltero) -> Valoracion_Altura = buena;
+rulebase Inferencia_Altura (Valoracion Altura, Perfil Perfil : Valoracion Valoracion_Altura)  {
+  if(Altura == muy_mala & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Altura = muy_mala;
+  if(Altura == muy_mala & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Altura = mala;
+  if(Altura == muy_mala & Perfil == Hombre_soltero) -> Valoracion_Altura = muy_mala;
+  if(Altura == muy_mala & Perfil == Mujer_soltera) -> Valoracion_Altura = mala;
+  if(Altura == mala & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Altura = mala;
+  if(Altura == mala & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Altura = regular;
+  if(Altura == mala & Perfil == Hombre_soltero) -> Valoracion_Altura = mala;
+  if(Altura == mala & Perfil == Mujer_soltera) -> Valoracion_Altura = regular;
+  if(Altura == regular & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Altura = regular;
+  if(Altura == regular & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Altura = regular;
+  if(Altura == regular & Perfil == Hombre_soltero) -> Valoracion_Altura = regular;
+  if(Altura == regular & Perfil == Mujer_soltera) -> Valoracion_Altura = regular;
+  if(Altura == buena & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Altura = buena;
+  if(Altura == buena & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Altura = buena;
+  if(Altura == buena & Perfil == Hombre_soltero) -> Valoracion_Altura = buena;
+  if(Altura == buena & Perfil == Mujer_soltera) -> Valoracion_Altura = buena;
+  if(Altura == muy_buena & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Altura = muy_buena;
+  if(Altura == muy_buena & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Altura = buena;
+  if(Altura == muy_buena & Perfil == Hombre_soltero) -> Valoracion_Altura = muy_buena;
+  if(Altura == muy_buena & Perfil == Mujer_soltera) -> Valoracion_Altura = buena;
  }
-rulebase Inferencia_Ascensor (valoracion Ascensor, Perfil Perfil : valoracion Valoracion_Ascensor)  {
-	if(Perfil == Hombre_soltero) -> Valoracion_Ascensor = buena;
+rulebase Inferencia_Ascensor (Valoracion Ascensor, Perfil Perfil : Valoracion Valoracion_Ascensor)  {
+  if(Ascensor == muy_mala & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Ascensor = muy_mala;
+  if(Ascensor == muy_mala & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Ascensor = mala;
+  if(Ascensor == muy_mala & Perfil == Hombre_soltero) -> Valoracion_Ascensor = muy_mala;
+  if(Ascensor == muy_mala & Perfil == Mujer_soltera) -> Valoracion_Ascensor = mala;
+  if(Ascensor == mala & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Ascensor = mala;
+  if(Ascensor == mala & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Ascensor = regular;
+  if(Ascensor == mala & Perfil == Hombre_soltero) -> Valoracion_Ascensor = mala;
+  if(Ascensor == mala & Perfil == Mujer_soltera) -> Valoracion_Ascensor = regular;
+  if(Ascensor == regular & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Ascensor = regular;
+  if(Ascensor == regular & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Ascensor = regular;
+  if(Ascensor == regular & Perfil == Hombre_soltero) -> Valoracion_Ascensor = regular;
+  if(Ascensor == regular & Perfil == Mujer_soltera) -> Valoracion_Ascensor = regular;
+  if(Ascensor == buena & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Ascensor = buena;
+  if(Ascensor == buena & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Ascensor = buena;
+  if(Ascensor == buena & Perfil == Hombre_soltero) -> Valoracion_Ascensor = buena;
+  if(Ascensor == buena & Perfil == Mujer_soltera) -> Valoracion_Ascensor = buena;
+  if(Ascensor == muy_buena & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Ascensor = muy_buena;
+  if(Ascensor == muy_buena & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Ascensor = buena;
+  if(Ascensor == muy_buena & Perfil == Hombre_soltero) -> Valoracion_Ascensor = muy_buena;
+  if(Ascensor == muy_buena & Perfil == Mujer_soltera) -> Valoracion_Ascensor = buena;
  }
-rulebase Inferencia_Estado_general (valoracion Estado_General, Perfil Perfil : valoracion Valoracion_estado_general)  {
-	if(Perfil == Hombre_soltero) -> Valoracion_estado_general = buena;
+rulebase Inferencia_Garage (Metros Metros_Garage, Perfil Perfil : Valoracion Valoracion_Garage)  {
+  if(Perfil == Hombre_soltero) -> Valoracion_Garage = buena;
  }
-rulebase Inferencia_Zonas_Comunes (valoracion Zonas_Comunes, Perfil Perfil : valoracion Valoracion_Zonas_Comunes)  {
-	if(Perfil == Hombre_soltero) -> Valoracion_Zonas_Comunes = buena;
+rulebase Inferencia_Estado_general (Valoracion Estado_general, Perfil Perfil : Valoracion Valoracion_Estado_general)  {
+  if(Estado_general == muy_mala & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Estado_general = muy_mala;
+  if(Estado_general == muy_mala & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Estado_general = mala;
+  if(Estado_general == muy_mala & Perfil == Hombre_soltero) -> Valoracion_Estado_general = muy_mala;
+  if(Estado_general == muy_mala & Perfil == Mujer_soltera) -> Valoracion_Estado_general = mala;
+  if(Estado_general == mala & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Estado_general = mala;
+  if(Estado_general == mala & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Estado_general = regular;
+  if(Estado_general == mala & Perfil == Hombre_soltero) -> Valoracion_Estado_general = mala;
+  if(Estado_general == mala & Perfil == Mujer_soltera) -> Valoracion_Estado_general = regular;
+  if(Estado_general == regular & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Estado_general = regular;
+  if(Estado_general == regular & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Estado_general = regular;
+  if(Estado_general == regular & Perfil == Hombre_soltero) -> Valoracion_Estado_general = regular;
+  if(Estado_general == regular & Perfil == Mujer_soltera) -> Valoracion_Estado_general = regular;
+  if(Estado_general == buena & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Estado_general = buena;
+  if(Estado_general == buena & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Estado_general = buena;
+  if(Estado_general == buena & Perfil == Hombre_soltero) -> Valoracion_Estado_general = buena;
+  if(Estado_general == buena & Perfil == Mujer_soltera) -> Valoracion_Estado_general = buena;
+  if(Estado_general == muy_buena & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Estado_general = muy_buena;
+  if(Estado_general == muy_buena & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Estado_general = buena;
+  if(Estado_general == muy_buena & Perfil == Hombre_soltero) -> Valoracion_Estado_general = muy_buena;
+  if(Estado_general == muy_buena & Perfil == Mujer_soltera) -> Valoracion_Estado_general = buena;
  }
-rulebase Inferencia_Zona_subzona (valoracion Zona_subzona, Perfil Perfil : valoracion Valoracion_Zona_subzona)  {
-	if(Perfil == Hombre_soltero) -> Valoracion_Zona_subzona = buena;
+rulebase Inferencia_Zonas_comunes (Valoracion Zonas_comunes, Perfil Perfil : Valoracion Valoracion_Zonas_comunes)  {
+  if(Zonas_comunes == muy_mala & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Zonas_comunes = muy_mala;
+  if(Zonas_comunes == muy_mala & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Zonas_comunes = mala;
+  if(Zonas_comunes == muy_mala & Perfil == Hombre_soltero) -> Valoracion_Zonas_comunes = muy_mala;
+  if(Zonas_comunes == muy_mala & Perfil == Mujer_soltera) -> Valoracion_Zonas_comunes = mala;
+  if(Zonas_comunes == mala & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Zonas_comunes = mala;
+  if(Zonas_comunes == mala & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Zonas_comunes = regular;
+  if(Zonas_comunes == mala & Perfil == Hombre_soltero) -> Valoracion_Zonas_comunes = mala;
+  if(Zonas_comunes == mala & Perfil == Mujer_soltera) -> Valoracion_Zonas_comunes = regular;
+  if(Zonas_comunes == regular & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Zonas_comunes = regular;
+  if(Zonas_comunes == regular & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Zonas_comunes = regular;
+  if(Zonas_comunes == regular & Perfil == Hombre_soltero) -> Valoracion_Zonas_comunes = regular;
+  if(Zonas_comunes == regular & Perfil == Mujer_soltera) -> Valoracion_Zonas_comunes = regular;
+  if(Zonas_comunes == buena & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Zonas_comunes = buena;
+  if(Zonas_comunes == buena & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Zonas_comunes = buena;
+  if(Zonas_comunes == buena & Perfil == Hombre_soltero) -> Valoracion_Zonas_comunes = buena;
+  if(Zonas_comunes == buena & Perfil == Mujer_soltera) -> Valoracion_Zonas_comunes = buena;
+  if(Zonas_comunes == muy_buena & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Zonas_comunes = muy_buena;
+  if(Zonas_comunes == muy_buena & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Zonas_comunes = buena;
+  if(Zonas_comunes == muy_buena & Perfil == Hombre_soltero) -> Valoracion_Zonas_comunes = muy_buena;
+  if(Zonas_comunes == muy_buena & Perfil == Mujer_soltera) -> Valoracion_Zonas_comunes = buena;
  }
-rulebase Inferencia_metros_Construidos (metros Metros_construidos, Perfil Perfil : valoracion Valoracion_metros_construidos)  {
-	if(Perfil == Hombre_soltero) -> Valoracion_metros_construidos = buena;
+rulebase Inferencia_Zona_subzona (Valoracion Zona_subzona, Perfil Perfil : Valoracion Valoracion_Zona_subzona)  {
+  if(Zona_subzona == muy_mala & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Zona_subzona = muy_mala;
+  if(Zona_subzona == muy_mala & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Zona_subzona = mala;
+  if(Zona_subzona == muy_mala & Perfil == Hombre_soltero) -> Valoracion_Zona_subzona = muy_mala;
+  if(Zona_subzona == muy_mala & Perfil == Mujer_soltera) -> Valoracion_Zona_subzona = mala;
+  if(Zona_subzona == mala & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Zona_subzona = mala;
+  if(Zona_subzona == mala & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Zona_subzona = regular;
+  if(Zona_subzona == mala & Perfil == Hombre_soltero) -> Valoracion_Zona_subzona = mala;
+  if(Zona_subzona == mala & Perfil == Mujer_soltera) -> Valoracion_Zona_subzona = regular;
+  if(Zona_subzona == regular & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Zona_subzona = regular;
+  if(Zona_subzona == regular & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Zona_subzona = regular;
+  if(Zona_subzona == regular & Perfil == Hombre_soltero) -> Valoracion_Zona_subzona = regular;
+  if(Zona_subzona == regular & Perfil == Mujer_soltera) -> Valoracion_Zona_subzona = regular;
+  if(Zona_subzona == buena & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Zona_subzona = buena;
+  if(Zona_subzona == buena & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Zona_subzona = buena;
+  if(Zona_subzona == buena & Perfil == Hombre_soltero) -> Valoracion_Zona_subzona = buena;
+  if(Zona_subzona == buena & Perfil == Mujer_soltera) -> Valoracion_Zona_subzona = buena;
+  if(Zona_subzona == muy_buena & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Zona_subzona = muy_buena;
+  if(Zona_subzona == muy_buena & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Zona_subzona = buena;
+  if(Zona_subzona == muy_buena & Perfil == Hombre_soltero) -> Valoracion_Zona_subzona = muy_buena;
+  if(Zona_subzona == muy_buena & Perfil == Mujer_soltera) -> Valoracion_Zona_subzona = buena;
  }
-rulebase Inferencia_metros_habitables (metros metros_habitables, Perfil Perfil : valoracion valoracion_metros_habitables)  {
-	if(Perfil == Hombre_soltero) -> valoracion_metros_habitables = buena;
+rulebase Inferencia_Metros_construidos (Metros Metros_construidos, Perfil Perfil : Valoracion Valoracion_Metros_construidos)  {
+  if(Perfil == Hombre_soltero) -> Valoracion_Metros_construidos = buena;
  }
-rulebase Inferencia_precio_tasacion (precio Precio_tasacion, Perfil Perfil : valoracion Valoracion_precio_tasacion)  {
-	if(Perfil == Hombre_soltero) -> Valoracion_precio_tasacion = buena;
+rulebase Inferencia_Metros_habitables (Metros Metros_habitables, Perfil Perfil : Valoracion Valoracion_Metros_habitables)  {
+  if(Perfil == Hombre_soltero) -> Valoracion_Metros_habitables = buena;
  }
-rulebase Inferencia_precio_salida (precio Precio_salida, Perfil Perfil : valoracion Valoracion_precio_salida)  {
-	if(Perfil == Hombre_soltero) -> Valoracion_precio_salida = buena;
+rulebase Inferencia_Precio_tasacion (Precio Precio_tasacion, Perfil Perfil : Valoracion Valoracion_Precio_tasacion)  {
+  if(Perfil == Hombre_soltero) -> Valoracion_Precio_tasacion = buena;
  }
-rulebase Inferencia_precio_venta (precio precio_venta, Perfil Perfil : valoracion valoracion_precio_venta)  {
-	if(Perfil == Hombre_soltero) -> valoracion_precio_venta = buena;
+rulebase Inferencia_Precio_salida (Precio Precio_salida, Perfil Perfil : Valoracion Valoracion_Precio_salida)  {
+  if(Perfil == Hombre_soltero) -> Valoracion_Precio_salida = buena;
  }
-rulebase Inferencia_semanas_oferta (valoracion Semanas_oferta, Perfil Perfil : valoracion Valoracion_semanas_oferta)  {
-	if(Perfil == Hombre_soltero) -> Valoracion_semanas_oferta = buena;
+rulebase Inferencia_Precio_venta (Precio Precio_venta, Perfil Perfil : Valoracion Valoracion_Precio_venta)  {
+  if(Perfil == Hombre_soltero) -> Valoracion_Precio_venta = buena;
  }
-rulebase Inferencia_valoracion_experto (valoracion valoracion_experto, Perfil Perfil : valoracion valoracion_valoracion_experto)  {
-	if(Perfil == Hombre_soltero) -> valoracion_valoracion_experto = buena;
+rulebase Inferencia_Semanas_oferta (Valoracion Semanas_oferta, Perfil Perfil : Valoracion Valoracion_semanas_oferta)  {
+  if(Perfil == Hombre_soltero) -> Valoracion_semanas_oferta = buena;
  }
-rulebase Inferencia_observaciones (valoracion observaciones, Perfil Perfil : valoracion valoracion_observaciones)  {
-	if(Perfil == Hombre_soltero) -> valoracion_observaciones = buena;
+rulebase Inferencia_Valoracion_experto (Valoracion Valoracion_experto, Perfil Perfil : Valoracion Valoracion_Valoracion_experto)  {
+  if(Valoracion_experto == muy_mala & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Valoracion_experto = muy_mala;
+  if(Valoracion_experto == muy_mala & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Valoracion_experto = mala;
+  if(Valoracion_experto == muy_mala & Perfil == Hombre_soltero) -> Valoracion_Valoracion_experto = muy_mala;
+  if(Valoracion_experto == muy_mala & Perfil == Mujer_soltera) -> Valoracion_Valoracion_experto = mala;
+  if(Valoracion_experto == mala & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Valoracion_experto = mala;
+  if(Valoracion_experto == mala & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Valoracion_experto = regular;
+  if(Valoracion_experto == mala & Perfil == Hombre_soltero) -> Valoracion_Valoracion_experto = mala;
+  if(Valoracion_experto == mala & Perfil == Mujer_soltera) -> Valoracion_Valoracion_experto = regular;
+  if(Valoracion_experto == regular & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Valoracion_experto = regular;
+  if(Valoracion_experto == regular & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Valoracion_experto = regular;
+  if(Valoracion_experto == regular & Perfil == Hombre_soltero) -> Valoracion_Valoracion_experto = regular;
+  if(Valoracion_experto == regular & Perfil == Mujer_soltera) -> Valoracion_Valoracion_experto = regular;
+  if(Valoracion_experto == buena & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Valoracion_experto = buena;
+  if(Valoracion_experto == buena & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Valoracion_experto = buena;
+  if(Valoracion_experto == buena & Perfil == Hombre_soltero) -> Valoracion_Valoracion_experto = buena;
+  if(Valoracion_experto == buena & Perfil == Mujer_soltera) -> Valoracion_Valoracion_experto = buena;
+  if(Valoracion_experto == muy_buena & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Valoracion_experto = muy_buena;
+  if(Valoracion_experto == muy_buena & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Valoracion_experto = buena;
+  if(Valoracion_experto == muy_buena & Perfil == Hombre_soltero) -> Valoracion_Valoracion_experto = muy_buena;
+  if(Valoracion_experto == muy_buena & Perfil == Mujer_soltera) -> Valoracion_Valoracion_experto = buena;
+ }
+rulebase Inferencia_Observaciones (Valoracion observaciones, Perfil Perfil : Valoracion Valoracion_observaciones)  {
+  if(Perfil == Hombre_soltero) -> Valoracion_observaciones = buena;
  }
 
-system (TipoInmueble Tipo_de_inmueble, valoracion Luminosidad, valoracion Orientacion, valoracion Representatividad, valoracion Estado_del_portal, valoracion Fachada, valoracion Vistas, NumeroHabitaciones Numero_habitaciones, valoracion Numero_banos, Antiguedad Antiguedad, valoracion Altura, valoracion Ascensor, valoracion Estado_general, valoracion Zonas_Comunes, valoracion Zona_subzona, metros Metros_construidos, metros Metros_Habitables, precio Precio_tasacion, precio Precio_salida, precio precio_venta, valoracion Semanas_oferta, valoracion Valoracion_Experto, valoracion Observaciones, Perfil Perfil : valoracion Valoracion_de_tipo_inmueble, valoracion Valoracion_luminosidad, valoracion Valoracion_orientacion, valoracion Valoracion_representatividad, valoracion Valoracion_Estado_del_portal, valoracion Valoracion_Fachada, valoracion Valoracion_Vistas, valoracion Valoracion_Numero_habitaciones, valoracion Valoracion_Numero_banos, valoracion Valoracion_Antiguedad, valoracion Valoracion_Altura, valoracion Valoracion_Ascensor, valoracion Valoracion_Estado_general, valoracion Valoracion_Zonas_Comunes, valoracion Valoracion_zona_subzona, valoracion Valoracion_metros_construidos, valoracion Valoracion_Metros_Habitables, valoracion Valoracion_precio_tasacion, valoracion Valoracion_Precio_salida, valoracion Valoracion_precio_venta, valoracion Valoracion_semanas_oferta, valoracion Valoracion_Valoracion_Experto, valoracion Valoracion_observaciones) {
-  Inferencia_Tipo_Inmueble(Tipo_de_inmueble, Perfil : Valoracion_de_tipo_inmueble);
-  Inferencia_Luminosidad(Luminosidad, Perfil : Valoracion_luminosidad);
-  Inferencia_Orientacion(Orientacion, Perfil : Valoracion_orientacion);
-  Inferencia_Representatividad(Representatividad, Perfil : Valoracion_representatividad);
+system (TipoInmueble Tipo_inmueble, Valoracion Luminosidad, Valoracion Orientacion, Valoracion Representatividad, Valoracion Estado_del_portal, Valoracion Fachada, Valoracion Vistas, NumeroHabitaciones Numero_habitaciones, Valoracion Numero_banos, Antiguedad Antiguedad, Valoracion Altura, Valoracion Ascensor, Valoracion Estado_general, Valoracion Zonas_comunes, Valoracion Zona_subzona, Metros Metros_construidos, Metros Metros_habitables, Precio Precio_tasacion, Precio Precio_salida, Precio Precio_venta, Valoracion Semanas_oferta, Valoracion Valoracion_Experto, Valoracion Observaciones, Perfil Perfil, Metros Garage : Valoracion Valoracion_de_tipo_inmueble, Valoracion Valoracion_luminosidad, Valoracion Valoracion_orientacion, Valoracion Valoracion_representatividad, Valoracion Valoracion_Estado_del_portal, Valoracion Valoracion_Fachada, Valoracion Valoracion_Vistas, Valoracion Valoracion_Numero_habitaciones, Valoracion Valoracion_Numero_banos, Valoracion Valoracion_Antiguedad, Valoracion Valoracion_Altura, Valoracion Valoracion_Ascensor, Valoracion Valoracion_Garage, Valoracion Valoracion_Estado_general, Valoracion Valoracion_Zonas_comunes, Valoracion Valoracion_zona_subzona, Valoracion Valoracion_Metros_construidos, Valoracion Valoracion_Metros_Habitables, Valoracion Valoracion_Precio_tasacion, Valoracion Valoracion_Precio_salida, Valoracion Valoracion_Precio_venta, Valoracion Valoracion_semanas_oferta, Valoracion Valoracion_Valoracion_Experto, Valoracion Valoracion_observaciones) {
+  Inferencia_Tipo_inmueble(Tipo_inmueble, Perfil : Valoracion_Tipo_inmueble);
+  Inferencia_Luminosidad(Luminosidad, Perfil : Valoracion_Luminosidad);
+  Inferencia_Orientacion(Orientacion, Perfil : Valoracion_Orientacion);
+  Inferencia_Representatividad(Representatividad, Perfil : Valoracion_Representatividad);
   Inferencia_Estado_del_portal(Estado_del_portal, Perfil : Valoracion_Estado_del_portal);
   Inferencia_Fachada(Fachada, Perfil : Valoracion_Fachada);
   Inferencia_Vistas(Vistas, Perfil : Valoracion_Vistas);
   Inferencia_Numero_habitaciones(Numero_habitaciones, Perfil : Valoracion_Numero_habitaciones);
-  Inferencia_numero_banos (Numero_banos, Perfil : Valoracion_numero_banos);
-	Inferencia_Antiguedad (Antiguedad, Perfil : Valoracion_Antiguedad);
-	Inferencia_Altura (Altura, Perfil : Valoracion_Altura);
-	Inferencia_Ascensor (Ascensor, Perfil : Valoracion_Ascensor);
-	Inferencia_Estado_general (Estado_general, Perfil : Valoracion_Estado_general);
-	Inferencia_Zonas_Comunes (Zonas_Comunes, Perfil : Valoracion_Zonas_Comunes);
-	Inferencia_Zona_subzona (Zona_subzona, Perfil : Valoracion_Zona_subzona);
-	Inferencia_metros_Construidos (Metros_construidos, Perfil : Valoracion_metros_construidos);
-	Inferencia_metros_habitables (Metros_Habitables, Perfil : Valoracion_Metros_Habitables);
-	Inferencia_precio_tasacion (Precio_tasacion, Perfil : Valoracion_precio_tasacion);
-	Inferencia_precio_salida (Precio_salida, Perfil : Valoracion_Precio_salida);
-	Inferencia_precio_venta (precio_venta, Perfil : valoracion_precio_venta);
-	Inferencia_semanas_oferta (Semanas_oferta, Perfil : Valoracion_semanas_oferta);
-	Inferencia_valoracion_experto (Valoracion_Experto, Perfil : valoracion_Valoracion_Experto);
-	Inferencia_observaciones (Observaciones, Perfil : Valoracion_Observaciones);
+  Inferencia_Numero_banos(Numero_banos, Perfil : Valoracion_Numero_banos);
+  Inferencia_Antiguedad(Antiguedad, Perfil : Valoracion_Antiguedad);
+  Inferencia_Altura(Altura, Perfil : Valoracion_Altura);
+  Inferencia_Ascensor(Ascensor, Perfil : Valoracion_Ascensor);
+  Inferencia_Garage(Garage, Perfil : Valoracion_Garage);
+  Inferencia_Estado_general(Estado_general, Perfil : Valoracion_Estado_general);
+  Inferencia_Zonas_comunes(Zonas_comunes, Perfil : Valoracion_Zonas_comunes);
+  Inferencia_Zona_subzona(Zona_subzona, Perfil : Valoracion_Zona_subzona);
+  Inferencia_Metros_construidos(Metros_construidos, Perfil : Valoracion_Metros_construidos);
+  Inferencia_Metros_habitables(Metros_habitables, Perfil : Valoracion_Metros_Habitables);
+  Inferencia_Precio_tasacion(Precio_tasacion, Perfil : Valoracion_Precio_tasacion);
+  Inferencia_Precio_salida(Precio_salida, Perfil : Valoracion_Precio_salida);
+  Inferencia_Precio_venta(Precio_venta, Perfil : Valoracion_Precio_venta);
+  Inferencia_Semanas_oferta(Semanas_oferta, Perfil : Valoracion_semanas_oferta);
+  Inferencia_Valoracion_experto(Valoracion_Experto, Perfil : Valoracion_Valoracion_Experto);
+  Inferencia_Observaciones(Observaciones, Perfil : Valoracion_Observaciones);
  }
