@@ -1,9 +1,5 @@
 package inmorate.controlador.valoracion;
 
-import static inmorate.controlador.constants.CONSTANTS.FAMILIA_2_3_HIJOS;
-import static inmorate.controlador.constants.CONSTANTS.PAREJA_JOVEN_SIN_HIJOS;
-import static inmorate.controlador.constants.CONSTANTS.SOLTERA;
-import static inmorate.controlador.constants.CONSTANTS.SOLTERO;
 import static inmorate.controlador.constants.CONSTANTS.*;
 import inmorate.controlador.elementos.Elemento;
 import inmorate.controlador.elementos.Elementos;
@@ -12,10 +8,12 @@ import inmorate.controlador.sector.Sector;
 public class Usuario {
 	private final Sector sector;
 	private Elementos elementos;
+	private Valorador valorador;
 
-	public Usuario(Sector sector) {
+	public Usuario(Sector sector, Valorador valorador) {
 		super();
 		this.sector = sector;
+		this.valorador = valorador;
 		inicializaImportanciaElementos();
 	}
 
@@ -24,20 +22,37 @@ public class Usuario {
 		
 		for (int i=1; i < elementosArray.length; i++){
 			GradoImportanciaEnum tmp = null;
-			
-			switch (sector.getTipoSector()) {
-			case PAREJA_JOVEN_SIN_HIJOS:
-				tmp = PAREJA_JOVEN_SIN_HIJOS[i];
-				break;
-			case FAMILIA_2_3_HIJOS:
-				tmp = FAMILIA_2_3_HIJOS[i];
-				break;
-			case SOLTERO:
-				tmp = SOLTERO[i];
-				break;
-			case SOLTERA:
-				tmp = SOLTERA[i];
-				break;
+			if (valorador == Valorador.USUARIO){
+				switch (sector.getTipoSector()) {
+				case PAREJA_JOVEN_SIN_HIJOS:
+					tmp = PAREJA_JOVEN_SIN_HIJOS[i];
+					break;
+				case FAMILIA_2_3_HIJOS:
+					tmp = FAMILIA_2_3_HIJOS[i];
+					break;
+				case SOLTERO:
+					tmp = SOLTERO[i];
+					break;
+				case SOLTERA:
+					tmp = SOLTERA[i];
+					break;
+				}
+			}
+			else if (valorador == Valorador.EXPERTO){
+				switch (sector.getTipoSector()) {
+				case PAREJA_JOVEN_SIN_HIJOS:
+					tmp = EXPERTO_PAREJA_JOVEN_SIN_HIJOS[i];
+					break;
+				case FAMILIA_2_3_HIJOS:
+					tmp = EXPERTO_FAMILIA_2_3_HIJOS[i];
+					break;
+				case SOLTERO:
+					tmp = EXPERTO_SOLTERO[i];
+					break;
+				case SOLTERA:
+					tmp = EXPERTO_SOLTERA[i];
+					break;
+				}
 			}
 			Importancia importanciaTmp = new Importancia(tmp);
 			elementosArray[i].setImportancia(importanciaTmp);
