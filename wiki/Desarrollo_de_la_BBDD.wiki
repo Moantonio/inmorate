@@ -1,0 +1,64 @@
+4.2.2. Desarrollo de la BBDD
+
+La capacidad para acceder a una Base de Datos desde Java la ofrece la API JDBC (Java DataBase Conectivity). JDBC es un estándar para manejar bases de datos en Java. ODBC es un estándar de Windows para manejar bases de datos, de forma que cualquier programa en Windows que desee acceder a bases de datos genéricas debe usar este estándar. 
+
+Para almacenar las características de los diferentes inmuebles de los que la aplicación hace uso disponemos de una Base de Datos creada en Microsoft Access desde la que accedemos a través de nuestra aplicación.  
+
+La Base de Datos está formada por una única tabla llamada Viviendas en donde guardamos los siguientes atributos de los inmuebles (clasificados según el tipo al que pertenecen):
+
+	Tipo Text:
+	DMXX
+	Tipo de inmueble
+	Orientación
+	Estado General
+	Zona / Subzona
+	Dirección
+
+	Tipo Number:
+	Luminosidad
+	Representatividad
+	Estado del Portal
+	Fachada
+	Vistas
+	Nº Dormitorios
+	Nº Baños / Aseos
+	Antigüedad
+	Planta / Altura
+	Plazas de garaje
+	Metros Construidos
+	Metros Habitables
+
+	Tipo Boolean (Yes / No):
+	Ascensor
+	Zonas Comunes
+	Amueblado
+	Piscina
+	Aire Acondicionado
+	Conserje
+	Trastero
+
+	Tipo Currency (Monetario):
+	Precio de Tasación
+	Precio de Salida
+	Precio de Venta
+
+
+Para conectar la Base de Datos con nuestra aplicación lo primero que debemos hacer es hacer una llamada al Driver JDBC-ODBC para cargarlo. Para ello usamos las siguientes líneas de código:
+
+try {
+Class.forName("sun.jdbc.odbc.JdbcOdbcDriver"); 
+} catch(Exception e) { 
+System.out.println("No se ha podido cargar el Driver JDBC-ODBC"); 
+}
+
+Con esto ya tenemos cargado el Driver. Ahora básicamente trabajamos con tres objetos. Estos objetos son: Connection, Statement y ResultSet. El objeto Connection se obtiene al realizar la conexión a la Base de Datos. El objeto Statement se crea a partir del anterior y nos permite ejecutar SQL para hacer consultas o modificaciones en la Base de Datos. En caso de hacer una consulta (SELECT ... FROM ...) se nos devolverá un objeto que representa los datos que deseamos consultar; este objeto es un objeto ResultSet (Hoja de resultados).
+
+Una vez cargado el Driver debemos realizar la conexión a nuestra Base de Datos. Para ello usamos el objeto Connection de la siguiente forma:
+
+Connection conexion = DriverManager.getConnection("jdbc:odbc:MS Access Database;DBQ=BBDD.mdb", "Nombre_Usuario", "Contraseña");
+
+Por ultimo, una vez conectada la Base de Datos con la aplicación ya podremos hacer todas las consultas que deseemos. Para ello utilizaremos los objetos Statement y ResultSet. A continuación mostramos un ejemplo de cómo funcionan, en este ejemplo lo que buscamos es obtener todos los datos de los inmuebles que contiene la tabla Viviendas ordenado por su identificador (DMXX):
+
+String consulta = "SELECT * FROM Viviendas ORDER BY DMXX";
+Statement stat = conexion.createStatement();
+ResultSet resultado = stat.executeQuery(consulta);
