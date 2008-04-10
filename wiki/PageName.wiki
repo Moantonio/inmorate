@@ -18,10 +18,10 @@
 	==4.2 Metodología de proyecto==
 
         ==4.3 Desarrollo del Sistema==
-		===4.3.1 Definición del sistema (De qué está compuesto el sistema?)===
-		===4.3.2 Desarrollo de la BBDD (Detalles sobre la BBDD)===
-		===4.3.3 Desarrollo de la Aplicación (Especificación técnica parte en    java)===
-		===4.3.4 Desarrollo del Motor de Inferencia (Descripción parte en XFuzzy)===
+	      ===4.3.1 Definición del sistema (De qué está compuesto el sistema?)===
+	      ===4.3.2 Desarrollo de la BBDD (Detalles sobre la BBDD)===
+	      ===4.3.3 Desarrollo de la Aplicación (Especificación técnica parte en    java)===
+	      ===4.3.4 Desarrollo del Motor de Inferencia (Descripción parte en XFuzzy)===
 
 	==4.4 Pruebas==
 		===4.4.1 Ejecución de las pruebas===
