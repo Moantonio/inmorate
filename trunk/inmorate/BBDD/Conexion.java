@@ -6,8 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.apache.log4j.Logger;
+
 public class Conexion {
-	
+	private static Logger logger = Logger.getLogger(Conexion.class);
 	private Connection conexion;
 
 	public Conexion() throws ClassNotFoundException {
@@ -31,11 +33,13 @@ public class Conexion {
 		// conexion = DriverManager.getConnection("jdbc:odbc:Proyecto", "", "");
 		String db = "BBDD.mdb";
 		String url = "jdbc:odbc:MS Access Database;DBQ=" + db;
+		logger.debug("Conectando a la BBDD con nombre: " + db + " URL: " + url);
 		conexion = DriverManager.getConnection(url, "", ""); 
 	}
 	
 	public void cierraConexion() throws SQLException {
 		conexion.close();
+		logger.debug("Cerrada la conexion con la bd.");
 	}
 	
 	public ResultSet datosPropiedadFinca() throws SQLException {	
@@ -45,6 +49,7 @@ public class Conexion {
 		// stat.execute("use BBDD");
 		resultado = stat.executeQuery(consulta);
 		// resultado = stat.executeQuery("select * from Propiedad-Otros;");
+		logger.debug("Realizada consulta de todos los inmuebles de la bd.");
 		return resultado;
 	}
 	

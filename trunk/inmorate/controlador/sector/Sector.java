@@ -1,14 +1,18 @@
 package inmorate.controlador.sector;
 
+import org.apache.log4j.Logger;
+
 import inmorate.controlador.constants.CONSTANTS.TipoSectorEnum;
 
 public class Sector {
+	private static Logger logger = Logger.getLogger(Sector.class);
 	private final TipoSectorEnum tipoSector;
 
 	
 	public Sector(TipoSectorEnum tipoSector) {
 		super();
 		this.tipoSector = tipoSector;
+		logger.debug("Creado objeto de tipo Sector. Valor: " + getAsString(tipoSector));
 	}
 
 	public String toString(){

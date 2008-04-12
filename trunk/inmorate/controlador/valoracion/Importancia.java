@@ -1,12 +1,16 @@
 package inmorate.controlador.valoracion;
 
+import org.apache.log4j.Logger;
+
 import inmorate.controlador.constants.CONSTANTS.GradoImportanciaEnum;
+import inmorate.controlador.valoracion.Valoracion.ValoracionEnum;
+import inmorate.init.Start;
 
 // De momento lo dejo sin tipo enumerado
 // public enum GradoImportancia = {MUY_IMPORTANTE, IMPORTANTE, POCO_IMPORTANTE, NADA_IMPORTANTE, SIN_DEFINIR};
 
 public class Importancia {
-
+	private static Logger logger = Logger.getLogger(Importancia.class);
 	private GradoImportanciaEnum importancia;
 
 	// public static final int MUY_IMPORTANTE = 3;
@@ -18,6 +22,7 @@ public class Importancia {
 	public Importancia(GradoImportanciaEnum importancia) {
 		super();
 		this.importancia = importancia;
+//		logger.debug("Creado objeto de tipo Importancia. Valor: " + getAsString(importancia));
 	}
 
 	public GradoImportanciaEnum getImportancia() {
@@ -80,5 +85,52 @@ public class Importancia {
 			retorno = "Sin definir";
 		}
 		return retorno;
+	}
+	
+	private static boolean rangoNadaImportante(int i)  {	return i > 0 && i <= 2;	}
+	private static boolean rangoPocoImportante(int i)  {	return i > 2 && i <= 5;	}
+	private static boolean rangoImportante(int i)      {	return i > 5 && i <= 8;	}
+	private static boolean rangoMuyImportante(int i)   {	return i > 8 && i <= 10;}
+
+	public ValoracionEnum fuzzy(Valoracion val) {
+		return fuzzy(val.getValor());
+	}
+	
+	public ValoracionEnum fuzzy(int valor) {
+		ValoracionEnum valoracion = null;
+		if (rangoNadaImportante(valor)) {
+			valoracion = ValoracionEnum.MUY_MALA;
+		} else if (rangoPocoImportante(valor)) {
+			valoracion = ValoracionEnum.MALA;
+		} else if (rangoImportante(valor)) {
+			valoracion = ValoracionEnum.NORMAL;
+		} else if (rangoMuyImportante(valor)) {
+			valoracion = ValoracionEnum.BUENA;
+		} 
+		return valoracion;
+	}
+	
+	public int defuzzy(){
+		return defuzzy(importancia);
+	}
+	
+	public int defuzzy(GradoImportanciaEnum importancia) {
+		int valor = 0;
+		
+		switch (importancia) {
+		case NADA_IMPORTANTE:
+			valor = 2;
+			break;
+		case POCO_IMPORTANTE:
+			valor = 3;
+			break;
+		case IMPORTANTE:
+			valor = 7;
+			break;
+		case MUY_IMPORTANTE:
+			valor = 9;
+			break;
+		}
+		return valor;
 	}
 }

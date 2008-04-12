@@ -1,6 +1,10 @@
 package inmorate.model;
 
+import org.apache.log4j.Logger;
+
 public class Inmueble {
+	private static Logger logger = Logger.getLogger(Inmueble.class);
+	
 	private String DMXX;
 	private String tipoDeInmueble;
 	private int luminosidad;
@@ -62,6 +66,36 @@ public class Inmueble {
 		this.aireAcondicionado = aireAcondicionado;
 		this.conserje = conserje;
 		this.trastero = trastero;
+		
+		logger.debug("Creado inmueble con valores: " +
+				" DMXX: " + DMXX +
+				" tipoDeInmueble: " + tipoDeInmueble +
+				" luminosidad: " + luminosidad +
+				" orientacion: " + orientacion +
+				" representatividad: " + representatividad +
+				" estadoDelPortal: " + estadoDelPortal +
+				" fachada: " + fachada +
+				" vistas: " + vistas +
+				" numDormitorios: " + numDormitorios +
+				" numAseos: " + numAseos +
+				" antiguedad: " + antiguedad +
+				" planta: " + planta +
+				" ascensor: " + Boolean.toString(ascensor) +
+				" plazasGaraje: " + plazasGaraje +
+				" estadoGeneral: " + estadoGeneral +
+				" zonasComunes: " + zonasComunes +
+				" zona: " + zona +
+				" metrosConstruidos: " + metrosConstruidos +
+				" metrosHabitables: " + metrosHabitables +
+				" precioTasacion: " + precioTasacion +
+				" precioSalida: " + precioSalida +
+				" precioVenta: " + precioVenta +
+				" direccion: " + direccion +
+				" amueblado: " + amueblado +
+				" piscina: " + piscina +
+				" aireAcondicionado: " + aireAcondicionado +
+				" conserje: " + conserje +
+				" trastero: " + trastero );
 	}
 
 	public boolean isAireAcondicionado() {
@@ -287,5 +321,7 @@ public class Inmueble {
 	public void setZonasComunes(boolean zonasComunes) {
 		this.zonasComunes = zonasComunes;
 	}
+
+
 	
 }
