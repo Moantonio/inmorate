@@ -2,8 +2,11 @@ package inmorate.controlador.elementos;
 
 import static inmorate.controlador.constants.CONSTANTS.*;
 
+import org.apache.log4j.Logger;
+
 public class Elementos {
-	private Elemento[] elementos;
+	private static Logger logger = Logger.getLogger(Elementos.class);
+	private Elemento[] elementos = new Elemento[NUMERO_ELEMENTOS];
 	
 	public Elementos(){
 		elementos[TIPO_INMUEBLE]          = new Elemento("Tipo Inmueble"     , TIPO_INMUEBLE);
@@ -18,6 +21,7 @@ public class Elementos {
 		elementos[ANTIGUEDAD]             = new Elemento("Antiguedad"        , ANTIGUEDAD);
 		elementos[ALTURA]                 = new Elemento("Altura"            , ALTURA);
 		elementos[ASCENSOR]               = new Elemento("Ascensor"          , ASCENSOR);
+		elementos[GARAJE]                 = new Elemento("Garaje"            , GARAJE);
 		elementos[ESTADO_GENERAL]         = new Elemento("Estado general"    , ESTADO_GENERAL);
 		elementos[ZONAS_COMUNES]          = new Elemento("Zonas Comunes"     , ZONAS_COMUNES);
 		elementos[ZONA_SUBZONA]           = new Elemento("Zona subzona"      , ZONA_SUBZONA);
@@ -26,9 +30,8 @@ public class Elementos {
 		elementos[PRECIO_TASACION]        = new Elemento("Precio tasacion"   , PRECIO_TASACION);
 		elementos[PRECIO_SALIDA]          = new Elemento("Precio salida"     , PRECIO_SALIDA);
 		elementos[PRECIO_VENTA]           = new Elemento("Precio venta"      , PRECIO_VENTA);
-		elementos[SEMANAS_OFERTA]         = new Elemento("Semanas oferta"    , SEMANAS_OFERTA);
-		elementos[VALORACION_EXPERTO]     = new Elemento("Valoracion experto", VALORACION_EXPERTO);
-		elementos[OBSERVACIONES]          = new Elemento("observaciones"     , OBSERVACIONES);
+		
+		logger.debug("Creado objeto de tipo Elementos.");
 	}
 
 	public Elemento[] getElementos() {

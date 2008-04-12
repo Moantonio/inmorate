@@ -1,7 +1,6 @@
 package inmorate.gui;
 
 import inmorate.controlador.Controlador;
-import inmorate.controlador.constants.CONSTANTS;
 import inmorate.model.Inmueble;
 
 import java.awt.*;
@@ -24,17 +23,10 @@ public class VistaVivienda extends JFrame {
 	private Inmueble inmueble;	
 	private ResultSet resultado;
 	private boolean ingles;
-	private boolean depuracion;
-	
-	// ArrayList de depuracion
-	private ArrayList<Double> dep;
 
 	private JMenuBar menuBar1;
 	private JMenu menu2;
 	private JMenuItem menuItem1;
-	private JMenu menu3;
-	private JMenuItem menuItem2;
-	private JMenuItem menuItem3;
 	private JButton buttonConsulta;
 	private JButton buttonSalir;
 	private JLabel labelTitulo;
@@ -103,8 +95,6 @@ public class VistaVivienda extends JFrame {
 		inmueble = new Inmueble();
 		resultado = null;
 		ingles = false;
-		depuracion = false;
-		dep = new ArrayList<Double>();
 		initComponents();
 		setSize(800,645);
 		setLocation(200,100);
@@ -142,29 +132,12 @@ public class VistaVivienda extends JFrame {
 							rellenarArrayList();
 							rellenarList();
 						} catch (SQLException e) {
+							// TODO Bloque catch generado automáticamente
 							e.printStackTrace();
 						}
 					}
 				} // ActionListener			
-		); // menuItem1.addActionListener
-		
-		// Activa el modo depuracion
-		menuItem2.addActionListener(
-				new ActionListener() {
-					public void actionPerformed(ActionEvent evento) {
-						depuracion = true;
-					}
-				} // ActionListener			
-		); // menuItem2.addActionListener
-		
-		// Desactiva modo depuracion
-		menuItem3.addActionListener(
-				new ActionListener() {
-					public void actionPerformed(ActionEvent evento) {
-						depuracion = false;
-					}
-				} // ActionListener			
-		); // menuItem3.addActionListener
+		); // menuItem4.addActionListener
 		
 		// Evento para escribir los datos
 		listInmueble.addMouseListener(
@@ -173,10 +146,7 @@ public class VistaVivienda extends JFrame {
 						int posicion = listInmueble.getSelectedIndex();
 						// Coger Inmueble de valores y escribirlo
 						inmueble = valores.get(posicion);
-						if (!depuracion)
-							mostrar();
-						else 
-							depurar();
+						mostrar();
 					}
 
 					public void mouseEntered(MouseEvent e) {}
@@ -309,41 +279,11 @@ public class VistaVivienda extends JFrame {
 			label28.setText("NO");
 		label4.setText(inmueble.getDireccion());
 	}
-	
-	private void depurar() {
-		for (int i=0; i<CONSTANTS.NUMERO_ELEMENTOS; i++) {
-			dep.add(i/10.0);
-		}	
-		label30.setText(dep.get(0).toString());
-		label44.setText(dep.get(0).toString());
-		label34.setText(dep.get(0).toString());
-		label16.setText(dep.get(0).toString());
-		label14.setText(dep.get(0).toString());
-		label8.setText(dep.get(0).toString());
-		label36.setText(dep.get(0).toString());
-		label20.setText(dep.get(0).toString());
-		label48.setText(dep.get(0).toString());
-		label38.setText(dep.get(0).toString());
-		label10.setText(dep.get(0).toString());
-		label24.setText(dep.get(0).toString());
-		label22.setText(dep.get(0).toString());
-		label16.setText(dep.get(0).toString());
-		label50.setText(dep.get(0).toString());
-		label32.setText(dep.get(0).toString());
-		label18.setText(dep.get(0).toString());
-		label40.setText(dep.get(0).toString());
-		label42.setText(dep.get(0).toString());
-		label12.setText(dep.get(0).toString());
-		label46.setText(dep.get(0).toString());
-	}
 
 	private void initComponents() {
 		menuBar1 = new JMenuBar();
 		menu2 = new JMenu();
 		menuItem1 = new JMenuItem();
-		menu3 = new JMenu();
-		menuItem2 = new JMenuItem();
-		menuItem3 = new JMenuItem();
 		buttonConsulta = new JButton();
 		buttonSalir = new JButton();
 		labelTitulo = new JLabel();
@@ -426,23 +366,6 @@ public class VistaVivienda extends JFrame {
 				menu2.add(menuItem1);
 			}
 			menuBar1.add(menu2);
-			
-			//======== menu3 ========
-			{
-				menu3.setText("Depurar");
-				menu3.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
-				
-				//---- menuItem2 ----
-				menuItem2.setText("Modo Depuracion");
-				menuItem2.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
-				menu3.add(menuItem2);
-				
-				//---- menuItem3 ----
-				menuItem3.setText("Modo Normal");
-				menuItem3.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
-				menu3.add(menuItem3);
-			}
-			menuBar1.add(menu3);
 		}
 		contentPane.add(menuBar1);
 		menuBar1.setBounds(new Rectangle(new Point(0, 0), menuBar1.getPreferredSize()));
@@ -888,7 +811,7 @@ public class VistaVivienda extends JFrame {
 	public void traducirIngles() {
 		ingles = true;
 		setTitle("Buildings Values");
-		buttonConsulta.setText("New Query");
+		buttonConsulta.setText("New Consultation");
 		buttonSalir.setText("Exit");
 		labelTitulo.setText("Buildings");		
 		label1.setText("Type of building:");

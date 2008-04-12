@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
+
 import inmorate.BBDD.Conexion;
 import inmorate.gui.VistaInicial;
 import inmorate.gui.VistaMatrimonio;
@@ -13,6 +15,7 @@ import inmorate.gui.VistaSoltero;
 import inmorate.gui.VistaVivienda;
 
 public class Controlador {
+	private static Logger logger = Logger.getLogger(Controlador.class);
 	
 	private VistaInicial vistaInicial;	
 	private VistaPareja vistaPareja;	

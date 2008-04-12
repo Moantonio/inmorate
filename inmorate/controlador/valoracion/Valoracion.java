@@ -1,6 +1,9 @@
 package inmorate.controlador.valoracion;
 
+import org.apache.log4j.Logger;
+
 public class Valoracion {
+	private static Logger logger = Logger.getLogger(Valoracion.class);
 	public static enum ValoracionEnum {MUY_MALA, MALA, NORMAL, BUENA, MUY_BUENA, EXCELENTE}
 	private int valor;
 
@@ -11,6 +14,7 @@ public class Valoracion {
 	public Valoracion(int valor) {
 		super();
 		this.valor = valor;
+		logger.debug("Creada valoracion con valor: " + valor);
 	}
 
 	public int getValor() {
@@ -29,7 +33,11 @@ public class Valoracion {
 	private static boolean rangoMuyBuena(int i) {	return i > 7 && i <= 9;	}
 	private static boolean rangoExcelente(int i){	return i > 9 && i <= 10;}
 	
-	public ValoracionEnum fuzzy(int valor) {
+	public ValoracionEnum fuzzy() {
+		return fuzzy(valor);
+	}
+	
+	public static ValoracionEnum fuzzy(int valor) {
 		ValoracionEnum valoracion = null;
 		if (rangoMuyMala(valor)) {
 			valoracion = ValoracionEnum.MUY_MALA;
@@ -47,7 +55,7 @@ public class Valoracion {
 		return valoracion;
 	}
 	
-	public int defuzzy(ValoracionEnum valoracion) {
+	public static int defuzzy(ValoracionEnum valoracion) {
 		int valor = 0;
 		switch (valoracion) {
 		case MUY_MALA:

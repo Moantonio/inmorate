@@ -1,9 +1,13 @@
 package inmorate.controlador.elementos;
 
+import org.apache.log4j.Logger;
+
 import inmorate.controlador.valoracion.Importancia;
 import inmorate.controlador.valoracion.Valoracion;
 
 public class Elemento {
+	private static Logger logger = Logger.getLogger(Elemento.class);
+	
 	private final String nombre;
 	private final int idElemento;
 	private Importancia importancia;
@@ -14,6 +18,7 @@ public class Elemento {
 		super();
 		this.nombre = nombre;
 		this.idElemento = idElemento;
+		logger.debug("Creado elemento \"" + nombre + "\" con id: " + idElemento);
 	}
 	
 	public String getNombre() {
@@ -30,6 +35,7 @@ public class Elemento {
 
 	public void setImportancia(Importancia importancia) {
 		this.importancia = importancia;
+//		logger.debug("Actualizada la importancia del elemento \"" + nombre + "\" a: " + importancia);
 	}
 
 	public boolean isComputado() {
@@ -38,6 +44,7 @@ public class Elemento {
 
 	public void setComputado(boolean computado) {
 		this.computado = computado;
+		logger.debug("Actualizado el valor computado del elemento \"" + nombre + "\" a: " +  Boolean.toString(computado) ); 
 	}
 
 	public Valoracion getValoracion() {
@@ -46,6 +53,7 @@ public class Elemento {
 
 	public void setValoracion(Valoracion valoracion) {
 		this.valoracion = valoracion;
+		logger.debug("Actualizada la valoracion del elemento \"" + nombre + "\" a: " + valoracion);
 	}
 
 
