@@ -13,6 +13,7 @@ import inmorate.gui.VistaPareja;
 import inmorate.gui.VistaSoltera;
 import inmorate.gui.VistaSoltero;
 import inmorate.gui.VistaVivienda;
+import inmorate.model.Inmueble;
 
 public class Controlador {
 	private static Logger logger = Logger.getLogger(Controlador.class);
@@ -133,6 +134,17 @@ public class Controlador {
 		vistaSoltero.traducirIngles();
 		vistaSoltera.traducirIngles();
 		vistaVivienda.traducirIngles();
+	}
+
+	public void crearViviendas() throws SQLException {
+		Inmueble inmueble = new Inmueble();
+		conexion.conectar();
+		conexion.borrarBBDD();
+		for (int valor=1; valor<=500; valor++) {
+			inmueble.crearInmueble(valor);
+			conexion.crearViviendas(inmueble);
+		}
+		conexion.cierraConexion();
 	}
 	
 }

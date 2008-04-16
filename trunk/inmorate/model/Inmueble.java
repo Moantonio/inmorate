@@ -1,5 +1,7 @@
 package inmorate.model;
 
+import java.util.Random;
+
 import org.apache.log4j.Logger;
 
 public class Inmueble {
@@ -10,7 +12,7 @@ public class Inmueble {
 	private int luminosidad;
 	private String orientacion;
 	private int representatividad;
-	private String estadoDelPortal;
+	private int estadoDelPortal;
 	private int fachada;
 	private int vistas;
 	private int numDormitorios;
@@ -19,7 +21,7 @@ public class Inmueble {
 	private int planta;
 	private boolean ascensor;
 	private int plazasGaraje;
-	private String estadoGeneral;
+	private int estadoGeneral;
 	private boolean zonasComunes;
 	private String zona;
 	private int metrosConstruidos;
@@ -37,7 +39,7 @@ public class Inmueble {
 	public Inmueble() {
 	}
 
-	public Inmueble(String dmxx, String tipoDeInmueble, int luminosidad, String orientacion, int representatividad, String estadoDelPortal, int fachada, int vistas, int numDormitorios, int numAseos, int antiguedad, int planta, boolean ascensor, int plazasGaraje, String estadoGeneral, boolean zonasComunes, String zona, int metrosConstruidos, int metrosHabitables, String precioTasacion, String precioSalida, String precioVenta, String direccion, boolean amueblado, boolean piscina, boolean aireAcondicionado, boolean conserje, boolean trastero) {
+	public Inmueble(String dmxx, String tipoDeInmueble, int luminosidad, String orientacion, int representatividad, int estadoDelPortal, int fachada, int vistas, int numDormitorios, int numAseos, int antiguedad, int planta, boolean ascensor, int plazasGaraje, int estadoGeneral, boolean zonasComunes, String zona, int metrosConstruidos, int metrosHabitables, String precioTasacion, String precioSalida, String precioVenta, String direccion, boolean amueblado, boolean piscina, boolean aireAcondicionado, boolean conserje, boolean trastero) {
 		this.DMXX = dmxx;
 		this.tipoDeInmueble = tipoDeInmueble;
 		this.luminosidad = luminosidad;
@@ -154,19 +156,19 @@ public class Inmueble {
 		DMXX = dmxx;
 	}
 
-	public String getEstadoDelPortal() {
+	public int getEstadoDelPortal() {
 		return estadoDelPortal;
 	}
 
-	public void setEstadoDelPortal(String estadoDelPortal) {
+	public void setEstadoDelPortal(int estadoDelPortal) {
 		this.estadoDelPortal = estadoDelPortal;
 	}
 
-	public String getEstadoGeneral() {
+	public int getEstadoGeneral() {
 		return estadoGeneral;
 	}
 
-	public void setEstadoGeneral(String estadoGeneral) {
+	public void setEstadoGeneral(int estadoGeneral) {
 		this.estadoGeneral = estadoGeneral;
 	}
 
@@ -320,6 +322,207 @@ public class Inmueble {
 
 	public void setZonasComunes(boolean zonasComunes) {
 		this.zonasComunes = zonasComunes;
+	}
+
+	public void crearInmueble(int valor) {
+		// Identificador
+		if (valor<10) 
+			this.DMXX = "DM0000"+valor;
+		else if (valor<100)
+			this.DMXX = "DM000"+valor;
+		else
+			this.DMXX = "DM00"+valor;
+		// Tipo de Inmueble
+		Random rnd = new Random();
+		switch(rnd.nextInt(4)) {
+		case 0: this.tipoDeInmueble = "Piso"; 
+			break;
+		case 1: this.tipoDeInmueble = "Adosado"; 
+			break;
+		case 2: this.tipoDeInmueble = "Pareado"; 
+			break;
+		case 3: this.tipoDeInmueble = "Independiente"; 
+			break;
+		}
+		// Luminosidad
+		this.luminosidad = rnd.nextInt(10)+1;
+		// Orientacion
+		switch(rnd.nextInt(8)) {
+		case 0: this.orientacion = "Norte";
+			break;			
+		case 1: this.orientacion = "Sur";
+			break;
+		case 2: this.orientacion = "Este";
+			break;
+		case 3: this.orientacion = "Oeste";
+			break;
+		case 4: this.orientacion = "Noreste";
+			break;
+		case 5: this.orientacion = "Noroeste";
+			break;
+		case 6: this.orientacion = "Sureste";
+			break;
+		case 7: this.orientacion = "Suroeste";
+			break;
+		}
+		this.representatividad = rnd.nextInt(11);
+		this.estadoDelPortal = rnd.nextInt(11);
+		this.fachada = rnd.nextInt(11);
+		this.vistas = rnd.nextInt(11);
+		this.numDormitorios = rnd.nextInt(5)+1;
+		this.numAseos = rnd.nextInt(3)+1;
+		this.antiguedad = rnd.nextInt(20);
+		this.planta = rnd.nextInt(10)+1;
+		// Ascensor
+		switch(rnd.nextInt(2)) {
+		case 0: this.ascensor = false;
+			break;
+		case 1: this.ascensor = true;
+			break;
+		}		
+		this.plazasGaraje = rnd.nextInt(3);
+		this.estadoGeneral = rnd.nextInt(11);
+		// Zonas Comunes
+		switch(rnd.nextInt(2)) {
+		case 0: this.zonasComunes = false;
+			break;
+		case 1: this.zonasComunes = true;
+			break;
+		}	
+		// Zona / Subzona
+		switch(rnd.nextInt(22)) {
+		case 0:
+			this.zona = "Centro";
+			break;
+		case 1:
+			this.zona = "Chamberi";
+			break;
+		case 2:
+			this.zona = "Moncloa";
+			break;
+		case 3:
+			this.zona = "Retiro";
+			break;
+		case 4:
+			this.zona = "Salamanca";
+			break;
+		case 5:
+			this.zona = "Tetuan";
+			break;
+		case 6:
+			this.zona = "Pasillo Verde";
+			break;
+		case 7:
+			this.zona = "Dehesa de la Villa";
+			break;
+		case 8:
+			this.zona = "Carabanchel";
+			break;
+		case 9:
+			this.zona = "Aluche";
+			break;
+		case 10:
+			this.zona = "Chamartin";
+			break;
+		case 11:
+			this.zona = "Prosperidad";
+			break;
+		case 12:
+			this.zona = "Canillejas";
+			break;
+		case 13:
+			this.zona = "Puerta del Angel";
+			break;
+		case 14:
+			this.zona = "Arturo Soria";
+			break;
+		case 15:
+			this.zona = "Conde Orgaz";
+			break;
+		case 16:
+			this.zona = "Paseo de Extremadura";
+			break;
+		case 17:
+			this.zona = "Pacifico";
+			break;
+		case 18:
+			this.zona = "Avenida de la Ilustracion";
+			break;
+		case 19:
+			this.zona = "Campamento";
+			break;
+		case 20:
+			this.zona = "Hortaleza";
+			break;
+		case 21:
+			this.zona = "Mendez Alvaro";
+			break;
+		}
+		// Metros Contruidos y Habitables
+		this.metrosConstruidos = 100+rnd.nextInt(150);
+		this.metrosHabitables = this.metrosConstruidos+10+rnd.nextInt(20);
+		this.precioTasacion = ""+this.metrosConstruidos*1000+".00";
+		this.precioSalida = ""+this.metrosHabitables*1000+".00";
+		this.precioVenta = "0.00";
+		switch(rnd.nextInt(9)) {
+		case 0:
+			this.direccion = "C/ Alcala, "+valor;
+			break;
+		case 1:
+			this.direccion = "C/ Quintana, "+valor;
+			break;
+		case 2:
+			this.direccion = "C/ Fernandez, "+valor;
+			break;
+		case 3:
+			this.direccion = "C/ Ladera, "+valor;
+			break;
+		case 4:
+			this.direccion = "C/ Machado, "+valor;
+			break;
+		case 5:
+			this.direccion = "C/ Gaztambide, "+valor;
+			break;
+		case 6:
+			this.direccion = "C/ Canton, "+valor;
+			break;
+		case 7:
+			this.direccion = "C/ Arroyo, "+valor;
+			break;
+		case 8:
+			this.direccion = "C/ Tren, "+valor;
+			break;
+		}
+		switch(rnd.nextInt(2)) {
+		case 0: this.amueblado = false;
+			break;
+		case 1: this.amueblado = true;
+			break;
+		}
+		switch(rnd.nextInt(2)) {
+		case 0: this.piscina = false;
+			break;
+		case 1: this.piscina = true;
+			break;
+		}
+		switch(rnd.nextInt(2)) {
+		case 0: this.aireAcondicionado = false;
+			break;
+		case 1: this.aireAcondicionado = true;
+			break;
+		}
+		switch(rnd.nextInt(2)) {
+		case 0: this.conserje = false;
+			break;
+		case 1: this.conserje = true;
+			break;
+		}
+		switch(rnd.nextInt(2)) {
+		case 0: this.trastero = false;
+			break;
+		case 1: this.trastero = true;
+			break;
+		}
 	}
 
 
