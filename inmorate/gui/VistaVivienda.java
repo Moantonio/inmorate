@@ -27,6 +27,7 @@ public class VistaVivienda extends JFrame {
 	private JMenuBar menuBar1;
 	private JMenu menu2;
 	private JMenuItem menuItem1;
+	private JMenuItem menuItem2;
 	private JButton buttonConsulta;
 	private JButton buttonSalir;
 	private JLabel labelTitulo;
@@ -132,12 +133,24 @@ public class VistaVivienda extends JFrame {
 							rellenarArrayList();
 							rellenarList();
 						} catch (SQLException e) {
-							// TODO Bloque catch generado automáticamente
 							e.printStackTrace();
 						}
 					}
 				} // ActionListener			
-		); // menuItem4.addActionListener
+		); // menuItem1.addActionListener
+		
+		// Muestra todas las viviendas del programa
+		menuItem2.addActionListener(
+				new ActionListener() {
+					public void actionPerformed(ActionEvent evento) {
+						try {
+							controlador.crearViviendas();
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}
+					}
+				} // ActionListener			
+		); // menuItem2.addActionListener
 		
 		// Evento para escribir los datos
 		listInmueble.addMouseListener(
@@ -180,7 +193,7 @@ public class VistaVivienda extends JFrame {
 			inmueble.setLuminosidad(resultado.getInt(3));
 			inmueble.setOrientacion(resultado.getString(4));
 			inmueble.setRepresentatividad(resultado.getInt(5));
-			inmueble.setEstadoDelPortal(resultado.getString(6));
+			inmueble.setEstadoDelPortal(resultado.getInt(6));
 			inmueble.setFachada(resultado.getInt(7));
 			inmueble.setVistas(resultado.getInt(8));
 			inmueble.setNumDormitorios(resultado.getInt(9));
@@ -189,7 +202,7 @@ public class VistaVivienda extends JFrame {
 			inmueble.setPlanta(resultado.getInt(12));
 			inmueble.setAscensor(resultado.getBoolean(13));
 			inmueble.setPlazasGaraje(resultado.getInt(14));
-			inmueble.setEstadoGeneral(resultado.getString(15));
+			inmueble.setEstadoGeneral(resultado.getInt(15));
 			inmueble.setZonasComunes(resultado.getBoolean(16));
 			inmueble.setZona(resultado.getString(17));
 			inmueble.setMetrosConstruidos(resultado.getInt(18));
@@ -212,7 +225,7 @@ public class VistaVivienda extends JFrame {
 		label44.setText(String.valueOf(inmueble.getLuminosidad()));
 		label34.setText(inmueble.getOrientacion());
 		label16.setText(String.valueOf(inmueble.getRepresentatividad()));
-		label14.setText(inmueble.getEstadoDelPortal());
+		label14.setText(String.valueOf(inmueble.getEstadoDelPortal()));
 		label8.setText(String.valueOf(inmueble.getFachada()));
 		label36.setText(String.valueOf(inmueble.getVistas()));
 		label20.setText(String.valueOf(inmueble.getNumDormitorios()));
@@ -226,7 +239,7 @@ public class VistaVivienda extends JFrame {
 				label24.setText("YES");
 		else 
 			label24.setText("NO");
-		label6.setText(inmueble.getEstadoGeneral());
+		label6.setText(String.valueOf(inmueble.getEstadoGeneral()));
 		if (inmueble.isZonasComunes())
 			if (!ingles)
 				label50.setText("SI");
@@ -284,6 +297,7 @@ public class VistaVivienda extends JFrame {
 		menuBar1 = new JMenuBar();
 		menu2 = new JMenu();
 		menuItem1 = new JMenuItem();
+		menuItem2 = new JMenuItem();
 		buttonConsulta = new JButton();
 		buttonSalir = new JButton();
 		labelTitulo = new JLabel();
@@ -361,9 +375,14 @@ public class VistaVivienda extends JFrame {
 				menu2.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 				
 				//---- menuItem1 ----
-				menuItem1.setText("Finca");
+				menuItem1.setText("Fincas");
 				menuItem1.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 				menu2.add(menuItem1);
+				
+				//---- menuItem2 ----
+				menuItem2.setText("Crear Viviendas");
+				menuItem2.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
+				menu2.add(menuItem2);
 			}
 			menuBar1.add(menu2);
 		}

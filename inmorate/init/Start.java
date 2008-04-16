@@ -28,7 +28,7 @@ public class Start {
 		//  INICIAR LOGS
 		PropertyConfigurator.configure("InmorateLog4j.properties");
 		logger.info("Arrancando aplicacion de valoracion de Inmuebles");		
-		try {
+		try {		
 			Controlador controlador = new Controlador();
 			controlador.crearDriverBBDD();
 			VistaInicial vistaInicial = new VistaInicial(controlador);
