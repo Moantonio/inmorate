@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import inmorate.controlador.elementos.Elemento;
 import inmorate.controlador.elementos.Elementos;
 import inmorate.controlador.sector.Sector;
+import inmorate.model.Inmueble;
 
 public class Usuario {
 	private static Logger logger = Logger.getLogger(Usuario.class);
@@ -12,7 +13,7 @@ public class Usuario {
 	private final Sector sector;
 	private Elementos elementos;
 	private ValoradorEnum valorador;
-
+	
 	public Usuario(Sector sector, ValoradorEnum valorador) {
 		super();
 		logger.debug("Creando Usuario de sector: " + sector + " valorador: " + valorador);
@@ -20,6 +21,7 @@ public class Usuario {
 		this.elementos = new Elementos();
 		this.sector = sector;
 		this.valorador = valorador;
+
 		
 		inicializaImportanciaElementos();
 	}
@@ -81,6 +83,7 @@ public class Usuario {
 	public void setImportanciaAntiguedad          (Importancia importancia){elementos.getElementos()[ ANTIGUEDAD          ].setImportancia(importancia);}
 	public void setImportanciaAltura              (Importancia importancia){elementos.getElementos()[ ALTURA              ].setImportancia(importancia);}
 	public void setImportanciaAscensor            (Importancia importancia){elementos.getElementos()[ ASCENSOR            ].setImportancia(importancia);}
+	public void setImportanciaGaraje              (Importancia importancia){elementos.getElementos()[ GARAJE              ].setImportancia(importancia);}
 	public void setImportanciaEstadoGeneral       (Importancia importancia){elementos.getElementos()[ ESTADO_GENERAL      ].setImportancia(importancia);}
 	public void setImportanciaZonasComunes        (Importancia importancia){elementos.getElementos()[ ZONAS_COMUNES       ].setImportancia(importancia);}
 	public void setImportanciaZonaSubzona         (Importancia importancia){elementos.getElementos()[ ZONA_SUBZONA        ].setImportancia(importancia);}
@@ -102,6 +105,7 @@ public class Usuario {
 	public Importancia getImportanciaAntiguedad          (){return elementos.getElementos()[ ANTIGUEDAD          ].getImportancia();}
 	public Importancia getImportanciaAltura              (){return elementos.getElementos()[ ALTURA              ].getImportancia();}
 	public Importancia getImportanciaAscensor            (){return elementos.getElementos()[ ASCENSOR            ].getImportancia();}
+	public Importancia getImportanciaGaraje              (){return elementos.getElementos()[ GARAJE              ].getImportancia();}
 	public Importancia getImportanciaEstadoGeneral       (){return elementos.getElementos()[ ESTADO_GENERAL      ].getImportancia();}
 	public Importancia getImportanciaZonasComunes        (){return elementos.getElementos()[ ZONAS_COMUNES       ].getImportancia();}
 	public Importancia getImportanciaZonaSubzona         (){return elementos.getElementos()[ ZONA_SUBZONA        ].getImportancia();}

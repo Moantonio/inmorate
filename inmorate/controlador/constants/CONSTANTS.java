@@ -2,8 +2,10 @@ package inmorate.controlador.constants;
 
 public final class CONSTANTS {
 	public static enum GradoImportanciaEnum {MUY_IMPORTANTE, IMPORTANTE, POCO_IMPORTANTE, NADA_IMPORTANTE, SIN_DEFINIR}
+	public static enum ValoracionEnum {MUY_MALA, MALA, NORMAL, BUENA, MUY_BUENA, EXCELENTE}
 	public static enum TipoSectorEnum{PAREJA_JOVEN_SIN_HIJOS, FAMILIA_2_3_HIJOS, SOLTERO, SOLTERA}
 	public static enum ValoradorEnum{USUARIO, EXPERTO};
+	public static enum OrientacionEnum{NORTE, SUR, ESTE, OESTE, NORESTE, NOROESTE, SURESTE, SUROESTE};
 	
 	// Numero identificador de cada caracteristica
 	public static final int TIPO_INMUEBLE = 1;

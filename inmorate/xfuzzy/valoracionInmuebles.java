@@ -494,21 +494,33 @@ public class valoracionInmuebles implements FuzzyInferenceEngine {
  }
 
  //+++++++++++++++++++++++++++++++++++++++++++++++++++++//
- //  Type TP_NumeroHabitaciones  //
+ //  Type TP_Numero  //
  //+++++++++++++++++++++++++++++++++++++++++++++++++++++//
 
- private class TP_NumeroHabitaciones {
+ private class TP_Numero {
   private double min = 1.0;
-  private double max = 4.0;
-  private double step = 0.75;
-  double _p_una[] = { 1.0 };
+  private double max = 10.0;
+  private double step = 0.9;
+  double _p_uno[] = { 1.0 };
   double _p_dos[] = { 2.0 };
   double _p_tres[] = { 3.0 };
   double _p_cuatro[] = { 4.0 };
-  MF_xfl_singleton una = new MF_xfl_singleton(min,max,step,_p_una);
+  double _p_cinco[] = { 5.0 };
+  double _p_seis[] = { 6.0 };
+  double _p_siete[] = { 7.0 };
+  double _p_ocho[] = { 8.0 };
+  double _p_nueve[] = { 9.0 };
+  double _p_diez[] = { 10.0 };
+  MF_xfl_singleton uno = new MF_xfl_singleton(min,max,step,_p_uno);
   MF_xfl_singleton dos = new MF_xfl_singleton(min,max,step,_p_dos);
   MF_xfl_singleton tres = new MF_xfl_singleton(min,max,step,_p_tres);
   MF_xfl_singleton cuatro = new MF_xfl_singleton(min,max,step,_p_cuatro);
+  MF_xfl_singleton cinco = new MF_xfl_singleton(min,max,step,_p_cinco);
+  MF_xfl_singleton seis = new MF_xfl_singleton(min,max,step,_p_seis);
+  MF_xfl_singleton siete = new MF_xfl_singleton(min,max,step,_p_siete);
+  MF_xfl_singleton ocho = new MF_xfl_singleton(min,max,step,_p_ocho);
+  MF_xfl_singleton nueve = new MF_xfl_singleton(min,max,step,_p_nueve);
+  MF_xfl_singleton diez = new MF_xfl_singleton(min,max,step,_p_diez);
  }
 
  //+++++++++++++++++++++++++++++++++++++++++++++++++++++//
@@ -610,6 +622,46 @@ public class valoracionInmuebles implements FuzzyInferenceEngine {
  }
 
  //+++++++++++++++++++++++++++++++++++++++++++++++++++++//
+ //  Type TP_Orientacion  //
+ //+++++++++++++++++++++++++++++++++++++++++++++++++++++//
+
+ private class TP_Orientacion {
+  private double min = 1.0;
+  private double max = 8.0;
+  private double step = 0.875;
+  double _p_Norte[] = { 1.0 };
+  double _p_Sur[] = { 2.0 };
+  double _p_Este[] = { 3.0 };
+  double _p_Oeste[] = { 4.0 };
+  double _p_Noreste[] = { 5.0 };
+  double _p_Noroeste[] = { 6.0 };
+  double _p_Sureste[] = { 7.0 };
+  double _p_Suroeste[] = { 8.0 };
+  MF_xfl_singleton Norte = new MF_xfl_singleton(min,max,step,_p_Norte);
+  MF_xfl_singleton Sur = new MF_xfl_singleton(min,max,step,_p_Sur);
+  MF_xfl_singleton Este = new MF_xfl_singleton(min,max,step,_p_Este);
+  MF_xfl_singleton Oeste = new MF_xfl_singleton(min,max,step,_p_Oeste);
+  MF_xfl_singleton Noreste = new MF_xfl_singleton(min,max,step,_p_Noreste);
+  MF_xfl_singleton Noroeste = new MF_xfl_singleton(min,max,step,_p_Noroeste);
+  MF_xfl_singleton Sureste = new MF_xfl_singleton(min,max,step,_p_Sureste);
+  MF_xfl_singleton Suroeste = new MF_xfl_singleton(min,max,step,_p_Suroeste);
+ }
+
+ //+++++++++++++++++++++++++++++++++++++++++++++++++++++//
+ //  Type TP_Booleano  //
+ //+++++++++++++++++++++++++++++++++++++++++++++++++++++//
+
+ private class TP_Booleano {
+  private double min = 1.0;
+  private double max = 2.0;
+  private double step = 0.5;
+  double _p_Si[] = { 1.0 };
+  double _p_No[] = { 2.0 };
+  MF_xfl_singleton Si = new MF_xfl_singleton(min,max,step,_p_Si);
+  MF_xfl_singleton No = new MF_xfl_singleton(min,max,step,_p_No);
+ }
+
+ //+++++++++++++++++++++++++++++++++++++++++++++++++++++//
  //  Rulebase RL_Inferencia_Orientacion  //
  //+++++++++++++++++++++++++++++++++++++++++++++++++++++//
 
@@ -622,12 +674,74 @@ public class valoracionInmuebles implements FuzzyInferenceEngine {
    _input[1] = ((FuzzySingleton) Perfil).getValue();
   OP__default_ _op = new OP__default_();
   OutputMembershipFunction Valoracion_Orientacion = new OutputMembershipFunction();
-  Valoracion_Orientacion.set(1,_op,_input);
-  TP_Valoracion _t_Orientacion = new TP_Valoracion();
+  Valoracion_Orientacion.set(32,_op,_input);
+  TP_Orientacion _t_Orientacion = new TP_Orientacion();
   TP_Perfil _t_Perfil = new TP_Perfil();
   TP_Valoracion _t_Valoracion_Orientacion = new TP_Valoracion();
   int _i_Valoracion_Orientacion=0;
-  _rl = _t_Perfil.Hombre_soltero.isEqual(Perfil);
+  _rl = _op.and(_t_Orientacion.Norte.isEqual(Orientacion),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Orientacion.set(_i_Valoracion_Orientacion,_rl, _t_Valoracion_Orientacion.regular); _i_Valoracion_Orientacion++;
+  _rl = _op.and(_t_Orientacion.Norte.isEqual(Orientacion),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Orientacion.set(_i_Valoracion_Orientacion,_rl, _t_Valoracion_Orientacion.muy_mala); _i_Valoracion_Orientacion++;
+  _rl = _op.and(_t_Orientacion.Norte.isEqual(Orientacion),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Orientacion.set(_i_Valoracion_Orientacion,_rl, _t_Valoracion_Orientacion.mala); _i_Valoracion_Orientacion++;
+  _rl = _op.and(_t_Orientacion.Norte.isEqual(Orientacion),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Orientacion.set(_i_Valoracion_Orientacion,_rl, _t_Valoracion_Orientacion.mala); _i_Valoracion_Orientacion++;
+  _rl = _op.and(_t_Orientacion.Sur.isEqual(Orientacion),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Orientacion.set(_i_Valoracion_Orientacion,_rl, _t_Valoracion_Orientacion.regular); _i_Valoracion_Orientacion++;
+  _rl = _op.and(_t_Orientacion.Sur.isEqual(Orientacion),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Orientacion.set(_i_Valoracion_Orientacion,_rl, _t_Valoracion_Orientacion.regular); _i_Valoracion_Orientacion++;
+  _rl = _op.and(_t_Orientacion.Sur.isEqual(Orientacion),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Orientacion.set(_i_Valoracion_Orientacion,_rl, _t_Valoracion_Orientacion.regular); _i_Valoracion_Orientacion++;
+  _rl = _op.and(_t_Orientacion.Sur.isEqual(Orientacion),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Orientacion.set(_i_Valoracion_Orientacion,_rl, _t_Valoracion_Orientacion.regular); _i_Valoracion_Orientacion++;
+  _rl = _op.and(_t_Orientacion.Este.isEqual(Orientacion),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Orientacion.set(_i_Valoracion_Orientacion,_rl, _t_Valoracion_Orientacion.buena); _i_Valoracion_Orientacion++;
+  _rl = _op.and(_t_Orientacion.Este.isEqual(Orientacion),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Orientacion.set(_i_Valoracion_Orientacion,_rl, _t_Valoracion_Orientacion.buena); _i_Valoracion_Orientacion++;
+  _rl = _op.and(_t_Orientacion.Este.isEqual(Orientacion),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Orientacion.set(_i_Valoracion_Orientacion,_rl, _t_Valoracion_Orientacion.buena); _i_Valoracion_Orientacion++;
+  _rl = _op.and(_t_Orientacion.Este.isEqual(Orientacion),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Orientacion.set(_i_Valoracion_Orientacion,_rl, _t_Valoracion_Orientacion.buena); _i_Valoracion_Orientacion++;
+  _rl = _op.and(_t_Orientacion.Oeste.isEqual(Orientacion),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Orientacion.set(_i_Valoracion_Orientacion,_rl, _t_Valoracion_Orientacion.buena); _i_Valoracion_Orientacion++;
+  _rl = _op.and(_t_Orientacion.Oeste.isEqual(Orientacion),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Orientacion.set(_i_Valoracion_Orientacion,_rl, _t_Valoracion_Orientacion.buena); _i_Valoracion_Orientacion++;
+  _rl = _op.and(_t_Orientacion.Oeste.isEqual(Orientacion),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Orientacion.set(_i_Valoracion_Orientacion,_rl, _t_Valoracion_Orientacion.buena); _i_Valoracion_Orientacion++;
+  _rl = _op.and(_t_Orientacion.Oeste.isEqual(Orientacion),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Orientacion.set(_i_Valoracion_Orientacion,_rl, _t_Valoracion_Orientacion.buena); _i_Valoracion_Orientacion++;
+  _rl = _op.and(_t_Orientacion.Noreste.isEqual(Orientacion),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Orientacion.set(_i_Valoracion_Orientacion,_rl, _t_Valoracion_Orientacion.regular); _i_Valoracion_Orientacion++;
+  _rl = _op.and(_t_Orientacion.Noreste.isEqual(Orientacion),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Orientacion.set(_i_Valoracion_Orientacion,_rl, _t_Valoracion_Orientacion.muy_mala); _i_Valoracion_Orientacion++;
+  _rl = _op.and(_t_Orientacion.Noreste.isEqual(Orientacion),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Orientacion.set(_i_Valoracion_Orientacion,_rl, _t_Valoracion_Orientacion.mala); _i_Valoracion_Orientacion++;
+  _rl = _op.and(_t_Orientacion.Noreste.isEqual(Orientacion),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Orientacion.set(_i_Valoracion_Orientacion,_rl, _t_Valoracion_Orientacion.mala); _i_Valoracion_Orientacion++;
+  _rl = _op.and(_t_Orientacion.Noroeste.isEqual(Orientacion),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Orientacion.set(_i_Valoracion_Orientacion,_rl, _t_Valoracion_Orientacion.regular); _i_Valoracion_Orientacion++;
+  _rl = _op.and(_t_Orientacion.Noroeste.isEqual(Orientacion),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Orientacion.set(_i_Valoracion_Orientacion,_rl, _t_Valoracion_Orientacion.muy_mala); _i_Valoracion_Orientacion++;
+  _rl = _op.and(_t_Orientacion.Noroeste.isEqual(Orientacion),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Orientacion.set(_i_Valoracion_Orientacion,_rl, _t_Valoracion_Orientacion.mala); _i_Valoracion_Orientacion++;
+  _rl = _op.and(_t_Orientacion.Noroeste.isEqual(Orientacion),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Orientacion.set(_i_Valoracion_Orientacion,_rl, _t_Valoracion_Orientacion.mala); _i_Valoracion_Orientacion++;
+  _rl = _op.and(_t_Orientacion.Sureste.isEqual(Orientacion),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Orientacion.set(_i_Valoracion_Orientacion,_rl, _t_Valoracion_Orientacion.buena); _i_Valoracion_Orientacion++;
+  _rl = _op.and(_t_Orientacion.Sureste.isEqual(Orientacion),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Orientacion.set(_i_Valoracion_Orientacion,_rl, _t_Valoracion_Orientacion.buena); _i_Valoracion_Orientacion++;
+  _rl = _op.and(_t_Orientacion.Sureste.isEqual(Orientacion),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Orientacion.set(_i_Valoracion_Orientacion,_rl, _t_Valoracion_Orientacion.buena); _i_Valoracion_Orientacion++;
+  _rl = _op.and(_t_Orientacion.Sureste.isEqual(Orientacion),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Orientacion.set(_i_Valoracion_Orientacion,_rl, _t_Valoracion_Orientacion.buena); _i_Valoracion_Orientacion++;
+  _rl = _op.and(_t_Orientacion.Suroeste.isEqual(Orientacion),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Orientacion.set(_i_Valoracion_Orientacion,_rl, _t_Valoracion_Orientacion.buena); _i_Valoracion_Orientacion++;
+  _rl = _op.and(_t_Orientacion.Suroeste.isEqual(Orientacion),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Orientacion.set(_i_Valoracion_Orientacion,_rl, _t_Valoracion_Orientacion.buena); _i_Valoracion_Orientacion++;
+  _rl = _op.and(_t_Orientacion.Suroeste.isEqual(Orientacion),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Orientacion.set(_i_Valoracion_Orientacion,_rl, _t_Valoracion_Orientacion.buena); _i_Valoracion_Orientacion++;
+  _rl = _op.and(_t_Orientacion.Suroeste.isEqual(Orientacion),_t_Perfil.Mujer_soltera.isEqual(Perfil));
   Valoracion_Orientacion.set(_i_Valoracion_Orientacion,_rl, _t_Valoracion_Orientacion.buena); _i_Valoracion_Orientacion++;
   MembershipFunction[] _output = new MembershipFunction[1];
   _output[0] = Valoracion_Orientacion;
@@ -1019,13 +1133,91 @@ public class valoracionInmuebles implements FuzzyInferenceEngine {
    _input[1] = ((FuzzySingleton) Perfil).getValue();
   OP__default_ _op = new OP__default_();
   OutputMembershipFunction Valoracion_numero_habitaciones = new OutputMembershipFunction();
-  Valoracion_numero_habitaciones.set(1,_op,_input);
-  TP_NumeroHabitaciones _t_Numero_habitaciones = new TP_NumeroHabitaciones();
+  Valoracion_numero_habitaciones.set(40,_op,_input);
+  TP_Numero _t_Numero_habitaciones = new TP_Numero();
   TP_Perfil _t_Perfil = new TP_Perfil();
   TP_Valoracion _t_Valoracion_numero_habitaciones = new TP_Valoracion();
   int _i_Valoracion_numero_habitaciones=0;
-  _rl = _t_Perfil.Hombre_soltero.isEqual(Perfil);
+  _rl = _op.and(_t_Numero_habitaciones.uno.isEqual(Numero_habitaciones),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.regular); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.uno.isEqual(Numero_habitaciones),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.muy_mala); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.uno.isEqual(Numero_habitaciones),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.regular); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.uno.isEqual(Numero_habitaciones),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.regular); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.dos.isEqual(Numero_habitaciones),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
   Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.buena); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.dos.isEqual(Numero_habitaciones),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.mala); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.dos.isEqual(Numero_habitaciones),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.muy_buena); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.dos.isEqual(Numero_habitaciones),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.muy_buena); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.tres.isEqual(Numero_habitaciones),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.muy_buena); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.tres.isEqual(Numero_habitaciones),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.buena); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.tres.isEqual(Numero_habitaciones),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.muy_buena); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.tres.isEqual(Numero_habitaciones),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.buena); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.cuatro.isEqual(Numero_habitaciones),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.buena); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.cuatro.isEqual(Numero_habitaciones),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.muy_buena); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.cuatro.isEqual(Numero_habitaciones),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.mala); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.cuatro.isEqual(Numero_habitaciones),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.mala); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.cinco.isEqual(Numero_habitaciones),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.regular); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.cinco.isEqual(Numero_habitaciones),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.muy_buena); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.cinco.isEqual(Numero_habitaciones),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.mala); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.cinco.isEqual(Numero_habitaciones),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.mala); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.seis.isEqual(Numero_habitaciones),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.mala); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.seis.isEqual(Numero_habitaciones),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.muy_buena); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.seis.isEqual(Numero_habitaciones),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.muy_mala); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.seis.isEqual(Numero_habitaciones),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.muy_mala); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.siete.isEqual(Numero_habitaciones),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.muy_mala); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.siete.isEqual(Numero_habitaciones),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.muy_buena); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.siete.isEqual(Numero_habitaciones),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.muy_mala); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.siete.isEqual(Numero_habitaciones),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.muy_mala); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.ocho.isEqual(Numero_habitaciones),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.muy_mala); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.ocho.isEqual(Numero_habitaciones),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.muy_mala); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.ocho.isEqual(Numero_habitaciones),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.muy_mala); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.ocho.isEqual(Numero_habitaciones),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.muy_mala); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.nueve.isEqual(Numero_habitaciones),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.muy_mala); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.nueve.isEqual(Numero_habitaciones),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.muy_mala); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.nueve.isEqual(Numero_habitaciones),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.muy_mala); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.nueve.isEqual(Numero_habitaciones),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.muy_mala); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.diez.isEqual(Numero_habitaciones),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.muy_mala); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.diez.isEqual(Numero_habitaciones),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.muy_mala); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.diez.isEqual(Numero_habitaciones),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.muy_mala); _i_Valoracion_numero_habitaciones++;
+  _rl = _op.and(_t_Numero_habitaciones.diez.isEqual(Numero_habitaciones),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_numero_habitaciones.set(_i_Valoracion_numero_habitaciones,_rl, _t_Valoracion_numero_habitaciones.muy_mala); _i_Valoracion_numero_habitaciones++;
   MembershipFunction[] _output = new MembershipFunction[1];
   _output[0] = Valoracion_numero_habitaciones;
   return _output;
@@ -1044,13 +1236,51 @@ public class valoracionInmuebles implements FuzzyInferenceEngine {
    _input[1] = ((FuzzySingleton) Perfil).getValue();
   OP__default_ _op = new OP__default_();
   OutputMembershipFunction Valoracion_Numero_banos = new OutputMembershipFunction();
-  Valoracion_Numero_banos.set(1,_op,_input);
-  TP_Valoracion _t_Numero_banos = new TP_Valoracion();
+  Valoracion_Numero_banos.set(20,_op,_input);
+  TP_Numero _t_Numero_banos = new TP_Numero();
   TP_Perfil _t_Perfil = new TP_Perfil();
   TP_Valoracion _t_Valoracion_Numero_banos = new TP_Valoracion();
   int _i_Valoracion_Numero_banos=0;
-  _rl = _t_Perfil.Hombre_soltero.isEqual(Perfil);
+  _rl = _op.and(_t_Numero_banos.uno.isEqual(Numero_banos),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Numero_banos.set(_i_Valoracion_Numero_banos,_rl, _t_Valoracion_Numero_banos.regular); _i_Valoracion_Numero_banos++;
+  _rl = _op.and(_t_Numero_banos.uno.isEqual(Numero_banos),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Numero_banos.set(_i_Valoracion_Numero_banos,_rl, _t_Valoracion_Numero_banos.muy_mala); _i_Valoracion_Numero_banos++;
+  _rl = _op.and(_t_Numero_banos.uno.isEqual(Numero_banos),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Numero_banos.set(_i_Valoracion_Numero_banos,_rl, _t_Valoracion_Numero_banos.regular); _i_Valoracion_Numero_banos++;
+  _rl = _op.and(_t_Numero_banos.uno.isEqual(Numero_banos),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Numero_banos.set(_i_Valoracion_Numero_banos,_rl, _t_Valoracion_Numero_banos.regular); _i_Valoracion_Numero_banos++;
+  _rl = _op.and(_t_Numero_banos.dos.isEqual(Numero_banos),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
   Valoracion_Numero_banos.set(_i_Valoracion_Numero_banos,_rl, _t_Valoracion_Numero_banos.buena); _i_Valoracion_Numero_banos++;
+  _rl = _op.and(_t_Numero_banos.dos.isEqual(Numero_banos),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Numero_banos.set(_i_Valoracion_Numero_banos,_rl, _t_Valoracion_Numero_banos.regular); _i_Valoracion_Numero_banos++;
+  _rl = _op.and(_t_Numero_banos.dos.isEqual(Numero_banos),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Numero_banos.set(_i_Valoracion_Numero_banos,_rl, _t_Valoracion_Numero_banos.muy_buena); _i_Valoracion_Numero_banos++;
+  _rl = _op.and(_t_Numero_banos.dos.isEqual(Numero_banos),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Numero_banos.set(_i_Valoracion_Numero_banos,_rl, _t_Valoracion_Numero_banos.muy_buena); _i_Valoracion_Numero_banos++;
+  _rl = _op.and(_t_Numero_banos.tres.isEqual(Numero_banos),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Numero_banos.set(_i_Valoracion_Numero_banos,_rl, _t_Valoracion_Numero_banos.muy_buena); _i_Valoracion_Numero_banos++;
+  _rl = _op.and(_t_Numero_banos.tres.isEqual(Numero_banos),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Numero_banos.set(_i_Valoracion_Numero_banos,_rl, _t_Valoracion_Numero_banos.muy_buena); _i_Valoracion_Numero_banos++;
+  _rl = _op.and(_t_Numero_banos.tres.isEqual(Numero_banos),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Numero_banos.set(_i_Valoracion_Numero_banos,_rl, _t_Valoracion_Numero_banos.mala); _i_Valoracion_Numero_banos++;
+  _rl = _op.and(_t_Numero_banos.tres.isEqual(Numero_banos),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Numero_banos.set(_i_Valoracion_Numero_banos,_rl, _t_Valoracion_Numero_banos.mala); _i_Valoracion_Numero_banos++;
+  _rl = _op.and(_t_Numero_banos.cuatro.isEqual(Numero_banos),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Numero_banos.set(_i_Valoracion_Numero_banos,_rl, _t_Valoracion_Numero_banos.muy_mala); _i_Valoracion_Numero_banos++;
+  _rl = _op.and(_t_Numero_banos.cuatro.isEqual(Numero_banos),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Numero_banos.set(_i_Valoracion_Numero_banos,_rl, _t_Valoracion_Numero_banos.muy_buena); _i_Valoracion_Numero_banos++;
+  _rl = _op.and(_t_Numero_banos.cuatro.isEqual(Numero_banos),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Numero_banos.set(_i_Valoracion_Numero_banos,_rl, _t_Valoracion_Numero_banos.muy_mala); _i_Valoracion_Numero_banos++;
+  _rl = _op.and(_t_Numero_banos.cuatro.isEqual(Numero_banos),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Numero_banos.set(_i_Valoracion_Numero_banos,_rl, _t_Valoracion_Numero_banos.muy_mala); _i_Valoracion_Numero_banos++;
+  _rl = _op.and(_t_Numero_banos.cinco.isEqual(Numero_banos),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Numero_banos.set(_i_Valoracion_Numero_banos,_rl, _t_Valoracion_Numero_banos.muy_mala); _i_Valoracion_Numero_banos++;
+  _rl = _op.and(_t_Numero_banos.cinco.isEqual(Numero_banos),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Numero_banos.set(_i_Valoracion_Numero_banos,_rl, _t_Valoracion_Numero_banos.muy_buena); _i_Valoracion_Numero_banos++;
+  _rl = _op.and(_t_Numero_banos.cinco.isEqual(Numero_banos),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Numero_banos.set(_i_Valoracion_Numero_banos,_rl, _t_Valoracion_Numero_banos.muy_mala); _i_Valoracion_Numero_banos++;
+  _rl = _op.and(_t_Numero_banos.cinco.isEqual(Numero_banos),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Numero_banos.set(_i_Valoracion_Numero_banos,_rl, _t_Valoracion_Numero_banos.muy_mala); _i_Valoracion_Numero_banos++;
   MembershipFunction[] _output = new MembershipFunction[1];
   _output[0] = Valoracion_Numero_banos;
   return _output;
@@ -1069,13 +1299,51 @@ public class valoracionInmuebles implements FuzzyInferenceEngine {
    _input[1] = ((FuzzySingleton) Perfil).getValue();
   OP__default_ _op = new OP__default_();
   OutputMembershipFunction Valoracion_Antiguedad = new OutputMembershipFunction();
-  Valoracion_Antiguedad.set(1,_op,_input);
+  Valoracion_Antiguedad.set(20,_op,_input);
   TP_Antiguedad _t_Antiguedad = new TP_Antiguedad();
   TP_Perfil _t_Perfil = new TP_Perfil();
   TP_Valoracion _t_Valoracion_Antiguedad = new TP_Valoracion();
   int _i_Valoracion_Antiguedad=0;
-  _rl = _t_Perfil.Hombre_soltero.isEqual(Perfil);
-  Valoracion_Antiguedad.set(_i_Valoracion_Antiguedad,_rl, _t_Valoracion_Antiguedad.buena); _i_Valoracion_Antiguedad++;
+  _rl = _op.and(_t_Antiguedad.estrenar.isEqual(Antiguedad),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Antiguedad.set(_i_Valoracion_Antiguedad,_rl, _t_Valoracion_Antiguedad.muy_buena); _i_Valoracion_Antiguedad++;
+  _rl = _op.and(_t_Antiguedad.estrenar.isEqual(Antiguedad),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Antiguedad.set(_i_Valoracion_Antiguedad,_rl, _t_Valoracion_Antiguedad.muy_buena); _i_Valoracion_Antiguedad++;
+  _rl = _op.and(_t_Antiguedad.estrenar.isEqual(Antiguedad),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Antiguedad.set(_i_Valoracion_Antiguedad,_rl, _t_Valoracion_Antiguedad.muy_buena); _i_Valoracion_Antiguedad++;
+  _rl = _op.and(_t_Antiguedad.estrenar.isEqual(Antiguedad),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Antiguedad.set(_i_Valoracion_Antiguedad,_rl, _t_Valoracion_Antiguedad.muy_buena); _i_Valoracion_Antiguedad++;
+  _rl = _op.and(_t_Antiguedad.muy_nuevo.isEqual(Antiguedad),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Antiguedad.set(_i_Valoracion_Antiguedad,_rl, _t_Valoracion_Antiguedad.muy_buena); _i_Valoracion_Antiguedad++;
+  _rl = _op.and(_t_Antiguedad.muy_nuevo.isEqual(Antiguedad),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Antiguedad.set(_i_Valoracion_Antiguedad,_rl, _t_Valoracion_Antiguedad.muy_buena); _i_Valoracion_Antiguedad++;
+  _rl = _op.and(_t_Antiguedad.muy_nuevo.isEqual(Antiguedad),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Antiguedad.set(_i_Valoracion_Antiguedad,_rl, _t_Valoracion_Antiguedad.muy_buena); _i_Valoracion_Antiguedad++;
+  _rl = _op.and(_t_Antiguedad.muy_nuevo.isEqual(Antiguedad),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Antiguedad.set(_i_Valoracion_Antiguedad,_rl, _t_Valoracion_Antiguedad.muy_buena); _i_Valoracion_Antiguedad++;
+  _rl = _op.and(_t_Antiguedad.poco_nuevo.isEqual(Antiguedad),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Antiguedad.set(_i_Valoracion_Antiguedad,_rl, _t_Valoracion_Antiguedad.regular); _i_Valoracion_Antiguedad++;
+  _rl = _op.and(_t_Antiguedad.poco_nuevo.isEqual(Antiguedad),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Antiguedad.set(_i_Valoracion_Antiguedad,_rl, _t_Valoracion_Antiguedad.regular); _i_Valoracion_Antiguedad++;
+  _rl = _op.and(_t_Antiguedad.poco_nuevo.isEqual(Antiguedad),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Antiguedad.set(_i_Valoracion_Antiguedad,_rl, _t_Valoracion_Antiguedad.regular); _i_Valoracion_Antiguedad++;
+  _rl = _op.and(_t_Antiguedad.poco_nuevo.isEqual(Antiguedad),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Antiguedad.set(_i_Valoracion_Antiguedad,_rl, _t_Valoracion_Antiguedad.regular); _i_Valoracion_Antiguedad++;
+  _rl = _op.and(_t_Antiguedad.antiguo.isEqual(Antiguedad),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Antiguedad.set(_i_Valoracion_Antiguedad,_rl, _t_Valoracion_Antiguedad.mala); _i_Valoracion_Antiguedad++;
+  _rl = _op.and(_t_Antiguedad.antiguo.isEqual(Antiguedad),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Antiguedad.set(_i_Valoracion_Antiguedad,_rl, _t_Valoracion_Antiguedad.mala); _i_Valoracion_Antiguedad++;
+  _rl = _op.and(_t_Antiguedad.antiguo.isEqual(Antiguedad),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Antiguedad.set(_i_Valoracion_Antiguedad,_rl, _t_Valoracion_Antiguedad.mala); _i_Valoracion_Antiguedad++;
+  _rl = _op.and(_t_Antiguedad.antiguo.isEqual(Antiguedad),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Antiguedad.set(_i_Valoracion_Antiguedad,_rl, _t_Valoracion_Antiguedad.mala); _i_Valoracion_Antiguedad++;
+  _rl = _op.and(_t_Antiguedad.muy_antiguo.isEqual(Antiguedad),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Antiguedad.set(_i_Valoracion_Antiguedad,_rl, _t_Valoracion_Antiguedad.muy_mala); _i_Valoracion_Antiguedad++;
+  _rl = _op.and(_t_Antiguedad.muy_antiguo.isEqual(Antiguedad),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Antiguedad.set(_i_Valoracion_Antiguedad,_rl, _t_Valoracion_Antiguedad.muy_mala); _i_Valoracion_Antiguedad++;
+  _rl = _op.and(_t_Antiguedad.muy_antiguo.isEqual(Antiguedad),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Antiguedad.set(_i_Valoracion_Antiguedad,_rl, _t_Valoracion_Antiguedad.muy_mala); _i_Valoracion_Antiguedad++;
+  _rl = _op.and(_t_Antiguedad.muy_antiguo.isEqual(Antiguedad),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Antiguedad.set(_i_Valoracion_Antiguedad,_rl, _t_Valoracion_Antiguedad.muy_mala); _i_Valoracion_Antiguedad++;
   MembershipFunction[] _output = new MembershipFunction[1];
   _output[0] = Valoracion_Antiguedad;
   return _output;
@@ -1094,51 +1362,91 @@ public class valoracionInmuebles implements FuzzyInferenceEngine {
    _input[1] = ((FuzzySingleton) Perfil).getValue();
   OP__default_ _op = new OP__default_();
   OutputMembershipFunction Valoracion_Altura = new OutputMembershipFunction();
-  Valoracion_Altura.set(20,_op,_input);
-  TP_Valoracion _t_Altura = new TP_Valoracion();
+  Valoracion_Altura.set(40,_op,_input);
+  TP_Numero _t_Altura = new TP_Numero();
   TP_Perfil _t_Perfil = new TP_Perfil();
   TP_Valoracion _t_Valoracion_Altura = new TP_Valoracion();
   int _i_Valoracion_Altura=0;
-  _rl = _op.and(_t_Altura.muy_mala.isEqual(Altura),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  _rl = _op.and(_t_Altura.uno.isEqual(Altura),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
   Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.muy_mala); _i_Valoracion_Altura++;
-  _rl = _op.and(_t_Altura.muy_mala.isEqual(Altura),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  _rl = _op.and(_t_Altura.uno.isEqual(Altura),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
   Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.mala); _i_Valoracion_Altura++;
-  _rl = _op.and(_t_Altura.muy_mala.isEqual(Altura),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  _rl = _op.and(_t_Altura.uno.isEqual(Altura),_t_Perfil.Hombre_soltero.isEqual(Perfil));
   Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.muy_mala); _i_Valoracion_Altura++;
-  _rl = _op.and(_t_Altura.muy_mala.isEqual(Altura),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  _rl = _op.and(_t_Altura.uno.isEqual(Altura),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.muy_mala); _i_Valoracion_Altura++;
+  _rl = _op.and(_t_Altura.dos.isEqual(Altura),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
   Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.mala); _i_Valoracion_Altura++;
-  _rl = _op.and(_t_Altura.mala.isEqual(Altura),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  _rl = _op.and(_t_Altura.dos.isEqual(Altura),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.regular); _i_Valoracion_Altura++;
+  _rl = _op.and(_t_Altura.dos.isEqual(Altura),_t_Perfil.Hombre_soltero.isEqual(Perfil));
   Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.mala); _i_Valoracion_Altura++;
-  _rl = _op.and(_t_Altura.mala.isEqual(Altura),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
-  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.regular); _i_Valoracion_Altura++;
-  _rl = _op.and(_t_Altura.mala.isEqual(Altura),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  _rl = _op.and(_t_Altura.dos.isEqual(Altura),_t_Perfil.Mujer_soltera.isEqual(Perfil));
   Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.mala); _i_Valoracion_Altura++;
-  _rl = _op.and(_t_Altura.mala.isEqual(Altura),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  _rl = _op.and(_t_Altura.tres.isEqual(Altura),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
   Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.regular); _i_Valoracion_Altura++;
-  _rl = _op.and(_t_Altura.regular.isEqual(Altura),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
-  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.regular); _i_Valoracion_Altura++;
-  _rl = _op.and(_t_Altura.regular.isEqual(Altura),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
-  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.regular); _i_Valoracion_Altura++;
-  _rl = _op.and(_t_Altura.regular.isEqual(Altura),_t_Perfil.Hombre_soltero.isEqual(Perfil));
-  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.regular); _i_Valoracion_Altura++;
-  _rl = _op.and(_t_Altura.regular.isEqual(Altura),_t_Perfil.Mujer_soltera.isEqual(Perfil));
-  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.regular); _i_Valoracion_Altura++;
-  _rl = _op.and(_t_Altura.buena.isEqual(Altura),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
-  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.buena); _i_Valoracion_Altura++;
-  _rl = _op.and(_t_Altura.buena.isEqual(Altura),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
-  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.buena); _i_Valoracion_Altura++;
-  _rl = _op.and(_t_Altura.buena.isEqual(Altura),_t_Perfil.Hombre_soltero.isEqual(Perfil));
-  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.buena); _i_Valoracion_Altura++;
-  _rl = _op.and(_t_Altura.buena.isEqual(Altura),_t_Perfil.Mujer_soltera.isEqual(Perfil));
-  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.buena); _i_Valoracion_Altura++;
-  _rl = _op.and(_t_Altura.muy_buena.isEqual(Altura),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  _rl = _op.and(_t_Altura.tres.isEqual(Altura),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
   Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.muy_buena); _i_Valoracion_Altura++;
-  _rl = _op.and(_t_Altura.muy_buena.isEqual(Altura),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  _rl = _op.and(_t_Altura.tres.isEqual(Altura),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.regular); _i_Valoracion_Altura++;
+  _rl = _op.and(_t_Altura.tres.isEqual(Altura),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.mala); _i_Valoracion_Altura++;
+  _rl = _op.and(_t_Altura.cuatro.isEqual(Altura),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
   Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.buena); _i_Valoracion_Altura++;
-  _rl = _op.and(_t_Altura.muy_buena.isEqual(Altura),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  _rl = _op.and(_t_Altura.cuatro.isEqual(Altura),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
   Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.muy_buena); _i_Valoracion_Altura++;
-  _rl = _op.and(_t_Altura.muy_buena.isEqual(Altura),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  _rl = _op.and(_t_Altura.cuatro.isEqual(Altura),_t_Perfil.Hombre_soltero.isEqual(Perfil));
   Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.buena); _i_Valoracion_Altura++;
+  _rl = _op.and(_t_Altura.cuatro.isEqual(Altura),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.regular); _i_Valoracion_Altura++;
+  _rl = _op.and(_t_Altura.cinco.isEqual(Altura),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.buena); _i_Valoracion_Altura++;
+  _rl = _op.and(_t_Altura.cinco.isEqual(Altura),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.muy_buena); _i_Valoracion_Altura++;
+  _rl = _op.and(_t_Altura.cinco.isEqual(Altura),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.buena); _i_Valoracion_Altura++;
+  _rl = _op.and(_t_Altura.cinco.isEqual(Altura),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.buena); _i_Valoracion_Altura++;
+  _rl = _op.and(_t_Altura.seis.isEqual(Altura),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.buena); _i_Valoracion_Altura++;
+  _rl = _op.and(_t_Altura.seis.isEqual(Altura),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.buena); _i_Valoracion_Altura++;
+  _rl = _op.and(_t_Altura.seis.isEqual(Altura),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.buena); _i_Valoracion_Altura++;
+  _rl = _op.and(_t_Altura.seis.isEqual(Altura),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.buena); _i_Valoracion_Altura++;
+  _rl = _op.and(_t_Altura.siete.isEqual(Altura),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.buena); _i_Valoracion_Altura++;
+  _rl = _op.and(_t_Altura.siete.isEqual(Altura),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.buena); _i_Valoracion_Altura++;
+  _rl = _op.and(_t_Altura.siete.isEqual(Altura),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.buena); _i_Valoracion_Altura++;
+  _rl = _op.and(_t_Altura.siete.isEqual(Altura),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.buena); _i_Valoracion_Altura++;
+  _rl = _op.and(_t_Altura.ocho.isEqual(Altura),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.buena); _i_Valoracion_Altura++;
+  _rl = _op.and(_t_Altura.ocho.isEqual(Altura),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.buena); _i_Valoracion_Altura++;
+  _rl = _op.and(_t_Altura.ocho.isEqual(Altura),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.buena); _i_Valoracion_Altura++;
+  _rl = _op.and(_t_Altura.ocho.isEqual(Altura),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.buena); _i_Valoracion_Altura++;
+  _rl = _op.and(_t_Altura.nueve.isEqual(Altura),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.muy_buena); _i_Valoracion_Altura++;
+  _rl = _op.and(_t_Altura.nueve.isEqual(Altura),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.buena); _i_Valoracion_Altura++;
+  _rl = _op.and(_t_Altura.nueve.isEqual(Altura),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.muy_buena); _i_Valoracion_Altura++;
+  _rl = _op.and(_t_Altura.nueve.isEqual(Altura),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.muy_buena); _i_Valoracion_Altura++;
+  _rl = _op.and(_t_Altura.diez.isEqual(Altura),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.muy_buena); _i_Valoracion_Altura++;
+  _rl = _op.and(_t_Altura.diez.isEqual(Altura),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.muy_buena); _i_Valoracion_Altura++;
+  _rl = _op.and(_t_Altura.diez.isEqual(Altura),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.muy_buena); _i_Valoracion_Altura++;
+  _rl = _op.and(_t_Altura.diez.isEqual(Altura),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Altura.set(_i_Valoracion_Altura,_rl, _t_Valoracion_Altura.muy_buena); _i_Valoracion_Altura++;
   MembershipFunction[] _output = new MembershipFunction[1];
   _output[0] = Valoracion_Altura;
   return _output;
@@ -1157,51 +1465,27 @@ public class valoracionInmuebles implements FuzzyInferenceEngine {
    _input[1] = ((FuzzySingleton) Perfil).getValue();
   OP__default_ _op = new OP__default_();
   OutputMembershipFunction Valoracion_Ascensor = new OutputMembershipFunction();
-  Valoracion_Ascensor.set(20,_op,_input);
-  TP_Valoracion _t_Ascensor = new TP_Valoracion();
+  Valoracion_Ascensor.set(8,_op,_input);
+  TP_Booleano _t_Ascensor = new TP_Booleano();
   TP_Perfil _t_Perfil = new TP_Perfil();
   TP_Valoracion _t_Valoracion_Ascensor = new TP_Valoracion();
   int _i_Valoracion_Ascensor=0;
-  _rl = _op.and(_t_Ascensor.muy_mala.isEqual(Ascensor),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
-  Valoracion_Ascensor.set(_i_Valoracion_Ascensor,_rl, _t_Valoracion_Ascensor.muy_mala); _i_Valoracion_Ascensor++;
-  _rl = _op.and(_t_Ascensor.muy_mala.isEqual(Ascensor),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  _rl = _op.and(_t_Ascensor.Si.isEqual(Ascensor),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Ascensor.set(_i_Valoracion_Ascensor,_rl, _t_Valoracion_Ascensor.regular); _i_Valoracion_Ascensor++;
+  _rl = _op.and(_t_Ascensor.Si.isEqual(Ascensor),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Ascensor.set(_i_Valoracion_Ascensor,_rl, _t_Valoracion_Ascensor.regular); _i_Valoracion_Ascensor++;
+  _rl = _op.and(_t_Ascensor.Si.isEqual(Ascensor),_t_Perfil.Hombre_soltero.isEqual(Perfil));
   Valoracion_Ascensor.set(_i_Valoracion_Ascensor,_rl, _t_Valoracion_Ascensor.mala); _i_Valoracion_Ascensor++;
-  _rl = _op.and(_t_Ascensor.muy_mala.isEqual(Ascensor),_t_Perfil.Hombre_soltero.isEqual(Perfil));
-  Valoracion_Ascensor.set(_i_Valoracion_Ascensor,_rl, _t_Valoracion_Ascensor.muy_mala); _i_Valoracion_Ascensor++;
-  _rl = _op.and(_t_Ascensor.muy_mala.isEqual(Ascensor),_t_Perfil.Mujer_soltera.isEqual(Perfil));
-  Valoracion_Ascensor.set(_i_Valoracion_Ascensor,_rl, _t_Valoracion_Ascensor.mala); _i_Valoracion_Ascensor++;
-  _rl = _op.and(_t_Ascensor.mala.isEqual(Ascensor),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
-  Valoracion_Ascensor.set(_i_Valoracion_Ascensor,_rl, _t_Valoracion_Ascensor.mala); _i_Valoracion_Ascensor++;
-  _rl = _op.and(_t_Ascensor.mala.isEqual(Ascensor),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
-  Valoracion_Ascensor.set(_i_Valoracion_Ascensor,_rl, _t_Valoracion_Ascensor.regular); _i_Valoracion_Ascensor++;
-  _rl = _op.and(_t_Ascensor.mala.isEqual(Ascensor),_t_Perfil.Hombre_soltero.isEqual(Perfil));
-  Valoracion_Ascensor.set(_i_Valoracion_Ascensor,_rl, _t_Valoracion_Ascensor.mala); _i_Valoracion_Ascensor++;
-  _rl = _op.and(_t_Ascensor.mala.isEqual(Ascensor),_t_Perfil.Mujer_soltera.isEqual(Perfil));
-  Valoracion_Ascensor.set(_i_Valoracion_Ascensor,_rl, _t_Valoracion_Ascensor.regular); _i_Valoracion_Ascensor++;
-  _rl = _op.and(_t_Ascensor.regular.isEqual(Ascensor),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
-  Valoracion_Ascensor.set(_i_Valoracion_Ascensor,_rl, _t_Valoracion_Ascensor.regular); _i_Valoracion_Ascensor++;
-  _rl = _op.and(_t_Ascensor.regular.isEqual(Ascensor),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
-  Valoracion_Ascensor.set(_i_Valoracion_Ascensor,_rl, _t_Valoracion_Ascensor.regular); _i_Valoracion_Ascensor++;
-  _rl = _op.and(_t_Ascensor.regular.isEqual(Ascensor),_t_Perfil.Hombre_soltero.isEqual(Perfil));
-  Valoracion_Ascensor.set(_i_Valoracion_Ascensor,_rl, _t_Valoracion_Ascensor.regular); _i_Valoracion_Ascensor++;
-  _rl = _op.and(_t_Ascensor.regular.isEqual(Ascensor),_t_Perfil.Mujer_soltera.isEqual(Perfil));
-  Valoracion_Ascensor.set(_i_Valoracion_Ascensor,_rl, _t_Valoracion_Ascensor.regular); _i_Valoracion_Ascensor++;
-  _rl = _op.and(_t_Ascensor.buena.isEqual(Ascensor),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  _rl = _op.and(_t_Ascensor.Si.isEqual(Ascensor),_t_Perfil.Mujer_soltera.isEqual(Perfil));
   Valoracion_Ascensor.set(_i_Valoracion_Ascensor,_rl, _t_Valoracion_Ascensor.buena); _i_Valoracion_Ascensor++;
-  _rl = _op.and(_t_Ascensor.buena.isEqual(Ascensor),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  _rl = _op.and(_t_Ascensor.No.isEqual(Ascensor),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
   Valoracion_Ascensor.set(_i_Valoracion_Ascensor,_rl, _t_Valoracion_Ascensor.buena); _i_Valoracion_Ascensor++;
-  _rl = _op.and(_t_Ascensor.buena.isEqual(Ascensor),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  _rl = _op.and(_t_Ascensor.No.isEqual(Ascensor),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
   Valoracion_Ascensor.set(_i_Valoracion_Ascensor,_rl, _t_Valoracion_Ascensor.buena); _i_Valoracion_Ascensor++;
-  _rl = _op.and(_t_Ascensor.buena.isEqual(Ascensor),_t_Perfil.Mujer_soltera.isEqual(Perfil));
-  Valoracion_Ascensor.set(_i_Valoracion_Ascensor,_rl, _t_Valoracion_Ascensor.buena); _i_Valoracion_Ascensor++;
-  _rl = _op.and(_t_Ascensor.muy_buena.isEqual(Ascensor),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  _rl = _op.and(_t_Ascensor.No.isEqual(Ascensor),_t_Perfil.Hombre_soltero.isEqual(Perfil));
   Valoracion_Ascensor.set(_i_Valoracion_Ascensor,_rl, _t_Valoracion_Ascensor.muy_buena); _i_Valoracion_Ascensor++;
-  _rl = _op.and(_t_Ascensor.muy_buena.isEqual(Ascensor),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
-  Valoracion_Ascensor.set(_i_Valoracion_Ascensor,_rl, _t_Valoracion_Ascensor.buena); _i_Valoracion_Ascensor++;
-  _rl = _op.and(_t_Ascensor.muy_buena.isEqual(Ascensor),_t_Perfil.Hombre_soltero.isEqual(Perfil));
-  Valoracion_Ascensor.set(_i_Valoracion_Ascensor,_rl, _t_Valoracion_Ascensor.muy_buena); _i_Valoracion_Ascensor++;
-  _rl = _op.and(_t_Ascensor.muy_buena.isEqual(Ascensor),_t_Perfil.Mujer_soltera.isEqual(Perfil));
-  Valoracion_Ascensor.set(_i_Valoracion_Ascensor,_rl, _t_Valoracion_Ascensor.buena); _i_Valoracion_Ascensor++;
+  _rl = _op.and(_t_Ascensor.No.isEqual(Ascensor),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Ascensor.set(_i_Valoracion_Ascensor,_rl, _t_Valoracion_Ascensor.regular); _i_Valoracion_Ascensor++;
   MembershipFunction[] _output = new MembershipFunction[1];
   _output[0] = Valoracion_Ascensor;
   return _output;
@@ -1211,22 +1495,24 @@ public class valoracionInmuebles implements FuzzyInferenceEngine {
  //  Rulebase RL_Inferencia_Garaje  //
  //+++++++++++++++++++++++++++++++++++++++++++++++++++++//
 
- private MembershipFunction[] RL_Inferencia_Garaje(MembershipFunction Metros_Garaje, MembershipFunction Perfil) {
+ private MembershipFunction[] RL_Inferencia_Garaje(MembershipFunction Numero_Plazas, MembershipFunction Perfil) {
   double _rl;
   double _input[] = new double[2];
-  if(Metros_Garaje instanceof FuzzySingleton)
-   _input[0] = ((FuzzySingleton) Metros_Garaje).getValue();
+  if(Numero_Plazas instanceof FuzzySingleton)
+   _input[0] = ((FuzzySingleton) Numero_Plazas).getValue();
   if(Perfil instanceof FuzzySingleton)
    _input[1] = ((FuzzySingleton) Perfil).getValue();
   OP__default_ _op = new OP__default_();
   OutputMembershipFunction Valoracion_Garaje = new OutputMembershipFunction();
-  Valoracion_Garaje.set(1,_op,_input);
-  TP_Metros _t_Metros_Garaje = new TP_Metros();
+  Valoracion_Garaje.set(2,_op,_input);
+  TP_Numero _t_Numero_Plazas = new TP_Numero();
   TP_Perfil _t_Perfil = new TP_Perfil();
   TP_Valoracion _t_Valoracion_Garaje = new TP_Valoracion();
   int _i_Valoracion_Garaje=0;
-  _rl = _t_Perfil.Hombre_soltero.isEqual(Perfil);
-  Valoracion_Garaje.set(_i_Valoracion_Garaje,_rl, _t_Valoracion_Garaje.buena); _i_Valoracion_Garaje++;
+  _rl = _op.and(_t_Numero_Plazas.uno.isEqual(Numero_Plazas),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Garaje.set(_i_Valoracion_Garaje,_rl, _t_Valoracion_Garaje.regular); _i_Valoracion_Garaje++;
+  _rl = _op.and(_t_Numero_Plazas.dos.isEqual(Numero_Plazas),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Garaje.set(_i_Valoracion_Garaje,_rl, _t_Valoracion_Garaje.mala); _i_Valoracion_Garaje++;
   MembershipFunction[] _output = new MembershipFunction[1];
   _output[0] = Valoracion_Garaje;
   return _output;
@@ -1434,12 +1720,42 @@ public class valoracionInmuebles implements FuzzyInferenceEngine {
    _input[1] = ((FuzzySingleton) Perfil).getValue();
   OP__default_ _op = new OP__default_();
   OutputMembershipFunction Valoracion_Metros_construidos = new OutputMembershipFunction();
-  Valoracion_Metros_construidos.set(1,_op,_input);
+  Valoracion_Metros_construidos.set(16,_op,_input);
   TP_Metros _t_Metros_construidos = new TP_Metros();
   TP_Perfil _t_Perfil = new TP_Perfil();
   TP_Valoracion _t_Valoracion_Metros_construidos = new TP_Valoracion();
   int _i_Valoracion_Metros_construidos=0;
-  _rl = _t_Perfil.Hombre_soltero.isEqual(Perfil);
+  _rl = _op.and(_t_Metros_construidos.muy_pocos.isEqual(Metros_construidos),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Metros_construidos.set(_i_Valoracion_Metros_construidos,_rl, _t_Valoracion_Metros_construidos.mala); _i_Valoracion_Metros_construidos++;
+  _rl = _op.and(_t_Metros_construidos.muy_pocos.isEqual(Metros_construidos),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Metros_construidos.set(_i_Valoracion_Metros_construidos,_rl, _t_Valoracion_Metros_construidos.muy_mala); _i_Valoracion_Metros_construidos++;
+  _rl = _op.and(_t_Metros_construidos.muy_pocos.isEqual(Metros_construidos),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Metros_construidos.set(_i_Valoracion_Metros_construidos,_rl, _t_Valoracion_Metros_construidos.muy_mala); _i_Valoracion_Metros_construidos++;
+  _rl = _op.and(_t_Metros_construidos.muy_pocos.isEqual(Metros_construidos),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Metros_construidos.set(_i_Valoracion_Metros_construidos,_rl, _t_Valoracion_Metros_construidos.mala); _i_Valoracion_Metros_construidos++;
+  _rl = _op.and(_t_Metros_construidos.pocos.isEqual(Metros_construidos),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Metros_construidos.set(_i_Valoracion_Metros_construidos,_rl, _t_Valoracion_Metros_construidos.regular); _i_Valoracion_Metros_construidos++;
+  _rl = _op.and(_t_Metros_construidos.pocos.isEqual(Metros_construidos),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Metros_construidos.set(_i_Valoracion_Metros_construidos,_rl, _t_Valoracion_Metros_construidos.mala); _i_Valoracion_Metros_construidos++;
+  _rl = _op.and(_t_Metros_construidos.pocos.isEqual(Metros_construidos),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Metros_construidos.set(_i_Valoracion_Metros_construidos,_rl, _t_Valoracion_Metros_construidos.mala); _i_Valoracion_Metros_construidos++;
+  _rl = _op.and(_t_Metros_construidos.pocos.isEqual(Metros_construidos),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Metros_construidos.set(_i_Valoracion_Metros_construidos,_rl, _t_Valoracion_Metros_construidos.regular); _i_Valoracion_Metros_construidos++;
+  _rl = _op.and(_t_Metros_construidos.normal.isEqual(Metros_construidos),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Metros_construidos.set(_i_Valoracion_Metros_construidos,_rl, _t_Valoracion_Metros_construidos.buena); _i_Valoracion_Metros_construidos++;
+  _rl = _op.and(_t_Metros_construidos.normal.isEqual(Metros_construidos),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Metros_construidos.set(_i_Valoracion_Metros_construidos,_rl, _t_Valoracion_Metros_construidos.buena); _i_Valoracion_Metros_construidos++;
+  _rl = _op.and(_t_Metros_construidos.normal.isEqual(Metros_construidos),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Metros_construidos.set(_i_Valoracion_Metros_construidos,_rl, _t_Valoracion_Metros_construidos.buena); _i_Valoracion_Metros_construidos++;
+  _rl = _op.and(_t_Metros_construidos.normal.isEqual(Metros_construidos),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Metros_construidos.set(_i_Valoracion_Metros_construidos,_rl, _t_Valoracion_Metros_construidos.buena); _i_Valoracion_Metros_construidos++;
+  _rl = _op.and(_t_Metros_construidos.bastantes.isEqual(Metros_construidos),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Metros_construidos.set(_i_Valoracion_Metros_construidos,_rl, _t_Valoracion_Metros_construidos.muy_buena); _i_Valoracion_Metros_construidos++;
+  _rl = _op.and(_t_Metros_construidos.bastantes.isEqual(Metros_construidos),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Metros_construidos.set(_i_Valoracion_Metros_construidos,_rl, _t_Valoracion_Metros_construidos.muy_buena); _i_Valoracion_Metros_construidos++;
+  _rl = _op.and(_t_Metros_construidos.bastantes.isEqual(Metros_construidos),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Metros_construidos.set(_i_Valoracion_Metros_construidos,_rl, _t_Valoracion_Metros_construidos.buena); _i_Valoracion_Metros_construidos++;
+  _rl = _op.and(_t_Metros_construidos.bastantes.isEqual(Metros_construidos),_t_Perfil.Mujer_soltera.isEqual(Perfil));
   Valoracion_Metros_construidos.set(_i_Valoracion_Metros_construidos,_rl, _t_Valoracion_Metros_construidos.buena); _i_Valoracion_Metros_construidos++;
   MembershipFunction[] _output = new MembershipFunction[1];
   _output[0] = Valoracion_Metros_construidos;
@@ -1459,12 +1775,42 @@ public class valoracionInmuebles implements FuzzyInferenceEngine {
    _input[1] = ((FuzzySingleton) Perfil).getValue();
   OP__default_ _op = new OP__default_();
   OutputMembershipFunction Valoracion_Metros_habitables = new OutputMembershipFunction();
-  Valoracion_Metros_habitables.set(1,_op,_input);
+  Valoracion_Metros_habitables.set(16,_op,_input);
   TP_Metros _t_Metros_habitables = new TP_Metros();
   TP_Perfil _t_Perfil = new TP_Perfil();
   TP_Valoracion _t_Valoracion_Metros_habitables = new TP_Valoracion();
   int _i_Valoracion_Metros_habitables=0;
-  _rl = _t_Perfil.Hombre_soltero.isEqual(Perfil);
+  _rl = _op.and(_t_Metros_habitables.muy_pocos.isEqual(Metros_habitables),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Metros_habitables.set(_i_Valoracion_Metros_habitables,_rl, _t_Valoracion_Metros_habitables.muy_mala); _i_Valoracion_Metros_habitables++;
+  _rl = _op.and(_t_Metros_habitables.muy_pocos.isEqual(Metros_habitables),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Metros_habitables.set(_i_Valoracion_Metros_habitables,_rl, _t_Valoracion_Metros_habitables.muy_mala); _i_Valoracion_Metros_habitables++;
+  _rl = _op.and(_t_Metros_habitables.muy_pocos.isEqual(Metros_habitables),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Metros_habitables.set(_i_Valoracion_Metros_habitables,_rl, _t_Valoracion_Metros_habitables.mala); _i_Valoracion_Metros_habitables++;
+  _rl = _op.and(_t_Metros_habitables.muy_pocos.isEqual(Metros_habitables),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Metros_habitables.set(_i_Valoracion_Metros_habitables,_rl, _t_Valoracion_Metros_habitables.mala); _i_Valoracion_Metros_habitables++;
+  _rl = _op.and(_t_Metros_habitables.pocos.isEqual(Metros_habitables),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Metros_habitables.set(_i_Valoracion_Metros_habitables,_rl, _t_Valoracion_Metros_habitables.mala); _i_Valoracion_Metros_habitables++;
+  _rl = _op.and(_t_Metros_habitables.pocos.isEqual(Metros_habitables),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Metros_habitables.set(_i_Valoracion_Metros_habitables,_rl, _t_Valoracion_Metros_habitables.mala); _i_Valoracion_Metros_habitables++;
+  _rl = _op.and(_t_Metros_habitables.pocos.isEqual(Metros_habitables),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Metros_habitables.set(_i_Valoracion_Metros_habitables,_rl, _t_Valoracion_Metros_habitables.regular); _i_Valoracion_Metros_habitables++;
+  _rl = _op.and(_t_Metros_habitables.pocos.isEqual(Metros_habitables),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Metros_habitables.set(_i_Valoracion_Metros_habitables,_rl, _t_Valoracion_Metros_habitables.regular); _i_Valoracion_Metros_habitables++;
+  _rl = _op.and(_t_Metros_habitables.normal.isEqual(Metros_habitables),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Metros_habitables.set(_i_Valoracion_Metros_habitables,_rl, _t_Valoracion_Metros_habitables.regular); _i_Valoracion_Metros_habitables++;
+  _rl = _op.and(_t_Metros_habitables.normal.isEqual(Metros_habitables),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Metros_habitables.set(_i_Valoracion_Metros_habitables,_rl, _t_Valoracion_Metros_habitables.regular); _i_Valoracion_Metros_habitables++;
+  _rl = _op.and(_t_Metros_habitables.normal.isEqual(Metros_habitables),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Metros_habitables.set(_i_Valoracion_Metros_habitables,_rl, _t_Valoracion_Metros_habitables.buena); _i_Valoracion_Metros_habitables++;
+  _rl = _op.and(_t_Metros_habitables.normal.isEqual(Metros_habitables),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Metros_habitables.set(_i_Valoracion_Metros_habitables,_rl, _t_Valoracion_Metros_habitables.regular); _i_Valoracion_Metros_habitables++;
+  _rl = _op.and(_t_Metros_habitables.bastantes.isEqual(Metros_habitables),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Metros_habitables.set(_i_Valoracion_Metros_habitables,_rl, _t_Valoracion_Metros_habitables.buena); _i_Valoracion_Metros_habitables++;
+  _rl = _op.and(_t_Metros_habitables.bastantes.isEqual(Metros_habitables),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Metros_habitables.set(_i_Valoracion_Metros_habitables,_rl, _t_Valoracion_Metros_habitables.muy_buena); _i_Valoracion_Metros_habitables++;
+  _rl = _op.and(_t_Metros_habitables.bastantes.isEqual(Metros_habitables),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Metros_habitables.set(_i_Valoracion_Metros_habitables,_rl, _t_Valoracion_Metros_habitables.buena); _i_Valoracion_Metros_habitables++;
+  _rl = _op.and(_t_Metros_habitables.bastantes.isEqual(Metros_habitables),_t_Perfil.Mujer_soltera.isEqual(Perfil));
   Valoracion_Metros_habitables.set(_i_Valoracion_Metros_habitables,_rl, _t_Valoracion_Metros_habitables.buena); _i_Valoracion_Metros_habitables++;
   MembershipFunction[] _output = new MembershipFunction[1];
   _output[0] = Valoracion_Metros_habitables;
@@ -1484,13 +1830,51 @@ public class valoracionInmuebles implements FuzzyInferenceEngine {
    _input[1] = ((FuzzySingleton) Perfil).getValue();
   OP__default_ _op = new OP__default_();
   OutputMembershipFunction Valoracion_Precio_tasacion = new OutputMembershipFunction();
-  Valoracion_Precio_tasacion.set(1,_op,_input);
+  Valoracion_Precio_tasacion.set(20,_op,_input);
   TP_Precio _t_Precio_tasacion = new TP_Precio();
   TP_Perfil _t_Perfil = new TP_Perfil();
   TP_Valoracion _t_Valoracion_Precio_tasacion = new TP_Valoracion();
   int _i_Valoracion_Precio_tasacion=0;
-  _rl = _t_Perfil.Hombre_soltero.isEqual(Perfil);
+  _rl = _op.and(_t_Precio_tasacion.barato.isEqual(Precio_tasacion),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Precio_tasacion.set(_i_Valoracion_Precio_tasacion,_rl, _t_Valoracion_Precio_tasacion.muy_buena); _i_Valoracion_Precio_tasacion++;
+  _rl = _op.and(_t_Precio_tasacion.barato.isEqual(Precio_tasacion),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
   Valoracion_Precio_tasacion.set(_i_Valoracion_Precio_tasacion,_rl, _t_Valoracion_Precio_tasacion.buena); _i_Valoracion_Precio_tasacion++;
+  _rl = _op.and(_t_Precio_tasacion.barato.isEqual(Precio_tasacion),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Precio_tasacion.set(_i_Valoracion_Precio_tasacion,_rl, _t_Valoracion_Precio_tasacion.muy_buena); _i_Valoracion_Precio_tasacion++;
+  _rl = _op.and(_t_Precio_tasacion.barato.isEqual(Precio_tasacion),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Precio_tasacion.set(_i_Valoracion_Precio_tasacion,_rl, _t_Valoracion_Precio_tasacion.muy_buena); _i_Valoracion_Precio_tasacion++;
+  _rl = _op.and(_t_Precio_tasacion.poco_barato.isEqual(Precio_tasacion),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Precio_tasacion.set(_i_Valoracion_Precio_tasacion,_rl, _t_Valoracion_Precio_tasacion.muy_buena); _i_Valoracion_Precio_tasacion++;
+  _rl = _op.and(_t_Precio_tasacion.poco_barato.isEqual(Precio_tasacion),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Precio_tasacion.set(_i_Valoracion_Precio_tasacion,_rl, _t_Valoracion_Precio_tasacion.regular); _i_Valoracion_Precio_tasacion++;
+  _rl = _op.and(_t_Precio_tasacion.poco_barato.isEqual(Precio_tasacion),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Precio_tasacion.set(_i_Valoracion_Precio_tasacion,_rl, _t_Valoracion_Precio_tasacion.buena); _i_Valoracion_Precio_tasacion++;
+  _rl = _op.and(_t_Precio_tasacion.poco_barato.isEqual(Precio_tasacion),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Precio_tasacion.set(_i_Valoracion_Precio_tasacion,_rl, _t_Valoracion_Precio_tasacion.buena); _i_Valoracion_Precio_tasacion++;
+  _rl = _op.and(_t_Precio_tasacion.normal.isEqual(Precio_tasacion),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Precio_tasacion.set(_i_Valoracion_Precio_tasacion,_rl, _t_Valoracion_Precio_tasacion.buena); _i_Valoracion_Precio_tasacion++;
+  _rl = _op.and(_t_Precio_tasacion.normal.isEqual(Precio_tasacion),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Precio_tasacion.set(_i_Valoracion_Precio_tasacion,_rl, _t_Valoracion_Precio_tasacion.buena); _i_Valoracion_Precio_tasacion++;
+  _rl = _op.and(_t_Precio_tasacion.normal.isEqual(Precio_tasacion),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Precio_tasacion.set(_i_Valoracion_Precio_tasacion,_rl, _t_Valoracion_Precio_tasacion.regular); _i_Valoracion_Precio_tasacion++;
+  _rl = _op.and(_t_Precio_tasacion.normal.isEqual(Precio_tasacion),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Precio_tasacion.set(_i_Valoracion_Precio_tasacion,_rl, _t_Valoracion_Precio_tasacion.regular); _i_Valoracion_Precio_tasacion++;
+  _rl = _op.and(_t_Precio_tasacion.caro.isEqual(Precio_tasacion),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Precio_tasacion.set(_i_Valoracion_Precio_tasacion,_rl, _t_Valoracion_Precio_tasacion.mala); _i_Valoracion_Precio_tasacion++;
+  _rl = _op.and(_t_Precio_tasacion.caro.isEqual(Precio_tasacion),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Precio_tasacion.set(_i_Valoracion_Precio_tasacion,_rl, _t_Valoracion_Precio_tasacion.mala); _i_Valoracion_Precio_tasacion++;
+  _rl = _op.and(_t_Precio_tasacion.caro.isEqual(Precio_tasacion),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Precio_tasacion.set(_i_Valoracion_Precio_tasacion,_rl, _t_Valoracion_Precio_tasacion.mala); _i_Valoracion_Precio_tasacion++;
+  _rl = _op.and(_t_Precio_tasacion.caro.isEqual(Precio_tasacion),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Precio_tasacion.set(_i_Valoracion_Precio_tasacion,_rl, _t_Valoracion_Precio_tasacion.mala); _i_Valoracion_Precio_tasacion++;
+  _rl = _op.and(_t_Precio_tasacion.muy_caro.isEqual(Precio_tasacion),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Precio_tasacion.set(_i_Valoracion_Precio_tasacion,_rl, _t_Valoracion_Precio_tasacion.muy_mala); _i_Valoracion_Precio_tasacion++;
+  _rl = _op.and(_t_Precio_tasacion.muy_caro.isEqual(Precio_tasacion),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Precio_tasacion.set(_i_Valoracion_Precio_tasacion,_rl, _t_Valoracion_Precio_tasacion.muy_mala); _i_Valoracion_Precio_tasacion++;
+  _rl = _op.and(_t_Precio_tasacion.muy_caro.isEqual(Precio_tasacion),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Precio_tasacion.set(_i_Valoracion_Precio_tasacion,_rl, _t_Valoracion_Precio_tasacion.muy_mala); _i_Valoracion_Precio_tasacion++;
+  _rl = _op.and(_t_Precio_tasacion.muy_caro.isEqual(Precio_tasacion),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Precio_tasacion.set(_i_Valoracion_Precio_tasacion,_rl, _t_Valoracion_Precio_tasacion.muy_mala); _i_Valoracion_Precio_tasacion++;
   MembershipFunction[] _output = new MembershipFunction[1];
   _output[0] = Valoracion_Precio_tasacion;
   return _output;
@@ -1509,13 +1893,51 @@ public class valoracionInmuebles implements FuzzyInferenceEngine {
    _input[1] = ((FuzzySingleton) Perfil).getValue();
   OP__default_ _op = new OP__default_();
   OutputMembershipFunction Valoracion_Precio_salida = new OutputMembershipFunction();
-  Valoracion_Precio_salida.set(1,_op,_input);
+  Valoracion_Precio_salida.set(20,_op,_input);
   TP_Precio _t_Precio_salida = new TP_Precio();
   TP_Perfil _t_Perfil = new TP_Perfil();
   TP_Valoracion _t_Valoracion_Precio_salida = new TP_Valoracion();
   int _i_Valoracion_Precio_salida=0;
-  _rl = _t_Perfil.Hombre_soltero.isEqual(Perfil);
+  _rl = _op.and(_t_Precio_salida.barato.isEqual(Precio_salida),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.mala); _i_Valoracion_Precio_salida++;
+  _rl = _op.and(_t_Precio_salida.barato.isEqual(Precio_salida),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.mala); _i_Valoracion_Precio_salida++;
+  _rl = _op.and(_t_Precio_salida.barato.isEqual(Precio_salida),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.mala); _i_Valoracion_Precio_salida++;
+  _rl = _op.and(_t_Precio_salida.barato.isEqual(Precio_salida),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.mala); _i_Valoracion_Precio_salida++;
+  _rl = _op.and(_t_Precio_salida.poco_barato.isEqual(Precio_salida),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.regular); _i_Valoracion_Precio_salida++;
+  _rl = _op.and(_t_Precio_salida.poco_barato.isEqual(Precio_salida),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.regular); _i_Valoracion_Precio_salida++;
+  _rl = _op.and(_t_Precio_salida.poco_barato.isEqual(Precio_salida),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.regular); _i_Valoracion_Precio_salida++;
+  _rl = _op.and(_t_Precio_salida.poco_barato.isEqual(Precio_salida),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.regular); _i_Valoracion_Precio_salida++;
+  _rl = _op.and(_t_Precio_salida.normal.isEqual(Precio_salida),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.regular); _i_Valoracion_Precio_salida++;
+  _rl = _op.and(_t_Precio_salida.normal.isEqual(Precio_salida),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
   Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.buena); _i_Valoracion_Precio_salida++;
+  _rl = _op.and(_t_Precio_salida.normal.isEqual(Precio_salida),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.buena); _i_Valoracion_Precio_salida++;
+  _rl = _op.and(_t_Precio_salida.normal.isEqual(Precio_salida),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.regular); _i_Valoracion_Precio_salida++;
+  _rl = _op.and(_t_Precio_salida.caro.isEqual(Precio_salida),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.buena); _i_Valoracion_Precio_salida++;
+  _rl = _op.and(_t_Precio_salida.caro.isEqual(Precio_salida),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.buena); _i_Valoracion_Precio_salida++;
+  _rl = _op.and(_t_Precio_salida.caro.isEqual(Precio_salida),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.buena); _i_Valoracion_Precio_salida++;
+  _rl = _op.and(_t_Precio_salida.caro.isEqual(Precio_salida),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.buena); _i_Valoracion_Precio_salida++;
+  _rl = _op.and(_t_Precio_salida.muy_caro.isEqual(Precio_salida),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.muy_buena); _i_Valoracion_Precio_salida++;
+  _rl = _op.and(_t_Precio_salida.muy_caro.isEqual(Precio_salida),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.buena); _i_Valoracion_Precio_salida++;
+  _rl = _op.and(_t_Precio_salida.muy_caro.isEqual(Precio_salida),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.muy_buena); _i_Valoracion_Precio_salida++;
+  _rl = _op.and(_t_Precio_salida.muy_caro.isEqual(Precio_salida),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.muy_buena); _i_Valoracion_Precio_salida++;
   MembershipFunction[] _output = new MembershipFunction[1];
   _output[0] = Valoracion_Precio_salida;
   return _output;
@@ -1534,128 +1956,53 @@ public class valoracionInmuebles implements FuzzyInferenceEngine {
    _input[1] = ((FuzzySingleton) Perfil).getValue();
   OP__default_ _op = new OP__default_();
   OutputMembershipFunction Valoracion_Precio_venta = new OutputMembershipFunction();
-  Valoracion_Precio_venta.set(1,_op,_input);
+  Valoracion_Precio_venta.set(20,_op,_input);
   TP_Precio _t_Precio_venta = new TP_Precio();
   TP_Perfil _t_Perfil = new TP_Perfil();
   TP_Valoracion _t_Valoracion_Precio_venta = new TP_Valoracion();
   int _i_Valoracion_Precio_venta=0;
-  _rl = _t_Perfil.Hombre_soltero.isEqual(Perfil);
+  _rl = _op.and(_t_Precio_venta.barato.isEqual(Precio_venta),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.mala); _i_Valoracion_Precio_venta++;
+  _rl = _op.and(_t_Precio_venta.barato.isEqual(Precio_venta),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.mala); _i_Valoracion_Precio_venta++;
+  _rl = _op.and(_t_Precio_venta.barato.isEqual(Precio_venta),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.mala); _i_Valoracion_Precio_venta++;
+  _rl = _op.and(_t_Precio_venta.barato.isEqual(Precio_venta),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.mala); _i_Valoracion_Precio_venta++;
+  _rl = _op.and(_t_Precio_venta.poco_barato.isEqual(Precio_venta),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.regular); _i_Valoracion_Precio_venta++;
+  _rl = _op.and(_t_Precio_venta.poco_barato.isEqual(Precio_venta),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.mala); _i_Valoracion_Precio_venta++;
+  _rl = _op.and(_t_Precio_venta.poco_barato.isEqual(Precio_venta),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.mala); _i_Valoracion_Precio_venta++;
+  _rl = _op.and(_t_Precio_venta.poco_barato.isEqual(Precio_venta),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.mala); _i_Valoracion_Precio_venta++;
+  _rl = _op.and(_t_Precio_venta.normal.isEqual(Precio_venta),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.regular); _i_Valoracion_Precio_venta++;
+  _rl = _op.and(_t_Precio_venta.normal.isEqual(Precio_venta),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.regular); _i_Valoracion_Precio_venta++;
+  _rl = _op.and(_t_Precio_venta.normal.isEqual(Precio_venta),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.regular); _i_Valoracion_Precio_venta++;
+  _rl = _op.and(_t_Precio_venta.normal.isEqual(Precio_venta),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.regular); _i_Valoracion_Precio_venta++;
+  _rl = _op.and(_t_Precio_venta.caro.isEqual(Precio_venta),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.buena); _i_Valoracion_Precio_venta++;
+  _rl = _op.and(_t_Precio_venta.caro.isEqual(Precio_venta),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.regular); _i_Valoracion_Precio_venta++;
+  _rl = _op.and(_t_Precio_venta.caro.isEqual(Precio_venta),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.regular); _i_Valoracion_Precio_venta++;
+  _rl = _op.and(_t_Precio_venta.caro.isEqual(Precio_venta),_t_Perfil.Mujer_soltera.isEqual(Perfil));
+  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.mala); _i_Valoracion_Precio_venta++;
+  _rl = _op.and(_t_Precio_venta.muy_caro.isEqual(Precio_venta),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
+  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.buena); _i_Valoracion_Precio_venta++;
+  _rl = _op.and(_t_Precio_venta.muy_caro.isEqual(Precio_venta),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
+  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.buena); _i_Valoracion_Precio_venta++;
+  _rl = _op.and(_t_Precio_venta.muy_caro.isEqual(Precio_venta),_t_Perfil.Hombre_soltero.isEqual(Perfil));
+  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.buena); _i_Valoracion_Precio_venta++;
+  _rl = _op.and(_t_Precio_venta.muy_caro.isEqual(Precio_venta),_t_Perfil.Mujer_soltera.isEqual(Perfil));
   Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.buena); _i_Valoracion_Precio_venta++;
   MembershipFunction[] _output = new MembershipFunction[1];
   _output[0] = Valoracion_Precio_venta;
-  return _output;
- }
-
- //+++++++++++++++++++++++++++++++++++++++++++++++++++++//
- //  Rulebase RL_Inferencia_Semanas_oferta  //
- //+++++++++++++++++++++++++++++++++++++++++++++++++++++//
-
- private MembershipFunction[] RL_Inferencia_Semanas_oferta(MembershipFunction Semanas_oferta, MembershipFunction Perfil) {
-  double _rl;
-  double _input[] = new double[2];
-  if(Semanas_oferta instanceof FuzzySingleton)
-   _input[0] = ((FuzzySingleton) Semanas_oferta).getValue();
-  if(Perfil instanceof FuzzySingleton)
-   _input[1] = ((FuzzySingleton) Perfil).getValue();
-  OP__default_ _op = new OP__default_();
-  OutputMembershipFunction Valoracion_semanas_oferta = new OutputMembershipFunction();
-  Valoracion_semanas_oferta.set(1,_op,_input);
-  TP_Valoracion _t_Semanas_oferta = new TP_Valoracion();
-  TP_Perfil _t_Perfil = new TP_Perfil();
-  TP_Valoracion _t_Valoracion_semanas_oferta = new TP_Valoracion();
-  int _i_Valoracion_semanas_oferta=0;
-  _rl = _t_Perfil.Hombre_soltero.isEqual(Perfil);
-  Valoracion_semanas_oferta.set(_i_Valoracion_semanas_oferta,_rl, _t_Valoracion_semanas_oferta.buena); _i_Valoracion_semanas_oferta++;
-  MembershipFunction[] _output = new MembershipFunction[1];
-  _output[0] = Valoracion_semanas_oferta;
-  return _output;
- }
-
- //+++++++++++++++++++++++++++++++++++++++++++++++++++++//
- //  Rulebase RL_Inferencia_Valoracion_experto  //
- //+++++++++++++++++++++++++++++++++++++++++++++++++++++//
-
- private MembershipFunction[] RL_Inferencia_Valoracion_experto(MembershipFunction Valoracion_experto, MembershipFunction Perfil) {
-  double _rl;
-  double _input[] = new double[2];
-  if(Valoracion_experto instanceof FuzzySingleton)
-   _input[0] = ((FuzzySingleton) Valoracion_experto).getValue();
-  if(Perfil instanceof FuzzySingleton)
-   _input[1] = ((FuzzySingleton) Perfil).getValue();
-  OP__default_ _op = new OP__default_();
-  OutputMembershipFunction Valoracion_Valoracion_experto = new OutputMembershipFunction();
-  Valoracion_Valoracion_experto.set(20,_op,_input);
-  TP_Valoracion _t_Valoracion_experto = new TP_Valoracion();
-  TP_Perfil _t_Perfil = new TP_Perfil();
-  TP_Valoracion _t_Valoracion_Valoracion_experto = new TP_Valoracion();
-  int _i_Valoracion_Valoracion_experto=0;
-  _rl = _op.and(_t_Valoracion_experto.muy_mala.isEqual(Valoracion_experto),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
-  Valoracion_Valoracion_experto.set(_i_Valoracion_Valoracion_experto,_rl, _t_Valoracion_Valoracion_experto.muy_mala); _i_Valoracion_Valoracion_experto++;
-  _rl = _op.and(_t_Valoracion_experto.muy_mala.isEqual(Valoracion_experto),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
-  Valoracion_Valoracion_experto.set(_i_Valoracion_Valoracion_experto,_rl, _t_Valoracion_Valoracion_experto.mala); _i_Valoracion_Valoracion_experto++;
-  _rl = _op.and(_t_Valoracion_experto.muy_mala.isEqual(Valoracion_experto),_t_Perfil.Hombre_soltero.isEqual(Perfil));
-  Valoracion_Valoracion_experto.set(_i_Valoracion_Valoracion_experto,_rl, _t_Valoracion_Valoracion_experto.muy_mala); _i_Valoracion_Valoracion_experto++;
-  _rl = _op.and(_t_Valoracion_experto.muy_mala.isEqual(Valoracion_experto),_t_Perfil.Mujer_soltera.isEqual(Perfil));
-  Valoracion_Valoracion_experto.set(_i_Valoracion_Valoracion_experto,_rl, _t_Valoracion_Valoracion_experto.mala); _i_Valoracion_Valoracion_experto++;
-  _rl = _op.and(_t_Valoracion_experto.mala.isEqual(Valoracion_experto),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
-  Valoracion_Valoracion_experto.set(_i_Valoracion_Valoracion_experto,_rl, _t_Valoracion_Valoracion_experto.mala); _i_Valoracion_Valoracion_experto++;
-  _rl = _op.and(_t_Valoracion_experto.mala.isEqual(Valoracion_experto),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
-  Valoracion_Valoracion_experto.set(_i_Valoracion_Valoracion_experto,_rl, _t_Valoracion_Valoracion_experto.regular); _i_Valoracion_Valoracion_experto++;
-  _rl = _op.and(_t_Valoracion_experto.mala.isEqual(Valoracion_experto),_t_Perfil.Hombre_soltero.isEqual(Perfil));
-  Valoracion_Valoracion_experto.set(_i_Valoracion_Valoracion_experto,_rl, _t_Valoracion_Valoracion_experto.mala); _i_Valoracion_Valoracion_experto++;
-  _rl = _op.and(_t_Valoracion_experto.mala.isEqual(Valoracion_experto),_t_Perfil.Mujer_soltera.isEqual(Perfil));
-  Valoracion_Valoracion_experto.set(_i_Valoracion_Valoracion_experto,_rl, _t_Valoracion_Valoracion_experto.regular); _i_Valoracion_Valoracion_experto++;
-  _rl = _op.and(_t_Valoracion_experto.regular.isEqual(Valoracion_experto),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
-  Valoracion_Valoracion_experto.set(_i_Valoracion_Valoracion_experto,_rl, _t_Valoracion_Valoracion_experto.regular); _i_Valoracion_Valoracion_experto++;
-  _rl = _op.and(_t_Valoracion_experto.regular.isEqual(Valoracion_experto),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
-  Valoracion_Valoracion_experto.set(_i_Valoracion_Valoracion_experto,_rl, _t_Valoracion_Valoracion_experto.regular); _i_Valoracion_Valoracion_experto++;
-  _rl = _op.and(_t_Valoracion_experto.regular.isEqual(Valoracion_experto),_t_Perfil.Hombre_soltero.isEqual(Perfil));
-  Valoracion_Valoracion_experto.set(_i_Valoracion_Valoracion_experto,_rl, _t_Valoracion_Valoracion_experto.regular); _i_Valoracion_Valoracion_experto++;
-  _rl = _op.and(_t_Valoracion_experto.regular.isEqual(Valoracion_experto),_t_Perfil.Mujer_soltera.isEqual(Perfil));
-  Valoracion_Valoracion_experto.set(_i_Valoracion_Valoracion_experto,_rl, _t_Valoracion_Valoracion_experto.regular); _i_Valoracion_Valoracion_experto++;
-  _rl = _op.and(_t_Valoracion_experto.buena.isEqual(Valoracion_experto),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
-  Valoracion_Valoracion_experto.set(_i_Valoracion_Valoracion_experto,_rl, _t_Valoracion_Valoracion_experto.buena); _i_Valoracion_Valoracion_experto++;
-  _rl = _op.and(_t_Valoracion_experto.buena.isEqual(Valoracion_experto),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
-  Valoracion_Valoracion_experto.set(_i_Valoracion_Valoracion_experto,_rl, _t_Valoracion_Valoracion_experto.buena); _i_Valoracion_Valoracion_experto++;
-  _rl = _op.and(_t_Valoracion_experto.buena.isEqual(Valoracion_experto),_t_Perfil.Hombre_soltero.isEqual(Perfil));
-  Valoracion_Valoracion_experto.set(_i_Valoracion_Valoracion_experto,_rl, _t_Valoracion_Valoracion_experto.buena); _i_Valoracion_Valoracion_experto++;
-  _rl = _op.and(_t_Valoracion_experto.buena.isEqual(Valoracion_experto),_t_Perfil.Mujer_soltera.isEqual(Perfil));
-  Valoracion_Valoracion_experto.set(_i_Valoracion_Valoracion_experto,_rl, _t_Valoracion_Valoracion_experto.buena); _i_Valoracion_Valoracion_experto++;
-  _rl = _op.and(_t_Valoracion_experto.muy_buena.isEqual(Valoracion_experto),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
-  Valoracion_Valoracion_experto.set(_i_Valoracion_Valoracion_experto,_rl, _t_Valoracion_Valoracion_experto.muy_buena); _i_Valoracion_Valoracion_experto++;
-  _rl = _op.and(_t_Valoracion_experto.muy_buena.isEqual(Valoracion_experto),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
-  Valoracion_Valoracion_experto.set(_i_Valoracion_Valoracion_experto,_rl, _t_Valoracion_Valoracion_experto.buena); _i_Valoracion_Valoracion_experto++;
-  _rl = _op.and(_t_Valoracion_experto.muy_buena.isEqual(Valoracion_experto),_t_Perfil.Hombre_soltero.isEqual(Perfil));
-  Valoracion_Valoracion_experto.set(_i_Valoracion_Valoracion_experto,_rl, _t_Valoracion_Valoracion_experto.muy_buena); _i_Valoracion_Valoracion_experto++;
-  _rl = _op.and(_t_Valoracion_experto.muy_buena.isEqual(Valoracion_experto),_t_Perfil.Mujer_soltera.isEqual(Perfil));
-  Valoracion_Valoracion_experto.set(_i_Valoracion_Valoracion_experto,_rl, _t_Valoracion_Valoracion_experto.buena); _i_Valoracion_Valoracion_experto++;
-  MembershipFunction[] _output = new MembershipFunction[1];
-  _output[0] = Valoracion_Valoracion_experto;
-  return _output;
- }
-
- //+++++++++++++++++++++++++++++++++++++++++++++++++++++//
- //  Rulebase RL_Inferencia_Observaciones  //
- //+++++++++++++++++++++++++++++++++++++++++++++++++++++//
-
- private MembershipFunction[] RL_Inferencia_Observaciones(MembershipFunction observaciones, MembershipFunction Perfil) {
-  double _rl;
-  double _input[] = new double[2];
-  if(observaciones instanceof FuzzySingleton)
-   _input[0] = ((FuzzySingleton) observaciones).getValue();
-  if(Perfil instanceof FuzzySingleton)
-   _input[1] = ((FuzzySingleton) Perfil).getValue();
-  OP__default_ _op = new OP__default_();
-  OutputMembershipFunction Valoracion_observaciones = new OutputMembershipFunction();
-  Valoracion_observaciones.set(1,_op,_input);
-  TP_Valoracion _t_observaciones = new TP_Valoracion();
-  TP_Perfil _t_Perfil = new TP_Perfil();
-  TP_Valoracion _t_Valoracion_observaciones = new TP_Valoracion();
-  int _i_Valoracion_observaciones=0;
-  _rl = _t_Perfil.Hombre_soltero.isEqual(Perfil);
-  Valoracion_observaciones.set(_i_Valoracion_observaciones,_rl, _t_Valoracion_observaciones.buena); _i_Valoracion_observaciones++;
-  MembershipFunction[] _output = new MembershipFunction[1];
-  _output[0] = Valoracion_observaciones;
   return _output;
  }
 
@@ -1685,40 +2032,28 @@ public class valoracionInmuebles implements FuzzyInferenceEngine {
   MembershipFunction Precio_tasacion = new FuzzySingleton(_input[18]);
   MembershipFunction Precio_salida = new FuzzySingleton(_input[19]);
   MembershipFunction Precio_venta = new FuzzySingleton(_input[20]);
-  MembershipFunction Semanas_oferta = new FuzzySingleton(_input[21]);
-  MembershipFunction Valoracion_Experto = new FuzzySingleton(_input[22]);
-  MembershipFunction Observaciones = new FuzzySingleton(_input[23]);
-  MembershipFunction Perfil = new FuzzySingleton(_input[24]);
-  MembershipFunction Valoracion_de_tipo_inmueble =  null;
-  MembershipFunction Valoracion_luminosidad = null;
-  MembershipFunction Valoracion_orientacion = null;
-  MembershipFunction Valoracion_representatividad = null;
-  MembershipFunction Valoracion_Estado_del_portal = null;
-  MembershipFunction Valoracion_Fachada = null;
-  MembershipFunction Valoracion_Vistas = null;
-  MembershipFunction Valoracion_Numero_habitaciones = null;
-  MembershipFunction Valoracion_Numero_banos = null;
-  MembershipFunction Valoracion_Antiguedad = null;
-  MembershipFunction Valoracion_Altura = null;
-  MembershipFunction Valoracion_Ascensor = null;
-  MembershipFunction Valoracion_Garaje = null;
-  MembershipFunction Valoracion_Estado_general = null;
-  MembershipFunction Valoracion_Zonas_comunes = null;
-  MembershipFunction Valoracion_zona_subzona = null;
-  MembershipFunction Valoracion_Metros_construidos = null;
-  MembershipFunction Valoracion_Metros_Habitables = null;
-  MembershipFunction Valoracion_Precio_tasacion = null;
-  MembershipFunction Valoracion_Precio_salida = null;
-  MembershipFunction Valoracion_Precio_venta = null;
-  MembershipFunction Valoracion_semanas_oferta = null;
-  MembershipFunction Valoracion_Valoracion_Experto = null;
-  MembershipFunction Valoracion_observaciones = null;
-  MembershipFunction Valoracion_Tipo_inmueble = null;
-  MembershipFunction Valoracion_Luminosidad = null;
-  MembershipFunction Valoracion_Orientacion = null;
-  MembershipFunction Valoracion_Representatividad = null;
-  MembershipFunction Valoracion_Zona_subzona = null;
-  MembershipFunction Valoracion_Observaciones = null;
+  MembershipFunction Perfil = new FuzzySingleton(_input[21]);
+  MembershipFunction Valoracion_Tipo_inmueble;
+  MembershipFunction Valoracion_Luminosidad;
+  MembershipFunction Valoracion_Orientacion;
+  MembershipFunction Valoracion_Representatividad;
+  MembershipFunction Valoracion_Estado_del_portal;
+  MembershipFunction Valoracion_Fachada;
+  MembershipFunction Valoracion_Vistas;
+  MembershipFunction Valoracion_Numero_habitaciones;
+  MembershipFunction Valoracion_Numero_banos;
+  MembershipFunction Valoracion_Antiguedad;
+  MembershipFunction Valoracion_Altura;
+  MembershipFunction Valoracion_Ascensor;
+  MembershipFunction Valoracion_Garaje;
+  MembershipFunction Valoracion_Estado_general;
+  MembershipFunction Valoracion_Zonas_comunes;
+  MembershipFunction Valoracion_Zona_subzona;
+  MembershipFunction Valoracion_Metros_construidos;
+  MembershipFunction Valoracion_Metros_habitables;
+  MembershipFunction Valoracion_Precio_tasacion;
+  MembershipFunction Valoracion_Precio_salida;
+  MembershipFunction Valoracion_Precio_venta;
   MembershipFunction[] _call;
   _call = RL_Inferencia_Tipo_inmueble(Tipo_inmueble,Perfil); Valoracion_Tipo_inmueble=_call[0];
   _call = RL_Inferencia_Luminosidad(Luminosidad,Perfil); Valoracion_Luminosidad=_call[0];
@@ -1737,26 +2072,23 @@ public class valoracionInmuebles implements FuzzyInferenceEngine {
   _call = RL_Inferencia_Zonas_comunes(Zonas_comunes,Perfil); Valoracion_Zonas_comunes=_call[0];
   _call = RL_Inferencia_Zona_subzona(Zona_subzona,Perfil); Valoracion_Zona_subzona=_call[0];
   _call = RL_Inferencia_Metros_construidos(Metros_construidos,Perfil); Valoracion_Metros_construidos=_call[0];
-  _call = RL_Inferencia_Metros_habitables(Metros_habitables,Perfil); Valoracion_Metros_Habitables=_call[0];
+  _call = RL_Inferencia_Metros_habitables(Metros_habitables,Perfil); Valoracion_Metros_habitables=_call[0];
   _call = RL_Inferencia_Precio_tasacion(Precio_tasacion,Perfil); Valoracion_Precio_tasacion=_call[0];
   _call = RL_Inferencia_Precio_salida(Precio_salida,Perfil); Valoracion_Precio_salida=_call[0];
   _call = RL_Inferencia_Precio_venta(Precio_venta,Perfil); Valoracion_Precio_venta=_call[0];
-  _call = RL_Inferencia_Semanas_oferta(Semanas_oferta,Perfil); Valoracion_semanas_oferta=_call[0];
-  _call = RL_Inferencia_Valoracion_experto(Valoracion_Experto,Perfil); Valoracion_Valoracion_Experto=_call[0];
-  _call = RL_Inferencia_Observaciones(Observaciones,Perfil); Valoracion_Observaciones=_call[0];
-  double _output[] = new double[24];
-  if(Valoracion_de_tipo_inmueble instanceof FuzzySingleton)
-   _output[0] = ((FuzzySingleton) Valoracion_de_tipo_inmueble).getValue();
-  else _output[0] = ((OutputMembershipFunction) Valoracion_de_tipo_inmueble).defuzzify();
-  if(Valoracion_luminosidad instanceof FuzzySingleton)
-   _output[1] = ((FuzzySingleton) Valoracion_luminosidad).getValue();
-  else _output[1] = ((OutputMembershipFunction) Valoracion_luminosidad).defuzzify();
-  if(Valoracion_orientacion instanceof FuzzySingleton)
-   _output[2] = ((FuzzySingleton) Valoracion_orientacion).getValue();
-  else _output[2] = ((OutputMembershipFunction) Valoracion_orientacion).defuzzify();
-  if(Valoracion_representatividad instanceof FuzzySingleton)
-   _output[3] = ((FuzzySingleton) Valoracion_representatividad).getValue();
-  else _output[3] = ((OutputMembershipFunction) Valoracion_representatividad).defuzzify();
+  double _output[] = new double[21];
+  if(Valoracion_Tipo_inmueble instanceof FuzzySingleton)
+   _output[0] = ((FuzzySingleton) Valoracion_Tipo_inmueble).getValue();
+  else _output[0] = ((OutputMembershipFunction) Valoracion_Tipo_inmueble).defuzzify();
+  if(Valoracion_Luminosidad instanceof FuzzySingleton)
+   _output[1] = ((FuzzySingleton) Valoracion_Luminosidad).getValue();
+  else _output[1] = ((OutputMembershipFunction) Valoracion_Luminosidad).defuzzify();
+  if(Valoracion_Orientacion instanceof FuzzySingleton)
+   _output[2] = ((FuzzySingleton) Valoracion_Orientacion).getValue();
+  else _output[2] = ((OutputMembershipFunction) Valoracion_Orientacion).defuzzify();
+  if(Valoracion_Representatividad instanceof FuzzySingleton)
+   _output[3] = ((FuzzySingleton) Valoracion_Representatividad).getValue();
+  else _output[3] = ((OutputMembershipFunction) Valoracion_Representatividad).defuzzify();
   if(Valoracion_Estado_del_portal instanceof FuzzySingleton)
    _output[4] = ((FuzzySingleton) Valoracion_Estado_del_portal).getValue();
   else _output[4] = ((OutputMembershipFunction) Valoracion_Estado_del_portal).defuzzify();
@@ -1790,15 +2122,15 @@ public class valoracionInmuebles implements FuzzyInferenceEngine {
   if(Valoracion_Zonas_comunes instanceof FuzzySingleton)
    _output[14] = ((FuzzySingleton) Valoracion_Zonas_comunes).getValue();
   else _output[14] = ((OutputMembershipFunction) Valoracion_Zonas_comunes).defuzzify();
-  if(Valoracion_zona_subzona instanceof FuzzySingleton)
-   _output[15] = ((FuzzySingleton) Valoracion_zona_subzona).getValue();
-  else _output[15] = ((OutputMembershipFunction) Valoracion_zona_subzona).defuzzify();
+  if(Valoracion_Zona_subzona instanceof FuzzySingleton)
+   _output[15] = ((FuzzySingleton) Valoracion_Zona_subzona).getValue();
+  else _output[15] = ((OutputMembershipFunction) Valoracion_Zona_subzona).defuzzify();
   if(Valoracion_Metros_construidos instanceof FuzzySingleton)
    _output[16] = ((FuzzySingleton) Valoracion_Metros_construidos).getValue();
   else _output[16] = ((OutputMembershipFunction) Valoracion_Metros_construidos).defuzzify();
-  if(Valoracion_Metros_Habitables instanceof FuzzySingleton)
-   _output[17] = ((FuzzySingleton) Valoracion_Metros_Habitables).getValue();
-  else _output[17] = ((OutputMembershipFunction) Valoracion_Metros_Habitables).defuzzify();
+  if(Valoracion_Metros_habitables instanceof FuzzySingleton)
+   _output[17] = ((FuzzySingleton) Valoracion_Metros_habitables).getValue();
+  else _output[17] = ((OutputMembershipFunction) Valoracion_Metros_habitables).defuzzify();
   if(Valoracion_Precio_tasacion instanceof FuzzySingleton)
    _output[18] = ((FuzzySingleton) Valoracion_Precio_tasacion).getValue();
   else _output[18] = ((OutputMembershipFunction) Valoracion_Precio_tasacion).defuzzify();
@@ -1808,15 +2140,6 @@ public class valoracionInmuebles implements FuzzyInferenceEngine {
   if(Valoracion_Precio_venta instanceof FuzzySingleton)
    _output[20] = ((FuzzySingleton) Valoracion_Precio_venta).getValue();
   else _output[20] = ((OutputMembershipFunction) Valoracion_Precio_venta).defuzzify();
-  if(Valoracion_semanas_oferta instanceof FuzzySingleton)
-   _output[21] = ((FuzzySingleton) Valoracion_semanas_oferta).getValue();
-  else _output[21] = ((OutputMembershipFunction) Valoracion_semanas_oferta).defuzzify();
-  if(Valoracion_Valoracion_Experto instanceof FuzzySingleton)
-   _output[22] = ((FuzzySingleton) Valoracion_Valoracion_Experto).getValue();
-  else _output[22] = ((OutputMembershipFunction) Valoracion_Valoracion_Experto).defuzzify();
-  if(Valoracion_observaciones instanceof FuzzySingleton)
-   _output[23] = ((FuzzySingleton) Valoracion_observaciones).getValue();
-  else _output[23] = ((OutputMembershipFunction) Valoracion_observaciones).defuzzify();
   return _output;
  }
 
@@ -1842,40 +2165,28 @@ public class valoracionInmuebles implements FuzzyInferenceEngine {
   MembershipFunction Precio_tasacion = _input[18];
   MembershipFunction Precio_salida = _input[19];
   MembershipFunction Precio_venta = _input[20];
-  MembershipFunction Semanas_oferta = _input[21];
-  MembershipFunction Valoracion_Experto = _input[22];
-  MembershipFunction Observaciones = _input[23];
-  MembershipFunction Perfil = _input[24];
-  MembershipFunction Valoracion_de_tipo_inmueble = null;
-  MembershipFunction Valoracion_luminosidad= null;
-  MembershipFunction Valoracion_orientacion= null;
-  MembershipFunction Valoracion_representatividad= null;
-  MembershipFunction Valoracion_Estado_del_portal= null;
-  MembershipFunction Valoracion_Fachada= null;
-  MembershipFunction Valoracion_Vistas= null;
-  MembershipFunction Valoracion_Numero_habitaciones= null;
-  MembershipFunction Valoracion_Numero_banos= null;
-  MembershipFunction Valoracion_Antiguedad= null;
-  MembershipFunction Valoracion_Altura= null;
-  MembershipFunction Valoracion_Ascensor= null;
-  MembershipFunction Valoracion_Garaje= null;
-  MembershipFunction Valoracion_Estado_general= null;
-  MembershipFunction Valoracion_Zonas_comunes= null;
-  MembershipFunction Valoracion_zona_subzona= null;
-  MembershipFunction Valoracion_Metros_construidos= null;
-  MembershipFunction Valoracion_Metros_Habitables= null;
-  MembershipFunction Valoracion_Precio_tasacion= null;
-  MembershipFunction Valoracion_Precio_salida= null;
-  MembershipFunction Valoracion_Precio_venta= null;
-  MembershipFunction Valoracion_semanas_oferta= null;
-  MembershipFunction Valoracion_Valoracion_Experto= null;
-  MembershipFunction Valoracion_observaciones= null;
-  MembershipFunction Valoracion_Tipo_inmueble= null;
-  MembershipFunction Valoracion_Luminosidad= null;
-  MembershipFunction Valoracion_Orientacion= null;
-  MembershipFunction Valoracion_Representatividad= null;
-  MembershipFunction Valoracion_Zona_subzona= null;
-  MembershipFunction Valoracion_Observaciones= null;
+  MembershipFunction Perfil = _input[21];
+  MembershipFunction Valoracion_Tipo_inmueble;
+  MembershipFunction Valoracion_Luminosidad;
+  MembershipFunction Valoracion_Orientacion;
+  MembershipFunction Valoracion_Representatividad;
+  MembershipFunction Valoracion_Estado_del_portal;
+  MembershipFunction Valoracion_Fachada;
+  MembershipFunction Valoracion_Vistas;
+  MembershipFunction Valoracion_Numero_habitaciones;
+  MembershipFunction Valoracion_Numero_banos;
+  MembershipFunction Valoracion_Antiguedad;
+  MembershipFunction Valoracion_Altura;
+  MembershipFunction Valoracion_Ascensor;
+  MembershipFunction Valoracion_Garaje;
+  MembershipFunction Valoracion_Estado_general;
+  MembershipFunction Valoracion_Zonas_comunes;
+  MembershipFunction Valoracion_Zona_subzona;
+  MembershipFunction Valoracion_Metros_construidos;
+  MembershipFunction Valoracion_Metros_habitables;
+  MembershipFunction Valoracion_Precio_tasacion;
+  MembershipFunction Valoracion_Precio_salida;
+  MembershipFunction Valoracion_Precio_venta;
   MembershipFunction[] _call;
   _call = RL_Inferencia_Tipo_inmueble(Tipo_inmueble,Perfil); Valoracion_Tipo_inmueble=_call[0];
   _call = RL_Inferencia_Luminosidad(Luminosidad,Perfil); Valoracion_Luminosidad=_call[0];
@@ -1894,26 +2205,23 @@ public class valoracionInmuebles implements FuzzyInferenceEngine {
   _call = RL_Inferencia_Zonas_comunes(Zonas_comunes,Perfil); Valoracion_Zonas_comunes=_call[0];
   _call = RL_Inferencia_Zona_subzona(Zona_subzona,Perfil); Valoracion_Zona_subzona=_call[0];
   _call = RL_Inferencia_Metros_construidos(Metros_construidos,Perfil); Valoracion_Metros_construidos=_call[0];
-  _call = RL_Inferencia_Metros_habitables(Metros_habitables,Perfil); Valoracion_Metros_Habitables=_call[0];
+  _call = RL_Inferencia_Metros_habitables(Metros_habitables,Perfil); Valoracion_Metros_habitables=_call[0];
   _call = RL_Inferencia_Precio_tasacion(Precio_tasacion,Perfil); Valoracion_Precio_tasacion=_call[0];
   _call = RL_Inferencia_Precio_salida(Precio_salida,Perfil); Valoracion_Precio_salida=_call[0];
   _call = RL_Inferencia_Precio_venta(Precio_venta,Perfil); Valoracion_Precio_venta=_call[0];
-  _call = RL_Inferencia_Semanas_oferta(Semanas_oferta,Perfil); Valoracion_semanas_oferta=_call[0];
-  _call = RL_Inferencia_Valoracion_experto(Valoracion_Experto,Perfil); Valoracion_Valoracion_Experto=_call[0];
-  _call = RL_Inferencia_Observaciones(Observaciones,Perfil); Valoracion_Observaciones=_call[0];
-  double _output[] = new double[24];
-  if(Valoracion_de_tipo_inmueble instanceof FuzzySingleton)
-   _output[0] = ((FuzzySingleton) Valoracion_de_tipo_inmueble).getValue();
-  else _output[0] = ((OutputMembershipFunction) Valoracion_de_tipo_inmueble).defuzzify();
-  if(Valoracion_luminosidad instanceof FuzzySingleton)
-   _output[1] = ((FuzzySingleton) Valoracion_luminosidad).getValue();
-  else _output[1] = ((OutputMembershipFunction) Valoracion_luminosidad).defuzzify();
-  if(Valoracion_orientacion instanceof FuzzySingleton)
-   _output[2] = ((FuzzySingleton) Valoracion_orientacion).getValue();
-  else _output[2] = ((OutputMembershipFunction) Valoracion_orientacion).defuzzify();
-  if(Valoracion_representatividad instanceof FuzzySingleton)
-   _output[3] = ((FuzzySingleton) Valoracion_representatividad).getValue();
-  else _output[3] = ((OutputMembershipFunction) Valoracion_representatividad).defuzzify();
+  double _output[] = new double[21];
+  if(Valoracion_Tipo_inmueble instanceof FuzzySingleton)
+   _output[0] = ((FuzzySingleton) Valoracion_Tipo_inmueble).getValue();
+  else _output[0] = ((OutputMembershipFunction) Valoracion_Tipo_inmueble).defuzzify();
+  if(Valoracion_Luminosidad instanceof FuzzySingleton)
+   _output[1] = ((FuzzySingleton) Valoracion_Luminosidad).getValue();
+  else _output[1] = ((OutputMembershipFunction) Valoracion_Luminosidad).defuzzify();
+  if(Valoracion_Orientacion instanceof FuzzySingleton)
+   _output[2] = ((FuzzySingleton) Valoracion_Orientacion).getValue();
+  else _output[2] = ((OutputMembershipFunction) Valoracion_Orientacion).defuzzify();
+  if(Valoracion_Representatividad instanceof FuzzySingleton)
+   _output[3] = ((FuzzySingleton) Valoracion_Representatividad).getValue();
+  else _output[3] = ((OutputMembershipFunction) Valoracion_Representatividad).defuzzify();
   if(Valoracion_Estado_del_portal instanceof FuzzySingleton)
    _output[4] = ((FuzzySingleton) Valoracion_Estado_del_portal).getValue();
   else _output[4] = ((OutputMembershipFunction) Valoracion_Estado_del_portal).defuzzify();
@@ -1947,15 +2255,15 @@ public class valoracionInmuebles implements FuzzyInferenceEngine {
   if(Valoracion_Zonas_comunes instanceof FuzzySingleton)
    _output[14] = ((FuzzySingleton) Valoracion_Zonas_comunes).getValue();
   else _output[14] = ((OutputMembershipFunction) Valoracion_Zonas_comunes).defuzzify();
-  if(Valoracion_zona_subzona instanceof FuzzySingleton)
-   _output[15] = ((FuzzySingleton) Valoracion_zona_subzona).getValue();
-  else _output[15] = ((OutputMembershipFunction) Valoracion_zona_subzona).defuzzify();
+  if(Valoracion_Zona_subzona instanceof FuzzySingleton)
+   _output[15] = ((FuzzySingleton) Valoracion_Zona_subzona).getValue();
+  else _output[15] = ((OutputMembershipFunction) Valoracion_Zona_subzona).defuzzify();
   if(Valoracion_Metros_construidos instanceof FuzzySingleton)
    _output[16] = ((FuzzySingleton) Valoracion_Metros_construidos).getValue();
   else _output[16] = ((OutputMembershipFunction) Valoracion_Metros_construidos).defuzzify();
-  if(Valoracion_Metros_Habitables instanceof FuzzySingleton)
-   _output[17] = ((FuzzySingleton) Valoracion_Metros_Habitables).getValue();
-  else _output[17] = ((OutputMembershipFunction) Valoracion_Metros_Habitables).defuzzify();
+  if(Valoracion_Metros_habitables instanceof FuzzySingleton)
+   _output[17] = ((FuzzySingleton) Valoracion_Metros_habitables).getValue();
+  else _output[17] = ((OutputMembershipFunction) Valoracion_Metros_habitables).defuzzify();
   if(Valoracion_Precio_tasacion instanceof FuzzySingleton)
    _output[18] = ((FuzzySingleton) Valoracion_Precio_tasacion).getValue();
   else _output[18] = ((OutputMembershipFunction) Valoracion_Precio_tasacion).defuzzify();
@@ -1965,15 +2273,6 @@ public class valoracionInmuebles implements FuzzyInferenceEngine {
   if(Valoracion_Precio_venta instanceof FuzzySingleton)
    _output[20] = ((FuzzySingleton) Valoracion_Precio_venta).getValue();
   else _output[20] = ((OutputMembershipFunction) Valoracion_Precio_venta).defuzzify();
-  if(Valoracion_semanas_oferta instanceof FuzzySingleton)
-   _output[21] = ((FuzzySingleton) Valoracion_semanas_oferta).getValue();
-  else _output[21] = ((OutputMembershipFunction) Valoracion_semanas_oferta).defuzzify();
-  if(Valoracion_Valoracion_Experto instanceof FuzzySingleton)
-   _output[22] = ((FuzzySingleton) Valoracion_Valoracion_Experto).getValue();
-  else _output[22] = ((OutputMembershipFunction) Valoracion_Valoracion_Experto).defuzzify();
-  if(Valoracion_observaciones instanceof FuzzySingleton)
-   _output[23] = ((FuzzySingleton) Valoracion_observaciones).getValue();
-  else _output[23] = ((OutputMembershipFunction) Valoracion_observaciones).defuzzify();
   return _output;
  }
 
@@ -1999,40 +2298,28 @@ public class valoracionInmuebles implements FuzzyInferenceEngine {
   MembershipFunction Precio_tasacion = new FuzzySingleton(_input[18]);
   MembershipFunction Precio_salida = new FuzzySingleton(_input[19]);
   MembershipFunction Precio_venta = new FuzzySingleton(_input[20]);
-  MembershipFunction Semanas_oferta = new FuzzySingleton(_input[21]);
-  MembershipFunction Valoracion_Experto = new FuzzySingleton(_input[22]);
-  MembershipFunction Observaciones = new FuzzySingleton(_input[23]);
-  MembershipFunction Perfil = new FuzzySingleton(_input[24]);
-  MembershipFunction Valoracion_de_tipo_inmueble = null;
-  MembershipFunction Valoracion_luminosidad= null;
-  MembershipFunction Valoracion_orientacion= null;
-  MembershipFunction Valoracion_representatividad= null;
-  MembershipFunction Valoracion_Estado_del_portal= null;
-  MembershipFunction Valoracion_Fachada= null;
-  MembershipFunction Valoracion_Vistas= null;
-  MembershipFunction Valoracion_Numero_habitaciones= null;
-  MembershipFunction Valoracion_Numero_banos= null;
-  MembershipFunction Valoracion_Antiguedad= null;
-  MembershipFunction Valoracion_Altura= null;
-  MembershipFunction Valoracion_Ascensor= null;
-  MembershipFunction Valoracion_Garaje= null;
-  MembershipFunction Valoracion_Estado_general= null;
-  MembershipFunction Valoracion_Zonas_comunes= null;
-  MembershipFunction Valoracion_zona_subzona= null;
-  MembershipFunction Valoracion_Metros_construidos= null;
-  MembershipFunction Valoracion_Metros_Habitables= null;
-  MembershipFunction Valoracion_Precio_tasacion= null;
-  MembershipFunction Valoracion_Precio_salida= null;
-  MembershipFunction Valoracion_Precio_venta= null;
-  MembershipFunction Valoracion_semanas_oferta= null;
-  MembershipFunction Valoracion_Valoracion_Experto= null;
-  MembershipFunction Valoracion_observaciones= null;
-  MembershipFunction Valoracion_Tipo_inmueble= null;
-  MembershipFunction Valoracion_Luminosidad= null;
-  MembershipFunction Valoracion_Orientacion= null;
-  MembershipFunction Valoracion_Representatividad= null;
-  MembershipFunction Valoracion_Zona_subzona= null;
-  MembershipFunction Valoracion_Observaciones= null;
+  MembershipFunction Perfil = new FuzzySingleton(_input[21]);
+  MembershipFunction Valoracion_Tipo_inmueble;
+  MembershipFunction Valoracion_Luminosidad;
+  MembershipFunction Valoracion_Orientacion;
+  MembershipFunction Valoracion_Representatividad;
+  MembershipFunction Valoracion_Estado_del_portal;
+  MembershipFunction Valoracion_Fachada;
+  MembershipFunction Valoracion_Vistas;
+  MembershipFunction Valoracion_Numero_habitaciones;
+  MembershipFunction Valoracion_Numero_banos;
+  MembershipFunction Valoracion_Antiguedad;
+  MembershipFunction Valoracion_Altura;
+  MembershipFunction Valoracion_Ascensor;
+  MembershipFunction Valoracion_Garaje;
+  MembershipFunction Valoracion_Estado_general;
+  MembershipFunction Valoracion_Zonas_comunes;
+  MembershipFunction Valoracion_Zona_subzona;
+  MembershipFunction Valoracion_Metros_construidos;
+  MembershipFunction Valoracion_Metros_habitables;
+  MembershipFunction Valoracion_Precio_tasacion;
+  MembershipFunction Valoracion_Precio_salida;
+  MembershipFunction Valoracion_Precio_venta;
   MembershipFunction[] _call;
   _call = RL_Inferencia_Tipo_inmueble(Tipo_inmueble,Perfil); Valoracion_Tipo_inmueble=_call[0];
   _call = RL_Inferencia_Luminosidad(Luminosidad,Perfil); Valoracion_Luminosidad=_call[0];
@@ -2051,18 +2338,15 @@ public class valoracionInmuebles implements FuzzyInferenceEngine {
   _call = RL_Inferencia_Zonas_comunes(Zonas_comunes,Perfil); Valoracion_Zonas_comunes=_call[0];
   _call = RL_Inferencia_Zona_subzona(Zona_subzona,Perfil); Valoracion_Zona_subzona=_call[0];
   _call = RL_Inferencia_Metros_construidos(Metros_construidos,Perfil); Valoracion_Metros_construidos=_call[0];
-  _call = RL_Inferencia_Metros_habitables(Metros_habitables,Perfil); Valoracion_Metros_Habitables=_call[0];
+  _call = RL_Inferencia_Metros_habitables(Metros_habitables,Perfil); Valoracion_Metros_habitables=_call[0];
   _call = RL_Inferencia_Precio_tasacion(Precio_tasacion,Perfil); Valoracion_Precio_tasacion=_call[0];
   _call = RL_Inferencia_Precio_salida(Precio_salida,Perfil); Valoracion_Precio_salida=_call[0];
   _call = RL_Inferencia_Precio_venta(Precio_venta,Perfil); Valoracion_Precio_venta=_call[0];
-  _call = RL_Inferencia_Semanas_oferta(Semanas_oferta,Perfil); Valoracion_semanas_oferta=_call[0];
-  _call = RL_Inferencia_Valoracion_experto(Valoracion_Experto,Perfil); Valoracion_Valoracion_Experto=_call[0];
-  _call = RL_Inferencia_Observaciones(Observaciones,Perfil); Valoracion_Observaciones=_call[0];
-  MembershipFunction _output[] = new MembershipFunction[24];
-  _output[0] = Valoracion_de_tipo_inmueble;
-  _output[1] = Valoracion_luminosidad;
-  _output[2] = Valoracion_orientacion;
-  _output[3] = Valoracion_representatividad;
+  MembershipFunction _output[] = new MembershipFunction[21];
+  _output[0] = Valoracion_Tipo_inmueble;
+  _output[1] = Valoracion_Luminosidad;
+  _output[2] = Valoracion_Orientacion;
+  _output[3] = Valoracion_Representatividad;
   _output[4] = Valoracion_Estado_del_portal;
   _output[5] = Valoracion_Fachada;
   _output[6] = Valoracion_Vistas;
@@ -2074,15 +2358,12 @@ public class valoracionInmuebles implements FuzzyInferenceEngine {
   _output[12] = Valoracion_Garaje;
   _output[13] = Valoracion_Estado_general;
   _output[14] = Valoracion_Zonas_comunes;
-  _output[15] = Valoracion_zona_subzona;
+  _output[15] = Valoracion_Zona_subzona;
   _output[16] = Valoracion_Metros_construidos;
-  _output[17] = Valoracion_Metros_Habitables;
+  _output[17] = Valoracion_Metros_habitables;
   _output[18] = Valoracion_Precio_tasacion;
   _output[19] = Valoracion_Precio_salida;
   _output[20] = Valoracion_Precio_venta;
-  _output[21] = Valoracion_semanas_oferta;
-  _output[22] = Valoracion_Valoracion_Experto;
-  _output[23] = Valoracion_observaciones;
   return _output;
  }
 
@@ -2108,40 +2389,28 @@ public class valoracionInmuebles implements FuzzyInferenceEngine {
   MembershipFunction Precio_tasacion = _input[18];
   MembershipFunction Precio_salida = _input[19];
   MembershipFunction Precio_venta = _input[20];
-  MembershipFunction Semanas_oferta = _input[21];
-  MembershipFunction Valoracion_Experto = _input[22];
-  MembershipFunction Observaciones = _input[23];
-  MembershipFunction Perfil = _input[24];
-  MembershipFunction Valoracion_de_tipo_inmueble= null;
-  MembershipFunction Valoracion_luminosidad= null;
-  MembershipFunction Valoracion_orientacion= null;
-  MembershipFunction Valoracion_representatividad= null;
-  MembershipFunction Valoracion_Estado_del_portal= null;
-  MembershipFunction Valoracion_Fachada= null;
-  MembershipFunction Valoracion_Vistas= null;
-  MembershipFunction Valoracion_Numero_habitaciones= null;
-  MembershipFunction Valoracion_Numero_banos= null;
-  MembershipFunction Valoracion_Antiguedad= null;
-  MembershipFunction Valoracion_Altura= null;
-  MembershipFunction Valoracion_Ascensor= null;
-  MembershipFunction Valoracion_Garaje= null;
-  MembershipFunction Valoracion_Estado_general= null;
-  MembershipFunction Valoracion_Zonas_comunes= null;
-  MembershipFunction Valoracion_zona_subzona= null;
-  MembershipFunction Valoracion_Metros_construidos= null;
-  MembershipFunction Valoracion_Metros_Habitables= null;
-  MembershipFunction Valoracion_Precio_tasacion= null;
-  MembershipFunction Valoracion_Precio_salida= null;
-  MembershipFunction Valoracion_Precio_venta= null;
-  MembershipFunction Valoracion_semanas_oferta= null;
-  MembershipFunction Valoracion_Valoracion_Experto= null;
-  MembershipFunction Valoracion_observaciones= null;
-  MembershipFunction Valoracion_Tipo_inmueble= null;
-  MembershipFunction Valoracion_Luminosidad= null;
-  MembershipFunction Valoracion_Orientacion= null;
-  MembershipFunction Valoracion_Representatividad= null;
-  MembershipFunction Valoracion_Zona_subzona= null;
-  MembershipFunction Valoracion_Observaciones= null;
+  MembershipFunction Perfil = _input[21];
+  MembershipFunction Valoracion_Tipo_inmueble;
+  MembershipFunction Valoracion_Luminosidad;
+  MembershipFunction Valoracion_Orientacion;
+  MembershipFunction Valoracion_Representatividad;
+  MembershipFunction Valoracion_Estado_del_portal;
+  MembershipFunction Valoracion_Fachada;
+  MembershipFunction Valoracion_Vistas;
+  MembershipFunction Valoracion_Numero_habitaciones;
+  MembershipFunction Valoracion_Numero_banos;
+  MembershipFunction Valoracion_Antiguedad;
+  MembershipFunction Valoracion_Altura;
+  MembershipFunction Valoracion_Ascensor;
+  MembershipFunction Valoracion_Garaje;
+  MembershipFunction Valoracion_Estado_general;
+  MembershipFunction Valoracion_Zonas_comunes;
+  MembershipFunction Valoracion_Zona_subzona;
+  MembershipFunction Valoracion_Metros_construidos;
+  MembershipFunction Valoracion_Metros_habitables;
+  MembershipFunction Valoracion_Precio_tasacion;
+  MembershipFunction Valoracion_Precio_salida;
+  MembershipFunction Valoracion_Precio_venta;
   MembershipFunction[] _call;
   _call = RL_Inferencia_Tipo_inmueble(Tipo_inmueble,Perfil); Valoracion_Tipo_inmueble=_call[0];
   _call = RL_Inferencia_Luminosidad(Luminosidad,Perfil); Valoracion_Luminosidad=_call[0];
@@ -2160,18 +2429,15 @@ public class valoracionInmuebles implements FuzzyInferenceEngine {
   _call = RL_Inferencia_Zonas_comunes(Zonas_comunes,Perfil); Valoracion_Zonas_comunes=_call[0];
   _call = RL_Inferencia_Zona_subzona(Zona_subzona,Perfil); Valoracion_Zona_subzona=_call[0];
   _call = RL_Inferencia_Metros_construidos(Metros_construidos,Perfil); Valoracion_Metros_construidos=_call[0];
-  _call = RL_Inferencia_Metros_habitables(Metros_habitables,Perfil); Valoracion_Metros_Habitables=_call[0];
+  _call = RL_Inferencia_Metros_habitables(Metros_habitables,Perfil); Valoracion_Metros_habitables=_call[0];
   _call = RL_Inferencia_Precio_tasacion(Precio_tasacion,Perfil); Valoracion_Precio_tasacion=_call[0];
   _call = RL_Inferencia_Precio_salida(Precio_salida,Perfil); Valoracion_Precio_salida=_call[0];
   _call = RL_Inferencia_Precio_venta(Precio_venta,Perfil); Valoracion_Precio_venta=_call[0];
-  _call = RL_Inferencia_Semanas_oferta(Semanas_oferta,Perfil); Valoracion_semanas_oferta=_call[0];
-  _call = RL_Inferencia_Valoracion_experto(Valoracion_Experto,Perfil); Valoracion_Valoracion_Experto=_call[0];
-  _call = RL_Inferencia_Observaciones(Observaciones,Perfil); Valoracion_Observaciones=_call[0];
-  MembershipFunction _output[] = new MembershipFunction[24];
-  _output[0] = Valoracion_de_tipo_inmueble;
-  _output[1] = Valoracion_luminosidad;
-  _output[2] = Valoracion_orientacion;
-  _output[3] = Valoracion_representatividad;
+  MembershipFunction _output[] = new MembershipFunction[21];
+  _output[0] = Valoracion_Tipo_inmueble;
+  _output[1] = Valoracion_Luminosidad;
+  _output[2] = Valoracion_Orientacion;
+  _output[3] = Valoracion_Representatividad;
   _output[4] = Valoracion_Estado_del_portal;
   _output[5] = Valoracion_Fachada;
   _output[6] = Valoracion_Vistas;
@@ -2183,15 +2449,12 @@ public class valoracionInmuebles implements FuzzyInferenceEngine {
   _output[12] = Valoracion_Garaje;
   _output[13] = Valoracion_Estado_general;
   _output[14] = Valoracion_Zonas_comunes;
-  _output[15] = Valoracion_zona_subzona;
+  _output[15] = Valoracion_Zona_subzona;
   _output[16] = Valoracion_Metros_construidos;
-  _output[17] = Valoracion_Metros_Habitables;
+  _output[17] = Valoracion_Metros_habitables;
   _output[18] = Valoracion_Precio_tasacion;
   _output[19] = Valoracion_Precio_salida;
   _output[20] = Valoracion_Precio_venta;
-  _output[21] = Valoracion_semanas_oferta;
-  _output[22] = Valoracion_Valoracion_Experto;
-  _output[23] = Valoracion_observaciones;
   return _output;
  }
 

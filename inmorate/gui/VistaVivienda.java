@@ -196,10 +196,10 @@ public class VistaVivienda extends JFrame {
 			inmueble.setEstadoDelPortal(resultado.getInt(6));
 			inmueble.setFachada(resultado.getInt(7));
 			inmueble.setVistas(resultado.getInt(8));
-			inmueble.setNumDormitorios(resultado.getInt(9));
-			inmueble.setNumAseos(resultado.getInt(10));
+			inmueble.setNumeroHabitaciones(resultado.getInt(9));
+			inmueble.setNumeroBanos(resultado.getInt(10));
 			inmueble.setAntiguedad(resultado.getInt(11));
-			inmueble.setPlanta(resultado.getInt(12));
+			inmueble.setAltura(resultado.getInt(12));
 			inmueble.setAscensor(resultado.getBoolean(13));
 			inmueble.setPlazasGaraje(resultado.getInt(14));
 			inmueble.setEstadoGeneral(resultado.getInt(15));
@@ -207,9 +207,9 @@ public class VistaVivienda extends JFrame {
 			inmueble.setZona(resultado.getString(17));
 			inmueble.setMetrosConstruidos(resultado.getInt(18));
 			inmueble.setMetrosHabitables(resultado.getInt(19));
-			inmueble.setPrecioTasacion(resultado.getString(20));
-			inmueble.setPrecioSalida(resultado.getString(21));
-			inmueble.setPrecioVenta(resultado.getString(22));
+			inmueble.setPrecioTasacion(resultado.getInt(20));
+			inmueble.setPrecioSalida(resultado.getInt(21));
+			inmueble.setPrecioVenta(resultado.getInt(22));
 			inmueble.setDireccion(resultado.getString(23));
 			inmueble.setAmueblado(resultado.getBoolean(24));
 			inmueble.setPiscina(resultado.getBoolean(25));
@@ -223,15 +223,15 @@ public class VistaVivienda extends JFrame {
 	private void mostrar() {
 		label30.setText(inmueble.getTipoDeInmueble());
 		label44.setText(String.valueOf(inmueble.getLuminosidad()));
-		label34.setText(inmueble.getOrientacion());
+		label34.setText(inmueble.getOrientacionAsString());
 		label16.setText(String.valueOf(inmueble.getRepresentatividad()));
 		label14.setText(String.valueOf(inmueble.getEstadoDelPortal()));
 		label8.setText(String.valueOf(inmueble.getFachada()));
 		label36.setText(String.valueOf(inmueble.getVistas()));
-		label20.setText(String.valueOf(inmueble.getNumDormitorios()));
-		label48.setText(String.valueOf(inmueble.getNumAseos()));
+		label20.setText(String.valueOf(inmueble.getNumeroHabitaciones()));
+		label48.setText(String.valueOf(inmueble.getNumeroBanos()));
 		label38.setText(String.valueOf(inmueble.getAntiguedad()));
-		label10.setText(String.valueOf(inmueble.getPlanta()));
+		label10.setText(String.valueOf(inmueble.getAltura()));
 		if (inmueble.isAscensor())
 			if (!ingles)
 				label24.setText("SI");
@@ -250,9 +250,9 @@ public class VistaVivienda extends JFrame {
 		label32.setText(inmueble.getZona());
 		label18.setText(String.valueOf(inmueble.getMetrosConstruidos()));
 		label40.setText(String.valueOf(inmueble.getMetrosHabitables()));
-		label42.setText(inmueble.getPrecioTasacion().substring(0, inmueble.getPrecioTasacion().length()-2)+" €");
-		label12.setText(inmueble.getPrecioSalida().substring(0, inmueble.getPrecioSalida().length()-2)+" €");
-		label46.setText(inmueble.getPrecioVenta().substring(0, inmueble.getPrecioVenta().length()-2)+" €");
+		label42.setText(inmueble.getPrecioTasacion() +" €");
+		label12.setText(inmueble.getPrecioSalida()+" €");
+		label46.setText(inmueble.getPrecioVenta()+" €");
 		label22.setText(String.valueOf(inmueble.getPlazasGaraje()));
 		if (inmueble.isAmueblado())
 			if (!ingles)

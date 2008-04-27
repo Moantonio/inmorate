@@ -3,7 +3,7 @@ package inmorate.controlador.valoracion;
 import org.apache.log4j.Logger;
 
 import inmorate.controlador.constants.CONSTANTS.GradoImportanciaEnum;
-import inmorate.controlador.valoracion.Valoracion.ValoracionEnum;
+import static inmorate.controlador.constants.CONSTANTS.ValoracionEnum;
 import inmorate.init.Start;
 
 // De momento lo dejo sin tipo enumerado
@@ -87,16 +87,16 @@ public class Importancia {
 		return retorno;
 	}
 	
-	private static boolean rangoNadaImportante(int i)  {	return i > 0 && i <= 2;	}
-	private static boolean rangoPocoImportante(int i)  {	return i > 2 && i <= 5;	}
-	private static boolean rangoImportante(int i)      {	return i > 5 && i <= 8;	}
-	private static boolean rangoMuyImportante(int i)   {	return i > 8 && i <= 10;}
+	private static boolean rangoNadaImportante(double i)  {	return i > 0 && i <= 2;	}
+	private static boolean rangoPocoImportante(double i)  {	return i > 2 && i <= 5;	}
+	private static boolean rangoImportante(double i)      {	return i > 5 && i <= 8;	}
+	private static boolean rangoMuyImportante(double i)   {	return i > 8 && i <= 10;}
 
 	public ValoracionEnum fuzzy(Valoracion val) {
 		return fuzzy(val.getValor());
 	}
 	
-	public ValoracionEnum fuzzy(int valor) {
+	public ValoracionEnum fuzzy(double valor) {
 		ValoracionEnum valoracion = null;
 		if (rangoNadaImportante(valor)) {
 			valoracion = ValoracionEnum.MUY_MALA;
