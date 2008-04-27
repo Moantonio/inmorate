@@ -64,7 +64,7 @@ public class Conexion {
 				//"'C/Alcala, 54',yes,no,yes,no,no)";
 				"VALUES ('"+i.getDMXX()+"','"+i.getTipoDeInmueble()+"',"+i.getLuminosidad()+",'"+i.getOrientacion()+
 						"',"+i.getRepresentatividad()+","+i.getEstadoDelPortal()+","+i.getFachada()+","+i.getVistas()+
-						","+i.getNumDormitorios()+","+i.getNumAseos()+","+i.getAntiguedad()+","+i.getPlanta()+",";
+						","+i.getNumeroHabitaciones()+","+i.getNumeroBanos()+","+i.getAntiguedad()+","+i.getAltura()+",";
 		if (i.isAscensor())
 			consulta += "yes,";
 		else

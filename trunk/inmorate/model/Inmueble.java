@@ -1,5 +1,30 @@
 package inmorate.model;
 
+import static inmorate.controlador.constants.CONSTANTS.ALTURA;
+import static inmorate.controlador.constants.CONSTANTS.ANTIGUEDAD;
+import static inmorate.controlador.constants.CONSTANTS.ASCENSOR;
+import static inmorate.controlador.constants.CONSTANTS.ESTADO_DEL_PORTAL;
+import static inmorate.controlador.constants.CONSTANTS.ESTADO_GENERAL;
+import static inmorate.controlador.constants.CONSTANTS.FACHADA;
+import static inmorate.controlador.constants.CONSTANTS.GARAJE;
+import static inmorate.controlador.constants.CONSTANTS.LUMINOSIDAD;
+import static inmorate.controlador.constants.CONSTANTS.METROS_CONSTRUIDOS;
+import static inmorate.controlador.constants.CONSTANTS.METROS_HABITABLES;
+import static inmorate.controlador.constants.CONSTANTS.NUMERO_BANOS;
+import static inmorate.controlador.constants.CONSTANTS.NUMERO_ELEMENTOS;
+import static inmorate.controlador.constants.CONSTANTS.NUMERO_HABITACIONES;
+import static inmorate.controlador.constants.CONSTANTS.ORIENTACION;
+import static inmorate.controlador.constants.CONSTANTS.PRECIO_SALIDA;
+import static inmorate.controlador.constants.CONSTANTS.PRECIO_TASACION;
+import static inmorate.controlador.constants.CONSTANTS.PRECIO_VENTA;
+import static inmorate.controlador.constants.CONSTANTS.REPRESENTATIVIDAD;
+import static inmorate.controlador.constants.CONSTANTS.TIPO_INMUEBLE;
+import static inmorate.controlador.constants.CONSTANTS.VISTAS;
+import static inmorate.controlador.constants.CONSTANTS.ZONAS_COMUNES;
+import static inmorate.controlador.constants.CONSTANTS.ZONA_SUBZONA;
+
+import inmorate.controlador.constants.CONSTANTS.OrientacionEnum;
+
 import java.util.Random;
 
 import org.apache.log4j.Logger;
@@ -10,25 +35,25 @@ public class Inmueble {
 	private String DMXX;
 	private String tipoDeInmueble;
 	private int luminosidad;
-	private String orientacion;
+	private OrientacionEnum orientacion;
 	private int representatividad;
 	private int estadoDelPortal;
 	private int fachada;
 	private int vistas;
-	private int numDormitorios;
-	private int numAseos;
+	private int numeroHabitaciones;
+	private int numeroBanos;
 	private int antiguedad;
-	private int planta;
+	private int altura;
 	private boolean ascensor;
-	private int plazasGaraje;
+	private int garaje;
 	private int estadoGeneral;
 	private boolean zonasComunes;
 	private String zona;
-	private int metrosConstruidos;
+	private int metros_construidos;
 	private int metrosHabitables;
-	private String precioTasacion;
-	private String precioSalida;
-	private String precioVenta;
+	private int precioTasacion;
+	private int precioSalida;
+	private int precioVenta;
 	private String direccion;
 	private boolean amueblado;
 	private boolean piscina;
@@ -39,7 +64,7 @@ public class Inmueble {
 	public Inmueble() {
 	}
 
-	public Inmueble(String dmxx, String tipoDeInmueble, int luminosidad, String orientacion, int representatividad, int estadoDelPortal, int fachada, int vistas, int numDormitorios, int numAseos, int antiguedad, int planta, boolean ascensor, int plazasGaraje, int estadoGeneral, boolean zonasComunes, String zona, int metrosConstruidos, int metrosHabitables, String precioTasacion, String precioSalida, String precioVenta, String direccion, boolean amueblado, boolean piscina, boolean aireAcondicionado, boolean conserje, boolean trastero) {
+	public Inmueble(String dmxx, String tipoDeInmueble, int luminosidad, OrientacionEnum orientacion, int representatividad, int estadoDelPortal, int fachada, int vistas, int numDormitorios, int numAseos, int antiguedad, int planta, boolean ascensor, int plazasGaraje, int estadoGeneral, boolean zonasComunes, String zona, int metrosConstruidos, int metrosHabitables, int precioTasacion, int precioSalida, int precioVenta, String direccion, boolean amueblado, boolean piscina, boolean aireAcondicionado, boolean conserje, boolean trastero) {
 		this.DMXX = dmxx;
 		this.tipoDeInmueble = tipoDeInmueble;
 		this.luminosidad = luminosidad;
@@ -48,16 +73,16 @@ public class Inmueble {
 		this.estadoDelPortal = estadoDelPortal;
 		this.fachada = fachada;
 		this.vistas = vistas;
-		this.numDormitorios = numDormitorios;
-		this.numAseos = numAseos;
+		this.numeroHabitaciones = numDormitorios;
+		this.numeroBanos = numAseos;
 		this.antiguedad = antiguedad;
-		this.planta = planta;
+		this.altura = planta;
 		this.ascensor = ascensor;
-		this.plazasGaraje = plazasGaraje;
+		this.garaje = plazasGaraje;
 		this.estadoGeneral = estadoGeneral;
 		this.zonasComunes = zonasComunes;
 		this.zona = zona;
-		this.metrosConstruidos = metrosConstruidos;
+		this.metros_construidos = metrosConstruidos;
 		this.metrosHabitables = metrosHabitables;
 		this.precioTasacion = precioTasacion;
 		this.precioSalida = precioSalida;
@@ -189,11 +214,11 @@ public class Inmueble {
 	}
 
 	public int getMetrosConstruidos() {
-		return metrosConstruidos;
+		return metros_construidos;
 	}
 
 	public void setMetrosConstruidos(int metrosConstruidos) {
-		this.metrosConstruidos = metrosConstruidos;
+		this.metros_construidos = metrosConstruidos;
 	}
 
 	public int getMetrosHabitables() {
@@ -204,28 +229,68 @@ public class Inmueble {
 		this.metrosHabitables = metrosHabitables;
 	}
 
-	public int getNumAseos() {
-		return numAseos;
+	public int getNumeroBanos() {
+		return numeroBanos;
 	}
 
-	public void setNumAseos(int numAseos) {
-		this.numAseos = numAseos;
+	public void setNumeroBanos(int numAseos) {
+		this.numeroBanos = numAseos;
 	}
 
-	public int getNumDormitorios() {
-		return numDormitorios;
+	public int getNumeroHabitaciones() {
+		return numeroHabitaciones;
 	}
 
-	public void setNumDormitorios(int numDormitorios) {
-		this.numDormitorios = numDormitorios;
+	public void setNumeroHabitaciones(int numDormitorios) {
+		this.numeroHabitaciones = numDormitorios;
 	}
 
-	public String getOrientacion() {
+	public String getOrientacionAsString() {
+		return orientacion.toString();
+	}
+
+	public OrientacionEnum getOrientacion() {
 		return orientacion;
 	}
 
-	public void setOrientacion(String orientacion) {
+	public void setOrientacion(OrientacionEnum orientacion) {
 		this.orientacion = orientacion;
+	}
+
+	public int getGaraje() {
+		return garaje;
+	}
+
+	public void setGaraje(int garaje) {
+		this.garaje = garaje;
+	}
+
+	public int getMetros_construidos() {
+		return metros_construidos;
+	}
+
+	public void setMetros_construidos(int metros_construidos) {
+		this.metros_construidos = metros_construidos;
+	}
+
+	public void setOrientacion(String orientacion) {
+		if (orientacion.compareToIgnoreCase("norte")==0)
+			this.orientacion = OrientacionEnum.NORTE;
+		else if (orientacion.compareToIgnoreCase("sur")==0)
+			this.orientacion = OrientacionEnum.SUR;
+		else if (orientacion.compareToIgnoreCase("este")==0)
+			this.orientacion = OrientacionEnum.ESTE;
+		else if (orientacion.compareToIgnoreCase("oeste")==0)
+			this.orientacion = OrientacionEnum.OESTE;
+		else if (orientacion.compareToIgnoreCase("noreste")==0)
+			this.orientacion = OrientacionEnum.NORESTE;
+		else if (orientacion.compareToIgnoreCase("noroeste")==0)
+			this.orientacion = OrientacionEnum.NOROESTE;
+		else if (orientacion.compareToIgnoreCase("sureste")==0)
+			this.orientacion = OrientacionEnum.SURESTE;
+		else if (orientacion.compareToIgnoreCase("suroeste")==0)
+			this.orientacion = OrientacionEnum.SUROESTE;
+
 	}
 
 	public boolean isPiscina() {
@@ -236,43 +301,43 @@ public class Inmueble {
 		this.piscina = piscina;
 	}
 
-	public int getPlanta() {
-		return planta;
+	public int getAltura() {
+		return altura;
 	}
 
-	public void setPlanta(int planta) {
-		this.planta = planta;
+	public void setAltura(int altura) {
+		this.altura = altura;
 	}
 
 	public int getPlazasGaraje() {
-		return plazasGaraje;
+		return garaje;
 	}
 
 	public void setPlazasGaraje(int plazasGaraje) {
-		this.plazasGaraje = plazasGaraje;
+		this.garaje = plazasGaraje;
 	}
 
-	public String getPrecioSalida() {
+	public int getPrecioSalida() {
 		return precioSalida;
 	}
 
-	public void setPrecioSalida(String precioSalida) {
+	public void setPrecioSalida(int precioSalida) {
 		this.precioSalida = precioSalida;
 	}
 
-	public String getPrecioTasacion() {
+	public int getPrecioTasacion() {
 		return precioTasacion;
 	}
 
-	public void setPrecioTasacion(String precioTasacion) {
+	public void setPrecioTasacion(int precioTasacion) {
 		this.precioTasacion = precioTasacion;
 	}
 
-	public String getPrecioVenta() {
+	public int getPrecioVenta() {
 		return precioVenta;
 	}
 
-	public void setPrecioVenta(String precioVenta) {
+	public void setPrecioVenta(int precioVenta) {
 		this.precioVenta = precioVenta;
 	}
 
@@ -348,31 +413,31 @@ public class Inmueble {
 		this.luminosidad = rnd.nextInt(10)+1;
 		// Orientacion
 		switch(rnd.nextInt(8)) {
-		case 0: this.orientacion = "Norte";
+		case 0: this.orientacion = OrientacionEnum.NORTE;;
 			break;			
-		case 1: this.orientacion = "Sur";
+		case 1: this.orientacion = OrientacionEnum.SUR;
 			break;
-		case 2: this.orientacion = "Este";
+		case 2: this.orientacion = OrientacionEnum.ESTE;
 			break;
-		case 3: this.orientacion = "Oeste";
+		case 3: this.orientacion = OrientacionEnum.OESTE;
 			break;
-		case 4: this.orientacion = "Noreste";
+		case 4: this.orientacion = OrientacionEnum.NORESTE;
 			break;
-		case 5: this.orientacion = "Noroeste";
+		case 5: this.orientacion = OrientacionEnum.NOROESTE;
 			break;
-		case 6: this.orientacion = "Sureste";
+		case 6: this.orientacion = OrientacionEnum.SURESTE;
 			break;
-		case 7: this.orientacion = "Suroeste";
+		case 7: this.orientacion = OrientacionEnum.SUROESTE;
 			break;
 		}
 		this.representatividad = rnd.nextInt(11);
 		this.estadoDelPortal = rnd.nextInt(11);
 		this.fachada = rnd.nextInt(11);
 		this.vistas = rnd.nextInt(11);
-		this.numDormitorios = rnd.nextInt(5)+1;
-		this.numAseos = rnd.nextInt(3)+1;
+		this.numeroHabitaciones = rnd.nextInt(5)+1;
+		this.numeroBanos = rnd.nextInt(3)+1;
 		this.antiguedad = rnd.nextInt(20);
-		this.planta = rnd.nextInt(10)+1;
+		this.altura = rnd.nextInt(10)+1;
 		// Ascensor
 		switch(rnd.nextInt(2)) {
 		case 0: this.ascensor = false;
@@ -380,7 +445,7 @@ public class Inmueble {
 		case 1: this.ascensor = true;
 			break;
 		}		
-		this.plazasGaraje = rnd.nextInt(3);
+		this.garaje = rnd.nextInt(3);
 		this.estadoGeneral = rnd.nextInt(11);
 		// Zonas Comunes
 		switch(rnd.nextInt(2)) {
@@ -459,11 +524,11 @@ public class Inmueble {
 			break;
 		}
 		// Metros Contruidos y Habitables
-		this.metrosConstruidos = 100+rnd.nextInt(150);
-		this.metrosHabitables = this.metrosConstruidos+10+rnd.nextInt(20);
-		this.precioTasacion = ""+this.metrosConstruidos*1000+".00";
-		this.precioSalida = ""+this.metrosHabitables*1000+".00";
-		this.precioVenta = "0.00";
+		this.metros_construidos = 100+rnd.nextInt(150);
+		this.metrosHabitables = this.metros_construidos+10+rnd.nextInt(20);
+		this.precioTasacion = this.metros_construidos*1000;
+		this.precioSalida = this.metrosHabitables*1000;
+		this.precioVenta = 0;
 		switch(rnd.nextInt(9)) {
 		case 0:
 			this.direccion = "C/ Alcala, "+valor;
@@ -525,6 +590,67 @@ public class Inmueble {
 		}
 	}
 
-
+	public double[] extraerDatos(){
+		double [] elementos = new double[NUMERO_ELEMENTOS];
+		
+		elementos[TIPO_INMUEBLE - 1]          = defuzzyTipoInmueble();
+		elementos[LUMINOSIDAD - 1]            = getLuminosidad();
+		elementos[ORIENTACION - 1]            = defuzzyOrientacion();
+		elementos[REPRESENTATIVIDAD - 1]      = getRepresentatividad();
+		elementos[ESTADO_DEL_PORTAL - 1]      = getEstadoDelPortal();
+		elementos[FACHADA - 1]                = getFachada();
+		elementos[VISTAS - 1]                 = getVistas();
+		elementos[NUMERO_HABITACIONES - 1]    = getNumeroHabitaciones();
+		elementos[NUMERO_BANOS - 1]           = getNumeroBanos();
+		elementos[ANTIGUEDAD - 1]             = getAntiguedad();
+		elementos[ALTURA - 1]                 = getAltura();
+		elementos[ASCENSOR - 1]               = defuzzyAscensor();
+		elementos[GARAJE - 1]                 = defuzzyAscensor();
+		elementos[ESTADO_GENERAL - 1]         = getEstadoGeneral();
+		elementos[ZONAS_COMUNES - 1]          = defuzzyZonasComunes();
+		elementos[ZONA_SUBZONA - 1]           = defuzzyZonaSubzona();
+		elementos[METROS_CONSTRUIDOS - 1]     = getMetrosConstruidos();
+		elementos[METROS_HABITABLES - 1]      = getMetrosHabitables();
+		elementos[PRECIO_TASACION - 1]        = getPrecioTasacion();
+		elementos[PRECIO_SALIDA - 1]          = getPrecioSalida();
+		elementos[PRECIO_VENTA - 1]           = getPrecioVenta();
+		return elementos;
+	}
+	
+	public double defuzzyTipoInmueble(){
+		if (tipoDeInmueble.compareToIgnoreCase("piso")==0)
+			return 1.0;
+		else if(tipoDeInmueble.compareToIgnoreCase("adosado")==0)
+			return 2.0;
+		else if(tipoDeInmueble.compareToIgnoreCase("pareado")==0)
+			return 3.0;
+		else if(tipoDeInmueble.compareToIgnoreCase("independiente")==0)
+			return 4.0;
+		return 1.0;
+	}
+	public double defuzzyOrientacion(){
+		switch (orientacion){
+		case NORTE: return 1.0;	
+		case SUR: return 2.0;	
+		case ESTE: return 3.0;	
+		case OESTE: return 4.0;	
+		case NORESTE: return 5.0;		
+		case NOROESTE: return 6.0;		
+		case SURESTE: return 7.0;		
+		case SUROESTE: return 8.0;		
+		default: return 1.0;
+		
+		}
+	}
+	public double defuzzyAscensor(){
+		return ascensor ? 1.0 : 0.0;
+	}
+	public double defuzzyZonasComunes(){
+		return zonasComunes ? 1.0 : 0.0;
+	}
+	
+	public double defuzzyZonaSubzona(){
+		return 5.0;
+	}
 	
 }

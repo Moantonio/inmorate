@@ -1,23 +1,23 @@
 package inmorate.controlador.valoracion;
 
 import org.apache.log4j.Logger;
+import static inmorate.controlador.constants.CONSTANTS.ValoracionEnum;
 
 public class Valoracion {
 	private static Logger logger = Logger.getLogger(Valoracion.class);
-	public static enum ValoracionEnum {MUY_MALA, MALA, NORMAL, BUENA, MUY_BUENA, EXCELENTE}
-	private int valor;
+	private double valor;
 
 	public Valoracion() {
 		super();
 	}
 	
-	public Valoracion(int valor) {
+	public Valoracion(double valor) {
 		super();
 		this.valor = valor;
-		logger.debug("Creada valoracion con valor: " + valor);
+//		logger.debug("Creada valoracion con valor: " + valor);
 	}
 
-	public int getValor() {
+	public double getValor() {
 		return valor;
 	}
 
@@ -26,18 +26,18 @@ public class Valoracion {
 			this.valor = valor;
 	}
 	
-	private static boolean rangoMuyMala(int i)  {	return i > 0 && i <= 2;	}
-	private static boolean rangoMala(int i)     {	return i > 2 && i <= 4;	}
-	private static boolean rangoNormal(int i)   {	return i > 4 && i <= 6;	}
-	private static boolean rangoBuena(int i)    {	return i > 6 && i <= 7;	}
-	private static boolean rangoMuyBuena(int i) {	return i > 7 && i <= 9;	}
-	private static boolean rangoExcelente(int i){	return i > 9 && i <= 10;}
+	private static boolean rangoMuyMala(double i)  {	return i > 0 && i <= 2;	}
+	private static boolean rangoMala(double i)     {	return i > 2 && i <= 4;	}
+	private static boolean rangoNormal(double i)   {	return i > 4 && i <= 6;	}
+	private static boolean rangoBuena(double i)    {	return i > 6 && i <= 7;	}
+	private static boolean rangoMuyBuena(double i) {	return i > 7 && i <= 9;	}
+	private static boolean rangoExcelente(double i){	return i > 9 && i <= 10;}
 	
 	public ValoracionEnum fuzzy() {
 		return fuzzy(valor);
 	}
 	
-	public static ValoracionEnum fuzzy(int valor) {
+	public static ValoracionEnum fuzzy(double valor) {
 		ValoracionEnum valoracion = null;
 		if (rangoMuyMala(valor)) {
 			valoracion = ValoracionEnum.MUY_MALA;
