@@ -9,9 +9,11 @@ import java.util.ArrayList;
 
 import inmorate.BBDD.Conversor;
 import inmorate.controlador.Controlador;
+import inmorate.controlador.constants.CONSTANTS.GradoImportanciaEnum;
 import inmorate.controlador.constants.CONSTANTS.TipoSectorEnum;
 import inmorate.controlador.constants.CONSTANTS.ValoradorEnum;
 import inmorate.controlador.sector.Sector;
+import inmorate.controlador.valoracion.Importancia;
 import inmorate.controlador.valoracion.Usuario;
 import inmorate.core.MotorInferencia;
 import inmorate.gui.VistaInicial;
@@ -70,9 +72,14 @@ public class Start {
 		TipoSectorEnum tipoSector = TipoSectorEnum.FAMILIA_2_3_HIJOS;
 		Sector sector = new Sector(tipoSector);
 		
-		ValoradorEnum valorador = ValoradorEnum.USUARIO;
+		ValoradorEnum valoradorUsuario = ValoradorEnum.USUARIO;
+		ValoradorEnum valoradorExperto = ValoradorEnum.EXPERTO;
 		
-		Usuario usuario = new Usuario(sector, valorador );
+		Usuario usuario = new Usuario(sector, valoradorUsuario );
+		Usuario experto = new Usuario(sector, valoradorExperto );
+		
+		usuario.setImportanciaEstadoDelPortal(new Importancia(GradoImportanciaEnum.MUY_IMPORTANTE));
+		
 		ArrayList<Inmueble> inmuebles = null;
 		try {
 			inmuebles = Conversor.parseQuery(controlador.datosPropiedadFinca());
@@ -81,99 +88,10 @@ public class Start {
 			e.printStackTrace();
 		}
  
-		MotorInferencia mi = new MotorInferencia(usuario, inmuebles.toArray(new Inmueble[0] ));
+		MotorInferencia mi = new MotorInferencia(usuario, experto, inmuebles.toArray(new Inmueble[0] ));
 		InmuebleValorado[] inmueblesValorados = mi.computar();
-		escribeInmuebles(inmueblesValorados);
-		escribeInmueblesBorroso(inmueblesValorados);
-	}
-	
-	private static void escribeInmuebles(InmuebleValorado[] inmueblesValorados){
-		String sFichero = "salida.txt";
-		File fichero = new File(sFichero);
-		BufferedWriter bw = null;
-		try {
-			bw = new BufferedWriter(new FileWriter(sFichero));
-			bw.write("CLAVE\t");
-			bw.write("Valoracion General\t");
-			bw.write("TipoInmueble\t");
-			bw.write("Luminosidad\t");
-			bw.write("Orientacion\t");
-			bw.write("Representatividad\t");
-			bw.write("EstadoDelPortal\t");
-			bw.write("Fachada\t");
-			bw.write("Vistas\t");
-			bw.write("NumeroHabitaciones\t");
-			bw.write("numeroBanos\t");
-			bw.write("Antiguedad\t");
-			bw.write("Altura\t");
-			bw.write("Ascensor\t");
-			bw.write("Garaje\t");
-			bw.write("EstadoGeneral\t");
-			bw.write("ZonasComunes\t");
-			bw.write("ZonaSubzona\t");
-			bw.write("MetrosConstruidos\t");
-			bw.write("MetrosHabitables\t");
-			bw.write("PrecioTasacion\t");
-			bw.write("PrecioSalida\t");
-			bw.write("PrecioVenta\n");
-			
-			for (int i = 0; i < inmueblesValorados.length; i++){
-				bw.write(inmueblesValorados[i].toStringOnlyValues());
-				bw.write("\n");
-			}
-			
-			
-			bw.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		InmuebleValorado.toFile("fichero", inmueblesValorados);
 		
 	}
 	
-	private static void escribeInmueblesBorroso(InmuebleValorado[] inmueblesValorados){
-		String sFichero = "salidaFuzzy.txt";
-		File fichero = new File(sFichero);
-		BufferedWriter bw = null;
-		try {
-			bw = new BufferedWriter(new FileWriter(sFichero));
-			bw.write("CLAVE\t");
-			bw.write("Valoracion General\t");
-			bw.write("TipoInmueble\t");
-			bw.write("Luminosidad\t");
-			bw.write("Orientacion\t");
-			bw.write("Representatividad\t");
-			bw.write("EstadoDelPortal\t");
-			bw.write("Fachada\t");
-			bw.write("Vistas\t");
-			bw.write("NumeroHabitaciones\t");
-			bw.write("numeroBanos\t");
-			bw.write("Antiguedad\t");
-			bw.write("Altura\t");
-			bw.write("Ascensor\t");
-			bw.write("Garaje\t");
-			bw.write("EstadoGeneral\t");
-			bw.write("ZonasComunes\t");
-			bw.write("ZonaSubzona\t");
-			bw.write("MetrosConstruidos\t");
-			bw.write("MetrosHabitables\t");
-			bw.write("PrecioTasacion\t");
-			bw.write("PrecioSalida\t");
-			bw.write("PrecioVenta\n");
-			
-			for (int i = 0; i < inmueblesValorados.length; i++){
-				bw.write(inmueblesValorados[i].toStringOnlyValuesFuzzy());
-				bw.write("\n");
-			}
-			
-			
-			bw.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-	}
 }
