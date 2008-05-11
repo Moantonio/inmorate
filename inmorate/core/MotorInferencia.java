@@ -14,12 +14,14 @@ import static inmorate.controlador.constants.CONSTANTS.*;
 public class MotorInferencia {
 	private static Logger logger = Logger.getLogger(MotorInferencia.class);
 	private Usuario usuario;
+	private Usuario experto;
 	private Inmueble[] inmuebles;
 	private InmuebleValorado[] inmueblesValorados;
 	
-	public MotorInferencia(Usuario usuario, Inmueble[] inmuebles ) {
+	public MotorInferencia(Usuario usuario, Usuario experto, Inmueble[] inmuebles ) {
 		super();
 		this.usuario = usuario;
+		this.experto = experto;
 		this.inmuebles = inmuebles;
 	}
 	
@@ -50,14 +52,16 @@ public class MotorInferencia {
 				valoraciones[i1] = new Valoracion( salida[i1]);
 				
 			}
-			Valoracion valoracionGeneral = new Valoracion(calculaValoracionGeneral(salida));
-			inmueblesValoradosTmp[i] = new InmuebleValorado(inmuebles[i], valoraciones, valoracionGeneral);
+			Valoracion valoracionUsuario = new Valoracion(calculaValoracionUsuario(salida));
+			Valoracion valoracionExperto = new Valoracion(calculaValoracionExperto(salida));
+			Valoracion valoracionGeneral = new Valoracion(calculaValoracionGeneral(valoracionUsuario, valoracionExperto));
+			inmueblesValoradosTmp[i] = new InmuebleValorado(inmuebles[i], valoraciones, valoracionGeneral, valoracionUsuario, valoracionExperto );
 		}
 		inmueblesValorados = inmueblesValoradosTmp;
 		return inmueblesValoradosTmp;
 	}
 	
-	private double[] extraerImportancias(){
+	private double[] extraerImportancias(Usuario usuario){
 		double [] elementos = new double[NUMERO_ELEMENTOS - 1];
 		
 		elementos[TIPO_INMUEBLE - 1]          = usuario.getImportanciaTipoInmueble().defuzzy();
@@ -84,16 +88,45 @@ public class MotorInferencia {
 		return elementos;
 	}
 	
-	private double calculaValoracionGeneral(double[] valoraciones){
-		double[] importancias = extraerImportancias();
+	private double calculaValoracionUsuario(double[] valoraciones){
+		double[] importancias = extraerImportancias(usuario);
 		double valoracion = 0;
+		
+		//Sumamos todas las importancias
+		double sumaImportancias = 0;
+		double sumaMaxima = 10*importancias.length;
+		for (int i = 0; i < importancias.length; i++)
+			sumaImportancias += importancias[i];
+		
+		
 		for (int i = 0; i < valoraciones.length - 1; i++){ //Es menos 1 porque el ultimo elemento es para indicar el perfil
 			valoracion += (valoraciones[i] * importancias[i])/10;
 		}
 		valoracion /= valoraciones.length;
-		valoracion *= 1.8;
+		valoracion *= sumaMaxima / sumaImportancias;
 		return valoracion;
 		
+	}
+	private double calculaValoracionExperto(double[] valoraciones){
+		double[] importancias = extraerImportancias(experto);
+		double valoracion = 0;
+		
+		//Sumamos todas las importancias
+		double sumaImportancias = 0;
+		double sumaMaxima = 10*importancias.length;
+		for (int i = 0; i < importancias.length; i++)
+			sumaImportancias += importancias[i];
+		
+		
+		for (int i = 0; i < valoraciones.length - 1; i++){ //Es menos 1 porque el ultimo elemento es para indicar el perfil
+			valoracion += (valoraciones[i] * importancias[i])/10;
+		}
+		valoracion /= valoraciones.length;
+		valoracion *= sumaMaxima / sumaImportancias;
+		return valoracion;		
+	}
+	private double calculaValoracionGeneral(Valoracion valoracionUsuario, Valoracion valoracionExperto){
+		return (valoracionUsuario.getValor() + valoracionExperto.getValor()) / 2;
 	}
 	
 }
