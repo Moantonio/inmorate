@@ -29,9 +29,25 @@ public class VistaSoltero extends JFrame {
 		this.controlador = control;
 		initComponents();
 		setSize(510,420);
-		setLocation(300,150);
+		setLocation(320,180);
 		setVisible(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		buttonAceptar.addActionListener(
+				new ActionListener() {
+					public void actionPerformed(ActionEvent evento) {
+						controlador.getComboBox().add(""+comboBox1.getSelectedItem());
+						controlador.getComboBox().add(""+comboBox2.getSelectedItem());
+						controlador.getComboBox().add(""+comboBox3.getSelectedItem());
+						controlador.getComboBox().add(""+comboBox4.getSelectedItem());
+						
+						// Valoramos los inmuebles
+						controlador.valorarSoltero();
+												
+						controlador.activarVVSO();
+					}
+				} // ActionListener			
+		); // buttonAceptar.addActionListener
 		
 		buttonCancelar.addActionListener(
 				new ActionListener() {

@@ -1,15 +1,12 @@
 package inmorate.model;
 
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
 import org.apache.log4j.Logger;
 
-import inmorate.controlador.elementos.Elementos;
 import inmorate.controlador.valoracion.Valoracion;
-import inmorate.core.MotorInferencia;
 
 public class InmuebleValorado {
 	private static Logger logger = Logger.getLogger(InmuebleValorado.class);

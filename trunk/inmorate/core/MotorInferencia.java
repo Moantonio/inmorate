@@ -1,11 +1,8 @@
 package inmorate.core;
 
 import org.apache.log4j.Logger;
-import inmorate.controlador.elementos.Elemento;
-import inmorate.controlador.elementos.Elementos;
 import inmorate.controlador.valoracion.Usuario;
 import inmorate.controlador.valoracion.Valoracion;
-import inmorate.init.Start;
 import inmorate.model.Inmueble;
 import inmorate.model.InmuebleValorado;
 import inmorate.xfuzzy.valoracionInmuebles;
@@ -58,7 +55,7 @@ public class MotorInferencia {
 			inmueblesValoradosTmp[i] = new InmuebleValorado(inmuebles[i], valoraciones, valoracionGeneral, valoracionUsuario, valoracionExperto );
 		}
 		inmueblesValorados = inmueblesValoradosTmp;
-		return inmueblesValoradosTmp;
+		return inmueblesValorados;
 	}
 	
 	private double[] extraerImportancias(Usuario usuario){
@@ -72,7 +69,7 @@ public class MotorInferencia {
 		elementos[FACHADA - 1]                = usuario.getImportanciaFachada().defuzzy();
 		elementos[VISTAS - 1]                 = usuario.getImportanciaVistas().defuzzy();
 		elementos[NUMERO_HABITACIONES - 1]    = usuario.getImportanciaNumeroHabitaciones().defuzzy();
-		elementos[NUMERO_BANOS - 1]           = usuario.getImportancianumeroBanos().defuzzy();
+		elementos[NUMERO_BANOS - 1]           = usuario.getImportanciaNumeroBanos().defuzzy();
 		elementos[ANTIGUEDAD - 1]             = usuario.getImportanciaAntiguedad().defuzzy();
 		elementos[ALTURA - 1]                 = usuario.getImportanciaAltura().defuzzy();
 		elementos[ASCENSOR - 1]               = usuario.getImportanciaAscensor().defuzzy();
