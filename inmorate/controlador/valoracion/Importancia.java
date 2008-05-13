@@ -1,16 +1,12 @@
 package inmorate.controlador.valoracion;
 
-import org.apache.log4j.Logger;
-
 import inmorate.controlador.constants.CONSTANTS.GradoImportanciaEnum;
 import static inmorate.controlador.constants.CONSTANTS.ValoracionEnum;
-import inmorate.init.Start;
 
 // De momento lo dejo sin tipo enumerado
 // public enum GradoImportancia = {MUY_IMPORTANTE, IMPORTANTE, POCO_IMPORTANTE, NADA_IMPORTANTE, SIN_DEFINIR};
 
 public class Importancia {
-	private static Logger logger = Logger.getLogger(Importancia.class);
 	private GradoImportanciaEnum importancia;
 
 	// public static final int MUY_IMPORTANTE = 3;

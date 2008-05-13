@@ -4,28 +4,31 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.apache.log4j.Logger;
-
 import inmorate.BBDD.Conexion;
+import inmorate.controlador.valoracion.ValorarMatrimonio;
+import inmorate.controlador.valoracion.ValorarPareja;
+import inmorate.controlador.valoracion.ValorarSoltera;
+import inmorate.controlador.valoracion.ValorarSoltero;
+import inmorate.gui.VistaFinal;
 import inmorate.gui.VistaInicial;
 import inmorate.gui.VistaMatrimonio;
 import inmorate.gui.VistaPareja;
 import inmorate.gui.VistaSoltera;
 import inmorate.gui.VistaSoltero;
-import inmorate.gui.VistaVivienda;
 import inmorate.model.Inmueble;
+import inmorate.model.InmuebleValorado;
 
 public class Controlador {
-	private static Logger logger = Logger.getLogger(Controlador.class);
 	
 	private VistaInicial vistaInicial;	
 	private VistaPareja vistaPareja;	
 	private VistaMatrimonio vistaMatrimonio;	
 	private VistaSoltero vistaSoltero;	
 	private VistaSoltera vistaSoltera;	
-	private VistaVivienda vistaVivienda;	
+	private VistaFinal vistaFinal;
 	private Conexion conexion;
 	private ArrayList<String> comboBox;
+	private InmuebleValorado[] resultado;
 
 	public Controlador() {
 		vistaInicial = null;
@@ -33,9 +36,9 @@ public class Controlador {
 		vistaMatrimonio = null;
 		vistaSoltero = null;
 		vistaSoltera = null;
-		vistaVivienda = null;
 		conexion = null;
 		comboBox = new ArrayList<String>();
+		resultado = null;
 	}
 	
 	public void registrarVistaInicial(VistaInicial VI) {
@@ -57,9 +60,9 @@ public class Controlador {
 	public void registrarVistaSoltera(VistaSoltera VSA) {
 		this.vistaSoltera = VSA;
 	}
-	
-	public void registrarVistaVivienda(VistaVivienda VV) {
-		this.vistaVivienda = VV;
+
+	public void registrarVistaFinal(VistaFinal VF) {
+		this.vistaFinal = VF;
 	}
 	
 	public void activarVP() {
@@ -84,7 +87,26 @@ public class Controlador {
 	
 	public void activarVVP() {
 		vistaPareja.setVisible(false);
-		vistaVivienda.setVisible(true);
+		vistaFinal.setVisible(true);
+		vistaFinal.mostrarResultados();
+	}
+	
+	public void activarVVM() {
+		vistaMatrimonio.setVisible(false);
+		vistaFinal.setVisible(true);
+		vistaFinal.mostrarResultados();
+	}
+	
+	public void activarVVSO() {
+		vistaSoltero.setVisible(false);
+		vistaFinal.setVisible(true);
+		vistaFinal.mostrarResultados();
+	}
+
+	public void activarVVSA() {
+		vistaSoltera.setVisible(false);
+		vistaFinal.setVisible(true);
+		vistaFinal.mostrarResultados();
 	}
 	
 	public void cerrarPrograma() {
@@ -110,7 +132,8 @@ public class Controlador {
 		vistaPareja.setVisible(false);
 		vistaMatrimonio.setVisible(false);
 		vistaSoltera.setVisible(false);
-		vistaSoltero.setVisible(false);		
+		vistaSoltero.setVisible(false);	
+		vistaFinal.setVisible(false);
 		vistaInicial.setVisible(true);
 	}
 
@@ -124,7 +147,7 @@ public class Controlador {
 		vistaMatrimonio.traducirEspanol();
 		vistaSoltero.traducirEspanol();
 		vistaSoltera.traducirEspanol();
-		vistaVivienda.traducirEspanol();
+		vistaFinal.traducirEspanol();
 	}
 
 	public void traducirIngles() {
@@ -133,7 +156,7 @@ public class Controlador {
 		vistaMatrimonio.traducirIngles();
 		vistaSoltero.traducirIngles();
 		vistaSoltera.traducirIngles();
-		vistaVivienda.traducirIngles();
+		vistaFinal.traducirIngles();
 	}
 
 	public void crearViviendas() throws SQLException {
@@ -145,6 +168,30 @@ public class Controlador {
 			conexion.crearViviendas(inmueble);
 		}
 		conexion.cierraConexion();
+	}
+
+	public InmuebleValorado[] getResultado() {
+		return resultado;
+	}
+	
+	public void valorarPareja() {
+		ValorarPareja pareja = new ValorarPareja(this);
+		resultado = pareja.valorar();
+	}
+
+	public void valorarMatrimonio() {
+		ValorarMatrimonio matrimonio = new ValorarMatrimonio(this);
+		resultado = matrimonio.valorar();
+	}
+
+	public void valorarSoltero() {
+		ValorarSoltero soltero = new ValorarSoltero(this);
+		resultado = soltero.valorar();		
+	}
+
+	public void valorarSoltera() {
+		ValorarSoltera soltera = new ValorarSoltera(this);
+		resultado = soltera.valorar();			
 	}
 	
 }

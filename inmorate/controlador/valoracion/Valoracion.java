@@ -1,10 +1,8 @@
 package inmorate.controlador.valoracion;
 
-import org.apache.log4j.Logger;
 import static inmorate.controlador.constants.CONSTANTS.ValoracionEnum;
 
 public class Valoracion {
-	private static Logger logger = Logger.getLogger(Valoracion.class);
 	private double valor;
 
 	public Valoracion() {

@@ -3,7 +3,6 @@ package inmorate.controlador.elementos;
 import org.apache.log4j.Logger;
 
 import inmorate.controlador.valoracion.Importancia;
-import inmorate.controlador.valoracion.Valoracion;
 
 public class Elemento {
 	private static Logger logger = Logger.getLogger(Elemento.class);

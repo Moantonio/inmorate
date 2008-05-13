@@ -5,7 +5,6 @@ import org.apache.log4j.Logger;
 import inmorate.controlador.elementos.Elemento;
 import inmorate.controlador.elementos.Elementos;
 import inmorate.controlador.sector.Sector;
-import inmorate.model.Inmueble;
 
 public class Usuario {
 	private static Logger logger = Logger.getLogger(Usuario.class);
@@ -79,7 +78,7 @@ public class Usuario {
 	public void setImportanciaFachada             (Importancia importancia){elementos.getElementos()[ FACHADA             ].setImportancia(importancia);}
 	public void setImportanciaVistas              (Importancia importancia){elementos.getElementos()[ VISTAS              ].setImportancia(importancia);}
 	public void setImportanciaNumeroHabitaciones  (Importancia importancia){elementos.getElementos()[ NUMERO_HABITACIONES ].setImportancia(importancia);}
-	public void setImportancianumeroBanos         (Importancia importancia){elementos.getElementos()[ NUMERO_BANOS        ].setImportancia(importancia);}
+	public void setImportanciaNumeroBanos         (Importancia importancia){elementos.getElementos()[ NUMERO_BANOS        ].setImportancia(importancia);}
 	public void setImportanciaAntiguedad          (Importancia importancia){elementos.getElementos()[ ANTIGUEDAD          ].setImportancia(importancia);}
 	public void setImportanciaAltura              (Importancia importancia){elementos.getElementos()[ ALTURA              ].setImportancia(importancia);}
 	public void setImportanciaAscensor            (Importancia importancia){elementos.getElementos()[ ASCENSOR            ].setImportancia(importancia);}
@@ -101,7 +100,7 @@ public class Usuario {
 	public Importancia getImportanciaFachada             (){return elementos.getElementos()[ FACHADA             ].getImportancia();}
 	public Importancia getImportanciaVistas              (){return elementos.getElementos()[ VISTAS              ].getImportancia();}
 	public Importancia getImportanciaNumeroHabitaciones  (){return elementos.getElementos()[ NUMERO_HABITACIONES ].getImportancia();}
-	public Importancia getImportancianumeroBanos         (){return elementos.getElementos()[ NUMERO_BANOS        ].getImportancia();}
+	public Importancia getImportanciaNumeroBanos         (){return elementos.getElementos()[ NUMERO_BANOS        ].getImportancia();}
 	public Importancia getImportanciaAntiguedad          (){return elementos.getElementos()[ ANTIGUEDAD          ].getImportancia();}
 	public Importancia getImportanciaAltura              (){return elementos.getElementos()[ ALTURA              ].getImportancia();}
 	public Importancia getImportanciaAscensor            (){return elementos.getElementos()[ ASCENSOR            ].getImportancia();}
