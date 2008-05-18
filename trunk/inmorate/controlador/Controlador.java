@@ -4,19 +4,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import inmorate.BBDD.Conexion;
-import inmorate.controlador.valoracion.ValorarMatrimonio;
-import inmorate.controlador.valoracion.ValorarPareja;
-import inmorate.controlador.valoracion.ValorarSoltera;
-import inmorate.controlador.valoracion.ValorarSoltero;
+import inmorate.modelo.BBDD.Conexion;
+import inmorate.modelo.valoracion.ValorarMatrimonio;
+import inmorate.modelo.valoracion.ValorarPareja;
+import inmorate.modelo.valoracion.ValorarSoltera;
+import inmorate.modelo.valoracion.ValorarSoltero;
 import inmorate.gui.VistaFinal;
 import inmorate.gui.VistaInicial;
 import inmorate.gui.VistaMatrimonio;
 import inmorate.gui.VistaPareja;
 import inmorate.gui.VistaSoltera;
 import inmorate.gui.VistaSoltero;
-import inmorate.model.Inmueble;
-import inmorate.model.InmuebleValorado;
+import inmorate.modelo.inmueble.Inmueble;
+import inmorate.modelo.inmueble.InmuebleValorado;
 
 public class Controlador {
 	
