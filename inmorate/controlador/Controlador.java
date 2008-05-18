@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import inmorate.modelo.BBDD.Conexion;
+import inmorate.modelo.bbdd.Conexion;
 import inmorate.modelo.valoracion.ValorarMatrimonio;
 import inmorate.modelo.valoracion.ValorarPareja;
 import inmorate.modelo.valoracion.ValorarSoltera;
