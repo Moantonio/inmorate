@@ -127,7 +127,7 @@ public class VistaInicial extends JFrame {
 		imagen.setBounds(40, 15, 105, 100);
 
 		//---- espanol ----
-		espanol.setIcon(new ImageIcon("./España.gif"));
+		espanol.setIcon(new ImageIcon("./Espana.gif"));
 		contentPane.add(espanol);
 		espanol.setBounds(465, 50, 50, 30);
 
