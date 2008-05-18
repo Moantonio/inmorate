@@ -1,8 +1,8 @@
 package inmorate.gui;
 
 import inmorate.controlador.Controlador;
-import inmorate.model.Inmueble;
-import inmorate.model.InmuebleValorado;
+import inmorate.modelo.inmueble.Inmueble;
+import inmorate.modelo.inmueble.InmuebleValorado;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
