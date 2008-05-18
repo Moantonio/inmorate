@@ -1,6 +1,6 @@
 package inmorate.modelo.valoracion;
 
-import inmorate.modelo.BBDD.Conversor;
+import inmorate.modelo.bbdd.Conversor;
 import inmorate.controlador.Controlador;
 import inmorate.modelo.constants.CONSTANTS.GradoImportanciaEnum;
 import inmorate.modelo.constants.CONSTANTS.TipoSectorEnum;
