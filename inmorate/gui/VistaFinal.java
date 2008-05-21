@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.SQLException;
 
 import javax.swing.*;
 
@@ -86,7 +87,11 @@ public class VistaFinal extends JFrame {
 		button2.addActionListener(
 				new ActionListener() {
 					public void actionPerformed(ActionEvent evento) {
-						controlador.cerrarPrograma();
+						try {
+							controlador.cerrarPrograma();
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}
 					}
 				} // ActionListener			
 		); // buttonCancelar.addActionListener
@@ -105,7 +110,6 @@ public class VistaFinal extends JFrame {
 						try {
 							mostrar();
 						} catch (MalformedURLException e1) {
-							// TODO Bloque catch generado automáticamente
 							e1.printStackTrace();
 						}
 					}
