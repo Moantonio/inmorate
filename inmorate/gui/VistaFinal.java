@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import javax.swing.*;
 
@@ -57,7 +59,7 @@ public class VistaFinal extends JFrame {
 	private JLabel label30;
 	private JLabel label31;
 	
-	public VistaFinal(Controlador control) {
+	public VistaFinal(Controlador control) throws MalformedURLException {
 		controlador = control;
 		inmueble = new Inmueble();
 		valoracionGeneral = "";
@@ -100,7 +102,12 @@ public class VistaFinal extends JFrame {
 						InmuebleValorado[] resultado = controlador.getResultado();
 						inmueble = resultado[posicion].getInmueble();
 						valoracionGeneral = String.valueOf(resultado[posicion].getValoracionGeneral().getValor());
-						mostrar();
+						try {
+							mostrar();
+						} catch (MalformedURLException e1) {
+							// TODO Bloque catch generado automáticamente
+							e1.printStackTrace();
+						}
 					}
 
 					public void mouseEntered(MouseEvent e) {}
@@ -115,7 +122,7 @@ public class VistaFinal extends JFrame {
 		); // listInmueble.addActionListener
 	}
 
-	private void initComponents() {
+	private void initComponents() throws MalformedURLException {
 		scrollPane1 = new JScrollPane();
 		listInmueble = new JList();
 		button1 = new JButton();
@@ -223,7 +230,7 @@ public class VistaFinal extends JFrame {
 		label3.setBounds(205, 65, 335, label3.getPreferredSize().height);
 
 		//---- label4 ----
-		label4.setText("Direcci\u00f3n:");
+		label4.setText("Dirección:");
 		label4.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
 		contentPane.add(label4);
 		label4.setBounds(205, 100, 255, label4.getPreferredSize().height);
@@ -235,7 +242,7 @@ public class VistaFinal extends JFrame {
 		label5.setBounds(205, 135, 215, label5.getPreferredSize().height);
 
 		//---- label6 ----
-		label6.setText("Antig\u00fcedad:");
+		label6.setText("Antigüedad:");
 		label6.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
 		contentPane.add(label6);
 		label6.setBounds(205, 170, 330, label6.getPreferredSize().height);
@@ -253,7 +260,7 @@ public class VistaFinal extends JFrame {
 		label8.setBounds(205, 240, 330, label8.getPreferredSize().height);
 
 		//---- label9 ----
-		label9.setText("Valoraci\u00f3n General:");
+		label9.setText("Valoración General:");
 		label9.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
 		contentPane.add(label9);
 		label9.setBounds(205, 275, 330, label9.getPreferredSize().height);
@@ -301,52 +308,52 @@ public class VistaFinal extends JFrame {
 		label16.setBounds(255, 240, 315, label16.getPreferredSize().height);
 
 		//---- label17 ----
-		label17.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
+		label17.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
 		contentPane.add(label17);
 		label17.setBounds(205, 305, 40, 53);
 
 		//---- label18 ----
-		label18.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
+		label18.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
 		contentPane.add(label18);
 		label18.setBounds(245, 305, 40, 53);
 
 		//---- label19 ----
-		label19.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
+		label19.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
 		contentPane.add(label19);
 		label19.setBounds(285, 305, 40, 53);
 
 		//---- label20 ----
-		label20.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
+		label20.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
 		contentPane.add(label20);
 		label20.setBounds(325, 305, 40, 53);
 
 		//---- label21 ----
-		label21.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
+		label21.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
 		contentPane.add(label21);
 		label21.setBounds(365, 305, 40, 53);
 
 		//---- label22 ----
-		label22.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
+		label22.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
 		contentPane.add(label22);
 		label22.setBounds(405, 305, 40, 53);
 
 		//---- label23 ----
-		label23.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
+		label23.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
 		contentPane.add(label23);
 		label23.setBounds(445, 305, 40, 53);
 
 		//---- label24 ----
-		label24.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
+		label24.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
 		contentPane.add(label24);
 		label24.setBounds(485, 305, 40, 53);
 
 		//---- label25 ----
-		label25.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
+		label25.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
 		contentPane.add(label25);
 		label25.setBounds(525, 305, 40, 53);
 
 		//---- label26 ----
-		label26.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
+		label26.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
 		contentPane.add(label26);
 		label26.setBounds(565, 305, 40, 53);
 
@@ -372,7 +379,7 @@ public class VistaFinal extends JFrame {
 		listInmueble.setListData(array);
 	}
 
-	private void mostrar() {
+	private void mostrar() throws MalformedURLException {
 		label10.setText(inmueble.getTipoDeInmueble());
 		label11.setText(inmueble.getZona());
 		label12.setText(inmueble.getDireccion());
@@ -429,7 +436,7 @@ public class VistaFinal extends JFrame {
 		}
 	}
 
-	private void mostrarEstrellas() {
+	private void mostrarEstrellas() throws MalformedURLException {
 		String primera = valoracionGeneral.substring(0,1);
 		int primero = Integer.valueOf(primera);
 		String segunda = valoracionGeneral.substring(2,3);
@@ -437,243 +444,243 @@ public class VistaFinal extends JFrame {
 		String punto = valoracionGeneral.substring(1,2);
 		if (punto.equals(".")) {
 			switch(primero) {
-			case 0:label17.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label18.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label19.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label20.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label21.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label22.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label23.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label24.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label25.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label26.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
+			case 0:label17.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+				label18.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+				label19.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+				label20.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+				label21.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+				label22.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+				label23.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+				label24.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+				label25.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+				label26.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
 				switch(segundo) {
-				case 0:label17.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));break;
-				case 1:label17.setIcon(new ImageIcon(".\\estrellas\\0.1.jpg"));break;
-				case 2:label17.setIcon(new ImageIcon(".\\estrellas\\0.2.jpg"));break;
-				case 3:label17.setIcon(new ImageIcon(".\\estrellas\\0.3.jpg"));break;
-				case 4:label17.setIcon(new ImageIcon(".\\estrellas\\0.4.jpg"));break;
-				case 5:label17.setIcon(new ImageIcon(".\\estrellas\\0.5.jpg"));break;
-				case 6:label17.setIcon(new ImageIcon(".\\estrellas\\0.6.jpg"));break;
-				case 7:label17.setIcon(new ImageIcon(".\\estrellas\\0.7.jpg"));break;
-				case 8:label17.setIcon(new ImageIcon(".\\estrellas\\0.8.jpg"));break;
-				case 9:label17.setIcon(new ImageIcon(".\\estrellas\\0.9.jpg"));break;
+				case 0:label17.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));break;
+				case 1:label17.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.1.jpg")));break;
+				case 2:label17.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.2.jpg")));break;
+				case 3:label17.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.3.jpg")));break;
+				case 4:label17.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.4.jpg")));break;
+				case 5:label17.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.5.jpg")));break;
+				case 6:label17.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.6.jpg")));break;
+				case 7:label17.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.7.jpg")));break;
+				case 8:label17.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.8.jpg")));break;
+				case 9:label17.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.9.jpg")));break;
 				default: break;
 				}
 				break;
-			case 1: label17.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label18.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label19.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label20.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label21.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label22.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label23.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label24.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label25.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label26.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
+			case 1: label17.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label18.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+			label19.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+			label20.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+			label21.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+			label22.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+			label23.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+			label24.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+			label25.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+			label26.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
 				switch(segundo) {
-				case 0:label18.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));break;
-				case 1:label18.setIcon(new ImageIcon(".\\estrellas\\0.1.jpg"));break;
-				case 2:label18.setIcon(new ImageIcon(".\\estrellas\\0.2.jpg"));break;
-				case 3:label18.setIcon(new ImageIcon(".\\estrellas\\0.3.jpg"));break;
-				case 4:label18.setIcon(new ImageIcon(".\\estrellas\\0.4.jpg"));break;
-				case 5:label18.setIcon(new ImageIcon(".\\estrellas\\0.5.jpg"));break;
-				case 6:label18.setIcon(new ImageIcon(".\\estrellas\\0.6.jpg"));break;
-				case 7:label18.setIcon(new ImageIcon(".\\estrellas\\0.7.jpg"));break;
-				case 8:label18.setIcon(new ImageIcon(".\\estrellas\\0.8.jpg"));break;
-				case 9:label18.setIcon(new ImageIcon(".\\estrellas\\0.9.jpg"));break;
+				case 0:label18.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));break;
+				case 1:label18.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.1.jpg")));break;
+				case 2:label18.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.2.jpg")));break;
+				case 3:label18.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.3.jpg")));break;
+				case 4:label18.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.4.jpg")));break;
+				case 5:label18.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.5.jpg")));break;
+				case 6:label18.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.6.jpg")));break;
+				case 7:label18.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.7.jpg")));break;
+				case 8:label18.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.8.jpg")));break;
+				case 9:label18.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.9.jpg")));break;
 				default: break;
 				}
 				break;
-			case 2: label17.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label18.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label19.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label20.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label21.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label22.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label23.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label24.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label25.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label26.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
+			case 2: label17.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label18.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label19.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+			label20.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+			label21.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+			label22.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+			label23.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+			label24.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+			label25.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+			label26.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
 				switch(segundo) {
-				case 0:label19.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));break;
-				case 1:label19.setIcon(new ImageIcon(".\\estrellas\\0.1.jpg"));break;
-				case 2:label19.setIcon(new ImageIcon(".\\estrellas\\0.2.jpg"));break;
-				case 3:label19.setIcon(new ImageIcon(".\\estrellas\\0.3.jpg"));break;
-				case 4:label19.setIcon(new ImageIcon(".\\estrellas\\0.4.jpg"));break;
-				case 5:label19.setIcon(new ImageIcon(".\\estrellas\\0.5.jpg"));break;
-				case 6:label19.setIcon(new ImageIcon(".\\estrellas\\0.6.jpg"));break;
-				case 7:label19.setIcon(new ImageIcon(".\\estrellas\\0.7.jpg"));break;
-				case 8:label19.setIcon(new ImageIcon(".\\estrellas\\0.8.jpg"));break;
-				case 9:label19.setIcon(new ImageIcon(".\\estrellas\\0.9.jpg"));break;
+				case 0:label19.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));break;
+				case 1:label19.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.1.jpg")));break;
+				case 2:label19.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.2.jpg")));break;
+				case 3:label19.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.3.jpg")));break;
+				case 4:label19.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.4.jpg")));break;
+				case 5:label19.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.5.jpg")));break;
+				case 6:label19.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.6.jpg")));break;
+				case 7:label19.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.7.jpg")));break;
+				case 8:label19.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.8.jpg")));break;
+				case 9:label19.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.9.jpg")));break;
 				default: break;
 				}
 				break;
-			case 3: label17.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label18.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label19.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label20.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label21.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label22.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label23.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label24.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label25.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label26.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
+			case 3: label17.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label18.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label19.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label20.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+			label21.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+			label22.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+			label23.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+			label24.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+			label25.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+			label26.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
 				switch(segundo) {
-				case 0:label20.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));break;
-				case 1:label20.setIcon(new ImageIcon(".\\estrellas\\0.1.jpg"));break;
-				case 2:label20.setIcon(new ImageIcon(".\\estrellas\\0.2.jpg"));break;
-				case 3:label20.setIcon(new ImageIcon(".\\estrellas\\0.3.jpg"));break;
-				case 4:label20.setIcon(new ImageIcon(".\\estrellas\\0.4.jpg"));break;
-				case 5:label20.setIcon(new ImageIcon(".\\estrellas\\0.5.jpg"));break;
-				case 6:label20.setIcon(new ImageIcon(".\\estrellas\\0.6.jpg"));break;
-				case 7:label20.setIcon(new ImageIcon(".\\estrellas\\0.7.jpg"));break;
-				case 8:label20.setIcon(new ImageIcon(".\\estrellas\\0.8.jpg"));break;
-				case 9:label20.setIcon(new ImageIcon(".\\estrellas\\0.9.jpg"));break;
+				case 0:label20.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));break;
+				case 1:label20.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.1.jpg")));break;
+				case 2:label20.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.2.jpg")));break;
+				case 3:label20.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.3.jpg")));break;
+				case 4:label20.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.4.jpg")));break;
+				case 5:label20.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.5.jpg")));break;
+				case 6:label20.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.6.jpg")));break;
+				case 7:label20.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.7.jpg")));break;
+				case 8:label20.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.8.jpg")));break;
+				case 9:label20.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.9.jpg")));break;
 				default: break;
 				}
 				break;
-			case 4: label17.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label18.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label19.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label20.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label21.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label22.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label23.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label24.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label25.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label26.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
+			case 4: label17.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label18.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label19.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label20.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label21.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+			label22.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+			label23.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+			label24.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+			label25.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+			label26.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
 				switch(segundo) {
-				case 0:label21.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));break;
-				case 1:label21.setIcon(new ImageIcon(".\\estrellas\\0.1.jpg"));break;
-				case 2:label21.setIcon(new ImageIcon(".\\estrellas\\0.2.jpg"));break;
-				case 3:label21.setIcon(new ImageIcon(".\\estrellas\\0.3.jpg"));break;
-				case 4:label21.setIcon(new ImageIcon(".\\estrellas\\0.4.jpg"));break;
-				case 5:label21.setIcon(new ImageIcon(".\\estrellas\\0.5.jpg"));break;
-				case 6:label21.setIcon(new ImageIcon(".\\estrellas\\0.6.jpg"));break;
-				case 7:label21.setIcon(new ImageIcon(".\\estrellas\\0.7.jpg"));break;
-				case 8:label21.setIcon(new ImageIcon(".\\estrellas\\0.8.jpg"));break;
-				case 9:label21.setIcon(new ImageIcon(".\\estrellas\\0.9.jpg"));break;
+				case 0:label21.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));break;
+				case 1:label21.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.1.jpg")));break;
+				case 2:label21.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.2.jpg")));break;
+				case 3:label21.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.3.jpg")));break;
+				case 4:label21.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.4.jpg")));break;
+				case 5:label21.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.5.jpg")));break;
+				case 6:label21.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.6.jpg")));break;
+				case 7:label21.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.7.jpg")));break;
+				case 8:label21.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.8.jpg")));break;
+				case 9:label21.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.9.jpg")));break;
 				default: break;
 				}
 				break;
-			case 5: label17.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label18.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label19.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label20.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label21.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label22.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label23.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label24.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label25.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label26.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
+			case 5: label17.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label18.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label19.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label20.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label21.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label22.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+			label23.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+			label24.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+			label25.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+			label26.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
 				switch(segundo) {
-				case 0:label22.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));break;
-				case 1:label22.setIcon(new ImageIcon(".\\estrellas\\0.1.jpg"));break;
-				case 2:label22.setIcon(new ImageIcon(".\\estrellas\\0.2.jpg"));break;
-				case 3:label22.setIcon(new ImageIcon(".\\estrellas\\0.3.jpg"));break;
-				case 4:label22.setIcon(new ImageIcon(".\\estrellas\\0.4.jpg"));break;
-				case 5:label22.setIcon(new ImageIcon(".\\estrellas\\0.5.jpg"));break;
-				case 6:label22.setIcon(new ImageIcon(".\\estrellas\\0.6.jpg"));break;
-				case 7:label22.setIcon(new ImageIcon(".\\estrellas\\0.7.jpg"));break;
-				case 8:label22.setIcon(new ImageIcon(".\\estrellas\\0.8.jpg"));break;
-				case 9:label22.setIcon(new ImageIcon(".\\estrellas\\0.9.jpg"));break;
+				case 0:label22.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));break;
+				case 1:label22.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.1.jpg")));break;
+				case 2:label22.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.2.jpg")));break;
+				case 3:label22.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.3.jpg")));break;
+				case 4:label22.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.4.jpg")));break;
+				case 5:label22.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.5.jpg")));break;
+				case 6:label22.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.6.jpg")));break;
+				case 7:label22.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.7.jpg")));break;
+				case 8:label22.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.8.jpg")));break;
+				case 9:label22.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.9.jpg")));break;
 				default: break;
 				}
 				break;
-			case 6: label17.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label18.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label19.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label20.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label21.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label22.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label23.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label24.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label25.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label26.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
+			case 6: label17.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label18.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label19.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label20.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label21.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label22.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label23.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+			label24.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+			label25.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+			label26.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
 				switch(segundo) {
-				case 0:label23.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));break;
-				case 1:label23.setIcon(new ImageIcon(".\\estrellas\\0.1.jpg"));break;
-				case 2:label23.setIcon(new ImageIcon(".\\estrellas\\0.2.jpg"));break;
-				case 3:label23.setIcon(new ImageIcon(".\\estrellas\\0.3.jpg"));break;
-				case 4:label23.setIcon(new ImageIcon(".\\estrellas\\0.4.jpg"));break;
-				case 5:label23.setIcon(new ImageIcon(".\\estrellas\\0.5.jpg"));break;
-				case 6:label23.setIcon(new ImageIcon(".\\estrellas\\0.6.jpg"));break;
-				case 7:label23.setIcon(new ImageIcon(".\\estrellas\\0.7.jpg"));break;
-				case 8:label23.setIcon(new ImageIcon(".\\estrellas\\0.8.jpg"));break;
-				case 9:label23.setIcon(new ImageIcon(".\\estrellas\\0.9.jpg"));break;
+				case 0:label23.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));break;
+				case 1:label23.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.1.jpg")));break;
+				case 2:label23.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.2.jpg")));break;
+				case 3:label23.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.3.jpg")));break;
+				case 4:label23.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.4.jpg")));break;
+				case 5:label23.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.5.jpg")));break;
+				case 6:label23.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.6.jpg")));break;
+				case 7:label23.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.7.jpg")));break;
+				case 8:label23.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.8.jpg")));break;
+				case 9:label23.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.9.jpg")));break;
 				default: break;
 				}
 				break;
-			case 7:	label17.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label18.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label19.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label20.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label21.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label22.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label23.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label24.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label25.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label26.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
+			case 7:	label17.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label18.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label19.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label20.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label21.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label22.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label23.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label24.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+			label25.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+			label26.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
 				switch(segundo) {
-				case 0:label24.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));break;
-				case 1:label24.setIcon(new ImageIcon(".\\estrellas\\0.1.jpg"));break;
-				case 2:label24.setIcon(new ImageIcon(".\\estrellas\\0.2.jpg"));break;
-				case 3:label24.setIcon(new ImageIcon(".\\estrellas\\0.3.jpg"));break;
-				case 4:label24.setIcon(new ImageIcon(".\\estrellas\\0.4.jpg"));break;
-				case 5:label24.setIcon(new ImageIcon(".\\estrellas\\0.5.jpg"));break;
-				case 6:label24.setIcon(new ImageIcon(".\\estrellas\\0.6.jpg"));break;
-				case 7:label24.setIcon(new ImageIcon(".\\estrellas\\0.7.jpg"));break;
-				case 8:label24.setIcon(new ImageIcon(".\\estrellas\\0.8.jpg"));break;
-				case 9:label24.setIcon(new ImageIcon(".\\estrellas\\0.9.jpg"));break;
+				case 0:label24.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));break;
+				case 1:label24.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.1.jpg")));break;
+				case 2:label24.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.2.jpg")));break;
+				case 3:label24.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.3.jpg")));break;
+				case 4:label24.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.4.jpg")));break;
+				case 5:label24.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.5.jpg")));break;
+				case 6:label24.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.6.jpg")));break;
+				case 7:label24.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.7.jpg")));break;
+				case 8:label24.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.8.jpg")));break;
+				case 9:label24.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.9.jpg")));break;
 				default: break;
 				}
 				break;
-			case 8: label17.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label18.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label19.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label20.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label21.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label22.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label23.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label24.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label25.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
-				label26.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
+			case 8: label17.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label18.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label19.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label20.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label21.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label22.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label23.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label24.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label25.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
+			label26.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
 				switch(segundo) {
-				case 0:label25.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));break;
-				case 1:label25.setIcon(new ImageIcon(".\\estrellas\\0.1.jpg"));break;
-				case 2:label25.setIcon(new ImageIcon(".\\estrellas\\0.2.jpg"));break;
-				case 3:label25.setIcon(new ImageIcon(".\\estrellas\\0.3.jpg"));break;
-				case 4:label25.setIcon(new ImageIcon(".\\estrellas\\0.4.jpg"));break;
-				case 5:label25.setIcon(new ImageIcon(".\\estrellas\\0.5.jpg"));break;
-				case 6:label25.setIcon(new ImageIcon(".\\estrellas\\0.6.jpg"));break;
-				case 7:label25.setIcon(new ImageIcon(".\\estrellas\\0.7.jpg"));break;
-				case 8:label25.setIcon(new ImageIcon(".\\estrellas\\0.8.jpg"));break;
-				case 9:label25.setIcon(new ImageIcon(".\\estrellas\\0.9.jpg"));break;
+				case 0:label25.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));break;
+				case 1:label25.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.1.jpg")));break;
+				case 2:label25.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.2.jpg")));break;
+				case 3:label25.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.3.jpg")));break;
+				case 4:label25.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.4.jpg")));break;
+				case 5:label25.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.5.jpg")));break;
+				case 6:label25.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.6.jpg")));break;
+				case 7:label25.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.7.jpg")));break;
+				case 8:label25.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.8.jpg")));break;
+				case 9:label25.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.9.jpg")));break;
 				default: break;
 				}
 				break;
-			case 9: label17.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label18.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label19.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label20.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label21.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label22.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label23.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label24.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label25.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-				label26.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));
+			case 9: label17.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label18.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label19.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label20.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label21.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label22.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label23.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label24.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label25.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label26.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));
 				switch(segundo) {
-				case 0:label26.setIcon(new ImageIcon(".\\estrellas\\0.0.jpg"));break;
-				case 1:label26.setIcon(new ImageIcon(".\\estrellas\\0.1.jpg"));break;
-				case 2:label26.setIcon(new ImageIcon(".\\estrellas\\0.2.jpg"));break;
-				case 3:label26.setIcon(new ImageIcon(".\\estrellas\\0.3.jpg"));break;
-				case 4:label26.setIcon(new ImageIcon(".\\estrellas\\0.4.jpg"));break;
-				case 5:label26.setIcon(new ImageIcon(".\\estrellas\\0.5.jpg"));break;
-				case 6:label26.setIcon(new ImageIcon(".\\estrellas\\0.6.jpg"));break;
-				case 7:label26.setIcon(new ImageIcon(".\\estrellas\\0.7.jpg"));break;
-				case 8:label26.setIcon(new ImageIcon(".\\estrellas\\0.8.jpg"));break;
-				case 9:label26.setIcon(new ImageIcon(".\\estrellas\\0.9.jpg"));break;
+				case 0:label26.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.0.jpg")));break;
+				case 1:label26.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.1.jpg")));break;
+				case 2:label26.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.2.jpg")));break;
+				case 3:label26.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.3.jpg")));break;
+				case 4:label26.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.4.jpg")));break;
+				case 5:label26.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.5.jpg")));break;
+				case 6:label26.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.6.jpg")));break;
+				case 7:label26.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.7.jpg")));break;
+				case 8:label26.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.8.jpg")));break;
+				case 9:label26.setIcon(new ImageIcon(new URL("file:.\\estrellas\\0.9.jpg")));break;
 				default: break;
 				}
 				break;
@@ -681,16 +688,16 @@ public class VistaFinal extends JFrame {
 			}
 		}
 		else {
-			label17.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-			label18.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-			label19.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-			label20.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-			label21.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-			label22.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-			label23.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-			label24.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-			label25.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
-			label26.setIcon(new ImageIcon(".\\estrellas\\1.0.jpg"));
+			label17.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label18.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label19.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label20.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label21.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label22.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label23.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label24.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label25.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
+			label26.setIcon(new ImageIcon(new URL("file:.\\estrellas\\1.0.jpg")));
 		}
 	}
 

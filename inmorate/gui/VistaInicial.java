@@ -3,6 +3,8 @@ package inmorate.gui;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import javax.swing.*;
 import javax.swing.border.*;
@@ -23,7 +25,7 @@ public class VistaInicial extends JFrame {
 	private JButton espanol;
 	private JButton ingles;
 	
-	public VistaInicial(Controlador control) {
+	public VistaInicial(Controlador control) throws MalformedURLException {
 		this.controlador = control;
 		initComponents();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -68,7 +70,7 @@ public class VistaInicial extends JFrame {
 		});
 	}
 
-	private void initComponents() {
+	private void initComponents() throws MalformedURLException {
 		label1 = new JLabel();
 		buttonPareja = new JButton();
 		buttonMatrimonio = new JButton();
@@ -122,17 +124,17 @@ public class VistaInicial extends JFrame {
 		buttonSoltera.setBounds(320, 335, 245, 175);
 
 		//---- imagen ----
-		imagen.setIcon(new ImageIcon("./casa.gif"));
+		imagen.setIcon(new ImageIcon(new URL("file:./casa.gif")));
 		contentPane.add(imagen);
 		imagen.setBounds(40, 15, 105, 100);
 
 		//---- espanol ----
-		espanol.setIcon(new ImageIcon("./Espana.gif"));
+		espanol.setIcon(new ImageIcon(new URL("file:./Espana.gif")));
 		contentPane.add(espanol);
 		espanol.setBounds(465, 50, 50, 30);
 
 		//---- ingles ----
-		ingles.setIcon(new ImageIcon("./ReinoUnido.gif"));
+		ingles.setIcon(new ImageIcon(new URL("file:./ReinoUnido.gif")));
 		contentPane.add(ingles);
 		ingles.setBounds(515, 50, 50, 30);
 
