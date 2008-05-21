@@ -3,6 +3,7 @@ package inmorate.gui;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.*;
 import javax.swing.border.*;
@@ -44,7 +45,12 @@ public class VistaSoltera extends JFrame {
 						// Valoramos los inmuebles
 						controlador.valorarSoltera();
 												
-						controlador.activarVVSA();
+						try {
+							controlador.activarVVSA();
+						} catch (SQLException e) {
+							// TODO Bloque catch generado automáticamente
+							e.printStackTrace();
+						}
 					}
 				} // ActionListener			
 		); // buttonAceptar.addActionListener

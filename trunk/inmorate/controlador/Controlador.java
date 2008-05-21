@@ -85,31 +85,36 @@ public class Controlador {
 		vistaSoltera.setVisible(true);
 	}
 	
-	public void activarVVP() {
+	public void activarVVP() throws SQLException {
 		vistaPareja.setVisible(false);
 		vistaFinal.setVisible(true);
 		vistaFinal.mostrarResultados();
+		conexion.cierraConexion();
 	}
 	
-	public void activarVVM() {
+	public void activarVVM() throws SQLException {
 		vistaMatrimonio.setVisible(false);
 		vistaFinal.setVisible(true);
 		vistaFinal.mostrarResultados();
+		conexion.cierraConexion();
 	}
 	
-	public void activarVVSO() {
+	public void activarVVSO() throws SQLException {
 		vistaSoltero.setVisible(false);
 		vistaFinal.setVisible(true);
 		vistaFinal.mostrarResultados();
+		conexion.cierraConexion();
 	}
 
-	public void activarVVSA() {
+	public void activarVVSA() throws SQLException {
 		vistaSoltera.setVisible(false);
 		vistaFinal.setVisible(true);
 		vistaFinal.mostrarResultados();
+		conexion.cierraConexion();
 	}
 	
-	public void cerrarPrograma() {
+	public void cerrarPrograma() throws SQLException {
+		conexion.cierraConexion();
 		System.exit(0);
 	}
 	

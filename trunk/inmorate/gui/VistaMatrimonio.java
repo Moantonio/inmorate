@@ -3,6 +3,7 @@ package inmorate.gui;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.*;
 import javax.swing.border.*;
@@ -41,7 +42,12 @@ public class VistaMatrimonio extends JFrame {
 						// Valoramos los inmuebles
 						controlador.valorarMatrimonio();
 												
-						controlador.activarVVM();
+						try {
+							controlador.activarVVM();
+						} catch (SQLException e) {
+							// TODO Bloque catch generado automáticamente
+							e.printStackTrace();
+						}
 					}
 				} // ActionListener			
 		); // buttonAceptar.addActionListener
