@@ -524,7 +524,7 @@ public class Inmueble {
 			break;
 		}
 		// Metros Contruidos y Habitables
-		this.metrosHabitables = 100+rnd.nextInt(150);
+		this.metrosHabitables = 70+rnd.nextInt(150);
 		this.metros_construidos = this.metrosHabitables+10+rnd.nextInt(20);
 		this.precioTasacion = this.metrosHabitables*1000;
 		this.precioSalida = (int) Math.round(this.metros_construidos*1000*1.16);

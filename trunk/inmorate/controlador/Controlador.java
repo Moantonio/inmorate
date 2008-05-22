@@ -168,7 +168,7 @@ public class Controlador {
 		Inmueble inmueble = new Inmueble();
 		conexion.conectar();
 		conexion.borrarBBDD();
-		for (int valor=1; valor<=500; valor++) {
+		for (int valor=1; valor<=300; valor++) {
 			inmueble.crearInmueble(valor);
 			conexion.crearViviendas(inmueble);
 		}
