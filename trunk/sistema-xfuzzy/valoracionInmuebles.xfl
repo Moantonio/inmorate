@@ -481,15 +481,15 @@ rulebase Inferencia_Metros_habitables (Metros Metros_habitables, Perfil Perfil :
   if(Metros_habitables == bastantes & Perfil == Mujer_soltera) -> Valoracion_Metros_habitables = buena;
  }
 rulebase Inferencia_Precio_tasacion (Precio Precio_tasacion, Perfil Perfil : Valoracion Valoracion_Precio_tasacion)  {
-  if(Precio_tasacion == barato & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Precio_tasacion = muy_buena;
-  if(Precio_tasacion == barato & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Precio_tasacion = buena;
-  if(Precio_tasacion == barato & Perfil == Hombre_soltero) -> Valoracion_Precio_tasacion = muy_buena;
+  if(Precio_tasacion == barato & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Precio_tasacion = mala;
+  if(Precio_tasacion == barato & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Precio_tasacion = mala;
+  if(Precio_tasacion == barato & Perfil == Hombre_soltero) -> Valoracion_Precio_tasacion = regular;
   if(Precio_tasacion == barato & Perfil == Mujer_soltera) -> Valoracion_Precio_tasacion = muy_buena;
-  if(Precio_tasacion == poco_barato & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Precio_tasacion = muy_buena;
+  if(Precio_tasacion == poco_barato & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Precio_tasacion = mala;
   if(Precio_tasacion == poco_barato & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Precio_tasacion = regular;
   if(Precio_tasacion == poco_barato & Perfil == Hombre_soltero) -> Valoracion_Precio_tasacion = buena;
   if(Precio_tasacion == poco_barato & Perfil == Mujer_soltera) -> Valoracion_Precio_tasacion = buena;
-  if(Precio_tasacion == normal & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Precio_tasacion = buena;
+  if(Precio_tasacion == normal & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Precio_tasacion = mala;
   if(Precio_tasacion == normal & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Precio_tasacion = buena;
   if(Precio_tasacion == normal & Perfil == Hombre_soltero) -> Valoracion_Precio_tasacion = regular;
   if(Precio_tasacion == normal & Perfil == Mujer_soltera) -> Valoracion_Precio_tasacion = regular;
@@ -505,46 +505,46 @@ rulebase Inferencia_Precio_tasacion (Precio Precio_tasacion, Perfil Perfil : Val
 rulebase Inferencia_Precio_salida (Precio Precio_salida, Perfil Perfil : Valoracion Valoracion_Precio_salida)  {
   if(Precio_salida == barato & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Precio_salida = mala;
   if(Precio_salida == barato & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Precio_salida = mala;
-  if(Precio_salida == barato & Perfil == Hombre_soltero) -> Valoracion_Precio_salida = mala;
-  if(Precio_salida == barato & Perfil == Mujer_soltera) -> Valoracion_Precio_salida = mala;
+  if(Precio_salida == barato & Perfil == Hombre_soltero) -> Valoracion_Precio_salida = muy_mala;
+  if(Precio_salida == barato & Perfil == Mujer_soltera) -> Valoracion_Precio_salida = muy_buena;
   if(Precio_salida == poco_barato & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Precio_salida = regular;
   if(Precio_salida == poco_barato & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Precio_salida = regular;
   if(Precio_salida == poco_barato & Perfil == Hombre_soltero) -> Valoracion_Precio_salida = regular;
-  if(Precio_salida == poco_barato & Perfil == Mujer_soltera) -> Valoracion_Precio_salida = regular;
-  if(Precio_salida == normal & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Precio_salida = regular;
+  if(Precio_salida == poco_barato & Perfil == Mujer_soltera) -> Valoracion_Precio_salida = buena;
+  if(Precio_salida == normal & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Precio_salida = muy_buena;
   if(Precio_salida == normal & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Precio_salida = buena;
-  if(Precio_salida == normal & Perfil == Hombre_soltero) -> Valoracion_Precio_salida = buena;
+  if(Precio_salida == normal & Perfil == Hombre_soltero) -> Valoracion_Precio_salida = muy_buena;
   if(Precio_salida == normal & Perfil == Mujer_soltera) -> Valoracion_Precio_salida = regular;
-  if(Precio_salida == caro & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Precio_salida = buena;
-  if(Precio_salida == caro & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Precio_salida = buena;
-  if(Precio_salida == caro & Perfil == Hombre_soltero) -> Valoracion_Precio_salida = buena;
-  if(Precio_salida == caro & Perfil == Mujer_soltera) -> Valoracion_Precio_salida = buena;
-  if(Precio_salida == muy_caro & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Precio_salida = muy_buena;
-  if(Precio_salida == muy_caro & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Precio_salida = buena;
-  if(Precio_salida == muy_caro & Perfil == Hombre_soltero) -> Valoracion_Precio_salida = muy_buena;
-  if(Precio_salida == muy_caro & Perfil == Mujer_soltera) -> Valoracion_Precio_salida = muy_buena;
+  if(Precio_salida == caro & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Precio_salida = regular;
+  if(Precio_salida == caro & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Precio_salida = regular;
+  if(Precio_salida == caro & Perfil == Hombre_soltero) -> Valoracion_Precio_salida = regular;
+  if(Precio_salida == caro & Perfil == Mujer_soltera) -> Valoracion_Precio_salida = muy_mala;
+  if(Precio_salida == muy_caro & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Precio_salida = regular;
+  if(Precio_salida == muy_caro & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Precio_salida = regular;
+  if(Precio_salida == muy_caro & Perfil == Hombre_soltero) -> Valoracion_Precio_salida = muy_mala;
+  if(Precio_salida == muy_caro & Perfil == Mujer_soltera) -> Valoracion_Precio_salida = muy_mala;
  }
 rulebase Inferencia_Precio_venta (Precio Precio_venta, Perfil Perfil : Valoracion Valoracion_Precio_venta)  {
-  if(Precio_venta == barato & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Precio_venta = mala;
-  if(Precio_venta == barato & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Precio_venta = mala;
-  if(Precio_venta == barato & Perfil == Hombre_soltero) -> Valoracion_Precio_venta = mala;
-  if(Precio_venta == barato & Perfil == Mujer_soltera) -> Valoracion_Precio_venta = mala;
-  if(Precio_venta == poco_barato & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Precio_venta = regular;
-  if(Precio_venta == poco_barato & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Precio_venta = mala;
-  if(Precio_venta == poco_barato & Perfil == Hombre_soltero) -> Valoracion_Precio_venta = mala;
-  if(Precio_venta == poco_barato & Perfil == Mujer_soltera) -> Valoracion_Precio_venta = mala;
+  if(Precio_venta == barato & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Precio_venta = muy_buena;
+  if(Precio_venta == barato & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Precio_venta = muy_buena;
+  if(Precio_venta == barato & Perfil == Hombre_soltero) -> Valoracion_Precio_venta = muy_buena;
+  if(Precio_venta == barato & Perfil == Mujer_soltera) -> Valoracion_Precio_venta = muy_buena;
+  if(Precio_venta == poco_barato & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Precio_venta = buena;
+  if(Precio_venta == poco_barato & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Precio_venta = buena;
+  if(Precio_venta == poco_barato & Perfil == Hombre_soltero) -> Valoracion_Precio_venta = buena;
+  if(Precio_venta == poco_barato & Perfil == Mujer_soltera) -> Valoracion_Precio_venta = buena;
   if(Precio_venta == normal & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Precio_venta = regular;
   if(Precio_venta == normal & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Precio_venta = regular;
   if(Precio_venta == normal & Perfil == Hombre_soltero) -> Valoracion_Precio_venta = regular;
   if(Precio_venta == normal & Perfil == Mujer_soltera) -> Valoracion_Precio_venta = regular;
-  if(Precio_venta == caro & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Precio_venta = buena;
+  if(Precio_venta == caro & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Precio_venta = regular;
   if(Precio_venta == caro & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Precio_venta = regular;
   if(Precio_venta == caro & Perfil == Hombre_soltero) -> Valoracion_Precio_venta = regular;
   if(Precio_venta == caro & Perfil == Mujer_soltera) -> Valoracion_Precio_venta = mala;
-  if(Precio_venta == muy_caro & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Precio_venta = buena;
-  if(Precio_venta == muy_caro & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Precio_venta = buena;
-  if(Precio_venta == muy_caro & Perfil == Hombre_soltero) -> Valoracion_Precio_venta = buena;
-  if(Precio_venta == muy_caro & Perfil == Mujer_soltera) -> Valoracion_Precio_venta = buena;
+  if(Precio_venta == muy_caro & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Precio_venta = muy_mala;
+  if(Precio_venta == muy_caro & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Precio_venta = muy_mala;
+  if(Precio_venta == muy_caro & Perfil == Hombre_soltero) -> Valoracion_Precio_venta = muy_mala;
+  if(Precio_venta == muy_caro & Perfil == Mujer_soltera) -> Valoracion_Precio_venta = muy_mala;
  }
 
 system (TipoInmueble Tipo_inmueble, Valoracion Luminosidad, Orientacion Orientacion, Valoracion Representatividad, Valoracion Estado_del_portal, Valoracion Fachada, Valoracion Vistas, Numero Numero_habitaciones, Numero Numero_banos, Antiguedad Antiguedad, Valoracion Altura, Booleano Ascensor, Numero Garaje, Valoracion Estado_general, Valoracion Zonas_comunes, Valoracion Zona_subzona, Metros Metros_construidos, Metros Metros_habitables, Precio Precio_tasacion, Precio Precio_salida, Precio Precio_venta, Perfil Perfil : Valoracion Valoracion_Tipo_inmueble, Valoracion Valoracion_Luminosidad, Valoracion Valoracion_Orientacion, Valoracion Valoracion_Representatividad, Valoracion Valoracion_Estado_del_portal, Valoracion Valoracion_Fachada, Valoracion Valoracion_Vistas, Valoracion Valoracion_Numero_habitaciones, Valoracion Valoracion_Numero_banos, Valoracion Valoracion_Antiguedad, Valoracion Valoracion_Altura, Valoracion Valoracion_Ascensor, Valoracion Valoracion_Garaje, Valoracion Valoracion_Estado_general, Valoracion Valoracion_Zonas_comunes, Valoracion Valoracion_Zona_subzona, Valoracion Valoracion_Metros_construidos, Valoracion Valoracion_Metros_habitables, Valoracion Valoracion_Precio_tasacion, Valoracion Valoracion_Precio_salida, Valoracion Valoracion_Precio_venta) {

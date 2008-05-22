@@ -1,8 +1,8 @@
-package inmorate.modelo.xfuzzy;
-
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 //     Fuzzy Inference Engine valoracionInmuebles      //
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+
+package inmorate.modelo.xfuzzy;
 
 public class valoracionInmuebles implements FuzzyInferenceEngine {
 
@@ -1836,15 +1836,15 @@ public class valoracionInmuebles implements FuzzyInferenceEngine {
   TP_Valoracion _t_Valoracion_Precio_tasacion = new TP_Valoracion();
   int _i_Valoracion_Precio_tasacion=0;
   _rl = _op.and(_t_Precio_tasacion.barato.isEqual(Precio_tasacion),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
-  Valoracion_Precio_tasacion.set(_i_Valoracion_Precio_tasacion,_rl, _t_Valoracion_Precio_tasacion.muy_buena); _i_Valoracion_Precio_tasacion++;
+  Valoracion_Precio_tasacion.set(_i_Valoracion_Precio_tasacion,_rl, _t_Valoracion_Precio_tasacion.mala); _i_Valoracion_Precio_tasacion++;
   _rl = _op.and(_t_Precio_tasacion.barato.isEqual(Precio_tasacion),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
-  Valoracion_Precio_tasacion.set(_i_Valoracion_Precio_tasacion,_rl, _t_Valoracion_Precio_tasacion.buena); _i_Valoracion_Precio_tasacion++;
+  Valoracion_Precio_tasacion.set(_i_Valoracion_Precio_tasacion,_rl, _t_Valoracion_Precio_tasacion.mala); _i_Valoracion_Precio_tasacion++;
   _rl = _op.and(_t_Precio_tasacion.barato.isEqual(Precio_tasacion),_t_Perfil.Hombre_soltero.isEqual(Perfil));
-  Valoracion_Precio_tasacion.set(_i_Valoracion_Precio_tasacion,_rl, _t_Valoracion_Precio_tasacion.muy_buena); _i_Valoracion_Precio_tasacion++;
+  Valoracion_Precio_tasacion.set(_i_Valoracion_Precio_tasacion,_rl, _t_Valoracion_Precio_tasacion.regular); _i_Valoracion_Precio_tasacion++;
   _rl = _op.and(_t_Precio_tasacion.barato.isEqual(Precio_tasacion),_t_Perfil.Mujer_soltera.isEqual(Perfil));
   Valoracion_Precio_tasacion.set(_i_Valoracion_Precio_tasacion,_rl, _t_Valoracion_Precio_tasacion.muy_buena); _i_Valoracion_Precio_tasacion++;
   _rl = _op.and(_t_Precio_tasacion.poco_barato.isEqual(Precio_tasacion),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
-  Valoracion_Precio_tasacion.set(_i_Valoracion_Precio_tasacion,_rl, _t_Valoracion_Precio_tasacion.muy_buena); _i_Valoracion_Precio_tasacion++;
+  Valoracion_Precio_tasacion.set(_i_Valoracion_Precio_tasacion,_rl, _t_Valoracion_Precio_tasacion.mala); _i_Valoracion_Precio_tasacion++;
   _rl = _op.and(_t_Precio_tasacion.poco_barato.isEqual(Precio_tasacion),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
   Valoracion_Precio_tasacion.set(_i_Valoracion_Precio_tasacion,_rl, _t_Valoracion_Precio_tasacion.regular); _i_Valoracion_Precio_tasacion++;
   _rl = _op.and(_t_Precio_tasacion.poco_barato.isEqual(Precio_tasacion),_t_Perfil.Hombre_soltero.isEqual(Perfil));
@@ -1852,7 +1852,7 @@ public class valoracionInmuebles implements FuzzyInferenceEngine {
   _rl = _op.and(_t_Precio_tasacion.poco_barato.isEqual(Precio_tasacion),_t_Perfil.Mujer_soltera.isEqual(Perfil));
   Valoracion_Precio_tasacion.set(_i_Valoracion_Precio_tasacion,_rl, _t_Valoracion_Precio_tasacion.buena); _i_Valoracion_Precio_tasacion++;
   _rl = _op.and(_t_Precio_tasacion.normal.isEqual(Precio_tasacion),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
-  Valoracion_Precio_tasacion.set(_i_Valoracion_Precio_tasacion,_rl, _t_Valoracion_Precio_tasacion.buena); _i_Valoracion_Precio_tasacion++;
+  Valoracion_Precio_tasacion.set(_i_Valoracion_Precio_tasacion,_rl, _t_Valoracion_Precio_tasacion.mala); _i_Valoracion_Precio_tasacion++;
   _rl = _op.and(_t_Precio_tasacion.normal.isEqual(Precio_tasacion),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
   Valoracion_Precio_tasacion.set(_i_Valoracion_Precio_tasacion,_rl, _t_Valoracion_Precio_tasacion.buena); _i_Valoracion_Precio_tasacion++;
   _rl = _op.and(_t_Precio_tasacion.normal.isEqual(Precio_tasacion),_t_Perfil.Hombre_soltero.isEqual(Perfil));
@@ -1903,9 +1903,9 @@ public class valoracionInmuebles implements FuzzyInferenceEngine {
   _rl = _op.and(_t_Precio_salida.barato.isEqual(Precio_salida),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
   Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.mala); _i_Valoracion_Precio_salida++;
   _rl = _op.and(_t_Precio_salida.barato.isEqual(Precio_salida),_t_Perfil.Hombre_soltero.isEqual(Perfil));
-  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.mala); _i_Valoracion_Precio_salida++;
+  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.muy_mala); _i_Valoracion_Precio_salida++;
   _rl = _op.and(_t_Precio_salida.barato.isEqual(Precio_salida),_t_Perfil.Mujer_soltera.isEqual(Perfil));
-  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.mala); _i_Valoracion_Precio_salida++;
+  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.muy_buena); _i_Valoracion_Precio_salida++;
   _rl = _op.and(_t_Precio_salida.poco_barato.isEqual(Precio_salida),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
   Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.regular); _i_Valoracion_Precio_salida++;
   _rl = _op.and(_t_Precio_salida.poco_barato.isEqual(Precio_salida),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
@@ -1913,31 +1913,31 @@ public class valoracionInmuebles implements FuzzyInferenceEngine {
   _rl = _op.and(_t_Precio_salida.poco_barato.isEqual(Precio_salida),_t_Perfil.Hombre_soltero.isEqual(Perfil));
   Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.regular); _i_Valoracion_Precio_salida++;
   _rl = _op.and(_t_Precio_salida.poco_barato.isEqual(Precio_salida),_t_Perfil.Mujer_soltera.isEqual(Perfil));
-  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.regular); _i_Valoracion_Precio_salida++;
+  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.buena); _i_Valoracion_Precio_salida++;
   _rl = _op.and(_t_Precio_salida.normal.isEqual(Precio_salida),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
-  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.regular); _i_Valoracion_Precio_salida++;
+  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.muy_buena); _i_Valoracion_Precio_salida++;
   _rl = _op.and(_t_Precio_salida.normal.isEqual(Precio_salida),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
   Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.buena); _i_Valoracion_Precio_salida++;
   _rl = _op.and(_t_Precio_salida.normal.isEqual(Precio_salida),_t_Perfil.Hombre_soltero.isEqual(Perfil));
-  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.buena); _i_Valoracion_Precio_salida++;
+  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.muy_buena); _i_Valoracion_Precio_salida++;
   _rl = _op.and(_t_Precio_salida.normal.isEqual(Precio_salida),_t_Perfil.Mujer_soltera.isEqual(Perfil));
   Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.regular); _i_Valoracion_Precio_salida++;
   _rl = _op.and(_t_Precio_salida.caro.isEqual(Precio_salida),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
-  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.buena); _i_Valoracion_Precio_salida++;
+  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.regular); _i_Valoracion_Precio_salida++;
   _rl = _op.and(_t_Precio_salida.caro.isEqual(Precio_salida),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
-  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.buena); _i_Valoracion_Precio_salida++;
+  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.regular); _i_Valoracion_Precio_salida++;
   _rl = _op.and(_t_Precio_salida.caro.isEqual(Precio_salida),_t_Perfil.Hombre_soltero.isEqual(Perfil));
-  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.buena); _i_Valoracion_Precio_salida++;
+  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.regular); _i_Valoracion_Precio_salida++;
   _rl = _op.and(_t_Precio_salida.caro.isEqual(Precio_salida),_t_Perfil.Mujer_soltera.isEqual(Perfil));
-  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.buena); _i_Valoracion_Precio_salida++;
+  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.muy_mala); _i_Valoracion_Precio_salida++;
   _rl = _op.and(_t_Precio_salida.muy_caro.isEqual(Precio_salida),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
-  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.muy_buena); _i_Valoracion_Precio_salida++;
+  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.regular); _i_Valoracion_Precio_salida++;
   _rl = _op.and(_t_Precio_salida.muy_caro.isEqual(Precio_salida),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
-  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.buena); _i_Valoracion_Precio_salida++;
+  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.regular); _i_Valoracion_Precio_salida++;
   _rl = _op.and(_t_Precio_salida.muy_caro.isEqual(Precio_salida),_t_Perfil.Hombre_soltero.isEqual(Perfil));
-  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.muy_buena); _i_Valoracion_Precio_salida++;
+  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.muy_mala); _i_Valoracion_Precio_salida++;
   _rl = _op.and(_t_Precio_salida.muy_caro.isEqual(Precio_salida),_t_Perfil.Mujer_soltera.isEqual(Perfil));
-  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.muy_buena); _i_Valoracion_Precio_salida++;
+  Valoracion_Precio_salida.set(_i_Valoracion_Precio_salida,_rl, _t_Valoracion_Precio_salida.muy_mala); _i_Valoracion_Precio_salida++;
   MembershipFunction[] _output = new MembershipFunction[1];
   _output[0] = Valoracion_Precio_salida;
   return _output;
@@ -1962,21 +1962,21 @@ public class valoracionInmuebles implements FuzzyInferenceEngine {
   TP_Valoracion _t_Valoracion_Precio_venta = new TP_Valoracion();
   int _i_Valoracion_Precio_venta=0;
   _rl = _op.and(_t_Precio_venta.barato.isEqual(Precio_venta),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
-  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.mala); _i_Valoracion_Precio_venta++;
+  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.muy_buena); _i_Valoracion_Precio_venta++;
   _rl = _op.and(_t_Precio_venta.barato.isEqual(Precio_venta),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
-  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.mala); _i_Valoracion_Precio_venta++;
+  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.muy_buena); _i_Valoracion_Precio_venta++;
   _rl = _op.and(_t_Precio_venta.barato.isEqual(Precio_venta),_t_Perfil.Hombre_soltero.isEqual(Perfil));
-  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.mala); _i_Valoracion_Precio_venta++;
+  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.muy_buena); _i_Valoracion_Precio_venta++;
   _rl = _op.and(_t_Precio_venta.barato.isEqual(Precio_venta),_t_Perfil.Mujer_soltera.isEqual(Perfil));
-  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.mala); _i_Valoracion_Precio_venta++;
+  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.muy_buena); _i_Valoracion_Precio_venta++;
   _rl = _op.and(_t_Precio_venta.poco_barato.isEqual(Precio_venta),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
-  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.regular); _i_Valoracion_Precio_venta++;
+  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.buena); _i_Valoracion_Precio_venta++;
   _rl = _op.and(_t_Precio_venta.poco_barato.isEqual(Precio_venta),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
-  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.mala); _i_Valoracion_Precio_venta++;
+  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.buena); _i_Valoracion_Precio_venta++;
   _rl = _op.and(_t_Precio_venta.poco_barato.isEqual(Precio_venta),_t_Perfil.Hombre_soltero.isEqual(Perfil));
-  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.mala); _i_Valoracion_Precio_venta++;
+  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.buena); _i_Valoracion_Precio_venta++;
   _rl = _op.and(_t_Precio_venta.poco_barato.isEqual(Precio_venta),_t_Perfil.Mujer_soltera.isEqual(Perfil));
-  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.mala); _i_Valoracion_Precio_venta++;
+  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.buena); _i_Valoracion_Precio_venta++;
   _rl = _op.and(_t_Precio_venta.normal.isEqual(Precio_venta),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
   Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.regular); _i_Valoracion_Precio_venta++;
   _rl = _op.and(_t_Precio_venta.normal.isEqual(Precio_venta),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
@@ -1986,7 +1986,7 @@ public class valoracionInmuebles implements FuzzyInferenceEngine {
   _rl = _op.and(_t_Precio_venta.normal.isEqual(Precio_venta),_t_Perfil.Mujer_soltera.isEqual(Perfil));
   Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.regular); _i_Valoracion_Precio_venta++;
   _rl = _op.and(_t_Precio_venta.caro.isEqual(Precio_venta),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
-  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.buena); _i_Valoracion_Precio_venta++;
+  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.regular); _i_Valoracion_Precio_venta++;
   _rl = _op.and(_t_Precio_venta.caro.isEqual(Precio_venta),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
   Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.regular); _i_Valoracion_Precio_venta++;
   _rl = _op.and(_t_Precio_venta.caro.isEqual(Precio_venta),_t_Perfil.Hombre_soltero.isEqual(Perfil));
@@ -1994,13 +1994,13 @@ public class valoracionInmuebles implements FuzzyInferenceEngine {
   _rl = _op.and(_t_Precio_venta.caro.isEqual(Precio_venta),_t_Perfil.Mujer_soltera.isEqual(Perfil));
   Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.mala); _i_Valoracion_Precio_venta++;
   _rl = _op.and(_t_Precio_venta.muy_caro.isEqual(Precio_venta),_t_Perfil.Pareja_joven_sin_hijos.isEqual(Perfil));
-  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.buena); _i_Valoracion_Precio_venta++;
+  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.muy_mala); _i_Valoracion_Precio_venta++;
   _rl = _op.and(_t_Precio_venta.muy_caro.isEqual(Precio_venta),_t_Perfil.Matrimonio_2_3_hijos.isEqual(Perfil));
-  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.buena); _i_Valoracion_Precio_venta++;
+  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.muy_mala); _i_Valoracion_Precio_venta++;
   _rl = _op.and(_t_Precio_venta.muy_caro.isEqual(Precio_venta),_t_Perfil.Hombre_soltero.isEqual(Perfil));
-  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.buena); _i_Valoracion_Precio_venta++;
+  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.muy_mala); _i_Valoracion_Precio_venta++;
   _rl = _op.and(_t_Precio_venta.muy_caro.isEqual(Precio_venta),_t_Perfil.Mujer_soltera.isEqual(Perfil));
-  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.buena); _i_Valoracion_Precio_venta++;
+  Valoracion_Precio_venta.set(_i_Valoracion_Precio_venta,_rl, _t_Valoracion_Precio_venta.muy_mala); _i_Valoracion_Precio_venta++;
   MembershipFunction[] _output = new MembershipFunction[1];
   _output[0] = Valoracion_Precio_venta;
   return _output;
