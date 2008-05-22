@@ -38,7 +38,7 @@ public class Start {
 			controlador.registrarVistaMatrimonio(vistaMatrimonio);
 			controlador.registrarVistaSoltero(vistaSoltero);
 			controlador.registrarVistaSoltera(vistaSoltera);
-			controlador.registrarVistaFinal(vistaFinal);
+			controlador.registrarVistaFinal(vistaFinal);			
 		}
 		catch (Exception e) {
 			JOptionPane.showMessageDialog(null,
