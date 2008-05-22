@@ -7,6 +7,8 @@ import inmorate.modelo.inmueble.InmuebleValorado;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.net.MalformedURLException;
@@ -124,6 +126,31 @@ public class VistaFinal extends JFrame {
 					
 				} // ActionListener			
 		); // listInmueble.addActionListener
+		
+		listInmueble.addKeyListener(
+				new KeyListener() {
+
+					public void keyPressed(KeyEvent e) {}
+
+					public void keyReleased(KeyEvent e) {
+						pulsado = true;
+						ocultar();
+						int posicion = listInmueble.getSelectedIndex();
+						// Coger Inmueble de valores y escribirlo
+						InmuebleValorado[] resultado = controlador.getResultado();
+						inmueble = resultado[posicion].getInmueble();
+						valoracionGeneral = String.valueOf(resultado[posicion].getValoracionGeneral().getValor());
+						try {
+							mostrar();
+						} catch (MalformedURLException e1) {
+							e1.printStackTrace();
+						}						
+					}
+
+					public void keyTyped(KeyEvent e) {}
+					
+				}
+		);
 	}
 
 	private void initComponents() throws MalformedURLException {
