@@ -62,7 +62,6 @@ public class Usuario {
 					break;
 				}
 			}
-			System.out.println(" " +i);
 			Importancia importanciaTmp = new Importancia(tmp);
 			elementosArray[i].setImportancia(importanciaTmp);
 			logger.debug("Actualizada importancia del elemento \"" + elementosArray[i].getNombre() + "\" a " + importanciaTmp);
