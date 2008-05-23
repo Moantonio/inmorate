@@ -23,7 +23,7 @@ public class InmuebleValorado {
 		this.valoraciones = valoraciones;
 		this.valoracionGeneral = valoracionGeneral;
 		this.valoracionUsuario = valoracionUsuario;
-		this.valoracionExperto = valoracionUsuario;
+		this.valoracionExperto = valoracionExperto;
 		
 		String datosDebug = "Datos: ";
 		for (int i = 0; i < valoraciones.length; i++)
