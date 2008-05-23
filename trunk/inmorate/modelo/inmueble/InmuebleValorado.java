@@ -112,8 +112,8 @@ public class InmuebleValorado {
 	}
 	
 	public static void toFile(String filename, InmuebleValorado[] inmueblesValorados){
-		toFile(filename + "_fuzzy.csv", inmueblesValorados, true);
-		toFile(filename + "_nofuzzy.csv", inmueblesValorados, false);
+		toFile(filename + "_nofuzzy.csv", inmueblesValorados, true);
+		toFile(filename + "_fuzzy.csv", inmueblesValorados, false);
 	}
 	private static void toFile(String filename, InmuebleValorado[] inmueblesValorados, boolean fuzzy){
 		String sFichero = filename;
