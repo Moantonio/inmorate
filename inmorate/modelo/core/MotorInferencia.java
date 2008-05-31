@@ -139,6 +139,9 @@ public class MotorInferencia {
 		}
 		valoracion /= valoraciones.length;
 		valoracion *= sumaMaxima / sumaImportancias;
+		if (disperseMode){
+			valoracion = disperse(valoracion);
+		}
 		return valoracion;
 		
 	}
@@ -158,10 +161,29 @@ public class MotorInferencia {
 		}
 		valoracion /= valoraciones.length;
 		valoracion *= sumaMaxima / sumaImportancias;
+		if (disperseMode){
+			valoracion = disperse(valoracion);
+		}
 		return valoracion;		
 	}
 	private double calculaValoracionGeneral(Valoracion valoracionUsuario, Valoracion valoracionExperto){
 		return (valoracionUsuario.getValor() + valoracionExperto.getValor()) / 2;
 	}
+	
+	private double disperse(double valor) {
+		double media = 0;
+		double mediaAlza = valor + valor * adjustFactor;
+		double mediaBaja = valor - valor * adjustFactor;
+
+		if (valor > 5 && mediaAlza <= 10) {
+			media = mediaAlza;
+		} else if (valor < 5 && mediaBaja >= 0) {
+			media = mediaBaja;
+		}
+		return media;
+	}	
+	
+	
+	
 	
 }

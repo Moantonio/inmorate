@@ -46,6 +46,9 @@ public final class CONSTANTS {
 	public static final GradoImportanciaEnum[] EXPERTO_SOLTERO = new GradoImportanciaEnum[25];
 	public static final GradoImportanciaEnum[] EXPERTO_SOLTERA = new GradoImportanciaEnum[25];
 	
+	public static final boolean disperseMode = true;
+	public static final double adjustFactor = 0.4;
+	
 	static{
 		EXPERTO_PAREJA_JOVEN_SIN_HIJOS[TIPO_INMUEBLE] = GradoImportanciaEnum.MUY_IMPORTANTE;
 		EXPERTO_PAREJA_JOVEN_SIN_HIJOS[LUMINOSIDAD] = GradoImportanciaEnum.IMPORTANTE;
