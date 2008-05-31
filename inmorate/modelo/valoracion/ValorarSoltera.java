@@ -77,29 +77,20 @@ public class ValorarSoltera {
 			e.printStackTrace();
 		}
  
-		MotorInferencia mi = new MotorInferencia(usuario, experto, inmuebles.toArray(new Inmueble[0]));
+		MotorInferencia mi = new MotorInferencia(usuario, experto, inmuebles.toArray(new Inmueble[0]),controlador);
 		inmueblesValorados = mi.computar();
 		InmuebleValorado.toFile("fichero", inmueblesValorados);		
 		
-		return maxPosiciones();
+		return inmueblesValorados;
 	}
 	
-	public InmuebleValorado[] maxPosiciones() {
-		InmuebleValorado[] resultado = new InmuebleValorado[15];
-		quicksort(inmueblesValorados);
-		for (int n=0; n<15; n++) 
-			resultado[n] = new InmuebleValorado(inmueblesValorados[299-n].getInmueble(),
-					inmueblesValorados[299-n].getValoraciones(),
-					inmueblesValorados[299-n].getValoracionGeneral(),
-					inmueblesValorados[299-n].getValoracionUsuario(),
-					inmueblesValorados[299-n].getValoracionExperto());
-		
-		return resultado;
+	public void maxPosiciones() {
+		quicksort(inmueblesValorados,true);
 	}
 	
 	// QUICKSORT	
-
-    private static long comparisons = 0;
+	
+	private static long comparisons = 0;
     private static long exchanges   = 0;
 	
 	// exchange a[i] and a[j]
@@ -122,20 +113,31 @@ public class ValorarSoltera {
     // is x < y ?
     private static boolean less(double x, double y) {
         comparisons++;
-        return (x < y);
+        return (x > y);
     }
     
-    public static void quicksort(InmuebleValorado[] a) {
+    private static boolean less2(String x, String y) {
+        comparisons++;
+        int n1 = Integer.valueOf(x.substring(4,7));
+        int n2 = Integer.valueOf(y.substring(4,7));        
+        return (n1 < n2);
+    }
+    
+    public static void quicksort(InmuebleValorado[] a,boolean b) {
         shuffle(a);                        // to guard against worst-case
-        quicksort(a, 0, a.length - 1);
+        quicksort(a, 0, a.length - 1,b);
     }
 
     // quicksort a[left] to a[right]
-    public static void quicksort(InmuebleValorado[] a, int left, int right) {
+    public static void quicksort(InmuebleValorado[] a, int left, int right, boolean b) {
         if (right <= left) return;
-        int i = partition(a, left, right);
-        quicksort(a, left, i-1);
-        quicksort(a, i+1, right);
+        int i = 0;
+        if (b)
+        	i = partition(a, left, right);
+        else 
+        	i = partition2(a, left, right);
+        quicksort(a, left, i-1, b);
+        quicksort(a, i+1, right, b);
     }
 
     // partition a[left] to a[right], assumes left < right
@@ -153,5 +155,24 @@ public class ValorarSoltera {
         exch(a, i, right);                      // swap with partition element
         return i;
     }
+    
+    private static int partition2(InmuebleValorado[] a, int left, int right) {
+        int i = left - 1;
+        int j = right;
+        while (true) {
+            while (less2(a[++i].getInmueble().getDMXX(), a[right].getInmueble().getDMXX()))      // find item on left to swap
+                ;                               // a[right] acts as sentinel
+            while (less2(a[right].getInmueble().getDMXX(), a[--j].getInmueble().getDMXX()))      // find item on right to swap
+                if (j == left) break;           // don't go out-of-bounds
+            if (i >= j) break;                  // check if pointers cross
+            exch(a, i, j);                      // swap two elements into place
+        }
+        exch(a, i, right);                      // swap with partition element
+        return i;
+    }
+
+	public void identificadores() {
+		quicksort(inmueblesValorados,false);
+	}
 
 }

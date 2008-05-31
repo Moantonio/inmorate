@@ -29,6 +29,11 @@ public class Controlador {
 	private Conexion conexion;
 	private ArrayList<String> comboBox;
 	private InmuebleValorado[] resultado;
+	private int vista;
+	private ValorarPareja pareja;
+	private ValorarMatrimonio matrimonio;
+	private ValorarSoltero soltero;
+	private ValorarSoltera soltera;
 
 	public Controlador() {
 		vistaInicial = null;
@@ -39,6 +44,11 @@ public class Controlador {
 		conexion = null;
 		comboBox = new ArrayList<String>();
 		resultado = null;
+		vista = -1;
+		pareja = null;
+		matrimonio = null;
+		soltero = null;
+		soltera = null;
 	}
 	
 	public void registrarVistaInicial(VistaInicial VI) {
@@ -87,6 +97,7 @@ public class Controlador {
 	
 	public void activarVVP() throws SQLException {
 		vistaPareja.setVisible(false);
+		vistaFinal.pareja();
 		vistaFinal.setVisible(true);
 		vistaFinal.mostrarResultados();
 		conexion.cierraConexion();
@@ -94,6 +105,7 @@ public class Controlador {
 	
 	public void activarVVM() throws SQLException {
 		vistaMatrimonio.setVisible(false);
+		vistaFinal.matrimonio();
 		vistaFinal.setVisible(true);
 		vistaFinal.mostrarResultados();
 		conexion.cierraConexion();
@@ -101,6 +113,7 @@ public class Controlador {
 	
 	public void activarVVSO() throws SQLException {
 		vistaSoltero.setVisible(false);
+		vistaFinal.soltero();
 		vistaFinal.setVisible(true);
 		vistaFinal.mostrarResultados();
 		conexion.cierraConexion();
@@ -108,6 +121,7 @@ public class Controlador {
 
 	public void activarVVSA() throws SQLException {
 		vistaSoltera.setVisible(false);
+		vistaFinal.soltera();
 		vistaFinal.setVisible(true);
 		vistaFinal.mostrarResultados();
 		conexion.cierraConexion();
@@ -140,6 +154,10 @@ public class Controlador {
 		vistaSoltero.setVisible(false);	
 		vistaFinal.setVisible(false);
 		vistaInicial.setVisible(true);
+		vistaPareja.inicializar(); 
+		vistaMatrimonio.inicializar();
+		vistaSoltero.inicializar();
+		vistaSoltera.inicializar();
 	}
 
 	public ArrayList<String> getComboBox() {
@@ -180,23 +198,69 @@ public class Controlador {
 	}
 	
 	public void valorarPareja() {
-		ValorarPareja pareja = new ValorarPareja(this);
+		pareja = new ValorarPareja(this);
+		vista = 0;
 		resultado = pareja.valorar();
 	}
 
 	public void valorarMatrimonio() {
-		ValorarMatrimonio matrimonio = new ValorarMatrimonio(this);
+		matrimonio = new ValorarMatrimonio(this);
+		vista = 1;
 		resultado = matrimonio.valorar();
 	}
 
 	public void valorarSoltero() {
-		ValorarSoltero soltero = new ValorarSoltero(this);
+		soltero = new ValorarSoltero(this);
+		vista = 2;
 		resultado = soltero.valorar();		
 	}
 
 	public void valorarSoltera() {
-		ValorarSoltera soltera = new ValorarSoltera(this);
+		soltera = new ValorarSoltera(this);
+		vista = 3;
 		resultado = soltera.valorar();			
+	}
+
+	public void escribirPanel(String string) {
+		switch(vista) {
+		case 0: vistaPareja.escribir(string);
+			break;
+		case 1: vistaMatrimonio.escribir(string);
+			break;
+		case 2: vistaSoltero.escribir(string);
+			break;
+		case 3: vistaSoltera.escribir(string);
+			break;
+		default: break;
+		}
+	}
+
+	public void ordenarInmuebles(int perfil) {
+		switch(perfil) {
+		case 0: pareja.maxPosiciones();
+			break;
+		case 1: matrimonio.maxPosiciones();
+			break;
+		case 2: soltero.maxPosiciones();
+			break;
+		case 3: soltera.maxPosiciones();
+			break;
+		default: break;
+		}
+	}
+
+	public void ordenarIdent(int perfil) {
+		switch(perfil) {
+		case 0: pareja.identificadores();
+			break;
+		case 1: matrimonio.identificadores();
+			break;
+		case 2: soltero.identificadores();
+			break;
+		case 3: soltera.identificadores();
+			break;
+		default: break;
+		}
 	}
 	
 }

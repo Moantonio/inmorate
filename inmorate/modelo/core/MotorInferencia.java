@@ -1,6 +1,8 @@
 package inmorate.modelo.core;
 
 import org.apache.log4j.Logger;
+
+import inmorate.controlador.Controlador;
 import inmorate.modelo.valoracion.Usuario;
 import inmorate.modelo.valoracion.Valoracion;
 import inmorate.modelo.inmueble.Inmueble;
@@ -14,9 +16,11 @@ public class MotorInferencia {
 	private Usuario experto;
 	private Inmueble[] inmuebles;
 	private InmuebleValorado[] inmueblesValorados;
+	private Controlador controlador;
 	
-	public MotorInferencia(Usuario usuario, Usuario experto, Inmueble[] inmuebles ) {
+	public MotorInferencia(Usuario usuario, Usuario experto, Inmueble[] inmuebles, Controlador c) {
 		super();
+		this.controlador = c;
 		this.usuario = usuario;
 		this.experto = experto;
 		this.inmuebles = inmuebles;
@@ -24,7 +28,10 @@ public class MotorInferencia {
 	
 	public InmuebleValorado[] computar(){
 		logger.info("Computando...");
+		
 		InmuebleValorado[] inmueblesValoradosTmp = new InmuebleValorado[inmuebles.length];
+
+		controlador.escribirPanel("Llamada al motor de inferencia.\nInmuebles valorados\n\n");
 		
 		for (int i = 0; i < inmuebles.length; i++){
 			double [] entrada = inmuebles[i].extraerDatos();	
@@ -46,13 +53,18 @@ public class MotorInferencia {
 			Valoracion[] valoraciones = new Valoracion[salida.length];
 			
 			for (int i1 = 0; i1 < salida.length; i1++){
-				valoraciones[i1] = new Valoracion( salida[i1]);
+				valoraciones[i1] = new Valoracion(salida[i1]);
 				
 			}
 			Valoracion valoracionUsuario = new Valoracion(calculaValoracionUsuario(salida));
 			Valoracion valoracionExperto = new Valoracion(calculaValoracionExperto(salida));
 			Valoracion valoracionGeneral = new Valoracion(calculaValoracionGeneral(valoracionUsuario, valoracionExperto));
 			inmueblesValoradosTmp[i] = new InmuebleValorado(inmuebles[i], valoraciones, valoracionGeneral, valoracionUsuario, valoracionExperto );
+
+			controlador.escribirPanel("     ==================== INMUEBLE " + (i+1) + " ====================\n\n");
+			controlador.escribirPanel("\tValoración General: "+valoracionGeneral.getValor()+"\n");
+			controlador.escribirPanel("\tValoración Usuario: "+valoracionUsuario.getValor()+"\n");
+			controlador.escribirPanel("\tValoración Experto: "+valoracionExperto.getValor()+"\n\n");
 		}
 		inmueblesValorados = inmueblesValoradosTmp;
 		return inmueblesValorados;
