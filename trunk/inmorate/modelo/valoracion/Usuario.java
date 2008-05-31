@@ -12,6 +12,8 @@ public class Usuario {
 	private final Sector sector;
 	private Elementos elementos;
 	private ValoradorEnum valorador;
+	private boolean limiteEconomico;
+	private int precioMaximo;
 	
 	public Usuario(Sector sector, ValoradorEnum valorador) {
 		super();
@@ -123,5 +125,21 @@ public class Usuario {
 
 	public Sector getSector() {
 		return sector;
+	}
+
+	public boolean isLimiteEconomico() {
+		return limiteEconomico;
+	}
+
+	public void setLimiteEconomico(boolean limiteEconomico) {
+		this.limiteEconomico = limiteEconomico;
+	}
+
+	public int getPrecioMaximo() {
+		return precioMaximo;
+	}
+
+	public void setPrecioMaximo(int precioMaximo) {
+		this.precioMaximo = precioMaximo;
 	}
 }
