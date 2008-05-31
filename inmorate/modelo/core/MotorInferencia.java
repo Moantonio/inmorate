@@ -1,5 +1,8 @@
 package inmorate.modelo.core;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.log4j.Logger;
 
 import inmorate.controlador.Controlador;
@@ -26,8 +29,30 @@ public class MotorInferencia {
 		this.inmuebles = inmuebles;
 	}
 	
+	private void filtrarInmuebles(){
+		logger.debug("Filtrando inmuebles con precio superior a: " + usuario.getPrecioMaximo());
+		List<Inmueble> nuevosInmuebles = new ArrayList<Inmueble>();
+		if (usuario.isLimiteEconomico() ){
+			for (int i = 0; i < inmuebles.length; i++){
+				if(inmuebles[i].getPrecioTasacion() < usuario.getPrecioMaximo()){
+					nuevosInmuebles.add(inmuebles[i]);
+				}
+				else{
+					logger.debug("El inmueble con Id: "+ inmuebles[i].getDMXX()
+							+ " y precio: "+ inmuebles[i].getPrecioTasacion()
+							+ " se elimina.");
+				}
+			}
+		}
+		Inmueble[] tmp = nuevosInmuebles.toArray(new Inmueble[nuevosInmuebles.size()]);
+		this.inmuebles = tmp;
+	}
 	public InmuebleValorado[] computar(){
 		logger.info("Computando...");
+		
+		if (usuario.isLimiteEconomico()){
+			filtrarInmuebles();
+		}
 		
 		InmuebleValorado[] inmueblesValoradosTmp = new InmuebleValorado[inmuebles.length];
 
@@ -65,6 +90,7 @@ public class MotorInferencia {
 			controlador.escribirPanel("\tValoración General: "+valoracionGeneral.getValor()+"\n");
 			controlador.escribirPanel("\tValoración Usuario: "+valoracionUsuario.getValor()+"\n");
 			controlador.escribirPanel("\tValoración Experto: "+valoracionExperto.getValor()+"\n\n");
+			
 		}
 		inmueblesValorados = inmueblesValoradosTmp;
 		return inmueblesValorados;
