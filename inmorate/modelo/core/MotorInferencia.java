@@ -175,9 +175,14 @@ public class MotorInferencia {
 		double mediaAlza = valor + valor * adjustFactor;
 		double mediaBaja = valor - valor * adjustFactor;
 
-		if (valor > 5 && mediaAlza <= 10) {
+		if (mediaAlza > 10)
+			mediaAlza = 10;
+		if (mediaBaja < 0)
+			mediaBaja =0;
+		
+		if (valor > 5) {
 			media = mediaAlza;
-		} else if (valor < 5 && mediaBaja >= 0) {
+		} else if (valor < 5) {
 			media = mediaBaja;
 		}
 		return media;
