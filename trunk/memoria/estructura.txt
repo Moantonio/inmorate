@@ -1,9 +1,0 @@
-Introducción al problema
-Qué Cómo Estado del arte 
-La lógica fuzzy
-Herramientas y diseño
-Explicar el XFUZZY (podriamos hacer una comparativa del xfuzzy contra algun API y decir porque hemos elegido el xfuzzy). Diseño: 
-Explicación de la implementación
-Esto era el manual de la aplicación. 
-Bibliografía
-CDROM 
