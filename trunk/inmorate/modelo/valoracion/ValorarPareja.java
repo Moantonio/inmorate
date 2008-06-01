@@ -70,6 +70,9 @@ public class ValorarPareja {
 		else if (cambios.get(3).equals("Nada Importante")) 
 			usuario.setImportanciaMetrosHabitables(new Importancia(GradoImportanciaEnum.NADA_IMPORTANTE));
 		
+		usuario.setLimiteEconomico(true);
+		usuario.setPrecioMaximo(Integer.valueOf(cambios.get(4)));
+		
 		ArrayList<Inmueble> inmuebles = null;
 		try {
 			inmuebles = Conversor.parseQuery(controlador.datosPropiedadFinca());

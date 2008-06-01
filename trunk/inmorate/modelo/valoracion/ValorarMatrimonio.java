@@ -55,6 +55,8 @@ public class ValorarMatrimonio {
 		else if (cambios.get(2).equals("Poco Importante")) 
 			usuario.setImportanciaAltura(new Importancia(GradoImportanciaEnum.POCO_IMPORTANTE));
 		
+		usuario.setLimiteEconomico(true);
+		usuario.setPrecioMaximo(Integer.valueOf(cambios.get(4)));		
 		
 		ArrayList<Inmueble> inmuebles = null;
 		try {
