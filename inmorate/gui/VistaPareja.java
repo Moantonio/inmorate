@@ -10,6 +10,8 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 import javax.swing.border.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class VistaPareja extends JFrame {
 
@@ -40,6 +42,11 @@ public class VistaPareja extends JFrame {
 	private JScrollPane scrollPane1;
 	private JTextArea textArea1;
 	private ArrayList<String> texto; 
+	private JSlider slider1;
+	private JLabel label15;
+	private JLabel label16;
+	private JLabel label17;
+	private JLabel label18;
 	
 	public VistaPareja(Controlador c) {
 		this.controlador = c;
@@ -57,6 +64,7 @@ public class VistaPareja extends JFrame {
 						controlador.getComboBox().add(""+comboBox2.getSelectedItem());
 						controlador.getComboBox().add(""+comboBox3.getSelectedItem());
 						controlador.getComboBox().add(""+comboBox4.getSelectedItem());
+						controlador.getComboBox().add(""+slider1.getValue());
 						
 						// Valoramos los inmuebles
 						controlador.valorarPareja();
@@ -87,6 +95,7 @@ public class VistaPareja extends JFrame {
 					}
 				} // ActionListener			
 		); // buttonContinuar.addActionListener
+		
 	}
 
 	private void initComponents() {
@@ -114,6 +123,11 @@ public class VistaPareja extends JFrame {
 		label14 = new JLabel();
 		scrollPane1 = new JScrollPane();
 		textArea1 = new JTextArea();
+		slider1 = new JSlider();
+		label15 = new JLabel();
+		label16 = new JLabel();
+		label17 = new JLabel();
+		label18 = new JLabel();
 
 		//======== this ========
 		setTitle("Pareja Joven sin Hijos");
@@ -125,14 +139,14 @@ public class VistaPareja extends JFrame {
 		buttonAceptar.setBorder(new EtchedBorder(EtchedBorder.RAISED, Color.darkGray, null));
 		buttonAceptar.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		contentPane.add(buttonAceptar);
-		buttonAceptar.setBounds(75, 325, 130, 40);
+		buttonAceptar.setBounds(75, 360, 130, 40);
 
 		//---- buttonCancelar ----
 		buttonCancelar.setText("Cancelar");
 		buttonCancelar.setBorder(new EtchedBorder(EtchedBorder.RAISED, Color.darkGray, null));
 		buttonCancelar.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		contentPane.add(buttonCancelar);
-		buttonCancelar.setBounds(230, 325, 130, 40);
+		buttonCancelar.setBounds(230, 360, 130, 40);
 		
 		//---- buttonContinuar ----
 		buttonContinuar.setText("Continuar...");
@@ -140,37 +154,37 @@ public class VistaPareja extends JFrame {
 		buttonContinuar.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		buttonContinuar.setEnabled(false);
 		contentPane.add(buttonContinuar);
-		buttonContinuar.setBounds(385, 325, 130, 40);
+		buttonContinuar.setBounds(385, 360, 130, 40);
 
 		//---- labelTitulo ----
 		labelTitulo.setText("Valore de mayor a menor importancia:");
 		labelTitulo.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
 		contentPane.add(labelTitulo);
-		labelTitulo.setBounds(105, 35, 425, labelTitulo.getPreferredSize().height);
+		labelTitulo.setBounds(105, 40, 425, labelTitulo.getPreferredSize().height);
 
 		//---- label1 ----
-		label1.setText("Representatividad");
+		label1.setText("Tipo de Inmueble");
 		label1.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		contentPane.add(label1);
-		label1.setBounds(95, 95, 190, label1.getPreferredSize().height);
+		label1.setBounds(95, 100, 190, label1.getPreferredSize().height);
 
 		//---- label2 ----
-		label2.setText("Estado del Portal");
+		label2.setText("Representatividad");
 		label2.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		contentPane.add(label2);
-		label2.setBounds(95, 155, 205, label2.getPreferredSize().height);
+		label2.setBounds(95, 150, 205, label2.getPreferredSize().height);
 
 		//---- label3 ----
-		label3.setText("Fachada");
+		label3.setText("Estado del Portal");
 		label3.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		contentPane.add(label3);
-		label3.setBounds(95, 215, 190, label3.getPreferredSize().height);
+		label3.setBounds(95, 200, 190, label3.getPreferredSize().height);
 
 		//---- label4 ----
-		label4.setText("Estado General");
+		label4.setText("Metros Habitables");
 		label4.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		contentPane.add(label4);
-		label4.setBounds(95, 275, 190, label4.getPreferredSize().height);
+		label4.setBounds(95, 250, 190, label4.getPreferredSize().height);
 
 		//---- comboBox1 ----
 		comboBox1.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
@@ -185,7 +199,7 @@ public class VistaPareja extends JFrame {
 		comboBox1.setSelectedIndex(0);
 		comboBox1.setMaximumSize(new Dimension(132, 25));
 		contentPane.add(comboBox1);
-		comboBox1.setBounds(315, 90, 185, comboBox1.getPreferredSize().height);
+		comboBox1.setBounds(315, 95, 185, comboBox1.getPreferredSize().height);
 
 		//---- comboBox2 ----
 		comboBox2.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
@@ -199,7 +213,7 @@ public class VistaPareja extends JFrame {
 		}));
 		comboBox2.setMaximumSize(new Dimension(132, 25));
 		contentPane.add(comboBox2);
-		comboBox2.setBounds(315, 150, 185, comboBox2.getPreferredSize().height);
+		comboBox2.setBounds(315, 145, 185, comboBox1.getPreferredSize().height);
 
 		//---- comboBox3 ----
 		comboBox3.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
@@ -213,7 +227,7 @@ public class VistaPareja extends JFrame {
 		}));
 		comboBox3.setMaximumSize(new Dimension(132, 25));
 		contentPane.add(comboBox3);
-		comboBox3.setBounds(315, 210, 185, comboBox3.getPreferredSize().height);
+		comboBox3.setBounds(315, 195, 185, comboBox1.getPreferredSize().height);
 
 		//---- comboBox4 ----
 		comboBox4.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
@@ -226,7 +240,7 @@ public class VistaPareja extends JFrame {
 		}));
 		comboBox4.setMaximumSize(new Dimension(132, 25));
 		contentPane.add(comboBox4);
-		comboBox4.setBounds(315, 270, 185, comboBox4.getPreferredSize().height);
+		comboBox4.setBounds(315, 245, 185, comboBox1.getPreferredSize().height);
 
 		//---- label5 ----
 		label5.setText("Busqueda basada en el perfil");
@@ -281,7 +295,7 @@ public class VistaPareja extends JFrame {
 		//---- label14 ----
 		label14.setIcon(new ImageIcon("./imagenes/xfuzzy.gif"));
 		contentPane.add(label14);
-		label14.setBounds(80, 405, 218, 65);
+		label14.setBounds(80, 415, 218, 65);
 
 		//======== scrollPane1 ========
 		{
@@ -290,6 +304,46 @@ public class VistaPareja extends JFrame {
 		}
 		contentPane.add(scrollPane1);
 		scrollPane1.setBounds(75, 495, 440, 300);
+		
+		//---- slider1 ----
+		slider1.setMaximum(1000000);
+		slider1.setMinimum(100000);
+		slider1.setValue(300000);
+		contentPane.add(slider1);
+		slider1.setPaintTicks(true);
+		slider1.setMajorTickSpacing(100000);
+		slider1.setMinorTickSpacing(50000);
+		slider1.setBounds(315, 300, 185, 40);
+		slider1.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				String valor = ""+slider1.getValue();
+				label18.setText(valor.substring(0,3)+"."+valor.substring(3,6)+" €");
+			}			
+		});
+
+		//---- label15 ----
+		label15.setText("Limite de Precio");
+		label15.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
+		contentPane.add(label15);
+		label15.setBounds(95, 310, 195, label15.getPreferredSize().height);
+
+		//---- label16 ----
+		label16.setText("100.000 €");
+		label16.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
+		contentPane.add(label16);
+		label16.setBounds(new Rectangle(new Point(300, 340), label16.getPreferredSize()));
+
+		//---- label17 ----
+		label17.setText("1.000.000 €");
+		label17.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
+		contentPane.add(label17);
+		label17.setBounds(new Rectangle(new Point(480, 340), label17.getPreferredSize()));
+
+		//---- label18 ----
+		label18.setText("300.000 €");
+		label18.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
+		contentPane.add(label18);
+		label18.setBounds(395, 285, 55, label18.getPreferredSize().height);
 
 		{ // compute preferred size
 			Dimension preferredSize = new Dimension();
@@ -307,8 +361,9 @@ public class VistaPareja extends JFrame {
 	
 	public void traducirIngles() {		
 		setTitle("Young couple with no children");
+		buttonContinuar.setText("Continue");
 		labelTitulo.setText("Value from greater to smaller importance:");
-		labelTitulo.setBounds(90, 35, 425, labelTitulo.getPreferredSize().height);
+		labelTitulo.setBounds(90, 40, 425, labelTitulo.getPreferredSize().height);
 		label1.setText("Type of building");
 		label2.setText("Representativeness");
 		label3.setText("State of the entrace hall");
@@ -318,7 +373,8 @@ public class VistaPareja extends JFrame {
 		label6.setBounds(630, 90, 100, label6.getPreferredSize().height);
 		label7.setText("Rooms");
 		label8.setText("Car park");
-		label9.setText("Price");		
+		label9.setText("Price");	
+		label15.setText("Limit Price");
 		comboBox1.setModel(new DefaultComboBoxModel(new String[] {
 				"Very Important",
 				"Quite Important",
@@ -353,8 +409,9 @@ public class VistaPareja extends JFrame {
 
 	public void traducirEspanol() {
 		setTitle("Pareja Joven sin Hijos");
+		buttonContinuar.setText("Continuar...");
 		labelTitulo.setText("Valore de mayor a menor importancia:");
-		labelTitulo.setBounds(105, 35, 425, labelTitulo.getPreferredSize().height);
+		labelTitulo.setBounds(105, 40, 425, labelTitulo.getPreferredSize().height);
 		label1.setText("Tipo de Inmueble");
 		label2.setText("Representatividad");
 		label3.setText("Estado del Portal");
@@ -365,6 +422,7 @@ public class VistaPareja extends JFrame {
 		label7.setText("Dormitorios");
 		label8.setText("Plaza Garage");
 		label9.setText("Precio");		
+		label15.setText("Limite de Precio");
 		comboBox1.setModel(new DefaultComboBoxModel(new String[] {
 				"Muy Importante",
 				"Bastante Importante",
@@ -398,8 +456,6 @@ public class VistaPareja extends JFrame {
 	}
 
 	public void escribir(String string) {
-		//textArea1.append(string + "\n");
-		//textArea1.setText(string);
 		texto.add(string);
 	}
 	

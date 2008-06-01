@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 import javax.swing.border.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import inmorate.controlador.Controlador;
 
@@ -40,6 +42,11 @@ public class VistaMatrimonio extends JFrame{
 	private JComboBox comboBox2;
 	private JComboBox comboBox3;
 	private ArrayList<String> texto; 
+	private JSlider slider1;
+	private JLabel label19;
+	private JLabel label20;
+	private JLabel label17;
+	private JLabel label18;
 	
 	public VistaMatrimonio(Controlador c) {
 		this.controlador = c;
@@ -56,6 +63,7 @@ public class VistaMatrimonio extends JFrame{
 						controlador.getComboBox().add(""+comboBox1.getSelectedItem());
 						controlador.getComboBox().add(""+comboBox2.getSelectedItem());
 						controlador.getComboBox().add(""+comboBox3.getSelectedItem());
+						controlador.getComboBox().add(""+slider1.getValue());
 						
 						// Valoramos los inmuebles
 						controlador.valorarMatrimonio();
@@ -113,6 +121,11 @@ public class VistaMatrimonio extends JFrame{
 		comboBox1 = new JComboBox();
 		comboBox2 = new JComboBox();
 		comboBox3 = new JComboBox();
+		slider1 = new JSlider();
+		label19 = new JLabel();
+		label20 = new JLabel();
+		label17 = new JLabel();
+		label18 = new JLabel();
 
 		//======== this ========
 		setTitle("Matrimonio dos - tres hijos");
@@ -124,14 +137,14 @@ public class VistaMatrimonio extends JFrame{
 		buttonAceptar.setBorder(new EtchedBorder(EtchedBorder.RAISED, Color.darkGray, null));
 		buttonAceptar.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		contentPane.add(buttonAceptar);
-		buttonAceptar.setBounds(75, 325, 130, 40);
+		buttonAceptar.setBounds(75, 360, 130, 40);
 
 		//---- buttonCancelar ----
 		buttonCancelar.setText("Cancelar");
 		buttonCancelar.setBorder(new EtchedBorder(EtchedBorder.RAISED, Color.darkGray, null));
 		buttonCancelar.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		contentPane.add(buttonCancelar);
-		buttonCancelar.setBounds(230, 325, 130, 40);
+		buttonCancelar.setBounds(230, 360, 130, 40);
 		
 		//---- buttonContinuar ----
 		buttonContinuar.setText("Continuar...");
@@ -139,13 +152,13 @@ public class VistaMatrimonio extends JFrame{
 		buttonContinuar.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		buttonContinuar.setEnabled(false);
 		contentPane.add(buttonContinuar);
-		buttonContinuar.setBounds(385, 325, 130, 40);
+		buttonContinuar.setBounds(385, 360, 130, 40);
 
 		//---- labelTitulo ----
 		labelTitulo.setText("Valore de mayor a menor importancia:");
 		labelTitulo.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
 		contentPane.add(labelTitulo);
-		labelTitulo.setBounds(105, 35, 425, labelTitulo.getPreferredSize().height);
+		labelTitulo.setBounds(105, 40, 425, labelTitulo.getPreferredSize().height);
 
 		//---- label5 ----
 		label5.setText("Busqueda basada en el perfil");
@@ -200,7 +213,7 @@ public class VistaMatrimonio extends JFrame{
 		//---- label14 ----
 		label14.setIcon(new ImageIcon("./imagenes/xfuzzy.gif"));
 		contentPane.add(label14);
-		label14.setBounds(80, 405, 218, 65);
+		label14.setBounds(80, 415, 218, 65);
 
 		//======== scrollPane1 ========
 		{
@@ -224,19 +237,19 @@ public class VistaMatrimonio extends JFrame{
 		label1.setText("Estado del Portal");
 		label1.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		contentPane.add(label1);
-		label1.setBounds(95, 110, 200, label1.getPreferredSize().height);
+		label1.setBounds(95, 105, 190, label1.getPreferredSize().height);
 		
 		//---- label2 ----
 		label2.setText("Num. Baños / Aseos");
 		label2.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		contentPane.add(label2);
-		label2.setBounds(95, 185, 200, label2.getPreferredSize().height);
+		label2.setBounds(95, 175, 190, label1.getPreferredSize().height);
 		
 		//---- label3 ----
 		label3.setText("Altura (Planta)");
 		label3.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		contentPane.add(label3);
-		label3.setBounds(95, 260, 200, label3.getPreferredSize().height);
+		label3.setBounds(95, 245, 190, label1.getPreferredSize().height);
 		
 		//---- comboBox1 ----
 		comboBox1.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
@@ -264,7 +277,7 @@ public class VistaMatrimonio extends JFrame{
 		}));
 		comboBox2.setMaximumSize(new Dimension(130, 25));
 		contentPane.add(comboBox2);
-		comboBox2.setBounds(315, 185, 185, comboBox2.getPreferredSize().height);
+		comboBox2.setBounds(315, 175, 185, comboBox2.getPreferredSize().height);
 
 		//---- comboBox3 ----
 		comboBox3.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
@@ -278,7 +291,47 @@ public class VistaMatrimonio extends JFrame{
 		}));
 		comboBox3.setMaximumSize(new Dimension(130, 25));
 		contentPane.add(comboBox3);
-		comboBox3.setBounds(315, 260, 185, comboBox3.getPreferredSize().height);
+		comboBox3.setBounds(315, 245, 185, comboBox3.getPreferredSize().height);
+		
+//		---- slider1 ----
+		slider1.setMaximum(1000000);
+		slider1.setMinimum(100000);
+		slider1.setValue(300000);
+		contentPane.add(slider1);
+		slider1.setPaintTicks(true);
+		slider1.setMajorTickSpacing(100000);
+		slider1.setMinorTickSpacing(50000);
+		slider1.setBounds(315, 300, 185, 40);
+		slider1.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				String valor = ""+slider1.getValue();
+				label18.setText(valor.substring(0,3)+"."+valor.substring(3,6)+" €");
+			}			
+		});
+
+		//---- label19 ----
+		label19.setText("Limite de Precio");
+		label19.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
+		contentPane.add(label19);
+		label19.setBounds(95, 310, 195, label19.getPreferredSize().height);
+
+		//---- label20 ----
+		label20.setText("100.000 €");
+		label20.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
+		contentPane.add(label20);
+		label20.setBounds(new Rectangle(new Point(300, 340), label20.getPreferredSize()));
+
+		//---- label17 ----
+		label17.setText("1.000.000 €");
+		label17.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
+		contentPane.add(label17);
+		label17.setBounds(new Rectangle(new Point(480, 340), label17.getPreferredSize()));
+
+		//---- label18 ----
+		label18.setText("300.000 €");
+		label18.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
+		contentPane.add(label18);
+		label18.setBounds(395, 285, 55, label18.getPreferredSize().height);
 
 		{ // compute preferred size
 			Dimension preferredSize = new Dimension();
@@ -296,8 +349,9 @@ public class VistaMatrimonio extends JFrame{
 
 	public void traducirIngles() {
 		setTitle("Marriage with two - three children");
+		buttonContinuar.setText("Continue");
 		labelTitulo.setText("Value from greater to smaller importance:");
-		labelTitulo.setBounds(90, 35, 425, labelTitulo.getPreferredSize().height);
+		labelTitulo.setBounds(90, 40, 425, labelTitulo.getPreferredSize().height);
 		label1.setText("State of the entrace hall");
 		label2.setText("Number of baths / Toilets");
 		label3.setText("Height (Floor)");
@@ -307,6 +361,7 @@ public class VistaMatrimonio extends JFrame{
 		label8.setText("Car park");
 		label9.setText("Common zones");		
 		label16.setText("Type of building");
+		label19.setText("Limit Price");
 		comboBox1.setModel(new DefaultComboBoxModel(new String[] {
 				"Very Important",
 				"Quite Important",
@@ -334,8 +389,9 @@ public class VistaMatrimonio extends JFrame{
 
 	public void traducirEspanol() {
 		setTitle("Matrimonio con dos - tres hijos");
+		buttonContinuar.setText("Continuar...");
 		labelTitulo.setText("Valore de mayor a menor importancia:");
-		labelTitulo.setBounds(105, 35, 425, labelTitulo.getPreferredSize().height);
+		labelTitulo.setBounds(105, 40, 425, labelTitulo.getPreferredSize().height);
 		label1.setText("Estado del Portal");
 		label2.setText("Numero de Baños / Aseos");
 		label3.setText("Altura (Planta)");		
@@ -345,6 +401,7 @@ public class VistaMatrimonio extends JFrame{
 		label8.setText("Plaza Garage");
 		label9.setText("Zonas Comunes");		
 		label16.setText("Tipo Inmueble");
+		label19.setText("Limite de Precio");
 		comboBox1.setModel(new DefaultComboBoxModel(new String[] {
 				"Muy Importante",
 				"Bastante Importante",
