@@ -34,7 +34,7 @@ public class MotorInferencia {
 		List<Inmueble> nuevosInmuebles = new ArrayList<Inmueble>();
 		if (usuario.isLimiteEconomico() ){
 			for (int i = 0; i < inmuebles.length; i++){
-				if(inmuebles[i].getPrecioTasacion() < usuario.getPrecioMaximo()){
+				if(inmuebles[i].getPrecioSalida() < usuario.getPrecioMaximo()){
 					nuevosInmuebles.add(inmuebles[i]);
 				}
 				else{
