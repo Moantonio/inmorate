@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Sat Jun 07 17:40:26 CEST 2008
+onejar.license.required=true
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=inmorate.jar
+manifest.mergeall=true
+manifest.mainclass=inmorate.controlador.Start
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=<po|inmorate>~sistema-xfuzzy/;<po|inmorate>~.fatjar;<po|inmorate>~fichero_fuzzy.csv;<po|inmorate>~fichero_nofuzzy.csv;<po|inmorate>~Thumbs.db
+includes=

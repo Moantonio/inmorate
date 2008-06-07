@@ -60,11 +60,11 @@ public class VistaPareja extends JFrame {
 		buttonAceptar.addActionListener(
 				new ActionListener() {
 					public void actionPerformed(ActionEvent evento) {
-						controlador.getComboBox().add(""+comboBox1.getSelectedItem());
-						controlador.getComboBox().add(""+comboBox2.getSelectedItem());
-						controlador.getComboBox().add(""+comboBox3.getSelectedItem());
-						controlador.getComboBox().add(""+comboBox4.getSelectedItem());
-						controlador.getComboBox().add(""+slider1.getValue());
+						controlador.getComboBox().set(0,""+comboBox1.getSelectedItem());
+						controlador.getComboBox().set(1,""+comboBox2.getSelectedItem());
+						controlador.getComboBox().set(2,""+comboBox3.getSelectedItem());
+						controlador.getComboBox().set(3,""+comboBox4.getSelectedItem());
+						controlador.getComboBox().set(4,""+slider1.getValue());
 						
 						// Valoramos los inmuebles
 						controlador.valorarPareja();
@@ -283,7 +283,7 @@ public class VistaPareja extends JFrame {
 		label11.setBounds(800, 275, 263, 150);
 
 		//---- label12 ----
-		label12.setIcon(new ImageIcon("./imagenes/fuzzy/Numero.JPG"));
+		label12.setIcon(new ImageIcon("./imagenes/fuzzy/Garage.JPG"));
 		contentPane.add(label12);
 		label12.setBounds(800, 460, 263, 150);
 
@@ -361,6 +361,7 @@ public class VistaPareja extends JFrame {
 	
 	public void traducirIngles() {		
 		setTitle("Young couple with no children");
+		buttonAceptar.setText("Value");
 		buttonContinuar.setText("Continue");
 		labelTitulo.setText("Value from greater to smaller importance:");
 		labelTitulo.setBounds(90, 40, 425, labelTitulo.getPreferredSize().height);
@@ -409,6 +410,7 @@ public class VistaPareja extends JFrame {
 
 	public void traducirEspanol() {
 		setTitle("Pareja Joven sin Hijos");
+		buttonAceptar.setText("Valorar");
 		buttonContinuar.setText("Continuar...");
 		labelTitulo.setText("Valore de mayor a menor importancia:");
 		labelTitulo.setBounds(105, 40, 425, labelTitulo.getPreferredSize().height);

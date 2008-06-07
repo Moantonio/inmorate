@@ -43,6 +43,8 @@ public class Controlador {
 		vistaSoltera = null;
 		conexion = null;
 		comboBox = new ArrayList<String>();
+		for (int i=0; i<5; i++)
+			comboBox.add("");
 		resultado = null;
 		vista = -1;
 		pareja = null;
