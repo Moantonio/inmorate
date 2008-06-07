@@ -56,8 +56,6 @@ public class MotorInferencia {
 		
 		InmuebleValorado[] inmueblesValoradosTmp = new InmuebleValorado[inmuebles.length];
 
-		controlador.escribirPanel("Llamada al motor de inferencia.\nInmuebles valorados\n\n");
-		
 		for (int i = 0; i < inmuebles.length; i++){
 			double [] entrada = inmuebles[i].extraerDatos();	
 			entrada[NUMERO_ELEMENTOS -1] = usuario.getSector().getId();
@@ -86,7 +84,7 @@ public class MotorInferencia {
 			Valoracion valoracionGeneral = new Valoracion(calculaValoracionGeneral(valoracionUsuario, valoracionExperto));
 			inmueblesValoradosTmp[i] = new InmuebleValorado(inmuebles[i], valoraciones, valoracionGeneral, valoracionUsuario, valoracionExperto );
 
-			controlador.escribirPanel("     ==================== INMUEBLE " + (i+1) + " ====================\n\n");
+			controlador.escribirPanel("     ====================    " + inmuebles[i].getDMXX() + "    ====================\n\n");
 			controlador.escribirPanel("\tValoración General: "+valoracionGeneral.getValor()+"\n");
 			controlador.escribirPanel("\tValoración Usuario: "+valoracionUsuario.getValor()+"\n");
 			controlador.escribirPanel("\tValoración Experto: "+valoracionExperto.getValor()+"\n\n");

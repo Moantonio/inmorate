@@ -34,40 +34,40 @@ public class ValorarPareja {
 		Usuario experto = new Usuario(sector, valoradorExperto);
 		
 		ArrayList<String> cambios = controlador.getComboBox();
-		if (cambios.get(0).equals("Muy Importante")) 
+		if (cambios.get(0).equals("Muy Importante") || cambios.get(0).equals("Very Important")) 
 			usuario.setImportanciaTipoInmueble(new Importancia(GradoImportanciaEnum.MUY_IMPORTANTE));
-		else if (cambios.get(0).equals("Importante")) 
+		else if (cambios.get(0).equals("Importante") || cambios.get(0).equals("Important")) 
 			usuario.setImportanciaTipoInmueble(new Importancia(GradoImportanciaEnum.IMPORTANTE));
-		else if (cambios.get(0).equals("Poco Importante")) 
+		else if (cambios.get(0).equals("Poco Importante") || cambios.get(0).equals("A little Important")) 
 			usuario.setImportanciaTipoInmueble(new Importancia(GradoImportanciaEnum.POCO_IMPORTANTE));
-		else if (cambios.get(0).equals("Nada Importante")) 
+		else if (cambios.get(0).equals("Nada Importante") || cambios.get(0).equals("No Important")) 
 			usuario.setImportanciaTipoInmueble(new Importancia(GradoImportanciaEnum.NADA_IMPORTANTE));
 
-		if (cambios.get(1).equals("Muy Importante")) 
+		if (cambios.get(1).equals("Muy Importante") || cambios.get(1).equals("Very Important")) 
 			usuario.setImportanciaRepresentatividad(new Importancia(GradoImportanciaEnum.MUY_IMPORTANTE));
-		else if (cambios.get(1).equals("Importante")) 
+		else if (cambios.get(1).equals("Importante") || cambios.get(1).equals("Important")) 
 			usuario.setImportanciaRepresentatividad(new Importancia(GradoImportanciaEnum.IMPORTANTE));
-		else if (cambios.get(1).equals("Poco Importante")) 
+		else if (cambios.get(1).equals("Poco Importante") || cambios.get(1).equals("A little Important")) 
 			usuario.setImportanciaRepresentatividad(new Importancia(GradoImportanciaEnum.POCO_IMPORTANTE));
-		else if (cambios.get(1).equals("Nada Importante")) 
+		else if (cambios.get(1).equals("Nada Importante") || cambios.get(1).equals("No Important")) 
 			usuario.setImportanciaRepresentatividad(new Importancia(GradoImportanciaEnum.NADA_IMPORTANTE));
 		
-		if (cambios.get(2).equals("Muy Importante")) 
+		if (cambios.get(2).equals("Muy Importante") || cambios.get(2).equals("Very Important")) 
 			usuario.setImportanciaEstadoDelPortal(new Importancia(GradoImportanciaEnum.MUY_IMPORTANTE));
-		else if (cambios.get(2).equals("Importante")) 
+		else if (cambios.get(2).equals("Importante") || cambios.get(2).equals("Important")) 
 			usuario.setImportanciaEstadoDelPortal(new Importancia(GradoImportanciaEnum.IMPORTANTE));
-		else if (cambios.get(2).equals("Poco Importante")) 
+		else if (cambios.get(2).equals("Poco Importante") || cambios.get(2).equals("A little Important")) 
 			usuario.setImportanciaEstadoDelPortal(new Importancia(GradoImportanciaEnum.POCO_IMPORTANTE));
-		else if (cambios.get(2).equals("Nada Importante")) 
+		else if (cambios.get(2).equals("Nada Importante") || cambios.get(2).equals("No Important")) 
 			usuario.setImportanciaEstadoDelPortal(new Importancia(GradoImportanciaEnum.NADA_IMPORTANTE));
 		
-		if (cambios.get(3).equals("Muy Importante")) 
+		if (cambios.get(3).equals("Muy Importante") || cambios.get(3).equals("Very Important")) 
 			usuario.setImportanciaMetrosHabitables(new Importancia(GradoImportanciaEnum.MUY_IMPORTANTE));
-		else if (cambios.get(3).equals("Importante")) 
+		else if (cambios.get(3).equals("Importante") || cambios.get(3).equals("Important")) 
 			usuario.setImportanciaMetrosHabitables(new Importancia(GradoImportanciaEnum.IMPORTANTE));
-		else if (cambios.get(3).equals("Poco Importante")) 
+		else if (cambios.get(3).equals("Poco Importante") || cambios.get(3).equals("A little Important")) 
 			usuario.setImportanciaMetrosHabitables(new Importancia(GradoImportanciaEnum.POCO_IMPORTANTE));
-		else if (cambios.get(3).equals("Nada Importante")) 
+		else if (cambios.get(3).equals("Nada Importante") || cambios.get(3).equals("No Important")) 
 			usuario.setImportanciaMetrosHabitables(new Importancia(GradoImportanciaEnum.NADA_IMPORTANTE));
 		
 		usuario.setLimiteEconomico(true);

@@ -89,13 +89,13 @@ public class VistaInicial extends JFrame {
 		contentPane.setLayout(null);
 
 		//---- label1 ----
-		label1.setText("Por favor, elija el perfil al que pertenece:");
+		label1.setText("Por favor, elija las características que más se adaptan a su perfil");
 		label1.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
 		label1.setMaximumSize(new Dimension(150, 20));
 		label1.setMinimumSize(new Dimension(150, 20));
 		label1.setPreferredSize(new Dimension(150, 20));
 		contentPane.add(label1);
-		label1.setBounds(400, 110, 410, 35);
+		label1.setBounds(400, 110, 600, 35);
 
 		//---- buttonPareja ----
 		buttonPareja.setText("Pareja joven sin hijos");
@@ -133,12 +133,12 @@ public class VistaInicial extends JFrame {
 		//---- espanol ----
 		espanol.setIcon(new ImageIcon("./imagenes/Espana.gif"));
 		contentPane.add(espanol);
-		espanol.setBounds(810, 110, 60, 36);
+		espanol.setBounds(810, 40, 60, 36);
 
 		//---- ingles ----
 		ingles.setIcon(new ImageIcon("./imagenes/ReinoUnido.gif"));
 		contentPane.add(ingles);
-		ingles.setBounds(870, 110, 60, 36);
+		ingles.setBounds(870, 40, 60, 36);
 
 		//---- label3 ----
 		label3.setText("Sistema de Valoración de Inmuebles");
@@ -167,7 +167,7 @@ public class VistaInicial extends JFrame {
 
 	public void traducirIngles() {
 		setTitle("System of valuation of buildings");
-		label1.setText("Please, choose the profile:");
+		label1.setText("Please, select the more suitable features for your profile");
 		label3.setText("System of valuation of buildings");
 		buttonPareja.setText("Young couple with no children");
 		buttonMatrimonio.setText("Marriage with 2-3 children");
@@ -177,7 +177,7 @@ public class VistaInicial extends JFrame {
 
 	public void traducirEspanol() {
 		setTitle("Sistema de Valoracion de Inmuebles");
-		label1.setText("Por favor, elija el perfil al que pertenece:");
+		label1.setText("Por favor, elija las características que más se adaptan a su perfil");
 		label3.setText("Sistema de Valoración de Inmuebles");
 		buttonPareja.setText("Pareja joven sin hijos");
 		buttonMatrimonio.setText("Matrimonio con 2-3 hijos");

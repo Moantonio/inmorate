@@ -561,7 +561,7 @@ public class VistaFinal extends JFrame {
 		label41.setBounds(255, 710, 130, label41.getPreferredSize().height);
 
 		// ---- label42 ----
-		label42.setIcon(new ImageIcon("./imagenes/fuzzy/TipoInmuebleP.JPG"));
+		label42.setIcon(new ImageIcon("./imagenes/fuzzy/MetrosP.JPG"));
 		contentPane.add(label42);
 		label42.setBounds(390, 710, 173, 100);
 
@@ -1589,7 +1589,7 @@ public class VistaFinal extends JFrame {
 		label36.setBounds(195, 685, 173, 100);
 		label37.setText("Plaza de Garage");
 		label37.setBounds(430, 530, 115, label37.getPreferredSize().height);
-		label38.setIcon(new ImageIcon("./imagenes/fuzzy/NumeroP.JPG"));
+		label38.setIcon(new ImageIcon("./imagenes/fuzzy/GarageP.JPG"));
 		label38.setBounds(565, 530, 173, 100);
 		label39.setText("Precio");
 		label39.setBounds(430, 685, 115, label39.getPreferredSize().height);
@@ -1620,7 +1620,7 @@ public class VistaFinal extends JFrame {
 		label34.setBounds(195, 480, 173, 100);
 		label35.setText("Plaza de Garage");
 		label35.setBounds(60, 595, 125, label35.getPreferredSize().height);
-		label36.setIcon(new ImageIcon("./imagenes/fuzzy/NumeroP.JPG"));
+		label36.setIcon(new ImageIcon("./imagenes/fuzzy/GarageP.JPG"));
 		label36.setBounds(195, 595, 173, 100);
 		label37.setText("Luminosidad");
 		label37.setBounds(430, 480, 115, label37.getPreferredSize().height);
@@ -1652,11 +1652,11 @@ public class VistaFinal extends JFrame {
 		label32.setBounds(60, 455, 710, label32.getPreferredSize().height);
 		label33.setText("Tipo de Inmueble");
 		label33.setBounds(60, 530, 135, label33.getPreferredSize().height);
-		label34.setIcon(new ImageIcon("./imagenes/fuzzy/TipoInmuebleP.jpg"));
+		label34.setIcon(new ImageIcon("./imagenes/fuzzy/MetrosP.jpg"));
 		label34.setBounds(195, 530, 173, 100);
 		label35.setText("Plaza de Garaje");
 		label35.setBounds(60, 685, 125, label35.getPreferredSize().height);
-		label36.setIcon(new ImageIcon("./imagenes/fuzzy/NumeroP.JPG"));
+		label36.setIcon(new ImageIcon("./imagenes/fuzzy/GarageP.JPG"));
 		label36.setBounds(195, 685, 173, 100);
 		label37.setText("Zona");
 		label37.setBounds(430, 530, 115, label37.getPreferredSize().height);
@@ -1691,7 +1691,7 @@ public class VistaFinal extends JFrame {
 		label34.setBounds(195, 530, 173, 100);
 		label35.setText("Plaza de Garaje");
 		label35.setBounds(60, 685, 125, label35.getPreferredSize().height);
-		label36.setIcon(new ImageIcon("./imagenes/fuzzy/NumeroP.JPG"));
+		label36.setIcon(new ImageIcon("./imagenes/fuzzy/GarageP.JPG"));
 		label36.setBounds(195, 685, 173, 100);
 		label37.setText("Luminosidad");
 		label37.setBounds(430, 530, 115, label37.getPreferredSize().height);
