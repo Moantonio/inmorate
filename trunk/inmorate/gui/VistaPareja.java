@@ -306,13 +306,13 @@ public class VistaPareja extends JFrame {
 		scrollPane1.setBounds(75, 495, 440, 300);
 		
 		//---- slider1 ----
-		slider1.setMaximum(1000000);
+		slider1.setMaximum(500000);
 		slider1.setMinimum(100000);
-		slider1.setValue(300000);
+		slider1.setValue(200000);
 		contentPane.add(slider1);
 		slider1.setPaintTicks(true);
-		slider1.setMajorTickSpacing(100000);
-		slider1.setMinorTickSpacing(50000);
+		slider1.setMajorTickSpacing(50000);
+		slider1.setMinorTickSpacing(25000);
 		slider1.setBounds(315, 300, 185, 40);
 		slider1.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
@@ -334,13 +334,13 @@ public class VistaPareja extends JFrame {
 		label16.setBounds(new Rectangle(new Point(300, 340), label16.getPreferredSize()));
 
 		//---- label17 ----
-		label17.setText("1.000.000 €");
+		label17.setText("500.000 €");
 		label17.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
 		contentPane.add(label17);
 		label17.setBounds(new Rectangle(new Point(480, 340), label17.getPreferredSize()));
 
 		//---- label18 ----
-		label18.setText("300.000 €");
+		label18.setText("200.000 €");
 		label18.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
 		contentPane.add(label18);
 		label18.setBounds(395, 285, 55, label18.getPreferredSize().height);
