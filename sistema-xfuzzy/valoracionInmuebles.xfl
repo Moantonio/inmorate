@@ -1,8 +1,10 @@
-type TipoInmueble [1.0,4.0;5] {
+type TipoInmueble [1.0,6.0;7] {
   Piso xfl.singleton(1.0);
   Adosado xfl.singleton(2.0);
   Pareado xfl.singleton(3.0);
   Independiente xfl.singleton(4.0);
+  Estudio xfl.singleton(5.0);
+  Apartamento xfl.singleton(6.0);
  }
 
 type Numero [1.0,10.0;11] {
@@ -124,6 +126,14 @@ rulebase Inferencia_Tipo_inmueble (TipoInmueble Tipo_Inmueble, Perfil Perfil : V
   if(Tipo_Inmueble == Independiente & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Tipo_Inmueble = muy_buena;
   if(Tipo_Inmueble == Independiente & Perfil == Hombre_soltero) -> Valoracion_Tipo_Inmueble = mala;
   if(Tipo_Inmueble == Independiente & Perfil == Mujer_soltera) -> Valoracion_Tipo_Inmueble = mala;
+  if(Tipo_Inmueble == Estudio & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Tipo_Inmueble = muy_mala;
+  if(Tipo_Inmueble == Estudio & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Tipo_Inmueble = muy_mala;
+  if(Tipo_Inmueble == Estudio & Perfil == Hombre_soltero) -> Valoracion_Tipo_Inmueble = muy_buena;
+  if(Tipo_Inmueble == Estudio & Perfil == Mujer_soltera) -> Valoracion_Tipo_Inmueble = regular;
+  if(Tipo_Inmueble == Apartamento & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Tipo_Inmueble = mala;
+  if(Tipo_Inmueble == Apartamento & Perfil == Matrimonio_2_3_hijos) -> Valoracion_Tipo_Inmueble = muy_mala;
+  if(Tipo_Inmueble == Apartamento & Perfil == Hombre_soltero) -> Valoracion_Tipo_Inmueble = muy_buena;
+  if(Tipo_Inmueble == Apartamento & Perfil == Mujer_soltera) -> Valoracion_Tipo_Inmueble = buena;
  }
 rulebase Inferencia_Luminosidad (Valoracion Luminosidad, Perfil Perfil : Valoracion Valoracion_Luminosidad)  {
   if(Luminosidad == muy_mala & Perfil == Pareja_joven_sin_hijos) -> Valoracion_Luminosidad = muy_mala;
@@ -239,11 +249,11 @@ rulebase Inferencia_Vistas (Valoracion Vistas, Perfil Perfil : Valoracion Valora
 rulebase Inferencia_Numero_habitaciones (Numero Numero_habitaciones, Perfil Perfil : Valoracion Valoracion_numero_habitaciones)  {
   if(Numero_habitaciones == uno & Perfil == Pareja_joven_sin_hijos) -> Valoracion_numero_habitaciones = regular;
   if(Numero_habitaciones == uno & Perfil == Matrimonio_2_3_hijos) -> Valoracion_numero_habitaciones = muy_mala;
-  if(Numero_habitaciones == uno & Perfil == Hombre_soltero) -> Valoracion_numero_habitaciones = regular;
+  if(Numero_habitaciones == uno & Perfil == Hombre_soltero) -> Valoracion_numero_habitaciones = muy_buena;
   if(Numero_habitaciones == uno & Perfil == Mujer_soltera) -> Valoracion_numero_habitaciones = regular;
   if(Numero_habitaciones == dos & Perfil == Pareja_joven_sin_hijos) -> Valoracion_numero_habitaciones = buena;
   if(Numero_habitaciones == dos & Perfil == Matrimonio_2_3_hijos) -> Valoracion_numero_habitaciones = mala;
-  if(Numero_habitaciones == dos & Perfil == Hombre_soltero) -> Valoracion_numero_habitaciones = muy_buena;
+  if(Numero_habitaciones == dos & Perfil == Hombre_soltero) -> Valoracion_numero_habitaciones = buena;
   if(Numero_habitaciones == dos & Perfil == Mujer_soltera) -> Valoracion_numero_habitaciones = muy_buena;
   if(Numero_habitaciones == tres & Perfil == Pareja_joven_sin_hijos) -> Valoracion_numero_habitaciones = muy_buena;
   if(Numero_habitaciones == tres & Perfil == Matrimonio_2_3_hijos) -> Valoracion_numero_habitaciones = buena;
