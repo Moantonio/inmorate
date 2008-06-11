@@ -399,7 +399,7 @@ public class Inmueble {
 			this.DMXX = "DM00"+valor;
 		// Tipo de Inmueble
 		Random rnd = new Random();
-		switch(rnd.nextInt(4)) {
+		switch(rnd.nextInt(6)) {
 		case 0: this.tipoDeInmueble = "Piso"; 
 			break;
 		case 1: this.tipoDeInmueble = "Adosado"; 
@@ -407,6 +407,10 @@ public class Inmueble {
 		case 2: this.tipoDeInmueble = "Pareado"; 
 			break;
 		case 3: this.tipoDeInmueble = "Independiente"; 
+			break;
+		case 4: this.tipoDeInmueble = "Estudio"; 
+			break;
+		case 5: this.tipoDeInmueble = "Apartamento"; 
 			break;
 		}
 		// Luminosidad
@@ -626,6 +630,10 @@ public class Inmueble {
 			return 3.0;
 		else if(tipoDeInmueble.compareToIgnoreCase("independiente")==0)
 			return 4.0;
+		else if(tipoDeInmueble.compareToIgnoreCase("estudio")==0)
+			return 5.0;
+		else if(tipoDeInmueble.compareToIgnoreCase("apartamento")==0)
+			return 6.0;
 		return 1.0;
 	}
 	public double defuzzyOrientacion(){
