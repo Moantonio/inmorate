@@ -1,0 +1,9 @@
+# 1. Introducción al problema #
+
+El proyecto propuesto consiste en una aplicación práctica de la lógica difusa en el campo de las inmobiliarias, de tal manera que en función de una serie de parámetros de términos inmobiliarios, como podrían ser el tipo de inmueble, la luminosidad, la orientación, el estado del portal… debemos hallar los mejores inmuebles que se adaptan a esos parámetros propuestos con anterioridad.
+
+Para ello dado un inmueble y un tipo de comprador, que podrá ser pareja joven sin hijos, matrimonio con 2 o 3 hijos, hombre soltero o mujer soltera, queremos obtener el valor que dicho inmueble tiene para ese comprador. El comprador a la hora de elegir un inmueble u otro, desea que lo que busca cumpla una serie de requisitos que tiene entre sus preferencias. Por ello es posible encontrar el inmueble que mejor se adapta a cada tipo de comprador, ya que sólo tendríamos que comprobar en que medida cumple ese inmueble con los requisitos dado por el comprador.
+
+Para realizar el cálculo del valor que tiene cada inmueble para cada uno de los distintos tipos de compradores descritos con anterioridad se puede usar distintas aproximaciones, pero nosotros hemos optado por utilizar lógica fuzzy. Para realizar las distintas tareas relacionadas con la lógica fuzzy usamos la herramienta XFuzzy. Esta herramienta además de ofrecer un entorno de diseño y desarrollo de sistemas fuzzy, también nos permite generar automáticamente una implementación en algún lenguaje de programación como es Java, C o C++.
+
+A la hora de la implementación del programa, hemos decidido desarrollarlo en la plataforma Java.
